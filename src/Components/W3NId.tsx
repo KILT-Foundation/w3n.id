@@ -2,6 +2,7 @@ import React from 'react'
 import { Footer } from './Footer'
 import styled from 'styled-components'
 import { SearchComponent } from './SearchComponent'
+import { Header } from './Header'
 
 const StyledBody = styled.div`
   min-height: 100vh;
@@ -18,6 +19,7 @@ const StyledBody = styled.div`
 export const W3NId = () => {
   return (
     <StyledBody>
+      <Header />
       <SearchComponent />
       <Footer />
     </StyledBody>
