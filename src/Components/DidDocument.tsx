@@ -29,7 +29,7 @@ const FetchBtn = styled.button`
   letter-spacing: 0.09px;
   color: black;
   text-align: center;
-  width: 130px;
+  width: 120px;
   height: 22px;
   align-items: center;
   justify-content: center;
@@ -45,9 +45,8 @@ const EndpointURLSpan = styled.span`
   text-align: left;
   line-height: 16px;
   letter-spacing: 0.1px;
-  max-width: 500px;
-  overflow: hidden;
-  white-space: nowrap;
+  width: 500px;
+  word-break: break-all;
   text-overflow: ellipsis;
 `
 const Container = styled.div`
