@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors } from './Colors/colors'
 
 interface Endpoint {
   endpointType: string
@@ -14,43 +15,56 @@ const EndpointContainer = styled.div`
 const EndpointTypeSpan = styled.span`
   overflow-wrap: break-word;
   font-family: 'Overpass';
-  font-weight: bold;
+  color: ${colors.textblack};
   font-size: 14px;
-  line-height: 22px;
+  font-weight: bold;
   letter-spacing: 0.1px;
+  line-height: 22px;
+  margin-top: 10px;
 `
 const FetchBtn = styled.button`
   display: flex;
   font-family: 'Overpass';
   text-transform: uppercase;
-  margin-left: auto;
-  font-size: 12px;
-  line-height: 13px;
-  letter-spacing: 0.09px;
-  color: black;
+  color: ${colors.hotpink};
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 22px;
   text-align: center;
-  width: 120px;
-  height: 22px;
+  margin-left: auto;
+  text-align: center;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  border: black;
-  border: solid;
+  height: 24px;
+  width: 140px;
+  border: 2px solid ${colors.hotpink};
+  border-radius: 15px;
+  background-color: ${colors.darkpink};
 `
 const EndpointURLSpan = styled.span`
   display: block;
   font-family: 'Overpass';
-  font-weight: bold;
   font-size: 14px;
-  text-align: left;
-  line-height: 16px;
   letter-spacing: 0.1px;
-  width: 500px;
-  word-break: break-all;
+  line-height: 22px;
+  width: 450px;
   text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 const Container = styled.div`
-  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+`
+const Seperator = styled.div`
+  border: 1px dashed ${colors.borderblue};
+  width: 100%;
+  color: ${colors.textblack};
+  @media (prefers-color-scheme: dark) {
+    border-color: white;
+  }
 `
 
 export const DidDocument = (props: Endpoint) => {
@@ -62,6 +76,7 @@ export const DidDocument = (props: Endpoint) => {
         <EndpointURLSpan>{props.endpointURL}</EndpointURLSpan>
         <FetchBtn>Fetch</FetchBtn>
       </EndpointContainer>
+      <Seperator />
     </Container>
   )
 }

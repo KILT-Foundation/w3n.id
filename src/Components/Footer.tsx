@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors } from './Colors/colors'
 
 const StyledFooter = styled.div`
-  background-color: black;
+  background-color: ${colors.lightgray};
   height: 35px;
   width: 100vw;
   display: flex;
@@ -17,7 +18,7 @@ const StyledFooterLinksContainer = styled.div`
   max-width: 766px;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: ${colors.textblack};
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.1px;

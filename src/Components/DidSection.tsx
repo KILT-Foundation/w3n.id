@@ -8,25 +8,31 @@ interface Props {
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
-  max-width: 766px;
-  justify-content: start;
+  flex-wrap: wrap;
+  max-width: 740px;
+  width: 90%;
+  align-items: flex-start;
+  justify-content: flex-start;
   height: fit-content;
   margin-top: 50px;
 `
 const DidTitle = styled.span`
-  width: 100px;
-  font-size: 16px;
+  max-width: 100px;
+  width: 20%;
+  font-size: 14px;
   font-weight: bold;
-  color: black;
+  letter-spacing: 0.1px;
+  line-height: 22px;
   text-align: left;
 `
 const DidSpan = styled.span`
-  width: 60%;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
+  display: flex;
+  justify-content: start;
+  min-width: 200px;
   word-break: break-all;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 22px;
 `
 export const DidSection = (props: Props) => {
   if (props.did === '') return null
