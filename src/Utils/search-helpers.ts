@@ -2,12 +2,17 @@ import { Did, init } from '@kiltprotocol/sdk-js'
 
 export const getServiceEndpoints = async (
   did: string
-): Promise<{ ids: string[]; urls: string[]; types: string[] } | null> => {
+): Promise<{
+  ids: string[]
+  urls: string[]
+  types: string[]
+  web3name: string | null
+} | null> => {
   const urls: string[] = []
   const types: string[] = []
   const ids: string[] = []
 
-  await init({ address: 'wss://spiritnet.kilt.io' })
+  await init({ address: 'wss://sporran-testnet.kilt.io' })
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   if (endPoints != null) {
@@ -16,7 +21,8 @@ export const getServiceEndpoints = async (
       types.push(...endPoint.types)
       ids.push(endPoint.id)
     }
-    return { ids: ids, urls: urls, types: types }
+    const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
+    return { ids: ids, urls: urls, types: types, web3name: w3name }
   }
   return null
 }
