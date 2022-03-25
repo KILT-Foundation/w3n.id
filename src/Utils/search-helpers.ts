@@ -33,3 +33,42 @@ export const isSearchedTextDid = (searchedText: string): boolean => {
   }
   return false
 }
+export const isSearchedTextKiltDid = (searchedText: string): boolean => {
+  const kiltKeyword = searchedText.split(':').slice(1, -1)
+  if (kiltKeyword.includes('kilt') && kiltKeyword.length === 1) {
+    return true
+  }
+  console.log(kiltKeyword)
+  return false
+}
+export const getDidDocFromW3Name = async (
+  w3name: string
+): Promise<{
+  ids: string[]
+  urls: string[]
+  types: string[]
+  did: string
+} | null> => {
+  const urls: string[] = []
+  const types: string[] = []
+  const ids: string[] = []
+
+  await init({ address: 'wss://sporran-testnet.kilt.io' })
+  const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
+  if (did != null) {
+    const didDetails = await Did.DidResolver.resolveDoc(did)
+    const endPoints = didDetails?.details?.getEndpoints()
+    if (endPoints != null) {
+      for (const endPoint of endPoints) {
+        urls.push(...endPoint.urls)
+        types.push(...endPoint.types)
+        ids.push(endPoint.id)
+      }
+      return { ids: ids, urls: urls, types: types, did: did }
+    }
+  }
+  return null
+}
+export const isUpperCase = (text: string) => text.toLocaleLowerCase() !== text
+
+export const invalidSearchedText = (text: string) => /[^a-z]/.test(text)
