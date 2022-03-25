@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as Copy } from '../ImageAssets/copy2clipboard_light.svg'
 
 interface Props {
   did: string
@@ -28,18 +29,36 @@ const DidTitle = styled.span`
 const DidSpan = styled.span`
   display: flex;
   justify-content: start;
-  min-width: 200px;
   word-break: break-all;
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
+`
+const DidContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 250px;
+  gap: 7px;
+`
+const CopySvg = styled(Copy)`
+  fill: ${(props) => props.theme.btnborder};
+  cursor: pointer;
 `
 export const DidSection = (props: Props) => {
   if (props.did === '') return null
   return (
     <Container>
       <DidTitle>DID</DidTitle>
-      <DidSpan>{props.did}</DidSpan>
+      <DidContainer>
+        <DidSpan>{props.did}</DidSpan>
+        <CopySvg
+          onClick={() => {
+            navigator.clipboard.writeText(props.did)
+          }}
+        />
+      </DidContainer>
     </Container>
   )
 }

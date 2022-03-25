@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from './Colors/colors'
+import { ReactComponent as Copy } from '../ImageAssets/copy2clipboard_light.svg'
 
 interface Props {
   web3Name: string
@@ -32,18 +32,35 @@ const W3NameText = styled.span`
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  min-width: 300px;
   font-size: 24px;
   letter-spacing: 0.17px;
   line-height: 37px;
-  color: ${colors.hotpink};
+  color: ${(props) => props.theme.web3name};
+`
+const W3NameContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 350px;
+  gap: 7px;
+`
+const CopySvg = styled(Copy)`
+  fill: ${(props) => props.theme.btnborder};
+  cursor: pointer;
 `
 export const Web3Name = (props: Props) => {
   if (props.web3Name === '') return null
   return (
     <Container>
       <W3NameTitle>web3name</W3NameTitle>
-      <W3NameText>{'w3n:' + props.web3Name}</W3NameText>
+      <W3NameContainer>
+        <W3NameText>{'w3n:' + props.web3Name}</W3NameText>
+        <CopySvg
+          onClick={() => {
+            navigator.clipboard.writeText(props.web3Name)
+          }}
+        />
+      </W3NameContainer>
     </Container>
   )
 }

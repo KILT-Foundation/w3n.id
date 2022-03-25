@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icons/switch to light</title>
+    <g id="icons/switch-to-light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(2.000000, 2.000000)" stroke="#ECECEC" stroke-width="2">
+            <circle id="Oval" cx="9" cy="9" r="3.5"></circle>
+            <line x1="14.6568542" y1="2.34314575" x2="14.6568542" y2="4.34314575" id="Line-2" stroke-linecap="round" transform="translate(14.656854, 3.343146) rotate(-315.000000) translate(-14.656854, -3.343146) "></line>
+            <line x1="3.34314575" y1="13.6568542" x2="3.34314575" y2="15.6568542" id="Line-2-Copy-2" stroke-linecap="round" transform="translate(3.343146, 14.656854) rotate(-315.000000) translate(-3.343146, -14.656854) "></line>
+            <line x1="14.6568542" y1="13.6568542" x2="14.6568542" y2="15.6568542" id="Line-2" stroke-linecap="round" transform="translate(14.656854, 14.656854) rotate(-585.000000) translate(-14.656854, -14.656854) "></line>
+            <line x1="3.34314575" y1="2.34314575" x2="3.34314575" y2="4.34314575" id="Line-2-Copy-2" stroke-linecap="round" transform="translate(3.343146, 3.343146) rotate(-585.000000) translate(-3.343146, -3.343146) "></line>
+            <line x1="17" y1="8" x2="17" y2="10" id="Line-2" stroke-linecap="round" transform="translate(17.000000, 9.000000) rotate(-630.000000) translate(-17.000000, -9.000000) "></line>
+            <line x1="1" y1="8" x2="1" y2="10" id="Line-2-Copy-2" stroke-linecap="round" transform="translate(1.000000, 9.000000) rotate(-630.000000) translate(-1.000000, -9.000000) "></line>
+            <line x1="9" y1="16" x2="9" y2="18" id="Line-2" stroke-linecap="round" transform="translate(9.000000, 17.000000) rotate(-900.000000) translate(-9.000000, -17.000000) "></line>
+            <line x1="9" y1="-4.4408921e-16" x2="9" y2="2" id="Line-2-Copy-2" stroke-linecap="round" transform="translate(9.000000, 1.000000) rotate(-900.000000) translate(-9.000000, -1.000000) "></line>
+        </g>
+    </g>
+</svg>
