@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface Style {
-  marginBottom: string
+  marginBottom?: string
+  itemsAlignment?: string
 }
 interface Props {
   name: string
@@ -49,7 +50,7 @@ const ClaimW3NContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: ${(props: Style) => props.itemsAlignment};
   min-width: 250px;
   gap: 7px;
 `
@@ -57,7 +58,7 @@ const ClaimWeb3Name = (props: Props) => {
   return (
     <Container>
       <NoteSpan>Note</NoteSpan>
-      <ClaimW3NContainer>
+      <ClaimW3NContainer itemsAlignment="flex-start">
         <ClaimW3NSteps marginBottom={'15px'}>
           No results fond for {props.name}
         </ClaimW3NSteps>
@@ -104,7 +105,7 @@ const MaxCharError = () => {
   return (
     <Container>
       <NoteSpan>Note</NoteSpan>
-      <ClaimW3NContainer>
+      <ClaimW3NContainer itemsAlignment={'center'}>
         <ClaimW3NSteps marginBottom={'0px'}>
           Maximum 30 charachters allowed
         </ClaimW3NSteps>
@@ -116,7 +117,7 @@ const MinCharError = () => {
   return (
     <Container>
       <NoteSpan>Note</NoteSpan>
-      <ClaimW3NContainer>
+      <ClaimW3NContainer itemsAlignment={'center'}>
         <ClaimW3NSteps marginBottom={'0px'}>
           Minimum charachters length should be 3
         </ClaimW3NSteps>
@@ -129,7 +130,7 @@ const InvalidCharError = () => {
   return (
     <Container>
       <NoteSpan>Note</NoteSpan>
-      <ClaimW3NContainer>
+      <ClaimW3NContainer itemsAlignment={'center'}>
         <ClaimW3NSteps marginBottom={'0px'}>Invalid Charachters</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
@@ -139,7 +140,7 @@ const InvalidKiltDid = () => {
   return (
     <Container>
       <NoteSpan>Note</NoteSpan>
-      <ClaimW3NContainer>
+      <ClaimW3NContainer itemsAlignment={'center'}>
         <ClaimW3NSteps marginBottom={'0px'}>Not a valid Kilt DID</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
