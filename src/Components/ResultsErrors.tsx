@@ -84,21 +84,17 @@ const ClaimWeb3Name = (props: Props) => {
   )
 }
 export const ResultsErrors = (props: Props) => {
-  if (props.errors === 'Not Claimed') {
+  if (props.errors === 'Not Claimed')
     return <ClaimWeb3Name name={props.name} errors={null} />
-  }
-  if (props.errors === 'Max limit') {
-    return <MaxCharError />
-  }
-  if (props.errors === 'Min limit') {
-    return <MinCharError />
-  }
-  if (props.errors === 'Invalid Chars') {
-    return <InvalidCharError />
-  }
-  if (props.errors === 'Invalid Kilt') {
-    return <InvalidKiltDid />
-  }
+
+  if (props.errors === 'Max limit') return <MaxCharError />
+
+  if (props.errors === 'Min limit') return <MinCharError />
+
+  if (props.errors === 'Invalid Chars') return <InvalidCharError />
+
+  if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />
+
   return null
 }
 const MaxCharError = () => {
