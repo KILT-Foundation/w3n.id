@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { getServiceEndpoints, isSearchedTextDid } from '../Utils/search-helpers'
+import {
+  getDidDocFromW3Name,
+  getServiceEndpoints,
+  invalidSearchedText,
+  isSearchedTextDid,
+  isSearchedTextKiltDid,
+} from '../Utils/search-helpers'
 import { DidDocument } from './DidDocument'
 import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
-import { colors } from './Colors/colors'
-
 import { VerificationMethodSecton } from './VerificationMethodSecton'
+import { ResultsErrors } from './ResultsErrors'
 
 const SearchContainer = styled.div`
   display: flex;
@@ -14,7 +19,7 @@ const SearchContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100px;
-  background-color: ${colors.lightgray};
+  background-color: ${(props) => props.theme.searchbackground};
   align-items: center;
 `
 const Container = styled.div`
@@ -25,13 +30,13 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
 `
-const SearchDiv = styled.div`
+const SearchBarContainer = styled.div`
   display: flex;
   max-width: 740px;
   width: 90%;
   height: 32px;
   border-radius: 16px;
-  background-color: ${colors.darkgrey};
+  background-color: ${(props) => props.theme.searchbar};
   box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.35);
   padding-left: 10px;
 `
@@ -41,16 +46,13 @@ const SearchBtn = styled.button`
   height: 24px;
   border-radius: 15px;
   height: 22px;
-  background-color: ${colors.yellow};
+  background-color: ${(props) => props.theme.searchbtn};
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: center;
-  color: ${colors.searchBtnText};
-  @media (prefers-color-scheme: dark) {
-    background-color: white;
-    color: black;
-  }
+  color: ${(props) => props.theme.searchbtntext};
+  cursor: pointer;
 
   border-radius: 30px;
   font-size: 12px;
@@ -64,9 +66,6 @@ const SearchInput = styled.input`
   letter-spacing: 0.26px;
   line-height: 22px;
   background: transparent;
-  @media (prefers-color-scheme: dark) {
-    color: white;
-  }
   border: none;
   :focus {
     outline: none;
@@ -122,39 +121,110 @@ export const SearchComponent = () => {
   const [endpointIds, setEndpointIds] = useState<string[]>([])
   const [did, setDid] = useState<string>('')
   const [w3Name, setW3Name] = useState<string>('')
+  const [errors, setErrors] = useState<
+    | 'Not Claimed'
+    | 'Max limit'
+    | 'Invalid Chars'
+    | 'Min limit'
+    | 'Invalid Kilt'
+    | null
+  >(null)
 
-  const handleSearch = async () => {
-    if (endpointIds.length) {
+  const resolveDidDocument = useCallback(async (textFromSearch: string) => {
+    if (textFromSearch.length < 3) {
+      setErrors('Min limit')
       return
     }
-    if (isSearchedTextDid(searchedText)) {
-      const endPoints = await getServiceEndpoints(searchedText)
+    if (isSearchedTextDid(textFromSearch)) {
+      if (!isSearchedTextKiltDid(textFromSearch)) {
+        setErrors('Invalid Kilt')
+        return
+      }
+      const endPoints = await getServiceEndpoints(textFromSearch)
       if (endPoints != null) {
         setEndpointIds(endPoints.ids)
         setEndpointTypes(endPoints.types)
         setEndpointURLs(endPoints.urls)
-        setDid(searchedText)
+        setDid(textFromSearch)
         if (endPoints.web3name !== null) {
           setW3Name(endPoints.web3name)
         }
       }
+      return
     }
-  }
-  useEffect(() => {
-    if (searchedText === '') {
+    if (textFromSearch.length > 30) {
+      setErrors('Max limit')
+      return
+    }
+
+    if (textFromSearch.split('.').slice(0, -1).includes('w3n')) {
+      const name = textFromSearch.split('.').pop()
+      if (name !== undefined) {
+        const didDoc = await getDidDocFromW3Name(name)
+        if (didDoc !== null) {
+          setEndpointIds(didDoc.ids)
+          setEndpointTypes(didDoc.types)
+          setEndpointURLs(didDoc.urls)
+          setDid(didDoc.did)
+          setW3Name(name)
+        }
+      }
+      return
+    }
+    if (invalidSearchedText(textFromSearch)) {
+      setErrors('Invalid Chars')
+      return
+    }
+
+    const didDoc = await getDidDocFromW3Name(textFromSearch)
+    if (didDoc !== null) {
+      setEndpointIds(didDoc.ids)
+      setEndpointTypes(didDoc.types)
+      setEndpointURLs(didDoc.urls)
+      setDid(didDoc.did)
+      setW3Name(textFromSearch)
+    } else {
+      setErrors('Not Claimed')
+    }
+  }, [])
+
+  const handleSearch = async () => {
+    setErrors(null)
+    if (endpointIds.length) {
       setEndpointIds([])
       setEndpointTypes([])
       setEndpointURLs([])
       setDid('')
+      setW3Name('')
     }
-  }, [searchedText])
+    await resolveDidDocument(searchedText)
+  }
+  const handleKeypress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') handleSearch()
+  }
+  useEffect(() => {
+    const host = window.location.host
+    const arr = host.split('.').slice(0, host.includes('localhost') ? -1 : -2)
+    const path = window.location.pathname.split('/')[1]
+    if (arr.length > 0) {
+      setSearchedText(arr[0])
+      resolveDidDocument(arr[0])
+    } else {
+      if (path !== '') {
+        setSearchedText(path)
+
+        resolveDidDocument(path)
+      }
+    }
+  }, [resolveDidDocument])
   return (
     <Container>
       <SearchContainer>
-        <SearchDiv>
+        <SearchBarContainer>
           <SearchInput
-            type="search"
+            type="input"
             value={searchedText}
+            onKeyDown={handleKeypress}
             onInput={(e) =>
               setSearchedText((e.target as HTMLInputElement).value)
             }
@@ -162,10 +232,14 @@ export const SearchComponent = () => {
           />
 
           <SearchBtnWrapper>
-            <SearchBtn onClick={() => handleSearch()}>LOOK UP</SearchBtn>
+            <SearchBtn onClick={() => handleSearch()} type="submit">
+              LOOK UP
+            </SearchBtn>
           </SearchBtnWrapper>
-        </SearchDiv>
+        </SearchBarContainer>
       </SearchContainer>
+      <ResultsErrors name={searchedText} errors={errors} />
+
       {endpointTypes.length > 0 && (
         <ResultsContainer>
           <DidSection did={did} />
