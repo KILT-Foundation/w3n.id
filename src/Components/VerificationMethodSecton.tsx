@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from './Colors/colors'
 
 interface Props {
   did: string
@@ -44,7 +43,8 @@ const Text = styled.span`
   max-width: 400px;
 `
 const TextLink = styled.a`
-  color: ${colors.hotpink};
+  cursor: pointer;
+  color: ${(props) => props.theme.web3name};
   text-decoration: none;
 `
 
