@@ -1,4 +1,11 @@
-import { Did, init } from '@kiltprotocol/sdk-js'
+import {
+  Attestation,
+  Did,
+  ICredential,
+  init,
+  IRequestForAttestation,
+  Credential,
+} from '@kiltprotocol/sdk-js'
 
 export const getServiceEndpoints = async (
   did: string
@@ -72,3 +79,28 @@ export const getDidDocFromW3Name = async (
 export const isUpperCase = (text: string) => text.toLocaleLowerCase() !== text
 
 export const invalidSearchedText = (text: string) => /[^a-z]/.test(text)
+
+export const getDidForAccount = (did: string): string => {
+  return Did.DidUtils.getKiltDidFromIdentifier(did, 'full')
+}
+
+export const getAttestationForRequest = async (
+  req4Att: IRequestForAttestation
+) => {
+  return Attestation.query(req4Att.rootHash)
+}
+
+export const validateAttestation = async (attestation: Attestation | null) => {
+  if (attestation != null) {
+    if (!attestation.revoked) {
+      return true
+    }
+  }
+  return false
+}
+export const validateCredential = async (
+  credentialInput: ICredential
+): Promise<boolean> => {
+  const credential = Credential.fromCredential(credentialInput)
+  return await Credential.verify(credential)
+}
