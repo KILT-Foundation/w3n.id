@@ -217,7 +217,7 @@ export const SearchComponent = () => {
   useEffect(() => {
     const host = window.location.host
     console.log(host)
-    const arr = host.split('.').slice(0, host.includes('main') ? -3 : -2)
+    const arr = host.split('.').slice(0, host.includes('localhost') ? -1 : -2)
     console.log(host.split('.')[0])
     const path = window.location.pathname.split('/')[1]
     if (arr.length > 0) {
