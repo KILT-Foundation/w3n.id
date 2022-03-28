@@ -47,12 +47,12 @@ export const Footer = () => {
           <span>Imprint</span>
         </ImprintContainer>
         <LinksContainer>
-          <span>Terms and Conditions</span>
+          <span>Terms of Use</span>
           <span>-</span>
 
-          <span>Privacy Policy</span>
+          <span>Privacy</span>
           <span>-</span>
-          <span>Tech Support</span>
+          <span>Support</span>
         </LinksContainer>
         <LogoContainer>
           <span>Built on KILT</span>
