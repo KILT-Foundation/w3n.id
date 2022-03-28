@@ -99,7 +99,7 @@ export const ResultsErrors = (props: Props) => {
 const MaxCharError = () => {
   return (
     <Container>
-      <NoteSpan>Note</NoteSpan>
+      <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>
           Maximum 30 charachters allowed
@@ -111,7 +111,7 @@ const MaxCharError = () => {
 const MinCharError = () => {
   return (
     <Container>
-      <NoteSpan>Note</NoteSpan>
+      <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>
           Minimum charachters length should be 3
@@ -124,7 +124,7 @@ const MinCharError = () => {
 const InvalidCharError = () => {
   return (
     <Container>
-      <NoteSpan>Note</NoteSpan>
+      <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>Invalid Charachters</ClaimW3NSteps>
       </ClaimW3NContainer>
@@ -134,7 +134,7 @@ const InvalidCharError = () => {
 const InvalidKiltDid = () => {
   return (
     <Container>
-      <NoteSpan>Note</NoteSpan>
+      <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>Not a valid Kilt DID</ClaimW3NSteps>
       </ClaimW3NContainer>
