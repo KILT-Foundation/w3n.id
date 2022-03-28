@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Logo } from '../ImageAssets/w3n_logo.svg'
 import { ReactComponent as DarkModeSwitch } from '../ImageAssets/switch2dark.svg'
 import { ReactComponent as LightModeSwitch } from '../ImageAssets/switch2light.svg'
+import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
+import { TakeTourSection } from '../Components/TakeTourSection'
 
 interface Toggle {
   handleTheme: React.MouseEventHandler<HTMLDivElement>
   theme: 'light' | 'dark'
 }
+interface Style {
+  rotate: string
+}
 const StyledHeader = styled.div`
   background-color: ${(props) => props.theme.searchbackground};
   display: flex;
   flex-direction: column;
-  height: 96px;
+  height: fit-content;
   width: 100vw;
   position: relative;
 `
@@ -46,7 +51,9 @@ const TourBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   max-width: 140px;
+  color: ${(props) => props.theme.headertext};
   width: 70%;
   height: 26px;
   background-color: ${(props) => props.theme.headersecondary};
@@ -62,6 +69,7 @@ const HeaderTextLabel = styled.div`
   width: 100%;
   height: 24px;
 `
+
 const HeaderText = styled.span`
   max-width: 740px;
   width: 90%;
@@ -90,7 +98,22 @@ const ThemeSwitch = styled.div`
   height: fit;
   cursor: pointer;
 `
+const OpenSvg = styled(Open)`
+  fill: ${(props) => props.theme.headertext};
+  cursor: pointer;
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  transform: rotate(${(props: Style) => props.rotate});
+`
+
 export const Header = (props: Toggle) => {
+  const [tourSection, setTourSection] = useState<'Open' | 'Close'>('Close')
+  const handleClick = () => {
+    if (tourSection === 'Open') setTourSection('Close')
+    else setTourSection('Open')
+  }
+
   return (
     <StyledHeader>
       <ThemeSwitch>
@@ -103,12 +126,16 @@ export const Header = (props: Toggle) => {
           <LogoSvg />
         </LogoWrapper>
         <TourBtnWrapper>
-          <TourBtn>How to?</TourBtn>
+          <TourBtn onClick={() => handleClick()}>
+            How to?
+            <OpenSvg rotate={tourSection === 'Close' ? '0deg' : '180deg'} />
+          </TourBtn>
         </TourBtnWrapper>
       </TopHeaderContainer>
       <HeaderTextLabel>
         <HeaderText>Look up web3names* or DIDs here</HeaderText>
       </HeaderTextLabel>
+      {tourSection === 'Open' && <TakeTourSection />}
       <BottomHeaderSeperator />
     </StyledHeader>
   )
