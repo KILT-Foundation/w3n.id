@@ -12,11 +12,7 @@ import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
-import { Theme } from '../Themes/Theme'
 
-interface Style {
-  buttonColor: string
-}
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -50,7 +46,7 @@ const SearchBtn = styled.button`
   height: 24px;
   border-radius: 15px;
   height: 22px;
-  background-color: ${(props: Style) => props.buttonColor};
+  background-color: ${(props) => props.theme.searchbtn};
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
@@ -129,7 +125,6 @@ export const SearchComponent = () => {
   const [endpointURLs, setEndpointURLs] = useState<string[]>([])
   const [endpointIds, setEndpointIds] = useState<string[]>([])
   const [did, setDid] = useState<string>('')
-  const [searchBtnColor, setSearchBtnColor] = useState<string>('gray')
   const [w3Name, setW3Name] = useState<string>('')
   const [errors, setErrors] = useState<
     | 'Not Claimed'
@@ -216,6 +211,7 @@ export const SearchComponent = () => {
   }
   useEffect(() => {
     const host = window.location.host
+    console.log(host)
     const arr = host.split('.').slice(0, host.includes('localhost') ? -1 : -2)
     const path = window.location.pathname.split('/')[1]
     if (arr.length > 0) {
@@ -224,12 +220,11 @@ export const SearchComponent = () => {
     } else {
       if (path !== '') {
         setSearchedText(path)
+
         resolveDidDocument(path)
       }
     }
-    if (searchedText.length >= 3) setSearchBtnColor(Theme.dark.searchbtn)
-    else setSearchBtnColor('grey')
-  }, [resolveDidDocument, searchedText.length])
+  }, [resolveDidDocument])
   return (
     <Container>
       <SearchContainer>
@@ -245,11 +240,7 @@ export const SearchComponent = () => {
           />
 
           <SearchBtnWrapper>
-            <SearchBtn
-              buttonColor={searchBtnColor}
-              onClick={() => handleSearch()}
-              type="submit"
-            >
+            <SearchBtn onClick={() => handleSearch()} type="submit">
               LOOK UP
             </SearchBtn>
           </SearchBtnWrapper>
