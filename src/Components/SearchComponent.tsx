@@ -173,11 +173,14 @@ export const SearchComponent = () => {
           setEndpointURLs(didDoc.urls)
           setDid(didDoc.did)
           setW3Name('w3n:' + name)
+          const url = window.location.origin + '/' + name
+          window.history.pushState({ path: url }, '', url)
         }
       }
       return
     }
     if (invalidSearchedText(textFromSearch)) {
+      console.log(textFromSearch.split(':').slice(0, -1).includes('w3n'))
       setErrors('Invalid Chars')
       return
     }
@@ -189,6 +192,8 @@ export const SearchComponent = () => {
       setEndpointURLs(didDoc.urls)
       setDid(didDoc.did)
       setW3Name('w3n:' + textFromSearch)
+      const url = window.location.origin + '/' + textFromSearch
+      window.history.pushState({ path: url }, '', url)
     } else {
       setUnclaimedName(textFromSearch)
       setErrors('Not Claimed')
@@ -212,7 +217,8 @@ export const SearchComponent = () => {
   useEffect(() => {
     const host = window.location.host
     console.log(host)
-    const arr = host.split('.').slice(0, host.includes('localhost') ? -1 : -2)
+    const arr = host.split('.').slice(0, host.includes('main') ? -3 : -2)
+    console.log(host.split('.')[0])
     const path = window.location.pathname.split('/')[1]
     if (arr.length > 0) {
       setSearchedText(arr[0])
@@ -220,7 +226,6 @@ export const SearchComponent = () => {
     } else {
       if (path !== '') {
         setSearchedText(path)
-
         resolveDidDocument(path)
       }
     }
