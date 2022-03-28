@@ -14,7 +14,7 @@ interface Style {
   rotate: string
 }
 const StyledHeader = styled.div`
-  background-color: ${(props) => props.theme.searchbackground};
+  background-color: ${(props) => props.theme.header};
   display: flex;
   flex-direction: column;
   height: fit-content;
