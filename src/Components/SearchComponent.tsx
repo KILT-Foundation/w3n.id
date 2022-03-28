@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {
   getDidDocFromW3Name,
   getServiceEndpoints,
-  invalidSearchedText,
+  validSearchedText,
   isSearchedTextDid,
   isSearchedTextKiltDid,
 } from '../Utils/search-helpers'
@@ -179,8 +179,7 @@ export const SearchComponent = () => {
       }
       return
     }
-    if (invalidSearchedText(textFromSearch)) {
-      console.log(textFromSearch.split(':').slice(0, -1).includes('w3n'))
+    if (!validSearchedText(textFromSearch)) {
       setErrors('Invalid Chars')
       return
     }

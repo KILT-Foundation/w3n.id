@@ -78,7 +78,7 @@ export const getDidDocFromW3Name = async (
 }
 export const isUpperCase = (text: string) => text.toLocaleLowerCase() !== text
 
-export const invalidSearchedText = (text: string) => /[^a-z]/.test(text)
+export const validSearchedText = (text: string) => /^[a-z0-9_-]*$/.test(text)
 
 export const getDidForAccount = (did: string): string => {
   return Did.DidUtils.getKiltDidFromIdentifier(did, 'full')
