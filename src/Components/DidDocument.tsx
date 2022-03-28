@@ -102,15 +102,12 @@ export const DidDocument = (props: IEndpoint) => {
   const [credential, setCredential] = useState<any | null>(null)
   const [isCredentialValid, setIsCredentialValid] = useState<boolean>(true)
   const [attester, setAttester] = useState<string>('')
-  const [error, setError] = useState<string | null>(null)
-  const [fetching, setFetching] = useState<boolean>(false)
   const [fetched, setFetched] = useState<boolean>(false)
 
   const handleFetch = () => {
     if (fetched) {
       setFetched(false)
       setCredential(null)
-      setError(null)
 
       return
     } else {
@@ -119,7 +116,6 @@ export const DidDocument = (props: IEndpoint) => {
     if (credential) {
       return
     }
-    setFetching(true)
     fetch(props.endpointURL)
       .then((response) => response.json())
       .then(async (result) => {
@@ -140,12 +136,10 @@ export const DidDocument = (props: IEndpoint) => {
         }
 
         setCredential(result.claim.contents)
-        setFetching(false)
       })
       .catch((error) => {
         console.log(error)
         setFetched(false)
-        setFetching(false)
       })
   }
   return (
