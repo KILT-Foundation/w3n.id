@@ -157,6 +157,8 @@ export const SearchComponent = () => {
         setDid(textFromSearch)
         if (endPoints.web3name !== null) {
           setW3Name('w3n:' + endPoints.web3name)
+          const url = window.location.origin + '/' + endPoints.web3name
+          window.history.pushState({ path: url }, '', url)
         }
       }
       return
