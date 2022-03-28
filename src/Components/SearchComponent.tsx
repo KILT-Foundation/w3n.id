@@ -12,7 +12,11 @@ import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
+import { Theme } from '../Themes/Theme'
 
+interface Style {
+  buttonColor: string
+}
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -46,7 +50,7 @@ const SearchBtn = styled.button`
   height: 24px;
   border-radius: 15px;
   height: 22px;
-  background-color: ${(props) => props.theme.searchbtn};
+  background-color: ${(props: Style) => props.buttonColor};
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
@@ -69,6 +73,7 @@ const SearchInput = styled.input`
   letter-spacing: 0.26px;
   line-height: 22px;
   background: transparent;
+  text-transform: lowercase;
   border: none;
   :focus {
     outline: none;
@@ -119,10 +124,12 @@ const ResultsContainer = styled.div`
 
 export const SearchComponent = () => {
   const [searchedText, setSearchedText] = useState<string>('')
+  const [unclaimedName, setUnclaimedName] = useState<string>('')
   const [endpointTypes, setEndpointTypes] = useState<string[]>([])
   const [endpointURLs, setEndpointURLs] = useState<string[]>([])
   const [endpointIds, setEndpointIds] = useState<string[]>([])
   const [did, setDid] = useState<string>('')
+  const [searchBtnColor, setSearchBtnColor] = useState<string>('gray')
   const [w3Name, setW3Name] = useState<string>('')
   const [errors, setErrors] = useState<
     | 'Not Claimed'
@@ -132,7 +139,6 @@ export const SearchComponent = () => {
     | 'Invalid Kilt'
     | null
   >(null)
-
   const resolveDidDocument = useCallback(async (textFromSearch: string) => {
     if (textFromSearch.length < 3) {
       setErrors('Min limit')
@@ -150,7 +156,7 @@ export const SearchComponent = () => {
         setEndpointURLs(endPoints.urls)
         setDid(textFromSearch)
         if (endPoints.web3name !== null) {
-          setW3Name(endPoints.web3name)
+          setW3Name('w3n:' + endPoints.web3name)
         }
       }
       return
@@ -160,8 +166,8 @@ export const SearchComponent = () => {
       return
     }
 
-    if (textFromSearch.split('.').slice(0, -1).includes('w3n')) {
-      const name = textFromSearch.split('.').pop()
+    if (textFromSearch.split(':').slice(0, -1).includes('w3n')) {
+      const name = textFromSearch.split(':').pop()
       if (name !== undefined) {
         const didDoc = await getDidDocFromW3Name(name)
         if (didDoc !== null) {
@@ -169,7 +175,7 @@ export const SearchComponent = () => {
           setEndpointTypes(didDoc.types)
           setEndpointURLs(didDoc.urls)
           setDid(didDoc.did)
-          setW3Name(name)
+          setW3Name('w3n:' + name)
         }
       }
       return
@@ -185,8 +191,9 @@ export const SearchComponent = () => {
       setEndpointTypes(didDoc.types)
       setEndpointURLs(didDoc.urls)
       setDid(didDoc.did)
-      setW3Name(textFromSearch)
+      setW3Name('w3n:' + textFromSearch)
     } else {
+      setUnclaimedName(textFromSearch)
       setErrors('Not Claimed')
     }
   }, [])
@@ -215,11 +222,12 @@ export const SearchComponent = () => {
     } else {
       if (path !== '') {
         setSearchedText(path)
-
         resolveDidDocument(path)
       }
     }
-  }, [resolveDidDocument])
+    if (searchedText.length >= 3) setSearchBtnColor(Theme.dark.searchbtn)
+    else setSearchBtnColor('grey')
+  }, [resolveDidDocument, searchedText.length])
   return (
     <Container>
       <SearchContainer>
@@ -235,13 +243,17 @@ export const SearchComponent = () => {
           />
 
           <SearchBtnWrapper>
-            <SearchBtn onClick={() => handleSearch()} type="submit">
+            <SearchBtn
+              buttonColor={searchBtnColor}
+              onClick={() => handleSearch()}
+              type="submit"
+            >
               LOOK UP
             </SearchBtn>
           </SearchBtnWrapper>
         </SearchBarContainer>
       </SearchContainer>
-      <ResultsErrors name={searchedText} errors={errors} />
+      <ResultsErrors name={unclaimedName} errors={errors} />
 
       {endpointTypes.length > 0 && (
         <ResultsContainer>
@@ -256,6 +268,7 @@ export const SearchComponent = () => {
                   key={endpointIds[index]}
                   endpointType={endpointTypes[index]}
                   endpointURL={url}
+                  did={did}
                 />
               ))}
             </EndpointsContainer>
