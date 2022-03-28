@@ -54,7 +54,7 @@ export const Web3Name = (props: Props) => {
     <Container>
       <W3NameTitle>web3name</W3NameTitle>
       <W3NameContainer>
-        <W3NameText>{'w3n:' + props.web3Name}</W3NameText>
+        <W3NameText>{props.web3Name}</W3NameText>
         <CopySvg
           onClick={() => {
             navigator.clipboard.writeText(props.web3Name)
