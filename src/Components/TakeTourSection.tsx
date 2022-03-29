@@ -3,8 +3,13 @@ import styled, { keyframes } from 'styled-components'
 import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg'
 import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg'
 import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg'
-import bg from '../ImageAssets/Web3.jpeg'
-import bg2 from '../ImageAssets/Web32.jpeg'
+import Tour1 from '../ImageAssets/Tour_1@2x.png'
+import Tour2 from '../ImageAssets/Tour_2@2x.png'
+import Tour3 from '../ImageAssets/Tour_3@2x.png'
+import Tour4 from '../ImageAssets/Tour_4@2x.png'
+import Tour5 from '../ImageAssets/Tour_5@2x.png'
+import Tour6 from '../ImageAssets/Tour_6@2x.png'
+import Tour7 from '../ImageAssets/Tour_7@2x.png'
 
 interface Style {
   BackgroundImage?: string
@@ -49,15 +54,14 @@ const SlidesImageContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 10px;
-  height: 350px;
+  gap: 5px;
+  height: 500px;
   width: 80%;
 `
 const SlidesImage = styled.div`
   background-image: url(${(props: Style) => props.BackgroundImage});
-  background-size: cover;
-  object-fit: cover;
-  height: 330px;
+  background-size: 100%;
+  height: 300px;
   width: 100%;
 `
 const NextSvg = styled(Open)`
@@ -75,7 +79,7 @@ const Slidetext = styled.p`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
-  height: 150px;
+  height: 100px;
   overflow-y: auto;
 `
 const PagerDiv = styled.div`
@@ -124,7 +128,7 @@ const TakeTour = styled.div`
   align-items: center;
   justify-content: start;
   width: 100%;
-  height: ${(props: Style) => (props.isOpen === 'Open' ? '450px' : '0')};
+  height: ${(props: Style) => (props.isOpen === 'Open' ? '520px' : '0')};
   color: ${(props) => props.theme.headertext};
   animation-name: ${(props: Style) =>
     props.isOpen === 'Open' ? SlideAnimation : SlideUpAnimation};
@@ -134,7 +138,7 @@ const TakeTour = styled.div`
 `
 
 export const TakeTourSection = (props: Toggle) => {
-  const imageArray: string[] = [bg, bg2]
+  const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
   const [image, setImage] = useState<string>(imageArray[0])
   if (!props.isOpen) {
     return null
