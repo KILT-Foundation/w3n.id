@@ -137,6 +137,7 @@ export const SearchComponent = () => {
   >(null)
 
   window.onpopstate = function (event) {
+    setErrors(null)
     if (endpointIds.length) {
       setEndpointIds([])
       setEndpointTypes([])
@@ -144,75 +145,82 @@ export const SearchComponent = () => {
       setDid('')
       setW3Name('')
     } else {
-      const path = window.location.pathname.split('/')[1]
-      resolveDidDocument(path)
+      if (searchedText.length) {
+        const path = window.location.pathname.split('/')[1]
+        setSearchedText(path)
+        resolveDidDocument(path, false)
+      }
     }
   }
 
-  const resolveDidDocument = useCallback(async (textFromSearch: string) => {
-    if (textFromSearch.length < 3) {
-      setErrors('Min limit')
-      return
-    }
-    if (isSearchedTextDid(textFromSearch)) {
-      if (!isSearchedTextKiltDid(textFromSearch)) {
-        setErrors('Invalid Kilt')
+  const resolveDidDocument = useCallback(
+    async (textFromSearch: string, shouldChangeUrl = true) => {
+      const url = window.location.origin + '/' + textFromSearch
+      if (shouldChangeUrl) window.history.pushState({ path: url }, '', url)
+      if (textFromSearch.length < 3) {
+        setErrors('Min limit')
         return
       }
-      const endPoints = await getServiceEndpoints(textFromSearch)
-      if (endPoints != null) {
-        setEndpointIds(endPoints.ids)
-        setEndpointTypes(endPoints.types)
-        setEndpointURLs(endPoints.urls)
-        setDid(textFromSearch)
-        if (endPoints.web3name !== null) {
-          setW3Name('w3n:' + endPoints.web3name)
-          const url = window.location.origin + '/' + endPoints.web3name
-          window.history.pushState({ path: url }, '', url)
+      if (isSearchedTextDid(textFromSearch)) {
+        if (!isSearchedTextKiltDid(textFromSearch)) {
+          setErrors('Invalid Kilt')
+          return
         }
-      }
-      return
-    }
-    if (textFromSearch.length > 30) {
-      setErrors('Max limit')
-      return
-    }
-
-    if (stringStartsWithW3(textFromSearch)) {
-      const name = textFromSearch.split(':').pop()
-      if (name !== undefined) {
-        const didDoc = await getDidDocFromW3Name(name)
-        if (didDoc !== null) {
-          setEndpointIds(didDoc.ids)
-          setEndpointTypes(didDoc.types)
-          setEndpointURLs(didDoc.urls)
-          setDid(didDoc.did)
-          setW3Name('w3n:' + name)
-          const url = window.location.origin + '/' + name
-          window.history.pushState({ path: url }, '', url)
+        const endPoints = await getServiceEndpoints(textFromSearch)
+        if (endPoints != null) {
+          setEndpointIds(endPoints.ids)
+          setEndpointTypes(endPoints.types)
+          setEndpointURLs(endPoints.urls)
+          setDid(textFromSearch)
+          if (endPoints.web3name !== null) {
+            setW3Name('w3n:' + endPoints.web3name)
+            const url = window.location.origin + '/' + endPoints.web3name
+            if (shouldChangeUrl)
+              window.history.replaceState({ path: url }, '', url)
+          }
         }
+        return
       }
-      return
-    }
-    if (!validSearchedText(textFromSearch)) {
-      setErrors('Invalid Chars')
-      return
-    }
+      if (textFromSearch.length > 30) {
+        setErrors('Max limit')
+        return
+      }
 
-    const didDoc = await getDidDocFromW3Name(textFromSearch)
-    if (didDoc !== null) {
-      setEndpointIds(didDoc.ids)
-      setEndpointTypes(didDoc.types)
-      setEndpointURLs(didDoc.urls)
-      setDid(didDoc.did)
-      setW3Name('w3n:' + textFromSearch)
-      const url = window.location.origin + '/' + textFromSearch
-      window.history.pushState({ path: url }, '', url)
-    } else {
-      setUnclaimedName(textFromSearch)
-      setErrors('Not Claimed')
-    }
-  }, [])
+      if (stringStartsWithW3(textFromSearch)) {
+        const name = textFromSearch.split(':').pop()
+        if (name !== undefined) {
+          const didDoc = await getDidDocFromW3Name(name)
+          if (didDoc !== null) {
+            setEndpointIds(didDoc.ids)
+            setEndpointTypes(didDoc.types)
+            setEndpointURLs(didDoc.urls)
+            setDid(didDoc.did)
+            setW3Name('w3n:' + name)
+          }
+        }
+        return
+      }
+      if (!validSearchedText(textFromSearch)) {
+        setErrors('Invalid Chars')
+        return
+      }
+
+      const didDoc = await getDidDocFromW3Name(textFromSearch)
+      if (didDoc !== null) {
+        setEndpointIds(didDoc.ids)
+        setEndpointTypes(didDoc.types)
+        setEndpointURLs(didDoc.urls)
+        setDid(didDoc.did)
+        setW3Name('w3n:' + textFromSearch)
+      } else {
+        const url = window.location.origin + '/' + textFromSearch
+        window.history.replaceState({ path: url }, '', url)
+        setUnclaimedName(textFromSearch)
+        setErrors('Not Claimed')
+      }
+    },
+    []
+  )
 
   const handleSearch = async () => {
     setErrors(null)
