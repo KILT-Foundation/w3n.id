@@ -6,7 +6,7 @@ import {
   isSearchedTextDid,
   isSearchedTextKiltDid,
   stringStartsWithW3,
-  changeHistoryState,
+  pushHistoryState,
   getServiceEndpointsW3Name,
   replaceHistoryState,
 } from '../Utils/w3n-helpers'
@@ -154,7 +154,7 @@ export const SearchComponent = () => {
 
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
-      changeHistoryState(shouldChangeUrl, textFromSearch)
+      pushHistoryState(shouldChangeUrl, textFromSearch)
       if (!textFromSearch.length) return
       if (textFromSearch.length < 3) {
         setErrors('Min limit')

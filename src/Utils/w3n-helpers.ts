@@ -94,7 +94,8 @@ export const validateCredential = async (
 }
 export const stringStartsWithW3 = (text: string) =>
   /^w3n:[a-z0-9_-]*$/.test(text)
-export const changeHistoryState = (
+
+export const pushHistoryState = (
   shouldChangeUrl: boolean,
   textFromSearch: string
 ) => {
