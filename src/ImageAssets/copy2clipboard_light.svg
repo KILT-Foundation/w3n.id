@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" fill="#3DC000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>icons/copy to clipboard copy 3</title>
-    <g id="UI-Design" stroke="none" stroke-width="1" fill-rule="evenodd">
-        <g id="Light-mode-PINK" transform="translate(-902.000000, -388.000000)" >
-            <g id="Combined-Shape" transform="translate(900.000000, 387.000000)">
-                <path d="M10,5 C11.1045695,5 12,5.8954305 12,7 L12,15 C12,16.1045695 11.1045695,17 10,17 L4,17 C2.8954305,17 2,16.1045695 2,15 L2,7 C2,5.8954305 2.8954305,5 4,5 L10,5 Z M10,6 L4,6 C3.44771525,6 3,6.44771525 3,7 L3,7 L3,15 C3,15.5522847 3.44771525,16 4,16 L4,16 L10,16 C10.5522847,16 11,15.5522847 11,15 L11,15 L11,7 C11,6.44771525 10.5522847,6 10,6 L10,6 Z"></path>
-                <path d="M15,1 C16.1045695,1 17,1.8954305 17,3 L17,11 C17,12.1045695 16.1045695,13 15,13 L13,13 L13,12 L15,12 C15.5128358,12 15.9355072,11.6139598 15.9932723,11.1166211 L16,11 L16,3 C16,2.44771525 15.5522847,2 15,2 L9,2 C8.48716416,2 8.06449284,2.38604019 8.00672773,2.88337887 L8,3 L8,4 L7,4 L7,3 C7,1.8954305 7.8954305,1 9,1 L15,1 Z"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="15" height="16" fill="#3DC000" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M8 4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6Zm0 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1Z"/><path d="M13 0a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2v-1h2a1 1 0 0 0 .993-.883L14 10V2a1 1 0 0 0-1-1H7a1 1 0 0 0-.993.883L6 2v1H5V2a2 2 0 0 1 2-2h6Z"/></g></svg>
