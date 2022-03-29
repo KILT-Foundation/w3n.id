@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Copy } from '../ImageAssets/copy2clipboard_light.svg'
 import { Credentials } from './Credentials'
@@ -11,6 +11,8 @@ import {
 } from '../Utils/search-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
 import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
+import { ReactComponent as Copied } from '../ImageAssets/copied.svg'
+
 import { CredentialErrors } from './CredentialErrors'
 
 interface IEndpoint {
@@ -100,6 +102,11 @@ const OpenSvg = styled(Open)`
   top: 6px;
   transform: rotate(${(props: Style) => props.rotate});
 `
+const CopiedSvg = styled(Copied)`
+  stroke: ${(props) => props.theme.btnborder};
+  width: 20px;
+  height: 16px;
+`
 const LoaderSvg = styled(Loader)`
   stroke: ${(props) => props.theme.btnborder};
   position: absolute;
@@ -114,10 +121,14 @@ export const DidDocument = (props: IEndpoint) => {
   const [isCredentialValid, setIsCredentialValid] = useState<boolean>(true)
   const [attester, setAttester] = useState<string>('')
   const [error, setError] = useState<string | null>(null)
-
   const [fetched, setFetched] = useState<boolean>(false)
   const [fetching, setFetching] = useState(false)
+  const [copied, setCopied] = useState(false)
 
+  const handleCopy = () => {
+    setCopied(true)
+    navigator.clipboard.writeText(props.endpointURL)
+  }
   const handleFetch = () => {
     if (fetched) {
       setFetched(false)
@@ -173,6 +184,14 @@ export const DidDocument = (props: IEndpoint) => {
         setFetched(false)
       })
   }
+  useEffect(() => {
+    if (copied) {
+      const timeout = setTimeout(() => setCopied(false), 1000)
+      return () => {
+        clearTimeout(timeout)
+      }
+    }
+  }, [copied])
   return (
     <Container>
       <EndpointTypeSpan>{props.endpointType}</EndpointTypeSpan>
@@ -180,11 +199,7 @@ export const DidDocument = (props: IEndpoint) => {
       <EndpointContainer>
         <UrlContainer>
           <EndpointURLSpan>{props.endpointURL}</EndpointURLSpan>
-          <CopySvg
-            onClick={() => {
-              navigator.clipboard.writeText(props.endpointURL)
-            }}
-          />
+          {copied ? <CopiedSvg /> : <CopySvg onClick={() => handleCopy()} />}
         </UrlContainer>
         <FetchBtn onClick={() => handleFetch()}>
           Fetch
