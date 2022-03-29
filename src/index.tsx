@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import { W3NId } from './Components/W3NId'
 import reportWebVitals from './reportWebVitals'
+import { init } from '@kiltprotocol/sdk-js'
+
+init({ address: process.env.REACT_APP_CHAIN_ENDPOINT })
 
 ReactDOM.render(
   <React.StrictMode>

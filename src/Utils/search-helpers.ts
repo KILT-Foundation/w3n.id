@@ -2,7 +2,6 @@ import {
   Attestation,
   Did,
   ICredential,
-  init,
   IRequestForAttestation,
   Credential,
 } from '@kiltprotocol/sdk-js'
@@ -19,7 +18,6 @@ export const getServiceEndpointsW3Name = async (
   const types: string[] = []
   const ids: string[] = []
 
-  await init({ address: process.env.REACT_APP_CHAIN_ENDPOINT })
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
@@ -58,13 +56,11 @@ export const getDidDocFromW3Name = async (
   const urls: string[] = []
   const types: string[] = []
   const ids: string[] = []
-
-  await init({ address: process.env.REACT_APP_CHAIN_ENDPOINT })
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
-  if (did != null) {
+  if (did) {
     const didDetails = await Did.DidResolver.resolveDoc(did)
     const endPoints = didDetails?.details?.getEndpoints()
-    if (endPoints != null) {
+    if (endPoints) {
       for (const endPoint of endPoints) {
         urls.push(...endPoint.urls)
         types.push(...endPoint.types)
@@ -84,9 +80,9 @@ export const getDidForAccount = (did: string): string => {
 }
 
 export const getAttestationForRequest = async (
-  req4Att: IRequestForAttestation
+  reqforAttestation: IRequestForAttestation
 ) => {
-  return Attestation.query(req4Att.rootHash)
+  return Attestation.query(reqforAttestation.rootHash)
 }
 
 export const validateAttestation = async (attestation: Attestation | null) => {
