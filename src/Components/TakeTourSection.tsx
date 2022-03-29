@@ -135,6 +135,9 @@ const TakeTour = styled.div`
   animation-timing-function: ease-in;
   animation-duration: 0.75s;
 `
+const PagerUnselectedSvg = styled(PageUnselected)`
+  cursor: pointer;
+`
 
 export const TakeTourSection = (props: Toggle) => {
   const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
@@ -157,6 +160,9 @@ export const TakeTourSection = (props: Toggle) => {
     }
     setImage(imageArray[index - 1])
   }
+  const handleClick = (index: number) => {
+    setImage(imageArray[index])
+  }
   return (
     <TakeTour isOpen={props.isOpen}>
       <TourSlidesSection isOpen={props.isOpen}>
@@ -178,7 +184,10 @@ export const TakeTourSection = (props: Toggle) => {
                 image === imageFromArray ? (
                   <PageSelected key={index} />
                 ) : (
-                  <PageUnselected key={index} />
+                  <PagerUnselectedSvg
+                    key={index}
+                    onClick={() => handleClick(index)}
+                  />
                 )
               )}
             </PagerDiv>
