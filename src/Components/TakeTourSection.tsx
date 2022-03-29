@@ -94,12 +94,12 @@ const SlideAnimation = keyframes`
     height: 0;
   }
   100% {
-    height: 450px;
+    height: 520px;
   }
 `
 const SlideUpAnimation = keyframes`
   0% {
-    height: 450px;
+    height: 520px;
   }
   100% {
     height: 0;
@@ -107,7 +107,7 @@ const SlideUpAnimation = keyframes`
 `
 const TourSlidesSection = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   max-width: 740px;
   width: 90%;
   margin-top: 50px;
@@ -118,7 +118,7 @@ const TourSlidesSection = styled.div`
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: ${(props: Style) =>
-    props.isOpen === 'Open' ? '0.75s' : '0.4s'};
+    props.isOpen === 'Open' ? '1s' : '0.4s'};
 `
 const TakeTour = styled.div`
   background-color: ${(props) => props.theme.taketour};
