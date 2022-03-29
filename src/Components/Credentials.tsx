@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as AlertIcon } from '../ImageAssets/iconAttention_red.svg'
+import { ReactComponent as OkIcon } from '../ImageAssets/icon_oK.svg'
 
 interface IDIDCredential {
   credential: any
@@ -53,6 +55,12 @@ export const Credentials = (didCredential: IDIDCredential) => {
       <Container>
         <CredentialTitle>Attester Did</CredentialTitle>
         <CredentialSpan>{didCredential.attesterDid}</CredentialSpan>
+      </Container>
+      <Container>
+        <CredentialTitle>Valid</CredentialTitle>
+        <CredentialSpan>
+          {didCredential.isCredentialValid ? <OkIcon /> : <AlertIcon />}
+        </CredentialSpan>
       </Container>
     </CredentialContainer>
   )
