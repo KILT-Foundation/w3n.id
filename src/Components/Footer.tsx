@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const StyledFooter = styled.div`
   background-color: ${(props) => props.theme.searchbackground};
   height: 35px;
+  min-height: fit-content;
   width: 100vw;
   display: flex;
   margin-top: auto;
@@ -26,6 +27,9 @@ const ImprintContainer = styled.div`
   width: 63px;
   display: flex;
   justify-content: flex-start;
+  @media (max-width: 400px) {
+    display: none;
+  }
 `
 const LinksContainer = styled.div`
   width: 80%;
@@ -33,11 +37,31 @@ const LinksContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 4px;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+  @media (max-width: 300px) {
+    font-size: 12px;
+  }
 `
 const LogoContainer = styled.div`
   width: 103px;
   display: flex;
   justify-content: flex-end;
+  @media (max-width: 400px) {
+    display: none;
+  }
+`
+const ImprintText = styled.span`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 4px;
+  display: none;
+  @media (max-width: 400px) {
+    display: flex;
+  }
 `
 export const Footer = () => {
   return (
@@ -47,6 +71,7 @@ export const Footer = () => {
           <span>Imprint</span>
         </ImprintContainer>
         <LinksContainer>
+          <ImprintText>Imprint -</ImprintText>
           <span>Terms of Use</span>
           <span>-</span>
 
