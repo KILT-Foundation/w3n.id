@@ -21,7 +21,7 @@ export const getServiceEndpointsW3Name = async (
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
-  if (endPoints != null) {
+  if (endPoints) {
     for (const endPoint of endPoints) {
       urls.push(...endPoint.urls)
       types.push(...endPoint.types)
@@ -32,18 +32,11 @@ export const getServiceEndpointsW3Name = async (
 }
 export const isSearchedTextDid = (searchedText: string): boolean => {
   const didKeyword = searchedText.split(':').slice(0, -2)
-  if (didKeyword.includes('did') && didKeyword.length === 1) {
-    return true
-  }
-  return false
+  return didKeyword.includes('did') && didKeyword.length === 1
 }
 export const isSearchedTextKiltDid = (searchedText: string): boolean => {
   const kiltKeyword = searchedText.split(':').slice(1, -1)
-  if (kiltKeyword.includes('kilt') && kiltKeyword.length === 1) {
-    return true
-  }
-  console.log(kiltKeyword)
-  return false
+  return kiltKeyword.includes('kilt') && kiltKeyword.length === 1
 }
 export const getDidDocFromW3Name = async (
   w3name: string
