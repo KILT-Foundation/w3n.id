@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg'
 import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg'
 import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg'
@@ -7,17 +7,30 @@ import bg from '../ImageAssets/Web3.jpeg'
 import bg2 from '../ImageAssets/Web32.jpeg'
 
 interface Style {
-  BackgroundImage: string
+  BackgroundImage?: string
+  isOpen?: 'Open' | 'Close' | null
+}
+interface Toggle {
+  isOpen: 'Open' | 'Close' | null
 }
 
-const TourSlidesSection = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  max-width: 740px;
-  width: 90%;
-  margin-top: 50px;
-  height: fit-content;
+const fadeInAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 `
+const fadeOutAnimation = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`
+
 const TourSlidesContainer = styled.div`
   display: flex;
   width: 90%;
@@ -65,16 +78,6 @@ const Slidetext = styled.p`
   height: 150px;
   overflow-y: auto;
 `
-const TakeTour = styled.div`
-  background-color: ${(props) => props.theme.taketour};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  height: 450px;
-  color: ${(props) => props.theme.headertext};
-`
 const PagerDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -83,10 +86,59 @@ const PagerDiv = styled.div`
   align-items: center;
   height: fit-content;
 `
-export const TakeTourSection = () => {
+const SlideAnimation = keyframes`
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 450px;
+  }
+`
+const SlideUpAnimation = keyframes`
+  0% {
+    height: 450px;
+  }
+  100% {
+    height: 0;
+  }
+`
+const TourSlidesSection = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  max-width: 740px;
+  width: 90%;
+  margin-top: 50px;
+  height: fit-content;
+  opacity: ${(props: Style) => (props.isOpen === 'Open' ? 1 : 0)};
+  animation-name: ${(props: Style) =>
+    props.isOpen === 'Open' ? fadeInAnimation : fadeOutAnimation};
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: ${(props: Style) =>
+    props.isOpen === 'Open' ? '0.75s' : '0.4s'};
+`
+const TakeTour = styled.div`
+  background-color: ${(props) => props.theme.taketour};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: ${(props: Style) => (props.isOpen === 'Open' ? '450px' : '0')};
+  color: ${(props) => props.theme.headertext};
+  animation-name: ${(props: Style) =>
+    props.isOpen === 'Open' ? SlideAnimation : SlideUpAnimation};
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.75s;
+`
+
+export const TakeTourSection = (props: Toggle) => {
   const imageArray: string[] = [bg, bg2]
   const [image, setImage] = useState<string>(imageArray[0])
-
+  if (!props.isOpen) {
+    return null
+  }
   const handleNext = () => {
     const index = imageArray.indexOf(image)
     if (index === imageArray.length - 1) {
@@ -103,8 +155,8 @@ export const TakeTourSection = () => {
     setImage(imageArray[index - 1])
   }
   return (
-    <TakeTour>
-      <TourSlidesSection>
+    <TakeTour isOpen={props.isOpen}>
+      <TourSlidesSection isOpen={props.isOpen}>
         <TourSlidesContainer>
           <ChangeSlideSvgWrapper>
             <NextSvg onClick={() => handlePrev()} />

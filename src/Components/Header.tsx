@@ -13,6 +13,7 @@ interface Toggle {
 interface Style {
   rotate: string
 }
+
 const StyledHeader = styled.div`
   background-color: ${(props) => props.theme.header};
   display: flex;
@@ -108,7 +109,8 @@ const OpenSvg = styled(Open)`
 `
 
 export const Header = (props: Toggle) => {
-  const [tourSection, setTourSection] = useState<'Open' | 'Close'>('Close')
+  const [tourSection, setTourSection] = useState<'Open' | 'Close' | null>(null)
+
   const handleClick = () => {
     if (tourSection === 'Open') setTourSection('Close')
     else setTourSection('Open')
@@ -135,7 +137,8 @@ export const Header = (props: Toggle) => {
       <HeaderTextLabel>
         <HeaderText>Look up web3names* or DIDs here</HeaderText>
       </HeaderTextLabel>
-      {tourSection === 'Open' && <TakeTourSection />}
+      <TakeTourSection isOpen={tourSection} />
+
       <BottomHeaderSeperator />
     </StyledHeader>
   )
