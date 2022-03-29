@@ -60,9 +60,6 @@ const SearchBtn = styled.button`
   border-radius: 30px;
   font-size: 12px;
   border: none;
-  :active {
-    background-color: green;
-  }
 `
 const SearchInput = styled.input`
   width: 67%;
@@ -233,6 +230,9 @@ export const SearchComponent = () => {
   )
 
   const handleSearch = async () => {
+    if (searchedText.length < 3) {
+      return
+    }
     setErrors(null)
     if (endpointIds.length) {
       setEndpointIds([])
