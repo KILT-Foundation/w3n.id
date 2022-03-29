@@ -58,9 +58,8 @@ const SlidesImageContainer = styled.div`
   height: 500px;
   width: 80%;
 `
-const SlidesImage = styled.div`
-  background-image: url(${(props: Style) => props.BackgroundImage});
-  background-size: 100%;
+const SlidesImage = styled.img`
+  object-fit: contain;
   height: 300px;
   width: 100%;
 `
@@ -166,7 +165,7 @@ export const TakeTourSection = (props: Toggle) => {
             <NextSvg onClick={() => handlePrev()} />
           </ChangeSlideSvgWrapper>
           <SlidesImageContainer>
-            <SlidesImage BackgroundImage={image}></SlidesImage>
+            <SlidesImage src={image} />
             <Slidetext>
               Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
               Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
