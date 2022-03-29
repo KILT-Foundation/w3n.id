@@ -194,7 +194,6 @@ export const SearchComponent = () => {
 
       if (stringStartsWithW3(textFromSearch)) {
         const name = textFromSearch.split(':').pop()
-        console.log(name)
         if (name !== undefined) {
           const didDoc = await getDidDocFromW3Name(name)
           if (didDoc !== null) {
