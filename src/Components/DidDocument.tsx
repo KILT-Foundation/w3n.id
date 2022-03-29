@@ -10,6 +10,7 @@ import {
   validateCredential,
 } from '../Utils/search-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
+import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
 
 interface IEndpoint {
   endpointType: string
@@ -19,6 +20,7 @@ interface IEndpoint {
 interface Style {
   rotate: string
 }
+
 const EndpointContainer = styled.div`
   display: flex;
   justify-content: start;
@@ -97,12 +99,21 @@ const OpenSvg = styled(Open)`
   top: 6px;
   transform: rotate(${(props: Style) => props.rotate});
 `
+const LoaderSvg = styled(Loader)`
+  stroke: ${(props) => props.theme.btnborder};
+  position: absolute;
+  left: 12px;
+  top: 3px;
+  height: 13px;
+  width: 20px;
+`
 
 export const DidDocument = (props: IEndpoint) => {
   const [credential, setCredential] = useState<any | null>(null)
   const [isCredentialValid, setIsCredentialValid] = useState<boolean>(true)
   const [attester, setAttester] = useState<string>('')
   const [fetched, setFetched] = useState<boolean>(false)
+  const [fetching, setFetching] = useState(false)
 
   const handleFetch = () => {
     if (fetched) {
@@ -116,6 +127,8 @@ export const DidDocument = (props: IEndpoint) => {
     if (credential) {
       return
     }
+    setFetching(true)
+
     fetch(props.endpointURL)
       .then((response) => response.json())
       .then(async (result) => {
@@ -136,8 +149,11 @@ export const DidDocument = (props: IEndpoint) => {
         }
 
         setCredential(result.claim.contents)
+        setFetching(false)
       })
       .catch((error) => {
+        setFetching(false)
+
         console.log(error)
         setFetched(false)
       })
@@ -158,6 +174,7 @@ export const DidDocument = (props: IEndpoint) => {
         <FetchBtn onClick={() => handleFetch()}>
           Fetch
           <OpenSvg rotate={fetched ? '180deg' : '0deg'} />
+          {fetching && <LoaderSvg />}
         </FetchBtn>
       </EndpointContainer>
       {credential && (
