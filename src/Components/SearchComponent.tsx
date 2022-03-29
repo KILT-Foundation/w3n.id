@@ -194,6 +194,7 @@ export const SearchComponent = () => {
 
       if (stringStartsWithW3(textFromSearch)) {
         const name = textFromSearch.split(':').pop()
+        console.log(name)
         if (name !== undefined) {
           const didDoc = await getDidDocFromW3Name(name)
           if (didDoc !== null) {
@@ -203,6 +204,9 @@ export const SearchComponent = () => {
             setDid(didDoc.did)
             setW3Name('w3n:' + name)
             replaceHistoryState(shouldChangeUrl, name)
+          } else {
+            setUnclaimedName(name)
+            setErrors('Not Claimed')
           }
         }
         return

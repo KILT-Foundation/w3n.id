@@ -103,7 +103,8 @@ export const validateCredential = async (
   const credential = Credential.fromCredential(credentialInput)
   return await Credential.verify(credential)
 }
-export const stringStartsWithW3 = (text: string) => /^w3n:/.test(text)
+export const stringStartsWithW3 = (text: string) =>
+  /^w3n:[a-z0-9_-]*$/.test(text)
 export const changeHistoryState = (
   shouldChangeUrl: boolean,
   textFromSearch: string

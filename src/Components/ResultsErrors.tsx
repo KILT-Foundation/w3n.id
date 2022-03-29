@@ -59,7 +59,7 @@ const ClaimWeb3Name = (props: Props) => {
       <NoteSpan>Note</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'15px'}>
-          No results fond for {props.name}
+          No results found for {props.name}
         </ClaimW3NSteps>
         <ClaimW3NSteps marginBottom={'0px'}>
           - Download Sporran extension for{' '}
