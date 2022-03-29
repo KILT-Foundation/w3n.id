@@ -6,6 +6,7 @@ import {
   validSearchedText,
   isSearchedTextDid,
   isSearchedTextKiltDid,
+  stringStartsWithW3,
 } from '../Utils/search-helpers'
 import { DidDocument } from './DidDocument'
 import { DidSection } from './DidSection'
@@ -163,7 +164,7 @@ export const SearchComponent = () => {
       return
     }
 
-    if (textFromSearch.split(':').slice(0, -1).includes('w3n')) {
+    if (stringStartsWithW3(textFromSearch)) {
       const name = textFromSearch.split(':').pop()
       if (name !== undefined) {
         const didDoc = await getDidDocFromW3Name(name)
@@ -215,13 +216,13 @@ export const SearchComponent = () => {
   }
   useEffect(() => {
     const host = window.location.host
-    console.log(host)
-    const arr = host.split('.').slice(0, host.includes('localhost') ? -1 : -2)
-    console.log(host.split('.')[0])
+    const subDomain = host
+      .split('.')
+      .slice(0, host.includes('localhost') ? -1 : -2)
     const path = window.location.pathname.split('/')[1]
-    if (arr.length > 0) {
-      setSearchedText(arr[0])
-      resolveDidDocument(arr[0])
+    if (subDomain.length > 0) {
+      setSearchedText(subDomain[0])
+      resolveDidDocument(subDomain[0])
     } else {
       if (path !== '') {
         setSearchedText(path)
