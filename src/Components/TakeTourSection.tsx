@@ -84,7 +84,7 @@ const Slidetext = styled.p`
 const PagerDiv = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1px;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   height: fit-content;
@@ -119,6 +119,9 @@ const TourSlidesSection = styled.div`
   animation-timing-function: ease-in;
   animation-duration: ${(props: Style) =>
     props.isOpen === 'Open' ? '1s' : '0.4s'};
+  @media (max-width: 450px) {
+    margin-top: 0px;
+  }
 `
 const TakeTour = styled.div`
   background-color: ${(props) => props.theme.taketour};
