@@ -11,6 +11,7 @@ import {
 } from '../Utils/search-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
 import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
+import { CredentialErrors } from './CredentialErrors'
 
 interface IEndpoint {
   endpointType: string
@@ -109,9 +110,11 @@ const LoaderSvg = styled(Loader)`
 `
 
 export const DidDocument = (props: IEndpoint) => {
-  const [credential, setCredential] = useState<any | null>(null)
+  const [credential, setCredential] = useState<any | null | undefined>(null)
   const [isCredentialValid, setIsCredentialValid] = useState<boolean>(true)
   const [attester, setAttester] = useState<string>('')
+  const [error, setError] = useState<string | null>(null)
+
   const [fetched, setFetched] = useState<boolean>(false)
   const [fetching, setFetching] = useState(false)
 
@@ -119,14 +122,17 @@ export const DidDocument = (props: IEndpoint) => {
     if (fetched) {
       setFetched(false)
       setCredential(null)
+      if (error) setError(null)
+      else setCredential(null)
 
       return
     } else {
       setFetched(true)
     }
-    if (credential) {
+    if (credential || error) {
       return
     }
+
     setFetching(true)
 
     fetch(props.endpointURL)
@@ -134,7 +140,9 @@ export const DidDocument = (props: IEndpoint) => {
       .then(async (result) => {
         if (!Did.DidUtils.isSameSubject(result.claim.owner, props.did)) {
           setIsCredentialValid(false)
-          setAttester('Credential subject and signer DID are not the same')
+          setError('Credential subject and signer DID are not the same')
+          setFetching(false)
+          return
         } else if (Credential.isICredential(result)) {
           setIsCredentialValid(await validateCredential(result))
           setAttester(getDidForAccount(result.attestation.owner))
@@ -144,16 +152,23 @@ export const DidDocument = (props: IEndpoint) => {
           if (attestation) {
             setAttester(getDidForAccount(attestation.owner))
           } else {
-            setAttester('No Attestation found')
+            setError('No Attestation found')
           }
         }
-
-        setCredential(result.claim.contents)
+        if (
+          !Credential.isICredential(result) &&
+          !RequestForAttestation.isIRequestForAttestation(result)
+        ) {
+          setError('Not valid Kilt Credential')
+          setFetching(false)
+          return
+        }
+        setCredential((result as any).claim.contents)
         setFetching(false)
       })
       .catch((error) => {
         setFetching(false)
-
+        setError('Cannot fetch the credentials from the given endpoint')
         console.log(error)
         setFetched(false)
       })
@@ -177,13 +192,14 @@ export const DidDocument = (props: IEndpoint) => {
           {fetching && <LoaderSvg />}
         </FetchBtn>
       </EndpointContainer>
-      {credential && (
+      {!error && credential && (
         <Credentials
           credential={credential}
           attesterDid={attester}
           isCredentialValid={isCredentialValid}
         />
       )}
+      {error && <CredentialErrors error={error} />}
       <Seperator />
     </Container>
   )
