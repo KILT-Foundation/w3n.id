@@ -166,18 +166,25 @@ export const SearchComponent = () => {
           setErrors('Invalid Kilt')
           return
         }
-        const endPoints = await getServiceEndpoints(textFromSearch)
-        if (endPoints != null) {
-          setEndpointIds(endPoints.ids)
-          setEndpointTypes(endPoints.types)
-          setEndpointURLs(endPoints.urls)
+        try {
+          const endPoints = await getServiceEndpoints(textFromSearch)
+          if (endPoints.ids) {
+            setEndpointIds(endPoints.ids)
+            setEndpointTypes(endPoints.types)
+            setEndpointURLs(endPoints.urls)
+          }
           setDid(textFromSearch)
           if (endPoints.web3name !== null) {
             setW3Name('w3n:' + endPoints.web3name)
+            console.log(endPoints.web3name)
             const url = window.location.origin + '/' + endPoints.web3name
             if (shouldChangeUrl)
               window.history.replaceState({ path: url }, '', url)
+          } else {
+            setW3Name('No web3name found')
           }
+        } catch {
+          setErrors('Invalid Kilt')
         }
         return
       }
@@ -266,12 +273,14 @@ export const SearchComponent = () => {
       </SearchContainer>
       <ResultsErrors name={unclaimedName} errors={errors} />
 
-      {endpointTypes.length > 0 && (
+      {did.length > 0 && (
         <ResultsContainer>
           <DidSection did={did} />
           <Web3Name web3Name={w3Name} />
           <DidDocumentContainer>
-            <SectionTitleSpan>Service</SectionTitleSpan>
+            {endpointIds.length > 0 && (
+              <SectionTitleSpan>Service</SectionTitleSpan>
+            )}
 
             <EndpointsContainer>
               {endpointURLs.map((url: string, index: number) => (
