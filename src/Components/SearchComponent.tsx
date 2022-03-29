@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {
   getDidDocFromW3Name,
-  getServiceEndpoints,
   validSearchedText,
   isSearchedTextDid,
   isSearchedTextKiltDid,
   stringStartsWithW3,
+  changeHistoryState,
+  getServiceEndpointsW3Name,
+  replaceHistoryState,
 } from '../Utils/search-helpers'
 import { DidDocument } from './DidDocument'
 import { DidSection } from './DidSection'
@@ -136,7 +138,7 @@ export const SearchComponent = () => {
     | null
   >(null)
 
-  window.onpopstate = function (event) {
+  window.onpopstate = function () {
     setErrors(null)
     if (endpointIds.length) {
       setEndpointIds([])
@@ -155,8 +157,8 @@ export const SearchComponent = () => {
 
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
-      const url = window.location.origin + '/' + textFromSearch
-      if (shouldChangeUrl) window.history.pushState({ path: url }, '', url)
+      changeHistoryState(shouldChangeUrl, textFromSearch)
+      if (!textFromSearch.length) return
       if (textFromSearch.length < 3) {
         setErrors('Min limit')
         return
@@ -167,19 +169,16 @@ export const SearchComponent = () => {
           return
         }
         try {
-          const endPoints = await getServiceEndpoints(textFromSearch)
-          if (endPoints.ids) {
-            setEndpointIds(endPoints.ids)
-            setEndpointTypes(endPoints.types)
-            setEndpointURLs(endPoints.urls)
-          }
+          const didDocInstance = await getServiceEndpointsW3Name(textFromSearch)
           setDid(textFromSearch)
-          if (endPoints.web3name !== null) {
-            setW3Name('w3n:' + endPoints.web3name)
-            console.log(endPoints.web3name)
-            const url = window.location.origin + '/' + endPoints.web3name
-            if (shouldChangeUrl)
-              window.history.replaceState({ path: url }, '', url)
+          if (didDocInstance.ids) {
+            setEndpointIds(didDocInstance.ids)
+            setEndpointTypes(didDocInstance.types)
+            setEndpointURLs(didDocInstance.urls)
+          }
+          if (didDocInstance.web3name !== null) {
+            setW3Name('w3n:' + didDocInstance.web3name)
+            replaceHistoryState(shouldChangeUrl, didDocInstance.web3name)
           } else {
             setW3Name('No web3name found')
           }
@@ -203,6 +202,7 @@ export const SearchComponent = () => {
             setEndpointURLs(didDoc.urls)
             setDid(didDoc.did)
             setW3Name('w3n:' + name)
+            replaceHistoryState(shouldChangeUrl, name)
           }
         }
         return
