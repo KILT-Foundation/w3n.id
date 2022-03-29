@@ -19,7 +19,7 @@ export const getServiceEndpoints = async (
   const types: string[] = []
   const ids: string[] = []
 
-  await init({ address: 'wss://sporran-testnet.kilt.io' })
+  await init({ address: process.env.REACT_APP_CHAIN_ENDPOINT })
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
@@ -59,7 +59,7 @@ export const getDidDocFromW3Name = async (
   const types: string[] = []
   const ids: string[] = []
 
-  await init({ address: 'wss://sporran-testnet.kilt.io' })
+  await init({ address: process.env.REACT_APP_CHAIN_ENDPOINT })
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
   if (did != null) {
     const didDetails = await Did.DidResolver.resolveDoc(did)
