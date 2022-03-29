@@ -135,6 +135,20 @@ export const SearchComponent = () => {
     | 'Invalid Kilt'
     | null
   >(null)
+
+  window.onpopstate = function (event) {
+    if (endpointIds.length) {
+      setEndpointIds([])
+      setEndpointTypes([])
+      setEndpointURLs([])
+      setDid('')
+      setW3Name('')
+    } else {
+      const path = window.location.pathname.split('/')[1]
+      resolveDidDocument(path)
+    }
+  }
+
   const resolveDidDocument = useCallback(async (textFromSearch: string) => {
     if (textFromSearch.length < 3) {
       setErrors('Min limit')
@@ -215,19 +229,10 @@ export const SearchComponent = () => {
     if (event.key === 'Enter') handleSearch()
   }
   useEffect(() => {
-    const host = window.location.host
-    const subDomain = host
-      .split('.')
-      .slice(0, host.includes('localhost') ? -1 : -2)
     const path = window.location.pathname.split('/')[1]
-    if (subDomain.length > 0) {
-      setSearchedText(subDomain[0])
-      resolveDidDocument(subDomain[0])
-    } else {
-      if (path !== '') {
-        setSearchedText(path)
-        resolveDidDocument(path)
-      }
+    if (path !== '') {
+      setSearchedText(path)
+      resolveDidDocument(path)
     }
   }, [resolveDidDocument])
   return (
