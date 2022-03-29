@@ -102,7 +102,7 @@ const MaxCharError = () => {
       <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>
-          Maximum 30 charachters allowed
+          Maximum 30 characters allowed
         </ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
@@ -114,7 +114,7 @@ const MinCharError = () => {
       <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
         <ClaimW3NSteps marginBottom={'0px'}>
-          Minimum charachters length should be 3
+          Minimum characters length should be 3
         </ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
@@ -126,7 +126,7 @@ const InvalidCharError = () => {
     <Container>
       <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
-        <ClaimW3NSteps marginBottom={'0px'}>Invalid Charachters</ClaimW3NSteps>
+        <ClaimW3NSteps marginBottom={'0px'}>Invalid Characters.</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
   )
