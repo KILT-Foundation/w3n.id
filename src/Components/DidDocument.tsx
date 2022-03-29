@@ -8,7 +8,7 @@ import {
   getDidForAccount,
   validateAttestation,
   validateCredential,
-} from '../Utils/search-helpers'
+} from '../Utils/w3n-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
 import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
 import { ReactComponent as Copied } from '../ImageAssets/copied.svg'

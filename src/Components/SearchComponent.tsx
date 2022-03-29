@@ -9,7 +9,7 @@ import {
   changeHistoryState,
   getServiceEndpointsW3Name,
   replaceHistoryState,
-} from '../Utils/search-helpers'
+} from '../Utils/w3n-helpers'
 import { DidDocument } from './DidDocument'
 import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
