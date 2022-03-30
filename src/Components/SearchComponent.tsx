@@ -225,8 +225,7 @@ export const SearchComponent = () => {
         setDid(didDoc.did)
         setW3Name('w3n:' + textFromSearch)
       } else {
-        const url = window.location.origin + '/' + textFromSearch
-        window.history.replaceState({ path: url }, '', url)
+        replaceHistoryState(shouldChangeUrl, textFromSearch)
         setUnclaimedName(textFromSearch)
         setErrors('Not Claimed')
       }
