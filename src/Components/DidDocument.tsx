@@ -134,7 +134,7 @@ export const DidDocument = (props: IEndpoint) => {
       setFetched(false)
       setCredential(null)
       if (error) setError(null)
-      else setCredential(null)
+      if (credential) setCredential(null)
 
       return
     } else {
@@ -180,8 +180,7 @@ export const DidDocument = (props: IEndpoint) => {
       .catch((error) => {
         setFetching(false)
         setError('Cannot fetch the credentials from the given endpoint')
-        console.log(error)
-        setFetched(false)
+        setFetched(true)
       })
   }
   useEffect(() => {
