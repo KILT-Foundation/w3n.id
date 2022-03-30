@@ -104,8 +104,8 @@ const OpenSvg = styled(Open)`
 `
 const CopiedSvg = styled(Copied)`
   stroke: ${(props) => props.theme.btnborder};
-  width: 20px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 `
 const LoaderSvg = styled(Loader)`
   stroke: ${(props) => props.theme.btnborder};

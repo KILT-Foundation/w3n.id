@@ -49,8 +49,8 @@ const CopySvg = styled(Copy)`
 `
 const CopiedSvg = styled(Copied)`
   stroke: ${(props) => props.theme.btnborder};
-  width: 20px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 `
 export const DidSection = (props: Props) => {
   const [copied, setCopied] = useState<boolean>(false)
