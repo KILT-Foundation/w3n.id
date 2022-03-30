@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as Copy } from '../ImageAssets/copy2clipboard_light.svg'
 import { Credentials } from './Credentials'
 import { Credential, RequestForAttestation, Did } from '@kiltprotocol/sdk-js'
 import {
@@ -11,8 +10,7 @@ import {
 } from '../Utils/w3n-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
 import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
-import { ReactComponent as Copied } from '../ImageAssets/copied.svg'
-
+import { CopyToClipboard } from './CopyToClipboard'
 import { CredentialErrors } from './CredentialErrors'
 
 interface IEndpoint {
@@ -90,10 +88,7 @@ const Seperator = styled.div`
   border: 1px dashed ${(props) => props.theme.seperator};
   width: 100%;
 `
-const CopySvg = styled(Copy)`
-  fill: ${(props) => props.theme.btnborder};
-  cursor: pointer;
-`
+
 const OpenSvg = styled(Open)`
   fill: ${(props) => props.theme.btnborder};
   cursor: pointer;
@@ -101,11 +96,6 @@ const OpenSvg = styled(Open)`
   right: 12px;
   top: 6px;
   transform: rotate(${(props: Style) => props.rotate});
-`
-const CopiedSvg = styled(Copied)`
-  stroke: ${(props) => props.theme.btnborder};
-  width: 22px;
-  height: 22px;
 `
 const LoaderSvg = styled(Loader)`
   stroke: ${(props) => props.theme.btnborder};
@@ -123,12 +113,7 @@ export const DidDocument = (props: IEndpoint) => {
   const [error, setError] = useState<string | null>(null)
   const [fetched, setFetched] = useState<boolean>(false)
   const [fetching, setFetching] = useState(false)
-  const [copied, setCopied] = useState(false)
 
-  const handleCopy = () => {
-    setCopied(true)
-    navigator.clipboard.writeText(props.endpointURL)
-  }
   const handleFetch = () => {
     if (fetched) {
       setFetched(false)
@@ -183,14 +168,7 @@ export const DidDocument = (props: IEndpoint) => {
         setFetched(true)
       })
   }
-  useEffect(() => {
-    if (copied) {
-      const timeout = setTimeout(() => setCopied(false), 1000)
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [copied])
+
   return (
     <Container>
       <EndpointTypeSpan>{props.endpointType}</EndpointTypeSpan>
@@ -198,7 +176,7 @@ export const DidDocument = (props: IEndpoint) => {
       <EndpointContainer>
         <UrlContainer>
           <EndpointURLSpan>{props.endpointURL}</EndpointURLSpan>
-          {copied ? <CopiedSvg /> : <CopySvg onClick={() => handleCopy()} />}
+          <CopyToClipboard text={props.endpointURL} />
         </UrlContainer>
         <FetchBtn onClick={() => handleFetch()}>
           Fetch

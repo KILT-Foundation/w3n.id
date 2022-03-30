@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as Copy } from '../ImageAssets/copy2clipboard_light.svg'
-import { ReactComponent as Copied } from '../ImageAssets/copied.svg'
+import { CopyToClipboard } from './CopyToClipboard'
 
 interface Props {
   did: string
@@ -43,37 +42,15 @@ const DidContainer = styled.div`
   min-width: 250px;
   gap: 7px;
 `
-const CopySvg = styled(Copy)`
-  fill: ${(props) => props.theme.btnborder};
-  cursor: pointer;
-`
-const CopiedSvg = styled(Copied)`
-  stroke: ${(props) => props.theme.btnborder};
-  width: 22px;
-  height: 22px;
-`
-export const DidSection = (props: Props) => {
-  const [copied, setCopied] = useState<boolean>(false)
 
-  const handleCopy = () => {
-    setCopied(true)
-    navigator.clipboard.writeText(props.did)
-  }
-  useEffect(() => {
-    if (copied) {
-      const timeout = setTimeout(() => setCopied(false), 1000)
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [copied])
+export const DidSection = (props: Props) => {
   if (props.did === '') return null
   return (
     <Container>
       <DidTitle>DID</DidTitle>
       <DidContainer>
         <DidSpan>{props.did}</DidSpan>
-        {copied ? <CopiedSvg /> : <CopySvg onClick={() => handleCopy()} />}
+        <CopyToClipboard text={props.did} />
       </DidContainer>
     </Container>
   )
