@@ -118,7 +118,7 @@ const TourSlidesSection = styled.div`
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: ${(props: Style) =>
-    props.isOpen === 'Open' ? '1s' : '0.4s'};
+    props.isOpen === 'Open' ? '0.7s' : '0.3s'};
   @media (max-width: 450px) {
     margin-top: 0px;
   }
@@ -136,7 +136,7 @@ const TakeTour = styled.div`
     props.isOpen === 'Open' ? SlideAnimation : SlideUpAnimation};
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 0.75s;
+  animation-duration: 0.5s;
 `
 const PagerUnselectedSvg = styled(PageUnselected)`
   cursor: pointer;
