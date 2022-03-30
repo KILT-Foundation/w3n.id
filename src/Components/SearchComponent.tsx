@@ -15,7 +15,11 @@ import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
+import { Theme } from '../Themes/Theme'
 
+interface Search {
+  text: string
+}
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -49,7 +53,8 @@ const SearchBtn = styled.button`
   height: 24px;
   border-radius: 15px;
   height: 22px;
-  background-color: ${(props) => props.theme.searchbtn};
+  background-color: ${(props: Search) =>
+    props.text.length < 3 ? 'grey' : Theme.light.searchbtn};
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
@@ -268,7 +273,11 @@ export const SearchComponent = () => {
           />
 
           <SearchBtnWrapper>
-            <SearchBtn onClick={() => handleSearch()} type="submit">
+            <SearchBtn
+              text={searchedText}
+              onClick={() => handleSearch()}
+              type="submit"
+            >
               LOOK UP
             </SearchBtn>
           </SearchBtnWrapper>
