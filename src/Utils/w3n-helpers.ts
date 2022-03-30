@@ -4,31 +4,23 @@ import {
   ICredential,
   IRequestForAttestation,
   Credential,
+  DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js'
 
+let serviceEndpoint: DidServiceEndpoint[]
 export const getServiceEndpointsW3Name = async (
   did: string
 ): Promise<{
-  ids: string[]
-  urls: string[]
-  types: string[]
+  endpoint: DidServiceEndpoint[]
   web3name: string | null
 }> => {
-  const urls: string[] = []
-  const types: string[] = []
-  const ids: string[] = []
-
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
   if (endPoints) {
-    for (const endPoint of endPoints) {
-      urls.push(...endPoint.urls)
-      types.push(...endPoint.types)
-      ids.push(endPoint.id)
-    }
+    serviceEndpoint = endPoints
   }
-  return { ids: ids, urls: urls, types: types, web3name: w3name }
+  return { endpoint: serviceEndpoint, web3name: w3name }
 }
 export const isSearchedTextDid = (searchedText: string): boolean => {
   const didKeyword = searchedText.split(':').slice(0, -2)
@@ -41,25 +33,16 @@ export const isSearchedTextKiltDid = (searchedText: string): boolean => {
 export const getDidDocFromW3Name = async (
   w3name: string
 ): Promise<{
-  ids: string[]
-  urls: string[]
-  types: string[]
+  endpoint: DidServiceEndpoint[]
   did: string
 } | null> => {
-  const urls: string[] = []
-  const types: string[] = []
-  const ids: string[] = []
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
   if (did) {
     const didDetails = await Did.DidResolver.resolveDoc(did)
     const endPoints = didDetails?.details?.getEndpoints()
     if (endPoints) {
-      for (const endPoint of endPoints) {
-        urls.push(...endPoint.urls)
-        types.push(...endPoint.types)
-        ids.push(endPoint.id)
-      }
-      return { ids: ids, urls: urls, types: types, did: did }
+      serviceEndpoint = endPoints
+      return { endpoint: serviceEndpoint, did: did }
     }
   }
   return null

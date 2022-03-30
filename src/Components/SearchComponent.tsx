@@ -16,6 +16,7 @@ import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
 import { Theme } from '../Themes/Theme'
+import { DidServiceEndpoint } from '@kiltprotocol/sdk-js'
 
 interface Search {
   text: string
@@ -126,9 +127,9 @@ const ResultsContainer = styled.div`
 export const SearchComponent = () => {
   const [searchedText, setSearchedText] = useState<string>('')
   const [unclaimedName, setUnclaimedName] = useState<string>('')
-  const [endpointTypes, setEndpointTypes] = useState<string[]>([])
-  const [endpointURLs, setEndpointURLs] = useState<string[]>([])
-  const [endpointIds, setEndpointIds] = useState<string[]>([])
+  const [serviceEndpoints, setServiceEndpoints] = useState<
+    DidServiceEndpoint[]
+  >([])
   const [did, setDid] = useState<string>('')
   const [w3Name, setW3Name] = useState<string>('')
   const [errors, setErrors] = useState<
@@ -146,10 +147,8 @@ export const SearchComponent = () => {
     setSearchedText(path)
 
     if (searchedText.length) {
-      if (endpointIds.length) {
-        setEndpointIds([])
-        setEndpointTypes([])
-        setEndpointURLs([])
+      if (serviceEndpoints.length) {
+        setServiceEndpoints([])
         setDid('')
         setW3Name('')
       }
@@ -173,12 +172,10 @@ export const SearchComponent = () => {
         try {
           const didDocInstance = await getServiceEndpointsW3Name(textFromSearch)
           setDid(textFromSearch)
-          if (didDocInstance.ids) {
-            setEndpointIds(didDocInstance.ids)
-            setEndpointTypes(didDocInstance.types)
-            setEndpointURLs(didDocInstance.urls)
+          if (didDocInstance) {
+            setServiceEndpoints(didDocInstance.endpoint)
           }
-          if (didDocInstance.web3name !== null) {
+          if (didDocInstance.web3name) {
             setW3Name('w3n:' + didDocInstance.web3name)
             replaceHistoryState(shouldChangeUrl, didDocInstance.web3name)
           } else {
@@ -196,13 +193,11 @@ export const SearchComponent = () => {
 
       if (stringStartsWithW3(textFromSearch)) {
         const name = textFromSearch.split(':').pop()
-        if (name !== undefined) {
-          const didDoc = await getDidDocFromW3Name(name)
-          if (didDoc !== null) {
-            setEndpointIds(didDoc.ids)
-            setEndpointTypes(didDoc.types)
-            setEndpointURLs(didDoc.urls)
-            setDid(didDoc.did)
+        if (name) {
+          const didDocumentInstance = await getDidDocFromW3Name(name)
+          if (didDocumentInstance) {
+            setServiceEndpoints(didDocumentInstance.endpoint)
+            setDid(didDocumentInstance.did)
             setW3Name('w3n:' + name)
             replaceHistoryState(shouldChangeUrl, name)
           } else {
@@ -217,12 +212,10 @@ export const SearchComponent = () => {
         return
       }
 
-      const didDoc = await getDidDocFromW3Name(textFromSearch)
-      if (didDoc !== null) {
-        setEndpointIds(didDoc.ids)
-        setEndpointTypes(didDoc.types)
-        setEndpointURLs(didDoc.urls)
-        setDid(didDoc.did)
+      const didDocumentInstance = await getDidDocFromW3Name(textFromSearch)
+      if (didDocumentInstance) {
+        setServiceEndpoints(didDocumentInstance.endpoint)
+        setDid(didDocumentInstance.did)
         setW3Name('w3n:' + textFromSearch)
       } else {
         replaceHistoryState(shouldChangeUrl, textFromSearch)
@@ -238,10 +231,8 @@ export const SearchComponent = () => {
       return
     }
     setErrors(null)
-    if (endpointIds.length) {
-      setEndpointIds([])
-      setEndpointTypes([])
-      setEndpointURLs([])
+    if (serviceEndpoints.length) {
+      setServiceEndpoints([])
       setDid('')
       setW3Name('')
     }
@@ -289,19 +280,21 @@ export const SearchComponent = () => {
           <DidSection did={did} />
           <Web3Name web3Name={w3Name} />
           <DidDocumentContainer>
-            {endpointIds.length > 0 && (
+            {serviceEndpoints.length > 0 && (
               <SectionTitleSpan>Service</SectionTitleSpan>
             )}
 
             <EndpointsContainer>
-              {endpointURLs.map((url: string, index: number) => (
-                <DidDocument
-                  key={endpointIds[index]}
-                  endpointType={endpointTypes[index]}
-                  endpointURL={url}
-                  did={did}
-                />
-              ))}
+              {serviceEndpoints.map(
+                (serviceEndpoint: DidServiceEndpoint, index: number) => (
+                  <DidDocument
+                    key={serviceEndpoint.id}
+                    endpointType={serviceEndpoint.types[0]}
+                    endpointURL={serviceEndpoint.urls[0]}
+                    did={did}
+                  />
+                )
+              )}
             </EndpointsContainer>
           </DidDocumentContainer>
           <VerificationMethodSecton did={did} />
