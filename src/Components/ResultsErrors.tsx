@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface Style {
-  setMargin: boolean
+  setMargin?: boolean
 }
 interface Props {
   name: string
@@ -58,10 +58,10 @@ const ClaimWeb3Name = (props: Props) => {
     <Container>
       <NoteSpan>Note</NoteSpan>
       <ClaimW3NContainer>
-        <ClaimW3NSteps setMargin={true}>
+        <ClaimW3NSteps setMargin>
           No results found for {props.name}
         </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin={false}>
+        <ClaimW3NSteps>
           - Download Sporran extension for{' '}
           <a href="https://chrome.google.com/webstore/detail/djdnajgjcbjhhbdblkegbcgodlkkfhcl">
             Chrome
@@ -71,16 +71,12 @@ const ClaimWeb3Name = (props: Props) => {
             Firefox
           </a>
         </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin={false}>
+        <ClaimW3NSteps setMargin>
           - Generate a KILT Identity within Sporran
         </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin={false}>
-          - Transfer KILT tokens to this Identy
-        </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin={true}>
-          - Claim web3name in Sporran
-        </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin={false}>
+        <ClaimW3NSteps>- Transfer KILT tokens to this Identy</ClaimW3NSteps>
+        <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
+        <ClaimW3NSteps>
           For details go to{' '}
           <a href="https://support.kilt.io/support/home">Tech Support</a>
         </ClaimW3NSteps>
@@ -107,9 +103,7 @@ const MaxCharError = () => {
     <Container>
       <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
-        <ClaimW3NSteps setMargin={false}>
-          Maximum 30 characters allowed
-        </ClaimW3NSteps>
+        <ClaimW3NSteps>Maximum 30 characters allowed</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
   )
@@ -119,9 +113,7 @@ const MinCharError = () => {
     <Container>
       <NoteSpan>Error</NoteSpan>
       <ClaimW3NContainer>
-        <ClaimW3NSteps setMargin={false}>
-          Minimum characters length should be 3
-        </ClaimW3NSteps>
+        <ClaimW3NSteps>Minimum characters length should be 3</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
   )
