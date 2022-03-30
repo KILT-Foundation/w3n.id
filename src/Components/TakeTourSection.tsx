@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg'
 import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg'
 import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg'
@@ -10,6 +10,23 @@ import Tour4 from '../ImageAssets/Tour_4@2x.png'
 import Tour5 from '../ImageAssets/Tour_5@2x.png'
 import Tour6 from '../ImageAssets/Tour_6@2x.png'
 import Tour7 from '../ImageAssets/Tour_7@2x.png'
+
+interface Style {
+  BackgroundImage?: string
+  isOpen?: 'Open' | 'Close' | null
+}
+interface Toggle {
+  isOpen: 'Open' | 'Close' | null
+}
+
+const fadeInAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 const TourSlidesContainer = styled.div`
   display: flex;
@@ -64,14 +81,34 @@ const PagerDiv = styled.div`
   align-items: center;
   height: fit-content;
 `
-
+const SlideAnimation = keyframes`
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 520px;
+  }
+`
+const SlideUpAnimation = keyframes`
+  0% {
+    height: 520px;
+  }
+  100% {
+    height: 0;
+  }
+`
 const TourSlidesSection = styled.div`
-  display: flex;
+  display: ${(props: Style) => (props.isOpen === 'Open' ? 'flex' : 'none')};
   justify-content: center;
   max-width: 740px;
   width: 90%;
   margin-top: 50px;
   height: fit-content;
+  opacity: ${(props: Style) => (props.isOpen === 'Open' ? 1 : 0)};
+  animation-name: ${fadeInAnimation};
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.7s;
   @media (max-width: 450px) {
     margin-top: 0px;
   }
@@ -83,16 +120,24 @@ const TakeTour = styled.div`
   align-items: center;
   justify-content: start;
   width: 100%;
-  height: 520px;
+  height: ${(props: Style) => (props.isOpen === 'Open' ? '520px' : '0')};
   color: ${(props) => props.theme.headertext};
+  animation-name: ${(props: Style) =>
+    props.isOpen === 'Open' ? SlideAnimation : SlideUpAnimation};
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
 `
 const PagerUnselectedSvg = styled(PageUnselected)`
   cursor: pointer;
 `
 
-export const TakeTourSection = () => {
+export const TakeTourSection = (props: Toggle) => {
   const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
   const [image, setImage] = useState<string>(imageArray[0])
+  if (!props.isOpen) {
+    return null
+  }
   const handleNext = () => {
     const index = imageArray.indexOf(image)
     if (index === imageArray.length - 1) {
@@ -112,8 +157,8 @@ export const TakeTourSection = () => {
     setImage(imageArray[index])
   }
   return (
-    <TakeTour>
-      <TourSlidesSection>
+    <TakeTour isOpen={props.isOpen}>
+      <TourSlidesSection isOpen={props.isOpen}>
         <TourSlidesContainer>
           <ChangeSlideSvgWrapper>
             <NextSvg onClick={() => handlePrev()} />
