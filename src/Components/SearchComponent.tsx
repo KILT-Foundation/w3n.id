@@ -137,18 +137,18 @@ export const SearchComponent = () => {
 
   window.onpopstate = function () {
     setErrors(null)
-    if (endpointIds.length) {
-      setEndpointIds([])
-      setEndpointTypes([])
-      setEndpointURLs([])
-      setDid('')
-      setW3Name('')
-    } else {
-      if (searchedText.length) {
-        const path = window.location.pathname.split('/')[1]
-        setSearchedText(path)
-        resolveDidDocument(path, false)
+    const path = window.location.pathname.split('/')[1]
+    setSearchedText(path)
+
+    if (searchedText.length) {
+      if (endpointIds.length) {
+        setEndpointIds([])
+        setEndpointTypes([])
+        setEndpointURLs([])
+        setDid('')
+        setW3Name('')
       }
+      resolveDidDocument(path, false)
     }
   }
 
