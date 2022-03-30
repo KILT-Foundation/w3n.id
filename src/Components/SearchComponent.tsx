@@ -145,7 +145,6 @@ export const SearchComponent = () => {
     setErrors(null)
     const path = window.location.pathname.split('/')[1]
     setSearchedText(path)
-
     if (searchedText.length) {
       if (serviceEndpoints.length) {
         setServiceEndpoints([])
@@ -231,7 +230,7 @@ export const SearchComponent = () => {
       return
     }
     setErrors(null)
-    if (serviceEndpoints.length) {
+    if (did) {
       setServiceEndpoints([])
       setDid('')
       setW3Name('')
