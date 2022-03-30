@@ -64,7 +64,7 @@ export const getDidDocFromW3Name = async (
   }
   return null
 }
-export const isUpperCase = (text: string) => text.toLocaleLowerCase() !== text
+export const hasUpperCase = (text: string) => text.toLocaleLowerCase() !== text
 
 export const validSearchedText = (text: string) => /^[a-z0-9_-]*$/.test(text)
 
