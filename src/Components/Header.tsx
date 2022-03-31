@@ -109,7 +109,7 @@ const OpenSvg = styled(Open)`
 `
 
 export const Header = (props: Toggle) => {
-  const [tourSection, setTourSection] = useState<'Open' | 'Close' | null>(null)
+  const [tourSection, setTourSection] = useState<'Open' | 'Close'>('Close')
 
   const handleClick = () => {
     if (tourSection === 'Open') setTourSection('Close')

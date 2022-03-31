@@ -13,10 +13,10 @@ import Tour7 from '../ImageAssets/Tour_7@2x.png'
 
 interface Style {
   BackgroundImage?: string
-  isOpen?: 'Open' | 'Close' | null
+  isOpen?: 'Open' | 'Close'
 }
 interface Toggle {
-  isOpen: 'Open' | 'Close' | null
+  isOpen: 'Open' | 'Close'
 }
 
 const TourSlidesContainer = styled.div`
@@ -103,9 +103,6 @@ const PagerUnselectedSvg = styled(PageUnselected)`
 export const TakeTourSection = (props: Toggle) => {
   const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
   const [image, setImage] = useState<string>(imageArray[0])
-  if (!props.isOpen) {
-    return null
-  }
   const handleNext = () => {
     const index = imageArray.indexOf(image)
     if (index === imageArray.length - 1) {
