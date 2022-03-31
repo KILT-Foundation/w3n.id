@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg'
 import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg'
 import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg'
@@ -18,15 +18,6 @@ interface Style {
 interface Toggle {
   isOpen: 'Open' | 'Close' | null
 }
-
-const fadeInAnimation = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
 
 const TourSlidesContainer = styled.div`
   display: flex;
@@ -81,34 +72,14 @@ const PagerDiv = styled.div`
   align-items: center;
   height: fit-content;
 `
-const SlideAnimation = keyframes`
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 520px;
-  }
-`
-const SlideUpAnimation = keyframes`
-  0% {
-    height: 520px;
-  }
-  100% {
-    height: 0;
-  }
-`
+
 const TourSlidesSection = styled.div`
-  display: ${(props: Style) => (props.isOpen === 'Open' ? 'flex' : 'none')};
+  display: flex;
   justify-content: center;
   max-width: 740px;
   width: 90%;
   margin-top: 50px;
   height: fit-content;
-  opacity: ${(props: Style) => (props.isOpen === 'Open' ? 1 : 0)};
-  animation-name: ${fadeInAnimation};
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.7s;
   @media (max-width: 450px) {
     margin-top: 0px;
   }
@@ -122,11 +93,8 @@ const TakeTour = styled.div`
   width: 100%;
   height: ${(props: Style) => (props.isOpen === 'Open' ? '520px' : '0')};
   color: ${(props) => props.theme.headertext};
-  animation-name: ${(props: Style) =>
-    props.isOpen === 'Open' ? SlideAnimation : SlideUpAnimation};
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.5s;
+  transition: height 0.5s ease-in;
+  overflow: hidden;
 `
 const PagerUnselectedSvg = styled(PageUnselected)`
   cursor: pointer;
@@ -158,7 +126,7 @@ export const TakeTourSection = (props: Toggle) => {
   }
   return (
     <TakeTour isOpen={props.isOpen}>
-      <TourSlidesSection isOpen={props.isOpen}>
+      <TourSlidesSection>
         <TourSlidesContainer>
           <ChangeSlideSvgWrapper>
             <NextSvg onClick={() => handlePrev()} />
