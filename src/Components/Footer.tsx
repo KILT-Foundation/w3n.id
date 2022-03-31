@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as Kilt } from '../ImageAssets/Kilt.svg'
 
+interface Toggle {
+  handleImprint: React.MouseEventHandler<HTMLSpanElement>
+}
 const StyledFooter = styled.div`
   background-color: ${(props) => props.theme.searchbackground};
   height: 35px;
@@ -27,6 +31,7 @@ const ImprintContainer = styled.div`
   width: 63px;
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
   @media (max-width: 400px) {
     display: none;
   }
@@ -59,19 +64,23 @@ const ImprintText = styled.span`
   width: fit-content;
   gap: 4px;
   display: none;
+  cursor: pointer;
   @media (max-width: 400px) {
     display: flex;
   }
 `
-export const Footer = () => {
+const LogoSvg = styled(Kilt)`
+  fill: ${(props) => props.theme.text};
+`
+export const Footer = (props: Toggle) => {
   return (
     <StyledFooter>
       <StyledFooterLinksContainer>
         <ImprintContainer>
-          <span>Imprint</span>
+          <span onClick={props.handleImprint}>Imprint</span>
         </ImprintContainer>
         <LinksContainer>
-          <ImprintText>Imprint -</ImprintText>
+          <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
           <span>Terms of Use</span>
           <span>-</span>
 
@@ -80,7 +89,7 @@ export const Footer = () => {
           <span>Support</span>
         </LinksContainer>
         <LogoContainer>
-          <span>Built on KILT</span>
+          <LogoSvg />
         </LogoContainer>
       </StyledFooterLinksContainer>
     </StyledFooter>
