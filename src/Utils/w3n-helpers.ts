@@ -19,12 +19,12 @@ const resolveSeviceEndpoints = async (did: string) => {
 export const getServiceEndpointsW3Name = async (
   did: string
 ): Promise<{
-  endpoint: DidServiceEndpoint[]
+  endpoints: DidServiceEndpoint[]
   web3name: string | null
 }> => {
   const serviceEndpoint = await resolveSeviceEndpoints(did)
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
-  return { endpoint: serviceEndpoint, web3name: w3name }
+  return { endpoints: serviceEndpoint, web3name: w3name }
 }
 export const isSearchedTextDid = (searchedText: string): boolean => {
   const didKeyword = searchedText.split(':').slice(0, -2)
@@ -37,13 +37,13 @@ export const isSearchedTextKiltDid = (searchedText: string): boolean => {
 export const getDidDocFromW3Name = async (
   w3name: string
 ): Promise<{
-  endpoint: DidServiceEndpoint[]
+  endpoints: DidServiceEndpoint[]
   did: string
 } | null> => {
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
   if (did) {
     const serviceEndpoint = await resolveSeviceEndpoints(did)
-    return { endpoint: serviceEndpoint, did: did }
+    return { endpoints: serviceEndpoint, did: did }
   }
   return null
 }

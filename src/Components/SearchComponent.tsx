@@ -154,7 +154,26 @@ export const SearchComponent = () => {
       resolveDidDocument(path, false)
     }
   }
-
+  const setDidDocumentFromDid = async (
+    did: string,
+    shouldChangeUrl: boolean
+  ) => {
+    try {
+      const didDocInstance = await getServiceEndpointsW3Name(did)
+      setDid(did)
+      if (didDocInstance) {
+        setServiceEndpoints(didDocInstance.endpoints)
+      }
+      if (didDocInstance.web3name) {
+        setW3Name('w3n:' + didDocInstance.web3name)
+        replaceHistoryState(shouldChangeUrl, didDocInstance.web3name)
+      } else {
+        setW3Name('No web3name found')
+      }
+    } catch {
+      setErrors('Invalid Kilt')
+    }
+  }
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
       pushHistoryState(shouldChangeUrl, textFromSearch)
@@ -168,21 +187,7 @@ export const SearchComponent = () => {
           setErrors('Invalid Kilt')
           return
         }
-        try {
-          const didDocInstance = await getServiceEndpointsW3Name(textFromSearch)
-          setDid(textFromSearch)
-          if (didDocInstance) {
-            setServiceEndpoints(didDocInstance.endpoint)
-          }
-          if (didDocInstance.web3name) {
-            setW3Name('w3n:' + didDocInstance.web3name)
-            replaceHistoryState(shouldChangeUrl, didDocInstance.web3name)
-          } else {
-            setW3Name('No web3name found')
-          }
-        } catch {
-          setErrors('Invalid Kilt')
-        }
+        await setDidDocumentFromDid(textFromSearch, shouldChangeUrl)
         return
       }
       if (textFromSearch.length > 30) {
@@ -195,7 +200,7 @@ export const SearchComponent = () => {
         if (name) {
           const didDocumentInstance = await getDidDocFromW3Name(name)
           if (didDocumentInstance) {
-            setServiceEndpoints(didDocumentInstance.endpoint)
+            setServiceEndpoints(didDocumentInstance.endpoints)
             setDid(didDocumentInstance.did)
             setW3Name('w3n:' + name)
             replaceHistoryState(shouldChangeUrl, name)
@@ -213,7 +218,7 @@ export const SearchComponent = () => {
 
       const didDocumentInstance = await getDidDocFromW3Name(textFromSearch)
       if (didDocumentInstance) {
-        setServiceEndpoints(didDocumentInstance.endpoint)
+        setServiceEndpoints(didDocumentInstance.endpoints)
         setDid(didDocumentInstance.did)
         setW3Name('w3n:' + textFromSearch)
       } else {
