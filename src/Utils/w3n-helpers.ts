@@ -7,12 +7,13 @@ import {
   DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js'
 
-let serviceEndpoint: DidServiceEndpoint[]
 const resolveSeviceEndpoints = async (did: string) => {
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   if (endPoints) {
-    serviceEndpoint = endPoints
+    return endPoints
+  } else {
+    return []
   }
 }
 export const getServiceEndpointsW3Name = async (
@@ -21,7 +22,7 @@ export const getServiceEndpointsW3Name = async (
   endpoint: DidServiceEndpoint[]
   web3name: string | null
 }> => {
-  await resolveSeviceEndpoints(did)
+  const serviceEndpoint = await resolveSeviceEndpoints(did)
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
   return { endpoint: serviceEndpoint, web3name: w3name }
 }
@@ -41,7 +42,7 @@ export const getDidDocFromW3Name = async (
 } | null> => {
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
   if (did) {
-    await resolveSeviceEndpoints(did)
+    const serviceEndpoint = await resolveSeviceEndpoints(did)
     return { endpoint: serviceEndpoint, did: did }
   }
   return null
