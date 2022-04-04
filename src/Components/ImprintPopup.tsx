@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as bte_logo_light } from '../ImageAssets/bte_logo_light.svg'
 interface Style {
   setMargin?: boolean
 }
@@ -23,7 +24,7 @@ const ImprintContainer = styled.div`
   background-color: ${(props) => props.theme.body};
   flex-direction: column;
   word-break: break-all;
-  height: 472px;
+  height: 522px;
   max-width: 484px;
   width: 90%;
   justify-content: center;
@@ -55,10 +56,16 @@ const OkBtn = styled.button`
   margin-top: 30px;
   color: ${(props) => props.theme.text};
 `
+const BTELogo = styled(bte_logo_light)`
+  fill: ${(props) => props.theme.text};
+  margin-bottom: 30px;
+  margin-top: 20px;
+`
 export const ImprintPopup = (props: Toggle) => {
   return (
     <Container>
       <ImprintContainer>
+        <BTELogo />
         <ClaimW3NSteps setMargin>Imprint</ClaimW3NSteps>
         <ClaimW3NSteps>B.T.E. BOTLabs Trusted Entity GmbH</ClaimW3NSteps>
         <ClaimW3NSteps>Keithstraße 2-4</ClaimW3NSteps>
