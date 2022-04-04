@@ -31,6 +31,7 @@ const ChangeSlideSvgWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `
 const SlidesImageContainer = styled.div`
   display: flex;
@@ -125,8 +126,8 @@ export const TakeTourSection = (props: Toggle) => {
     <TakeTour isOpen={props.isOpen}>
       <TourSlidesSection>
         <TourSlidesContainer>
-          <ChangeSlideSvgWrapper>
-            <NextSvg onClick={() => handlePrev()} />
+          <ChangeSlideSvgWrapper onClick={() => handlePrev()}>
+            <NextSvg />
           </ChangeSlideSvgWrapper>
           <SlidesImageContainer>
             <SlidesImage src={image} />
@@ -151,8 +152,8 @@ export const TakeTourSection = (props: Toggle) => {
             </PagerDiv>
           </SlidesImageContainer>
 
-          <ChangeSlideSvgWrapper>
-            <PrevSvg onClick={() => handleNext()} />
+          <ChangeSlideSvgWrapper onClick={() => handleNext()}>
+            <PrevSvg />
           </ChangeSlideSvgWrapper>
         </TourSlidesContainer>
       </TourSlidesSection>
