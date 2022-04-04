@@ -71,9 +71,7 @@ const ClaimWeb3Name = (props: Props) => {
             Firefox
           </a>
         </ClaimW3NSteps>
-        <ClaimW3NSteps setMargin>
-          - Generate a KILT Identity within Sporran
-        </ClaimW3NSteps>
+        <ClaimW3NSteps>- Generate a KILT Identity within Sporran</ClaimW3NSteps>
         <ClaimW3NSteps>- Transfer KILT tokens to this Identy</ClaimW3NSteps>
         <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
         <ClaimW3NSteps>
