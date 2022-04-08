@@ -65,6 +65,7 @@ const Slidetext = styled.p`
   overflow-y: scroll;
   text-align: left;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 `
@@ -124,11 +125,12 @@ const SlideData: Slide[] = [
     image: Tour1,
     text: (
       <Slidetext>
-        w3n.id is a service to look up web3names for DIDs, and vice versa. As a
-        new feature, unique user names (web3names) are now available in the
-        Polkadot universe. w3n offers an easy way to look up associated
-        web3names and DIDs. In addition it allows you to check if a web3name is
-        available and explains how you can claim it.
+        w3n.id is a directory service that provides an easy way to look up KILT
+        DIDs and their associated web3names and credentials. It also allows you
+        to see if your preferred name has already been claimed. Your web3name
+        represents your unique on-chain decentralized identifier (DID), a string
+        of letters and numbers that form the core of your KILT digital identity.
+        Users can be searched by DID or web3name in several ways.
       </Slidetext>
     ),
   },
@@ -136,9 +138,10 @@ const SlideData: Slide[] = [
     image: Tour2,
     text: (
       <Slidetext>
-        Look up DID for web3name
-        <br />- Enter web3name
-        <br />- Click on LOOK UP
+        Search by web3name
+        <br />- This will show the DID and any information publicly linked to it
+        <br />- Enter the web3name in the search bar
+        <br />- Click "LOOK UP"
       </Slidetext>
     ),
   },
@@ -146,9 +149,12 @@ const SlideData: Slide[] = [
     image: Tour3,
     text: (
       <Slidetext>
-        Look up DID for web3name
-        <br />- Enter web3name
-        <br />- Click on LOOK UP
+        Search by DID
+        <br />- This will show the web3name and any information publicly linked
+        to it
+        <br />- Enter the DID in the search bar (be sure to include did:kilt:
+        before the string)
+        <br />- Click "LOOK UP"
       </Slidetext>
     ),
   },
@@ -156,8 +162,11 @@ const SlideData: Slide[] = [
     image: Tour4,
     text: (
       <Slidetext>
-        Sharing
-        <br />- Enter web3name or DID- Copy URL
+        Share your web3name or DID
+        <br />- Create a shareable URL for your web3name and DID
+        <br />- Enter your web3name or DID in the search bar
+        <br />- Copy the URL in the address bar
+        <br />- Share
       </Slidetext>
     ),
   },
@@ -166,7 +175,9 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         Fetch Credential
-        <br />- Click on FETCH to get KILT credential
+        <br />- The data in linked credentials are stored in the service
+        endpoint and not on the blockchain itself
+        <br />- Click “FETCH” to read the associated KILT credential
       </Slidetext>
     ),
   },
@@ -174,8 +185,8 @@ const SlideData: Slide[] = [
     image: Tour6,
     text: (
       <Slidetext>
-        View Credential
-        <br />- If credential is available and valid, content is shown
+        View credential content
+        <br />- If the credential is valid, the content is shown
       </Slidetext>
     ),
   },
@@ -183,16 +194,14 @@ const SlideData: Slide[] = [
     image: Tour7,
     text: (
       <Slidetext>
-        Want your own web3name? Follow those steps to claim it
+        Want your own web3name? Follow these steps to claim it.
         <br />
-        - Download Sporran extension for Chrome or Firefox <br />
-        - Generate a KILT Identity within Sporran
+        - Download Sporran extension for Chrome or Firefox
+        <br />- Generate a KILT Identity within Sporran
         <br />
-        - Transfer KILT tokens to this Identity
-        <br />
-        - Upgrade Identity to onchain DID
+        - Upgrade to an on-chain DID
         <br />- Claim web3name in Sporran
-        <br />- For details go to Tech Support
+        <br />- For more details, follow our How-to guide
       </Slidetext>
     ),
   },

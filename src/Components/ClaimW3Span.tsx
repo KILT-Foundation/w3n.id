@@ -34,7 +34,7 @@ export const ClaimW3Span = () => {
       <HowToSpan>
         <span>*Want your own web3name?</span>
         <span id="claim">
-          Learn <a href=" ">how to</a> claim it.
+          Learn how to claim it with our <a href=" ">How-to guide</a>
         </span>
       </HowToSpan>
     </Container>

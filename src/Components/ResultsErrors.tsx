@@ -61,6 +61,9 @@ const ClaimWeb3Name = (props: Props) => {
         <ClaimW3NSteps setMargin>
           No results found for {props.name}
         </ClaimW3NSteps>
+        <ClaimW3NSteps setMargin>
+          Here’s how to claim your web3name
+        </ClaimW3NSteps>
         <ClaimW3NSteps>
           - Download Sporran extension for{' '}
           <a href="https://chrome.google.com/webstore/detail/djdnajgjcbjhhbdblkegbcgodlkkfhcl">
@@ -71,13 +74,23 @@ const ClaimWeb3Name = (props: Props) => {
             Firefox
           </a>
         </ClaimW3NSteps>
-        <ClaimW3NSteps>- Generate a KILT Identity within Sporran</ClaimW3NSteps>
-        <ClaimW3NSteps>- Transfer KILT tokens to this Identy</ClaimW3NSteps>
-        <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
         <ClaimW3NSteps>
-          For details go to{' '}
-          <a href="https://support.kilt.io/support/home">Tech Support</a>
+          -
+          <a
+            href="https://www.kilt.io/wp-content/uploads/2021/11/How-to-Set-Up-Sporran_22-Nov.pdf
+"
+          >
+            Generate a KILT Identity within Sporran
+          </a>
         </ClaimW3NSteps>
+        <ClaimW3NSteps>
+          -{' '}
+          <a href="https://docs.google.com/document/d/1hMg8RHjJogBNV--s1YG9sKciFDlX6yfgQVBnBcRGQPE/edit#heading=h.swld9qnaddw3">
+            Upgrade to an on-chain DID
+          </a>
+        </ClaimW3NSteps>
+        <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
+        <ClaimW3NSteps>For more details, follow our How-to guide</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
   )
