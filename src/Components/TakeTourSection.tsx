@@ -114,69 +114,12 @@ const TakeTour = styled.div`
 const PagerUnselectedSvg = styled(PageUnselected)`
   cursor: pointer;
 `
-
-export const TakeTourSection = (props: Toggle) => {
-  const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
-  const [slide, setSlide] = useState<Slide>(SlideData[0])
-  const handleNext = () => {
-    const index = SlideData.indexOf(slide)
-    if (index === imageArray.length - 1) {
-      setSlide(SlideData[0])
-      return
-    }
-    setSlide(SlideData[index + 1])
-  }
-  const handlePrev = () => {
-    const index = SlideData.indexOf(slide)
-    if (index === 0) {
-      return
-    }
-    setSlide(SlideData[index - 1])
-  }
-  const handleClick = (index: number) => {
-    setSlide(SlideData[index])
-  }
-  return (
-    <TakeTour isOpen={props.isOpen}>
-      <TourSlidesSection>
-        <TourSlidesContainer>
-          <ChangeSlideSvgWrapper onClick={() => handlePrev()}>
-            <NextSvg />
-          </ChangeSlideSvgWrapper>
-          <SlidesImageContainer>
-            <Toptext>
-              Learn how to use this directory and how to claim your own web3name
-            </Toptext>
-            <SlidesImage src={slide.image} />
-            {slide.text}
-            <PagerDiv>
-              {SlideData.map((slidesFromArray, index) =>
-                slide === slidesFromArray ? (
-                  <PageSelected key={index} />
-                ) : (
-                  <PagerUnselectedSvg
-                    key={index}
-                    onClick={() => handleClick(index)}
-                  />
-                )
-              )}
-            </PagerDiv>
-          </SlidesImageContainer>
-
-          <ChangeSlideSvgWrapper onClick={() => handleNext()}>
-            <PrevSvg />
-          </ChangeSlideSvgWrapper>
-        </TourSlidesContainer>
-      </TourSlidesSection>
-    </TakeTour>
-  )
-}
-export type Slide = {
+type Slide = {
   image: string
   text: JSX.Element
 }
 
-export const SlideData: Slide[] = [
+const SlideData: Slide[] = [
   {
     image: Tour1,
     text: (
@@ -254,3 +197,60 @@ export const SlideData: Slide[] = [
     ),
   },
 ]
+
+export const TakeTourSection = (props: Toggle) => {
+  const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
+  const [slide, setSlide] = useState<Slide>(SlideData[0])
+  const handleNext = () => {
+    const index = SlideData.indexOf(slide)
+    if (index === imageArray.length - 1) {
+      setSlide(SlideData[0])
+      return
+    }
+    setSlide(SlideData[index + 1])
+  }
+  const handlePrev = () => {
+    const index = SlideData.indexOf(slide)
+    if (index === 0) {
+      return
+    }
+    setSlide(SlideData[index - 1])
+  }
+  const handleClick = (index: number) => {
+    setSlide(SlideData[index])
+  }
+  return (
+    <TakeTour isOpen={props.isOpen}>
+      <TourSlidesSection>
+        <TourSlidesContainer>
+          <ChangeSlideSvgWrapper onClick={() => handlePrev()}>
+            <NextSvg />
+          </ChangeSlideSvgWrapper>
+          <SlidesImageContainer>
+            <Toptext>
+              Learn how to use this directory and how to claim your own web3name
+            </Toptext>
+            <SlidesImage src={slide.image} />
+            {slide.text}
+            <PagerDiv>
+              {SlideData.map((slidesFromArray, index) =>
+                slide === slidesFromArray ? (
+                  <PageSelected key={index} />
+                ) : (
+                  <PagerUnselectedSvg
+                    key={index}
+                    onClick={() => handleClick(index)}
+                  />
+                )
+              )}
+            </PagerDiv>
+          </SlidesImageContainer>
+
+          <ChangeSlideSvgWrapper onClick={() => handleNext()}>
+            <PrevSvg />
+          </ChangeSlideSvgWrapper>
+        </TourSlidesContainer>
+      </TourSlidesSection>
+    </TakeTour>
+  )
+}
