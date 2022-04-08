@@ -144,7 +144,9 @@ export const TakeTourSection = (props: Toggle) => {
             <NextSvg />
           </ChangeSlideSvgWrapper>
           <SlidesImageContainer>
-            <Toptext>Learn how to use w3n.id</Toptext>
+            <Toptext>
+              Learn how to use this directory and how to claim your own web3name
+            </Toptext>
             <SlidesImage src={slide.image} />
             {slide.text}
             <PagerDiv>
