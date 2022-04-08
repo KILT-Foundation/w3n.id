@@ -10,7 +10,6 @@ import Tour4 from '../ImageAssets/Tour_4@2x.png'
 import Tour5 from '../ImageAssets/Tour_5@2x.png'
 import Tour6 from '../ImageAssets/Tour_6@2x.png'
 import Tour7 from '../ImageAssets/Tour_7@2x.png'
-
 interface Style {
   BackgroundImage?: string
   isOpen?: 'Open' | 'Close'
@@ -27,7 +26,7 @@ const TourSlidesContainer = styled.div`
 `
 const ChangeSlideSvgWrapper = styled.div`
   width: 10%;
-  height: 350px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,15 +35,15 @@ const ChangeSlideSvgWrapper = styled.div`
 const SlidesImageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   gap: 5px;
-  height: 500px;
+  height: 550px;
   width: 80%;
 `
 const SlidesImage = styled.img`
   object-fit: contain;
-  height: 300px;
+  max-height: 300px;
   width: 100%;
 `
 const NextSvg = styled(Open)`
@@ -61,9 +60,24 @@ const PrevSvg = styled(Open)`
 const Slidetext = styled.p`
   font-size: 14px;
   letter-spacing: 0.1px;
-  line-height: 22px;
-  height: 100px;
-  overflow-y: auto;
+  line-height: 16px;
+  height: 60px;
+  overflow-y: scroll;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
+const Toptext = styled.span`
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 16px;
+  overflow-y: scroll;
+  text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 `
 const PagerDiv = styled.div`
   display: flex;
@@ -72,6 +86,7 @@ const PagerDiv = styled.div`
   justify-content: center;
   align-items: center;
   height: fit-content;
+  width: 100%;
 `
 
 const TourSlidesSection = styled.div`
@@ -79,7 +94,6 @@ const TourSlidesSection = styled.div`
   justify-content: center;
   max-width: 740px;
   width: 90%;
-  margin-top: 50px;
   height: fit-content;
   @media (max-width: 450px) {
     margin-top: 0px;
@@ -103,24 +117,24 @@ const PagerUnselectedSvg = styled(PageUnselected)`
 
 export const TakeTourSection = (props: Toggle) => {
   const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
-  const [image, setImage] = useState<string>(imageArray[0])
+  const [slide, setSlide] = useState<Slide>(SlideData[0])
   const handleNext = () => {
-    const index = imageArray.indexOf(image)
+    const index = SlideData.indexOf(slide)
     if (index === imageArray.length - 1) {
-      setImage(imageArray[0])
+      setSlide(SlideData[0])
       return
     }
-    setImage(imageArray[index + 1])
+    setSlide(SlideData[index + 1])
   }
   const handlePrev = () => {
-    const index = imageArray.indexOf(image)
+    const index = SlideData.indexOf(slide)
     if (index === 0) {
       return
     }
-    setImage(imageArray[index - 1])
+    setSlide(SlideData[index - 1])
   }
   const handleClick = (index: number) => {
-    setImage(imageArray[index])
+    setSlide(SlideData[index])
   }
   return (
     <TakeTour isOpen={props.isOpen}>
@@ -130,17 +144,12 @@ export const TakeTourSection = (props: Toggle) => {
             <NextSvg />
           </ChangeSlideSvgWrapper>
           <SlidesImageContainer>
-            <SlidesImage src={image} />
-            <Slidetext>
-              Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
-              Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
-              convallis tristique sem. Proin ut ligula vel nunc egestas
-              porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus
-              non, massa. Fusce ac turpis quis ligula lacinia aliquet.
-            </Slidetext>
+            <Toptext>Learn how to use w3n.id</Toptext>
+            <SlidesImage src={slide.image} />
+            {slide.text}
             <PagerDiv>
-              {imageArray.map((imageFromArray, index) =>
-                image === imageFromArray ? (
+              {SlideData.map((slidesFromArray, index) =>
+                slide === slidesFromArray ? (
                   <PageSelected key={index} />
                 ) : (
                   <PagerUnselectedSvg
@@ -160,3 +169,86 @@ export const TakeTourSection = (props: Toggle) => {
     </TakeTour>
   )
 }
+export type Slide = {
+  image: string
+  text: JSX.Element
+}
+
+export const SlideData: Slide[] = [
+  {
+    image: Tour1,
+    text: (
+      <Slidetext>
+        w3n.id is a service to look up web3names for DIDs, and vice versa. As a
+        new feature, unique user names (web3names) are now available in the
+        Polkadot universe. w3n offers an easy way to look up associated
+        web3names and DIDs. In addition it allows you to check if a web3name is
+        available and explains how you can claim it.
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour2,
+    text: (
+      <Slidetext>
+        Look up DID for web3name
+        <br />- Enter web3name
+        <br />- Click on LOOK UP
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour3,
+    text: (
+      <Slidetext>
+        Look up DID for web3name
+        <br />- Enter web3name
+        <br />- Click on LOOK UP
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour4,
+    text: (
+      <Slidetext>
+        Sharing
+        <br />- Enter web3name or DID- Copy URL
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour5,
+    text: (
+      <Slidetext>
+        Fetch Credential
+        <br />- Click on FETCH to get KILT credential
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour6,
+    text: (
+      <Slidetext>
+        View Credential
+        <br />- If credential is available and valid, content is shown
+      </Slidetext>
+    ),
+  },
+  {
+    image: Tour7,
+    text: (
+      <Slidetext>
+        Want your own web3name? Follow those steps to claim it
+        <br />
+        - Download Sporran extension for Chrome or Firefox <br />
+        - Generate a KILT Identity within Sporran
+        <br />
+        - Transfer KILT tokens to this Identity
+        <br />
+        - Upgrade Identity to onchain DID
+        <br />- Claim web3name in Sporran
+        <br />- For details go to Tech Support
+      </Slidetext>
+    ),
+  },
+]
