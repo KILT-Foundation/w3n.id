@@ -5,7 +5,9 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 50px;
+  margin-top: auto;
+  max-width: 740px;
+  width: 90%;
   margin-bottom: 20px;
 `
 const HowToSpan = styled.span`

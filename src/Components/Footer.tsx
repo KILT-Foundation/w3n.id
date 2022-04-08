@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Kilt } from '../ImageAssets/Kilt.svg'
+import { ClaimW3Span } from './ClaimW3Span'
 
 interface Toggle {
   handleImprint: React.MouseEventHandler<HTMLSpanElement>
@@ -11,15 +12,25 @@ const StyledFooter = styled.div`
   min-height: fit-content;
   width: 100vw;
   display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const StyledFooterContainer = styled.div`
+  height: 100px;
+  min-height: fit-content;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
   margin-top: auto;
   justify-content: center;
   align-items: center;
 `
+
 const StyledFooterLinksContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 90%;
-  max-width: 766px;
+  max-width: 740px;
   align-items: center;
   justify-content: center;
   font-size: 14px;
@@ -74,24 +85,27 @@ const LogoSvg = styled(Kilt)`
 `
 export const Footer = (props: Toggle) => {
   return (
-    <StyledFooter>
-      <StyledFooterLinksContainer>
-        <ImprintContainer>
-          <span onClick={props.handleImprint}>Imprint</span>
-        </ImprintContainer>
-        <LinksContainer>
-          <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
-          <span>Terms of Use</span>
-          <span>-</span>
+    <StyledFooterContainer>
+      <ClaimW3Span />
+      <StyledFooter>
+        <StyledFooterLinksContainer>
+          <ImprintContainer>
+            <span onClick={props.handleImprint}>Imprint</span>
+          </ImprintContainer>
+          <LinksContainer>
+            <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
+            <span>Terms of Use</span>
+            <span>-</span>
 
-          <span>Privacy</span>
-          <span>-</span>
-          <span>Support</span>
-        </LinksContainer>
-        <LogoContainer>
-          <LogoSvg />
-        </LogoContainer>
-      </StyledFooterLinksContainer>
-    </StyledFooter>
+            <span>Privacy</span>
+            <span>-</span>
+            <span>Support</span>
+          </LinksContainer>
+          <LogoContainer>
+            <LogoSvg />
+          </LogoContainer>
+        </StyledFooterLinksContainer>
+      </StyledFooter>
+    </StyledFooterContainer>
   )
 }

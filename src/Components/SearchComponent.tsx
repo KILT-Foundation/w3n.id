@@ -17,7 +17,6 @@ import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
 import { Theme } from '../Themes/Theme'
 import { DidServiceEndpoint } from '@kiltprotocol/sdk-js'
-import { ClaimW3Span } from './ClaimW3Span'
 
 interface Search {
   text: string
@@ -303,7 +302,6 @@ export const SearchComponent = () => {
             </EndpointsContainer>
           </DidDocumentContainer>
           <VerificationMethodSecton did={did} />
-          <ClaimW3Span />
         </ResultsContainer>
       )}
     </Container>
