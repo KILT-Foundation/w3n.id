@@ -53,14 +53,18 @@ const TourBtn = styled.button`
   align-items: center;
   justify-content: center;
   position: relative;
-  max-width: 140px;
+  max-width: 160px;
   color: ${(props) => props.theme.headertext};
-  width: 70%;
+  width: 85%;
   height: 26px;
   background-color: ${(props) => props.theme.headersecondary};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: none;
+  cursor: pointer;
+  @media (max-width: 350px) {
+    justify-content: flex-start;
+  }
 `
 const HeaderTextLabel = styled.div`
   background-color: ${(props) => props.theme.headersecondary};
@@ -129,7 +133,7 @@ export const Header = (props: Toggle) => {
         </LogoWrapper>
         <TourBtnWrapper>
           <TourBtn onClick={() => handleClick()}>
-            How to?
+            Take the tour
             <OpenSvg rotate={tourSection !== 'Open' ? '0deg' : '180deg'} />
           </TourBtn>
         </TourBtnWrapper>
