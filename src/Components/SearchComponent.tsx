@@ -75,7 +75,6 @@ const SearchInput = styled.input`
   letter-spacing: 0.26px;
   line-height: 22px;
   background: transparent;
-  text-transform: lowercase;
   border: none;
   :focus {
     outline: none;
@@ -190,6 +189,10 @@ export const SearchComponent = () => {
         await setDidDocumentFromDid(textFromSearch, shouldChangeUrl)
         return
       }
+      textFromSearch = textFromSearch.toLocaleLowerCase()
+      setSearchedText(textFromSearch)
+      replaceHistoryState(shouldChangeUrl, textFromSearch)
+
       if (textFromSearch.length > 30) {
         setErrors('Max limit')
         return
@@ -263,7 +266,7 @@ export const SearchComponent = () => {
             onInput={(e) =>
               setSearchedText((e.target as HTMLInputElement).value)
             }
-            placeholder="Type DID or W3Name"
+            placeholder="Enter web3name or DID here"
           />
 
           <SearchBtnWrapper>
