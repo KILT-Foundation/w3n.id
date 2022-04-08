@@ -133,7 +133,7 @@ export const Header = (props: Toggle) => {
         </LogoWrapper>
         <TourBtnWrapper>
           <TourBtn onClick={() => handleClick()}>
-            Take the tour
+            {tourSection === 'Close' ? 'Take the tour' : 'Close'}
             <OpenSvg rotate={tourSection !== 'Open' ? '0deg' : '180deg'} />
           </TourBtn>
         </TourBtnWrapper>
