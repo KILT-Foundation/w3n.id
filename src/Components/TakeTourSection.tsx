@@ -61,11 +61,17 @@ const Slidetext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 16px;
-  height: 60px;
+  height: 85px;
   overflow-y: scroll;
-  text-align: left;
-  margin-bottom: 15px;
-
+  text-align: justify;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-right: 15px;
+  width: 95%;
+  @media (max-width: 450px) {
+    margin-left: 0px;
+  }
   a {
     color: white;
   }
