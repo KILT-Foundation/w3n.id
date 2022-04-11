@@ -55,7 +55,11 @@ export const VerificationMethodSecton = (props: Props) => {
         <VerificationMethodTitle>Verification methods</VerificationMethodTitle>
         <TextContainer>
           <Text>Find out more about verification methods and keys here</Text>
-          <TextLink href={`https://dev.uniresolver.io/#${props.did}`}>
+          <TextLink
+            href={`https://dev.uniresolver.io/#${props.did}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             {`https://dev.uniresolver.io/#${props.did}`}
           </TextLink>
         </TextContainer>
