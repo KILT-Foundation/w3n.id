@@ -66,33 +66,50 @@ const ClaimWeb3Name = (props: Props) => {
         </ClaimW3NSteps>
         <ClaimW3NSteps>
           - Download Sporran extension for{' '}
-          <a href="https://chrome.google.com/webstore/detail/djdnajgjcbjhhbdblkegbcgodlkkfhcl">
+          <a
+            href="https://chrome.google.com/webstore/detail/djdnajgjcbjhhbdblkegbcgodlkkfhcl"
+            target="_blank"
+            rel="noreferrer"
+          >
             Chrome
           </a>{' '}
           or{' '}
-          <a href="https://addons.mozilla.org/firefox/addon/sporran/">
+          <a
+            href="https://addons.mozilla.org/firefox/addon/sporran/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Firefox
           </a>
         </ClaimW3NSteps>
         <ClaimW3NSteps>
           -
           <a
-            href="https://www.kilt.io/wp-content/uploads/2021/11/How-to-Set-Up-Sporran_22-Nov.pdf
-"
+            href="https://www.kilt.io/wp-content/uploads/2021/11/How-to-Set-Up-Sporran_22-Nov.pdf"
+            target="_blank"
+            rel="noreferrer"
           >
             Generate a KILT Identity within Sporran
           </a>
         </ClaimW3NSteps>
         <ClaimW3NSteps>
           - Upgrade to an{' '}
-          <a href="https://www.trusted-entity.io/assets/pdf/w3n_Promo_On-Chain-DID.pdf">
+          <a
+            href="https://www.trusted-entity.io/assets/pdf/w3n_Promo_On-Chain-DID.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
             on-chain DID
           </a>
         </ClaimW3NSteps>
         <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
         <ClaimW3NSteps>
           For more details, follow our{' '}
-          <a href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf">
+          <a
+            href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
             How-to guide
           </a>
         </ClaimW3NSteps>

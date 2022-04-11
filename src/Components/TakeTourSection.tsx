@@ -231,7 +231,11 @@ const SlideData: Slide[] = [
         Claim web3name in Sporran
         <br />
         For more details, follow our{' '}
-        <a href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf">
+        <a
+          href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
           How-to guide
         </a>
       </Slidetext>
