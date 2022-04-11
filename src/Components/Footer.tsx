@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Kilt } from '../ImageAssets/Kilt.svg'
 import { ClaimW3Span } from './ClaimW3Span'
+import Terms from '../DocAssets/w3n-id_Terms_2022.pdf'
+import Privacy from '../DocAssets/w3n-id_PrivacyPolicy_2022.pdf'
 
 interface Toggle {
   handleImprint: React.MouseEventHandler<HTMLSpanElement>
@@ -59,6 +61,10 @@ const LinksContainer = styled.div`
   @media (max-width: 300px) {
     font-size: 12px;
   }
+  a {
+    color: ${(props) => props.theme.text};
+    text-decoration: none;
+  }
 `
 const LogoContainer = styled.div`
   width: 103px;
@@ -94,12 +100,24 @@ export const Footer = (props: Toggle) => {
           </ImprintContainer>
           <LinksContainer>
             <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
-            <span>Terms of Use</span>
+            <a href={Terms} target="_blank" rel="noreferrer">
+              <span>Terms of Use</span>
+            </a>
             <span>-</span>
 
-            <span>Privacy</span>
+            <a href={Privacy} target="_blank" rel="noreferrer">
+              <span>Privacy</span>
+            </a>
             <span>-</span>
-            <span>Support</span>
+            <span>
+              <a
+                href="https://support.kilt.io/support/home"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Support
+              </a>
+            </span>
           </LinksContainer>
           <LogoContainer>
             <LogoSvg />
