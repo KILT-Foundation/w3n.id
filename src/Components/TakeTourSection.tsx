@@ -57,18 +57,18 @@ const PrevSvg = styled(Open)`
   cursor: pointer;
   transform: rotate(90deg);
 `
-const Slidetext = styled.p`
+const Slidetext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 16px;
   height: 60px;
   overflow-y: scroll;
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  margin-bottom: 15px;
 
+  a {
+    color: white;
+  }
   &::-webkit-scrollbar {
     width: 5px;
     border-radius: 20px;
@@ -230,7 +230,10 @@ const SlideData: Slide[] = [
         <br />
         Claim web3name in Sporran
         <br />
-        For more details, follow our How-to guide
+        For more details, follow our{' '}
+        <a href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf">
+          How-to guide
+        </a>
       </Slidetext>
     ),
   },
