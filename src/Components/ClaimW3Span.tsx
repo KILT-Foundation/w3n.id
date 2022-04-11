@@ -34,7 +34,10 @@ export const ClaimW3Span = () => {
       <HowToSpan>
         <span>*Want your own web3name?</span>
         <span id="claim">
-          Learn how to claim it with our <a href=" ">How-to guide</a>
+          Learn how to claim it with our{' '}
+          <a href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf">
+            How-to guide
+          </a>
         </span>
       </HowToSpan>
     </Container>

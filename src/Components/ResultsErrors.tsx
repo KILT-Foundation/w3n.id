@@ -84,13 +84,18 @@ const ClaimWeb3Name = (props: Props) => {
           </a>
         </ClaimW3NSteps>
         <ClaimW3NSteps>
-          -{' '}
-          <a href="https://docs.google.com/document/d/1hMg8RHjJogBNV--s1YG9sKciFDlX6yfgQVBnBcRGQPE/edit#heading=h.swld9qnaddw3">
-            Upgrade to an on-chain DID
+          - Upgrade to an{' '}
+          <a href="https://www.trusted-entity.io/assets/pdf/w3n_Promo_On-Chain-DID.pdf">
+            on-chain DID
           </a>
         </ClaimW3NSteps>
         <ClaimW3NSteps setMargin>- Claim web3name in Sporran</ClaimW3NSteps>
-        <ClaimW3NSteps>For more details, follow our How-to guide</ClaimW3NSteps>
+        <ClaimW3NSteps>
+          For more details, follow our{' '}
+          <a href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf">
+            How-to guide
+          </a>
+        </ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
   )
