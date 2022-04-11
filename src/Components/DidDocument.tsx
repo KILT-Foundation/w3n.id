@@ -4,7 +4,6 @@ import { Credentials } from './Credentials'
 import { Credential, RequestForAttestation, Did } from '@kiltprotocol/sdk-js'
 import {
   getAttestationForRequest,
-  getDidForAccount,
   validateAttestation,
   validateCredential,
 } from '../Utils/w3n-helpers'
@@ -141,12 +140,20 @@ export const DidDocument = (props: IEndpoint) => {
           return
         } else if (Credential.isICredential(result)) {
           setIsCredentialValid(await validateCredential(result))
-          setAttester(getDidForAccount(result.attestation.owner))
+          const web3name = await Did.Web3Names.queryWeb3NameForDid(
+            result.attestation.owner
+          )
+          if (web3name) setAttester(web3name)
+          else setAttester(result.attestation.owner)
         } else if (RequestForAttestation.isIRequestForAttestation(result)) {
           const attestation = await getAttestationForRequest(result)
           setIsCredentialValid(await validateAttestation(attestation))
           if (attestation) {
-            setAttester(getDidForAccount(attestation.owner))
+            const web3name = await Did.Web3Names.queryWeb3NameForDid(
+              attestation.owner
+            )
+            if (web3name) setAttester(web3name)
+            else setAttester(attestation.owner)
           } else {
             setError('No Attestation found')
           }

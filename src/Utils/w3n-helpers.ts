@@ -51,10 +51,6 @@ export const hasUpperCase = (text: string) => text.toLocaleLowerCase() !== text
 
 export const validSearchedText = (text: string) => /^[a-z0-9_-]*$/.test(text)
 
-export const getDidForAccount = (did: string): string => {
-  return Did.DidUtils.getKiltDidFromIdentifier(did, 'full')
-}
-
 export const getAttestationForRequest = async (
   reqforAttestation: IRequestForAttestation
 ) => {
