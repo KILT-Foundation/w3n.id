@@ -68,6 +68,22 @@ const Slidetext = styled.p`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 20px;
+    border-top: 1px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: green;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: green;
+  }
 `
 const Toptext = styled.span`
   font-size: 14px;
@@ -139,9 +155,12 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         Search by web3name
-        <br />- This will show the DID and any information publicly linked to it
-        <br />- Enter the web3name in the search bar
-        <br />- Click "LOOK UP"
+        <br />
+        This will show the DID and any information publicly linked to it
+        <br />
+        Enter the web3name in the search bar
+        <br />
+        Click "LOOK UP"
       </Slidetext>
     ),
   },
@@ -150,11 +169,13 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         Search by DID
-        <br />- This will show the web3name and any information publicly linked
-        to it
-        <br />- Enter the DID in the search bar (be sure to include did:kilt:
-        before the string)
-        <br />- Click "LOOK UP"
+        <br />
+        This will show the web3name and any information publicly linked to it
+        <br />
+        Enter the DID in the search bar (be sure to include did:kilt: before the
+        string)
+        <br />
+        Click "LOOK UP"
       </Slidetext>
     ),
   },
@@ -163,10 +184,12 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         Share your web3name or DID
-        <br />- Create a shareable URL for your web3name and DID
-        <br />- Enter your web3name or DID in the search bar
-        <br />- Copy the URL in the address bar
-        <br />- Share
+        <br />
+        Create a shareable URL for your web3name and DID
+        <br />
+        Enter your web3name or DID in the search bar
+        <br />
+        Copy the URL in the address bar and share
       </Slidetext>
     ),
   },
@@ -175,9 +198,11 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         Fetch Credential
-        <br />- The data in linked credentials are stored in the service
-        endpoint and not on the blockchain itself
-        <br />- Click “FETCH” to read the associated KILT credential
+        <br />
+        The data in linked credentials are stored in the service endpoint and
+        not on the blockchain itself
+        <br />
+        Click “FETCH” to read the associated KILT credential
       </Slidetext>
     ),
   },
@@ -186,7 +211,8 @@ const SlideData: Slide[] = [
     text: (
       <Slidetext>
         View credential content
-        <br />- If the credential is valid, the content is shown
+        <br />
+        If the credential is valid, the content is shown
       </Slidetext>
     ),
   },
@@ -196,12 +222,15 @@ const SlideData: Slide[] = [
       <Slidetext>
         Want your own web3name? Follow these steps to claim it.
         <br />
-        - Download Sporran extension for Chrome or Firefox
-        <br />- Generate a KILT Identity within Sporran
+        Download Sporran extension for Chrome or Firefox
         <br />
-        - Upgrade to an on-chain DID
-        <br />- Claim web3name in Sporran
-        <br />- For more details, follow our How-to guide
+        Generate a KILT Identity within Sporran
+        <br />
+        Upgrade to an on-chain DID
+        <br />
+        Claim web3name in Sporran
+        <br />
+        For more details, follow our How-to guide
       </Slidetext>
     ),
   },
