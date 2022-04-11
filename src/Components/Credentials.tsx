@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as AlertIcon } from '../ImageAssets/iconAttention_red.svg'
 import { ReactComponent as OkIcon } from '../ImageAssets/icon_oK.svg'
+import { stringStartsWithW3 } from '../Utils/w3n-helpers'
 
 interface IDIDCredential {
   credential: any
@@ -53,7 +54,11 @@ export const Credentials = (didCredential: IDIDCredential) => {
         </Container>
       ))}
       <Container>
-        <CredentialTitle>Attester Did</CredentialTitle>
+        <CredentialTitle>
+          {stringStartsWithW3(didCredential.attesterDid)
+            ? 'Attester'
+            : 'Attester DID'}
+        </CredentialTitle>
         <CredentialSpan>{didCredential.attesterDid}</CredentialSpan>
       </Container>
       <Container>

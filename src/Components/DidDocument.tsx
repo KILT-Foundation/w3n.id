@@ -143,7 +143,7 @@ export const DidDocument = (props: IEndpoint) => {
           const web3name = await Did.Web3Names.queryWeb3NameForDid(
             result.attestation.owner
           )
-          if (web3name) setAttester(web3name)
+          if (web3name) setAttester(`w3n:${web3name}`)
           else setAttester(result.attestation.owner)
         } else if (RequestForAttestation.isIRequestForAttestation(result)) {
           const attestation = await getAttestationForRequest(result)
@@ -152,7 +152,7 @@ export const DidDocument = (props: IEndpoint) => {
             const web3name = await Did.Web3Names.queryWeb3NameForDid(
               attestation.owner
             )
-            if (web3name) setAttester(web3name)
+            if (web3name) setAttester(`w3n:${web3name}`)
             else setAttester(attestation.owner)
           } else {
             setError('No Attestation found')
