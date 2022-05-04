@@ -14,7 +14,7 @@ interface Style {
   rotate: string
 }
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
   background-color: ${(props) => props.theme.header};
   display: flex;
   flex-direction: column;
@@ -53,7 +53,8 @@ const TourBtn = styled.button`
   align-items: center;
   justify-content: center;
   position: relative;
-  max-width: 160px;
+  max-width: 130px;
+  gap: 5px;
   color: ${(props) => props.theme.headertext};
   width: 85%;
   height: 26px;
@@ -106,10 +107,8 @@ const ThemeSwitch = styled.div`
 const OpenSvg = styled(Open)`
   fill: ${(props) => props.theme.headertext};
   cursor: pointer;
-  position: absolute;
-  right: 18px;
-  top: 12px;
   transform: rotate(${(props: Style) => props.rotate});
+  margin-top: 2px;
 `
 
 export const Header = (props: Toggle) => {

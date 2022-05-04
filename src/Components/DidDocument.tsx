@@ -80,12 +80,13 @@ const UrlContainer = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 100%;
 `
 const Seperator = styled.div`
   border: 1px dashed ${(props) => props.theme.seperator};
+  margin-top: 18px;
   width: 100%;
+  opacity: 0.5;
 `
 
 const OpenSvg = styled(Open)`

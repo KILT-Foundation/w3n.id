@@ -49,6 +49,9 @@ const SearchBarContainer = styled.div`
   padding-left: 10px;
 `
 const SearchBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
   max-width: 140px;
   height: 24px;
