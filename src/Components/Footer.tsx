@@ -8,7 +8,7 @@ import Privacy from '../DocAssets/w3n-id_PrivacyPolicy_2022.pdf'
 interface Toggle {
   handleImprint: React.MouseEventHandler<HTMLSpanElement>
 }
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
   background-color: ${(props) => props.theme.searchbackground};
   height: 35px;
   min-height: fit-content;
@@ -33,7 +33,7 @@ const StyledFooterLinksContainer = styled.div`
   flex-direction: row;
   width: 90%;
   max-width: 740px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   font-size: 14px;
   line-height: 16px;
@@ -54,6 +54,8 @@ const LinksContainer = styled.div`
   max-width: 600px;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+  text-align: right;
   gap: 4px;
   @media (max-width: 400px) {
     width: 100%;
@@ -64,13 +66,48 @@ const LinksContainer = styled.div`
   a {
     color: ${(props) => props.theme.text};
     text-decoration: none;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`
+const TermsOfUseSpan = styled.span`
+  ::before {
+    content: 'Terms Of Use';
+  }
+  @media (max-width: 450px) {
+    ::before {
+      content: 'Terms';
+    }
+  }
+`
+const PrivacyPolicySpan = styled.span`
+  ::before {
+    content: 'Privacy Policy';
+  }
+  @media (max-width: 450px) {
+    ::before {
+      content: 'Privacy';
+    }
+  }
+`
+const TechnicalSupportSpan = styled.span`
+  ::before {
+    content: 'Technical Support';
+  }
+  @media (max-width: 450px) {
+    ::before {
+      content: 'Support';
+    }
   }
 `
 const LogoContainer = styled.div`
   width: 103px;
   display: flex;
-  justify-content: flex-end;
-  @media (max-width: 400px) {
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 530px) {
     display: none;
   }
 `
@@ -88,6 +125,9 @@ const ImprintText = styled.span`
 `
 const LogoSvg = styled(Kilt)`
   fill: ${(props) => props.theme.text};
+  height: 15px;
+  width: 72px;
+  margin-bottom: 2px;
 `
 export const Footer = (props: Toggle) => {
   return (
@@ -101,23 +141,21 @@ export const Footer = (props: Toggle) => {
           <LinksContainer>
             <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
             <a href={Terms} target="_blank" rel="noreferrer">
-              <span>Terms of Use</span>
+              <TermsOfUseSpan></TermsOfUseSpan>
             </a>
             <span>-</span>
 
             <a href={Privacy} target="_blank" rel="noreferrer">
-              <span>Privacy</span>
+              <PrivacyPolicySpan></PrivacyPolicySpan>
             </a>
             <span>-</span>
-            <span>
-              <a
-                href="https://support.kilt.io/support/home"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Support
-              </a>
-            </span>
+            <a
+              href="https://support.kilt.io/support/home"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <TechnicalSupportSpan></TechnicalSupportSpan>
+            </a>
           </LinksContainer>
           <LogoContainer>
             <LogoSvg />
