@@ -87,8 +87,8 @@ const PrivacyPolicySpan = styled.span`
 `
 const TechnicalSupportSpan = styled.span`
   @media (min-width: 450px) {
-    ::after {
-      content: ' Support';
+    ::before {
+      content: 'Technical ';
     }
   }
 `
@@ -145,7 +145,7 @@ export const Footer = (props: Toggle) => {
               target="_blank"
               rel="noreferrer"
             >
-              <TechnicalSupportSpan>Technical</TechnicalSupportSpan>
+              <TechnicalSupportSpan>Support</TechnicalSupportSpan>
             </a>
           </LinksContainer>
           <LogoContainer>
