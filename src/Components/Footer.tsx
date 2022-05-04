@@ -72,32 +72,23 @@ const LinksContainer = styled.div`
   }
 `
 const TermsOfUseSpan = styled.span`
-  ::before {
-    content: 'Terms Of Use';
-  }
-  @media (max-width: 450px) {
-    ::before {
-      content: 'Terms';
+  @media (min-width: 450px) {
+    ::after {
+      content: ' Of Use';
     }
   }
 `
 const PrivacyPolicySpan = styled.span`
-  ::before {
-    content: 'Privacy Policy';
-  }
-  @media (max-width: 450px) {
-    ::before {
-      content: 'Privacy';
+  @media (min-width: 450px) {
+    ::after {
+      content: ' Policy';
     }
   }
 `
 const TechnicalSupportSpan = styled.span`
-  ::before {
-    content: 'Technical Support';
-  }
-  @media (max-width: 450px) {
-    ::before {
-      content: 'Support';
+  @media (min-width: 450px) {
+    ::after {
+      content: ' Support';
     }
   }
 `
@@ -141,12 +132,12 @@ export const Footer = (props: Toggle) => {
           <LinksContainer>
             <ImprintText onClick={props.handleImprint}>Imprint -</ImprintText>
             <a href={Terms} target="_blank" rel="noreferrer">
-              <TermsOfUseSpan></TermsOfUseSpan>
+              <TermsOfUseSpan>Terms</TermsOfUseSpan>
             </a>
             <span>-</span>
 
             <a href={Privacy} target="_blank" rel="noreferrer">
-              <PrivacyPolicySpan></PrivacyPolicySpan>
+              <PrivacyPolicySpan>Privacy</PrivacyPolicySpan>
             </a>
             <span>-</span>
             <a
@@ -154,7 +145,7 @@ export const Footer = (props: Toggle) => {
               target="_blank"
               rel="noreferrer"
             >
-              <TechnicalSupportSpan></TechnicalSupportSpan>
+              <TechnicalSupportSpan>Technical</TechnicalSupportSpan>
             </a>
           </LinksContainer>
           <LogoContainer>
