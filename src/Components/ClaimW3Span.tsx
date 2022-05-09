@@ -36,7 +36,7 @@ export const ClaimW3Span = () => {
         <span id="claim">
           Learn how to claim it with our{' '}
           <a
-            href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf"
+            href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_link_address_Full_May22.pdf"
             target="_blank"
             rel="noreferrer"
           >
