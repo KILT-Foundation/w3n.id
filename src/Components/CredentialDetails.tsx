@@ -1,14 +1,7 @@
-import React from 'react'
+import { IClaimContents } from '@kiltprotocol/sdk-js'
 import styled from 'styled-components'
-import { ReactComponent as AlertIcon } from '../ImageAssets/iconAttention_red.svg'
 import { ReactComponent as OkIcon } from '../ImageAssets/icon_oK.svg'
 import { stringStartsWithW3 } from '../Utils/w3n-helpers'
-
-interface IDIDCredential {
-  credential: any
-  attesterDid: string
-  isCredentialValid: boolean
-}
 
 const Container = styled.div`
   display: flex;
@@ -44,27 +37,33 @@ const CredentialTitle = styled.span`
   line-height: 22px;
   text-align: left;
 `
-export const Credentials = (didCredential: IDIDCredential) => {
+interface Props {
+  credential: {
+    contents: IClaimContents
+    attester: string
+  }
+}
+export const CredentialDetails = ({ credential }: Props) => {
+  const { contents, attester } = credential
+
   return (
     <CredentialContainer>
-      {Object.keys(didCredential.credential).map((key, index) => (
-        <Container key={index}>
+      {Object.keys(contents).map((key) => (
+        <Container key={key}>
           <CredentialTitle>{key}</CredentialTitle>
-          <CredentialSpan>{didCredential.credential[key]}</CredentialSpan>
+          <CredentialSpan>{contents[key]}</CredentialSpan>
         </Container>
       ))}
       <Container>
         <CredentialTitle>
-          {stringStartsWithW3(didCredential.attesterDid)
-            ? 'Attester'
-            : 'Attester DID'}
+          {stringStartsWithW3(attester) ? 'Attester' : 'Attester DID'}
         </CredentialTitle>
-        <CredentialSpan>{didCredential.attesterDid}</CredentialSpan>
+        <CredentialSpan>{attester}</CredentialSpan>
       </Container>
       <Container>
         <CredentialTitle>Valid</CredentialTitle>
         <CredentialSpan>
-          {didCredential.isCredentialValid ? <OkIcon /> : <AlertIcon />}
+          <OkIcon />
         </CredentialSpan>
       </Container>
     </CredentialContainer>

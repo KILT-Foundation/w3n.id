@@ -10,7 +10,7 @@ import {
   getServiceEndpointsW3Name,
   replaceHistoryState,
 } from '../Utils/w3n-helpers'
-import { DidDocument } from './DidDocument'
+import { ServiceEndpoint } from './ServiceEndpoint'
 import { DidSection } from './DidSection'
 import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
@@ -297,7 +297,7 @@ export const SearchComponent = () => {
             <EndpointsContainer>
               {serviceEndpoints.map(
                 (serviceEndpoint: DidServiceEndpoint, index: number) => (
-                  <DidDocument
+                  <ServiceEndpoint
                     key={serviceEndpoint.id}
                     endpointType={serviceEndpoint.types[0]}
                     endpointURL={serviceEndpoint.urls[0]}
