@@ -1,8 +1,6 @@
 import {
-  Attestation,
   Did,
   ICredential,
-  IRequestForAttestation,
   Credential,
   DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js'
@@ -51,20 +49,6 @@ export const hasUpperCase = (text: string) => text.toLocaleLowerCase() !== text
 
 export const validSearchedText = (text: string) => /^[a-z0-9_-]*$/.test(text)
 
-export const getAttestationForRequest = async (
-  reqforAttestation: IRequestForAttestation
-) => {
-  return Attestation.query(reqforAttestation.rootHash)
-}
-
-export const validateAttestation = async (attestation: Attestation | null) => {
-  if (attestation != null) {
-    if (!attestation.revoked) {
-      return true
-    }
-  }
-  return false
-}
 export const validateCredential = async (
   credentialInput: ICredential
 ): Promise<boolean> => {
