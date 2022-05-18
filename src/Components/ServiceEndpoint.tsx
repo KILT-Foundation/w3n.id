@@ -115,73 +115,72 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
   const [credential, setCredential] = useState<{
     contents: IClaimContents
     attester: string
-  } | null>(null)
+  }>()
 
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string>()
 
-  const handleFetch = useCallback(() => {
+  const handleFetch = useCallback(async () => {
     setFetching(true)
 
-    fetch(endpointURL)
-      .then((response) => response.json())
-      .then(async (result) => {
-        let request: IRequestForAttestation | undefined
-        let attestation: Attestation | undefined
+    try {
+      const response = await fetch(endpointURL)
+      const json = await response.json()
 
-        if (Credential.isICredential(result)) {
-          request = result.request
-          attestation = Attestation.fromAttestation(result.attestation)
+      let request: IRequestForAttestation | undefined
+      let attestation: Attestation | undefined
+
+      if (Credential.isICredential(json)) {
+        request = json.request
+        attestation = Attestation.fromAttestation(json.attestation)
+      }
+
+      if (RequestForAttestation.isIRequestForAttestation(json)) {
+        const attestationForRequest = await Attestation.query(json.rootHash)
+        if (!attestationForRequest) {
+          throw new ExplicitError('No Attestation found for credential')
         }
+        request = json
+        attestation = attestationForRequest
+      }
 
-        if (RequestForAttestation.isIRequestForAttestation(result)) {
-          const attestationForRequest = await Attestation.query(result.rootHash)
-          if (!attestationForRequest) {
-            throw new ExplicitError('No Attestation found for credential')
-          }
-          request = result
-          attestation = attestationForRequest
-        }
+      if (!request || !attestation) {
+        throw new ExplicitError('Not valid Kilt Credential')
+      }
 
-        if (!request || !attestation) {
-          throw new ExplicitError('Not valid Kilt Credential')
-        }
-
-        if (!Did.DidUtils.isSameSubject(request.claim.owner, did)) {
-          throw new ExplicitError(
-            'Credential subject and signer DID are not the same'
-          )
-        }
-
-        if (!(await validateCredential({ attestation, request }))) {
-          throw new ExplicitError('Invalid credential')
-        }
-
-        if (attestation.revoked) {
-          throw new ExplicitError('Credential attestation revoked')
-        }
-
-        const web3name = await Did.Web3Names.queryWeb3NameForDid(
-          attestation.owner
+      if (!Did.DidUtils.isSameSubject(request.claim.owner, did)) {
+        throw new ExplicitError(
+          'Credential subject and signer DID are not the same'
         )
-        const attester = web3name ? `w3n:${web3name}` : attestation.owner
+      }
 
-        setCredential({ contents: request.claim.contents, attester })
-      })
-      .catch((exception) => {
-        setError(
-          exception instanceof ExplicitError
-            ? exception.message
-            : 'Cannot fetch the credentials from the given endpoint'
-        )
-      })
-      .finally(() => {
-        setFetching(false)
-      })
+      if (!(await validateCredential({ attestation, request }))) {
+        throw new ExplicitError('Invalid credential')
+      }
+
+      if (attestation.revoked) {
+        throw new ExplicitError('Credential attestation revoked')
+      }
+
+      const web3name = await Did.Web3Names.queryWeb3NameForDid(
+        attestation.owner
+      )
+      const attester = web3name ? `w3n:${web3name}` : attestation.owner
+
+      setCredential({ contents: request.claim.contents, attester })
+    } catch (exception) {
+      setError(
+        exception instanceof ExplicitError
+          ? exception.message
+          : 'Cannot fetch the credentials from the given endpoint'
+      )
+    } finally {
+      setFetching(false)
+    }
   }, [endpointURL, did])
 
   const handleClose = useCallback(() => {
-    setError(null)
-    setCredential(null)
+    setError(undefined)
+    setCredential(undefined)
   }, [])
 
   return (
