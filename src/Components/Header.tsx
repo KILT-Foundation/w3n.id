@@ -9,7 +9,7 @@ import { TakeTourSection } from '../Components/TakeTourSection'
 interface Toggle {
   handleTheme: React.MouseEventHandler<HTMLDivElement>
   handleTourSection: React.MouseEventHandler<HTMLButtonElement>
-  tourSection: 'Open' | 'Close'
+  tourSection: boolean
   theme: 'light' | 'dark'
 }
 interface Style {
@@ -126,9 +126,9 @@ export const Header = (props: Toggle) => {
           <LogoSvg />
         </LogoWrapper>
         <TourBtnWrapper>
-          <TourBtn aria-label='take tour' onClick={props.handleTourSection}>
-            {props.tourSection === 'Close' ? 'Take the tour' : 'Close'}
-            <OpenSvg rotate={props.tourSection !== 'Open' ? '0deg' : '180deg'} />
+          <TourBtn onClick={props.handleTourSection}>
+            {!props.tourSection ? 'Take the tour' : 'Close'}
+            <OpenSvg rotate={!props.tourSection ? '0deg' : '180deg'} />
           </TourBtn>
         </TourBtnWrapper>
       </TopHeaderContainer>

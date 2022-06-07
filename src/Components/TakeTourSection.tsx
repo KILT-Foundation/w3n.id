@@ -12,10 +12,10 @@ import Tour6 from '../ImageAssets/Tour_6@2x.png'
 import Tour7 from '../ImageAssets/Tour_7@2x.png'
 interface Style {
   BackgroundImage?: string
-  isOpen?: 'Open' | 'Close'
+  isOpen?: boolean
 }
 interface Toggle {
-  isOpen: 'Open' | 'Close'
+  isOpen: boolean
 }
 
 const TourSlidesContainer = styled.div`
@@ -128,7 +128,7 @@ const TakeTour = styled.section`
   align-items: center;
   justify-content: start;
   width: 100%;
-  height: ${(props: Style) => (props.isOpen === 'Open' ? '520px' : '0')};
+  height: ${(props: Style) => (props.isOpen ? '520px' : '0')};
   color: ${(props) => props.theme.headertext};
   transition: height 0.5s ease-in;
   overflow: hidden;

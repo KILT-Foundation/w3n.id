@@ -38,12 +38,8 @@ export const W3NId = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const getTheme = window.matchMedia('(prefers-color-scheme: dark)')
   const [showImprint, setShowImprint] = useState<boolean>(false)
-  const [tourSection, setTourSection] = useState<'Open' | 'Close'>('Close')
+  const [tourSection, setTourSection] = useState<boolean>(false)
 
-  const handleTourSection = () => {
-    if (tourSection === 'Open') setTourSection('Close')
-    else setTourSection('Open')
-  }
   const handleImprint = () => {
     if (showImprint) setShowImprint(false)
     else setShowImprint(true)
@@ -76,9 +72,9 @@ export const W3NId = () => {
   return (
     <ThemeProvider theme={Theme[theme]}>
       <StyledBody>
-        <Header handleTheme={handleTheme} theme={theme} handleTourSection={handleTourSection} tourSection={tourSection} />
+        <Header handleTheme={handleTheme} theme={theme} handleTourSection={()=> setTourSection(!tourSection)} tourSection={tourSection} />
         <SearchComponent />
-        <Footer handleImprint={handleImprint} handleTourSection={handleTourSection} />
+        <Footer handleImprint={handleImprint} handleTourSection={()=>setTourSection(true)} />
         {showImprint && <DarkOverlay />}
       </StyledBody>
       {showImprint && <ImprintPopup handleCloseImprint={handleImprint} />}

@@ -43,7 +43,7 @@ export const ClaimW3Span = ({handleTourSection}:Props) => {
     <Container>
       <HowToSpan>
         <span>*Want your own web3name?</span>
-        <TakeTourBtn aria-label='take tour' onClick={handleTourSection}>
+        <TakeTourBtn onClick={handleTourSection}>
             Take a tour
         </TakeTourBtn>
       </HowToSpan>
