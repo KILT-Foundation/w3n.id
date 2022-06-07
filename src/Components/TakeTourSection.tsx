@@ -95,7 +95,6 @@ const Toptext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 16px;
-  overflow-y: scroll;
   text-align: left;
   margin-bottom: 15px;
   display: flex;
@@ -122,7 +121,7 @@ const TourSlidesSection = styled.div`
     margin-top: 0px;
   }
 `
-const TakeTour = styled.div`
+const TakeTour = styled.section`
   background-color: ${(props) => props.theme.taketour};
   display: flex;
   flex-direction: column;

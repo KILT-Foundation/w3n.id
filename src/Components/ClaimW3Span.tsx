@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
+interface Props {
+  handleTourSection: React.MouseEventHandler<HTMLButtonElement>
+
+}
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -19,30 +23,29 @@ const HowToSpan = styled.span`
   line-height: 16px;
   width: 200px;
   text-align: left;
-
-  #claim {
-    margin-left: 8px;
-  }
   a {
     color: ${(props) => props.theme.web3name};
     text-decoration: none;
   }
 `
-export const ClaimW3Span = () => {
+const TakeTourBtn = styled.button`
+background:none;
+border: none;
+margin: 0;
+color: ${(props) => props.theme.web3name};
+cursor: pointer;
+:hover{
+  text-decoration: underline;
+}
+`
+export const ClaimW3Span = ({handleTourSection}:Props) => {
   return (
     <Container>
       <HowToSpan>
         <span>*Want your own web3name?</span>
-        <span id="claim">
-          Learn how to claim it with our{' '}
-          <a
-            href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_link_address_Full_May22.pdf"
-            target="_blank"
-            rel="noreferrer"
-          >
-            How-to guide
-          </a>
-        </span>
+        <TakeTourBtn aria-label='take tour' onClick={handleTourSection}>
+            Take a tour
+        </TakeTourBtn>
       </HowToSpan>
     </Container>
   )
