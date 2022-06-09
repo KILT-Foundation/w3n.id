@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { Theme } from '../Themes/Theme'
 import { ImprintPopup } from './ImprintPopup'
 
+
 const StyledBody = styled.div`
   min-height: 100vh;
   max-width: 100vw;
@@ -37,6 +38,7 @@ export const W3NId = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const getTheme = window.matchMedia('(prefers-color-scheme: dark)')
   const [showImprint, setShowImprint] = useState<boolean>(false)
+  const [tourSection, setTourSection] = useState<boolean>(false)
 
   const handleImprint = () => {
     if (showImprint) setShowImprint(false)
@@ -70,9 +72,9 @@ export const W3NId = () => {
   return (
     <ThemeProvider theme={Theme[theme]}>
       <StyledBody>
-        <Header handleTheme={handleTheme} theme={theme} />
+        <Header handleTheme={handleTheme} theme={theme} handleTourSection={()=> setTourSection(!tourSection)} tourSection={tourSection} />
         <SearchComponent />
-        <Footer handleImprint={handleImprint} />
+        <Footer handleImprint={handleImprint} handleTourSection={()=>setTourSection(true)} />
         {showImprint && <DarkOverlay />}
       </StyledBody>
       {showImprint && <ImprintPopup handleCloseImprint={handleImprint} />}

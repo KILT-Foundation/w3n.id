@@ -12,10 +12,10 @@ import Tour6 from '../ImageAssets/Tour_6@2x.png'
 import Tour7 from '../ImageAssets/Tour_7@2x.png'
 interface Style {
   BackgroundImage?: string
-  isOpen?: 'Open' | 'Close'
+  isOpen?: boolean
 }
 interface Toggle {
-  isOpen: 'Open' | 'Close'
+  isOpen: boolean
 }
 
 const TourSlidesContainer = styled.div`
@@ -95,7 +95,6 @@ const Toptext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 16px;
-  overflow-y: scroll;
   text-align: left;
   margin-bottom: 15px;
   display: flex;
@@ -122,14 +121,14 @@ const TourSlidesSection = styled.div`
     margin-top: 0px;
   }
 `
-const TakeTour = styled.div`
+const TakeTour = styled.section`
   background-color: ${(props) => props.theme.taketour};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   width: 100%;
-  height: ${(props: Style) => (props.isOpen === 'Open' ? '520px' : '0')};
+  height: ${(props: Style) => (props.isOpen ? '520px' : '0')};
   color: ${(props) => props.theme.headertext};
   transition: height 0.5s ease-in;
   overflow: hidden;
