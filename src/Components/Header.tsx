@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Logo } from '../ImageAssets/w3n_logo.svg'
 import { ReactComponent as DarkModeSwitch } from '../ImageAssets/switch2dark.svg'
@@ -8,6 +8,8 @@ import { TakeTourSection } from '../Components/TakeTourSection'
 
 interface Toggle {
   handleTheme: React.MouseEventHandler<HTMLDivElement>
+  handleTourSection: React.MouseEventHandler<HTMLButtonElement>
+  tourSection: boolean
   theme: 'light' | 'dark'
 }
 interface Style {
@@ -112,13 +114,6 @@ const OpenSvg = styled(Open)`
 `
 
 export const Header = (props: Toggle) => {
-  const [tourSection, setTourSection] = useState<'Open' | 'Close'>('Close')
-
-  const handleClick = () => {
-    if (tourSection === 'Open') setTourSection('Close')
-    else setTourSection('Open')
-  }
-
   return (
     <StyledHeader>
       <ThemeSwitch>
@@ -131,16 +126,16 @@ export const Header = (props: Toggle) => {
           <LogoSvg />
         </LogoWrapper>
         <TourBtnWrapper>
-          <TourBtn onClick={() => handleClick()}>
-            {tourSection === 'Close' ? 'Take the tour' : 'Close'}
-            <OpenSvg rotate={tourSection !== 'Open' ? '0deg' : '180deg'} />
+          <TourBtn onClick={props.handleTourSection}>
+            {!props.tourSection ? 'Take the tour' : 'Close'}
+            <OpenSvg rotate={!props.tourSection ? '0deg' : '180deg'} />
           </TourBtn>
         </TourBtnWrapper>
       </TopHeaderContainer>
       <HeaderTextLabel>
         <HeaderText>Look up web3names* or DIDs here</HeaderText>
       </HeaderTextLabel>
-      <TakeTourSection isOpen={tourSection} />
+      <TakeTourSection isOpen={props.tourSection} />
 
       <BottomHeaderSeperator />
     </StyledHeader>

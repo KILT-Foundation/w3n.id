@@ -7,6 +7,7 @@ import Privacy from '../DocAssets/w3n-id_PrivacyPolicy_2022.pdf'
 
 interface Toggle {
   handleImprint: React.MouseEventHandler<HTMLSpanElement>
+  handleTourSection: React.MouseEventHandler<HTMLButtonElement>
 }
 const StyledFooter = styled.footer`
   background-color: ${(props) => props.theme.searchbackground};
@@ -123,7 +124,7 @@ const LogoSvg = styled(Kilt)`
 export const Footer = (props: Toggle) => {
   return (
     <StyledFooterContainer>
-      <ClaimW3Span />
+      <ClaimW3Span handleTourSection={props.handleTourSection} />
       <StyledFooter>
         <StyledFooterLinksContainer>
           <ImprintContainer>
