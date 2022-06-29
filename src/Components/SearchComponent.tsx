@@ -7,6 +7,7 @@ import {
   pushHistoryState,
   getServiceEndpointsW3Name,
   replaceHistoryState,
+  isSearchedTextDid,
 } from '../Utils/w3n-helpers'
 import { ServiceEndpoint } from './ServiceEndpoint'
 import { DidSection } from './DidSection'
@@ -190,6 +191,11 @@ export const SearchComponent = () => {
         }
         // throws if not valid Kilt DID, but could still be valid web3name
       } catch {
+        if (isSearchedTextDid(textFromSearch)) {
+          setErrors('Invalid Kilt')
+          return
+        }
+
         textFromSearch = textFromSearch.toLocaleLowerCase()
         setSearchedText(textFromSearch)
         replaceHistoryState(shouldChangeUrl, textFromSearch)

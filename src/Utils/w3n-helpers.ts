@@ -25,6 +25,10 @@ export const getServiceEndpointsW3Name = async (
   const w3name = await Did.Web3Names.queryWeb3NameForDid(did)
   return { endpoints: serviceEndpoint, web3name: w3name }
 }
+export const isSearchedTextDid = (searchedText: string): boolean => {
+  const didKeyword = searchedText.split(':').slice(0, -2)
+  return didKeyword.includes('did') && didKeyword.length === 1
+}
 export const getDidDocFromW3Name = async (
   w3name: string
 ): Promise<{
