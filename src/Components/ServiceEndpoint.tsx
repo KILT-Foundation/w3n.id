@@ -7,6 +7,7 @@ import {
   IRequestForAttestation,
   Attestation,
   IClaimContents,
+  DidUri,
 } from '@kiltprotocol/sdk-js'
 import { validateCredential } from '../Utils/w3n-helpers'
 import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
@@ -106,7 +107,7 @@ class ExplicitError extends Error {}
 interface Props {
   endpointType: string
   endpointURL: string
-  did: string
+  did: DidUri
 }
 
 export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
@@ -147,7 +148,7 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
         throw new ExplicitError('Not valid Kilt Credential')
       }
 
-      if (!Did.DidUtils.isSameSubject(request.claim.owner, did)) {
+      if (!Did.Utils.isSameSubject(request.claim.owner, did)) {
         throw new ExplicitError(
           'Credential subject and signer DID are not the same'
         )

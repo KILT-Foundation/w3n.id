@@ -3,9 +3,10 @@ import {
   ICredential,
   Credential,
   DidServiceEndpoint,
+  DidUri,
 } from '@kiltprotocol/sdk-js'
 
-const resolveSeviceEndpoints = async (did: string) => {
+const resolveSeviceEndpoints = async (did: DidUri) => {
   const didDetails = await Did.DidResolver.resolveDoc(did)
   const endPoints = didDetails?.details?.getEndpoints()
   if (endPoints) {
@@ -15,7 +16,7 @@ const resolveSeviceEndpoints = async (did: string) => {
   }
 }
 export const getServiceEndpointsW3Name = async (
-  did: string
+  did: DidUri
 ): Promise<{
   endpoints: DidServiceEndpoint[]
   web3name: string | null
@@ -28,15 +29,11 @@ export const isSearchedTextDid = (searchedText: string): boolean => {
   const didKeyword = searchedText.split(':').slice(0, -2)
   return didKeyword.includes('did') && didKeyword.length === 1
 }
-export const isSearchedTextKiltDid = (searchedText: string): boolean => {
-  const kiltKeyword = searchedText.split(':').slice(1, -1)
-  return kiltKeyword.includes('kilt') && kiltKeyword.length === 1
-}
 export const getDidDocFromW3Name = async (
   w3name: string
 ): Promise<{
   endpoints: DidServiceEndpoint[]
-  did: string
+  did: DidUri
 } | null> => {
   const did = await Did.Web3Names.queryDidForWeb3Name(w3name)
   if (did) {

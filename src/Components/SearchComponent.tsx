@@ -3,12 +3,11 @@ import styled from 'styled-components'
 import {
   getDidDocFromW3Name,
   validSearchedText,
-  isSearchedTextDid,
-  isSearchedTextKiltDid,
   stringStartsWithW3,
   pushHistoryState,
   getServiceEndpointsW3Name,
   replaceHistoryState,
+  isSearchedTextDid,
 } from '../Utils/w3n-helpers'
 import { ServiceEndpoint } from './ServiceEndpoint'
 import { DidSection } from './DidSection'
@@ -16,7 +15,7 @@ import { Web3Name } from './Web3NameSection'
 import { VerificationMethodSecton } from './VerificationMethodSecton'
 import { ResultsErrors } from './ResultsErrors'
 import { Theme } from '../Themes/Theme'
-import { DidServiceEndpoint } from '@kiltprotocol/sdk-js'
+import { DidServiceEndpoint, DidUri, Did } from '@kiltprotocol/sdk-js'
 
 interface Search {
   text: string
@@ -132,7 +131,7 @@ export const SearchComponent = () => {
   const [serviceEndpoints, setServiceEndpoints] = useState<
     DidServiceEndpoint[]
   >([])
-  const [did, setDid] = useState<string>('')
+  const [did, setDid] = useState<DidUri>()
   const [w3Name, setW3Name] = useState<string>('')
   const [errors, setErrors] = useState<
     | 'Not Claimed'
@@ -150,14 +149,14 @@ export const SearchComponent = () => {
     if (searchedText.length) {
       if (serviceEndpoints.length) {
         setServiceEndpoints([])
-        setDid('')
+        setDid(undefined)
         setW3Name('')
       }
       resolveDidDocument(path, false)
     }
   }
   const setDidDocumentFromDid = async (
-    did: string,
+    did: DidUri,
     shouldChangeUrl: boolean
   ) => {
     try {
@@ -184,53 +183,59 @@ export const SearchComponent = () => {
         setErrors('Min limit')
         return
       }
-      if (isSearchedTextDid(textFromSearch)) {
-        if (!isSearchedTextKiltDid(textFromSearch)) {
+
+      try {
+        if (Did.Utils.validateKiltDidUri(textFromSearch)) {
+          await setDidDocumentFromDid(textFromSearch, shouldChangeUrl)
+          return
+        }
+        // throws if not valid Kilt DID, but could still be valid web3name
+      } catch {
+        if (isSearchedTextDid(textFromSearch)) {
           setErrors('Invalid Kilt')
           return
         }
-        await setDidDocumentFromDid(textFromSearch, shouldChangeUrl)
-        return
-      }
-      textFromSearch = textFromSearch.toLocaleLowerCase()
-      setSearchedText(textFromSearch)
-      replaceHistoryState(shouldChangeUrl, textFromSearch)
 
-      if (textFromSearch.length > 30) {
-        setErrors('Max limit')
-        return
-      }
-
-      if (stringStartsWithW3(textFromSearch)) {
-        const name = textFromSearch.split(':').pop()
-        if (name) {
-          const didDocumentInstance = await getDidDocFromW3Name(name)
-          if (didDocumentInstance) {
-            setServiceEndpoints(didDocumentInstance.endpoints)
-            setDid(didDocumentInstance.did)
-            setW3Name('w3n:' + name)
-            replaceHistoryState(shouldChangeUrl, name)
-          } else {
-            setUnclaimedName(name)
-            setErrors('Not Claimed')
-          }
-        }
-        return
-      }
-      if (!validSearchedText(textFromSearch)) {
-        setErrors('Invalid Chars')
-        return
-      }
-
-      const didDocumentInstance = await getDidDocFromW3Name(textFromSearch)
-      if (didDocumentInstance) {
-        setServiceEndpoints(didDocumentInstance.endpoints)
-        setDid(didDocumentInstance.did)
-        setW3Name('w3n:' + textFromSearch)
-      } else {
+        textFromSearch = textFromSearch.toLocaleLowerCase()
+        setSearchedText(textFromSearch)
         replaceHistoryState(shouldChangeUrl, textFromSearch)
-        setUnclaimedName(textFromSearch)
-        setErrors('Not Claimed')
+
+        if (textFromSearch.length > 30) {
+          setErrors('Max limit')
+          return
+        }
+
+        if (stringStartsWithW3(textFromSearch)) {
+          const name = textFromSearch.split(':').pop()
+          if (name) {
+            const didDocumentInstance = await getDidDocFromW3Name(name)
+            if (didDocumentInstance) {
+              setServiceEndpoints(didDocumentInstance.endpoints)
+              setDid(didDocumentInstance.did)
+              setW3Name('w3n:' + name)
+              replaceHistoryState(shouldChangeUrl, name)
+            } else {
+              setUnclaimedName(name)
+              setErrors('Not Claimed')
+            }
+          }
+          return
+        }
+        if (!validSearchedText(textFromSearch)) {
+          setErrors('Invalid Chars')
+          return
+        }
+
+        const didDocumentInstance = await getDidDocFromW3Name(textFromSearch)
+        if (didDocumentInstance) {
+          setServiceEndpoints(didDocumentInstance.endpoints)
+          setDid(didDocumentInstance.did)
+          setW3Name('w3n:' + textFromSearch)
+        } else {
+          replaceHistoryState(shouldChangeUrl, textFromSearch)
+          setUnclaimedName(textFromSearch)
+          setErrors('Not Claimed')
+        }
       }
     },
     []
@@ -243,7 +248,7 @@ export const SearchComponent = () => {
     setErrors(null)
     if (did) {
       setServiceEndpoints([])
-      setDid('')
+      setDid(undefined)
       setW3Name('')
     }
     await resolveDidDocument(searchedText)
@@ -285,7 +290,7 @@ export const SearchComponent = () => {
       </SearchContainer>
       <ResultsErrors name={unclaimedName} errors={errors} />
 
-      {did.length > 0 && (
+      {did && (
         <ResultsContainer>
           <DidSection did={did} />
           <Web3Name web3Name={w3Name} />
