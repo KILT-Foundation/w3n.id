@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
-    "@kiltprotocol/sdk-js": "^0.26.0",
+    "@kiltprotocol/sdk-js": "0.28.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -13,17 +13,16 @@
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
     "@types/styled-components": "^5.1.24",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "styled-components": "^5.3.3",
-    "typescript": "^4.6.2",
-    "web-vitals": "^2.1.4",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "process": "^0.11.10",
-    "stream-browserify": "^3.0.0"
-
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "stream-browserify": "^3.0.0",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.6.2",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "craco start",
