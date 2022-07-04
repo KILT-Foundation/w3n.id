@@ -1,11 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
-import { ReactComponent as bte_logo_light } from '../ImageAssets/bte_logo_light.svg'
+import React from 'react';
+import styled from 'styled-components';
+
+import { ReactComponent as bte_logo_light } from '../ImageAssets/bte_logo_light.svg';
 interface Style {
-  setMargin?: boolean
+  setMargin?: boolean;
 }
 interface Toggle {
-  handleCloseImprint: React.MouseEventHandler<HTMLSpanElement>
+  handleCloseImprint: React.MouseEventHandler<HTMLSpanElement>;
 }
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 113px;
   z-index: 40;
-`
+`;
 const ImprintContainer = styled.div`
   display: flex;
   padding-left: 10px;
@@ -33,7 +34,7 @@ const ImprintContainer = styled.div`
   gap: 2px;
   border: 2px solid ${(props) => props.theme.btnborder};
   border-radius: 8px;
-`
+`;
 const ClaimW3NSteps = styled.span`
   word-break: break-all;
   font-size: 14px;
@@ -43,7 +44,7 @@ const ClaimW3NSteps = styled.span`
   a {
     color: ${(props) => props.theme.web3name};
   }
-`
+`;
 const OkBtn = styled.button`
   display: flex;
   align-items: center;
@@ -55,12 +56,12 @@ const OkBtn = styled.button`
   background-color: ${(props) => props.theme.fetchbackground};
   margin-top: 30px;
   color: ${(props) => props.theme.text};
-`
+`;
 const BTELogo = styled(bte_logo_light)`
   fill: ${(props) => props.theme.text};
   margin-bottom: 30px;
   margin-top: 20px;
-`
+`;
 export const ImprintPopup = (props: Toggle) => {
   return (
     <Container>
@@ -97,5 +98,5 @@ export const ImprintPopup = (props: Toggle) => {
         <OkBtn onClick={props.handleCloseImprint}>OK</OkBtn>
       </ImprintContainer>
     </Container>
-  )
-}
+  );
+};

@@ -14,7 +14,7 @@ export const LightTheme = {
   headertext: '#f3f3f3',
   body: '#fff',
   taketour: '#2D9403',
-}
+};
 const DarkTheme = {
   body: '#000',
   web3name: '#47E000',
@@ -31,8 +31,8 @@ const DarkTheme = {
   searchbtntext: '#F3F3F3',
   headertext: '#f3f3f3',
   taketour: '#2D7011',
-}
-export const Theme: any = {
+};
+export const Theme = {
   light: LightTheme,
   dark: DarkTheme,
-}
+};

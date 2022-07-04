@@ -1,9 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import { ReactComponent as AlertIcon } from '../ImageAssets/iconAttention_red.svg'
+import React from 'react';
+import styled from 'styled-components';
+
+import { ReactComponent as AlertIcon } from '../ImageAssets/iconAttention_red.svg';
 
 interface ICredentialErrors {
-  error: string | null
+  error: string | null;
 }
 
 const Container = styled.div`
@@ -11,7 +12,7 @@ const Container = styled.div`
   justify-content: start;
   width: 100%;
   gap: 20px;
-`
+`;
 const CredentialContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +21,7 @@ const CredentialContainer = styled.div`
   width: 100%;
   gap: 10px;
   margin-top: 20px;
-`
+`;
 const CredentialSpan = styled.span`
   display: block;
   font-family: 'Overpass';
@@ -31,7 +32,7 @@ const CredentialSpan = styled.span`
   max-width: 400px;
   word-break: break-all;
   color: red;
-`
+`;
 const CredentialTitle = styled.span`
   max-width: 100px;
   width: 20%;
@@ -40,7 +41,7 @@ const CredentialTitle = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: left;
-`
+`;
 export const CredentialErrors = (props: ICredentialErrors) => {
   return (
     <CredentialContainer>
@@ -55,5 +56,5 @@ export const CredentialErrors = (props: ICredentialErrors) => {
         </CredentialSpan>
       </Container>
     </CredentialContainer>
-  )
-}
+  );
+};

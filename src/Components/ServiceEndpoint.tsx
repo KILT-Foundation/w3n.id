@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react'
-import styled from 'styled-components'
+import { useCallback, useState } from 'react';
+import styled from 'styled-components';
 import {
   Credential,
   RequestForAttestation,
@@ -8,16 +8,18 @@ import {
   Attestation,
   IClaimContents,
   DidUri,
-} from '@kiltprotocol/sdk-js'
-import { validateCredential } from '../Utils/w3n-helpers'
-import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg'
-import { ReactComponent as Loader } from '../ImageAssets/oval.svg'
-import { CopyToClipboard } from './CopyToClipboard'
-import { CredentialErrors } from './CredentialErrors'
-import { CredentialDetails } from './CredentialDetails'
+} from '@kiltprotocol/sdk-js';
+
+import { validateCredential } from '../Utils/w3n-helpers';
+import { ReactComponent as Open } from '../ImageAssets/chevron_down_white.svg';
+import { ReactComponent as Loader } from '../ImageAssets/oval.svg';
+
+import { CopyToClipboard } from './CopyToClipboard';
+import { CredentialErrors } from './CredentialErrors';
+import { CredentialDetails } from './CredentialDetails';
 
 interface Style {
-  rotate: string
+  rotate: string;
 }
 
 const EndpointContainer = styled.div`
@@ -25,7 +27,7 @@ const EndpointContainer = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   width: 100%;
-`
+`;
 const EndpointTypeSpan = styled.span`
   overflow-wrap: break-word;
   font-family: 'Overpass';
@@ -34,7 +36,7 @@ const EndpointTypeSpan = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   margin-top: 10px;
-`
+`;
 const Button = styled.button`
   display: inline-flex;
   cursor: pointer;
@@ -51,7 +53,7 @@ const Button = styled.button`
   border: 2px solid ${(props) => props.theme.btnborder};
   border-radius: 15px;
   background-color: ${(props) => props.theme.fetchbackground};
-`
+`;
 const EndpointURLSpan = styled.span`
   display: block;
   font-family: 'Overpass';
@@ -63,7 +65,7 @@ const EndpointURLSpan = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-`
+`;
 const UrlContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -71,19 +73,19 @@ const UrlContainer = styled.div`
   gap: 5px;
   width: 95%;
   max-width: 500px;
-`
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`
+`;
 const Seperator = styled.div`
   border: 1px dashed ${(props) => props.theme.seperator};
   margin-top: 18px;
   width: 100%;
   opacity: 0.5;
-`
+`;
 
 const OpenSvg = styled(Open)`
   fill: ${(props) => props.theme.btnborder};
@@ -92,7 +94,7 @@ const OpenSvg = styled(Open)`
   right: 12px;
   top: 6px;
   transform: rotate(${(props: Style) => props.rotate});
-`
+`;
 const LoaderSvg = styled(Loader)`
   stroke: ${(props) => props.theme.btnborder};
   position: absolute;
@@ -100,89 +102,89 @@ const LoaderSvg = styled(Loader)`
   top: 3px;
   height: 13px;
   width: 20px;
-`
+`;
 
 class ExplicitError extends Error {}
 
 interface Props {
-  endpointType: string
-  endpointURL: string
-  did: DidUri
+  endpointType: string;
+  endpointURL: string;
+  did: DidUri;
 }
 
 export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
-  const [fetching, setFetching] = useState(false)
+  const [fetching, setFetching] = useState(false);
 
   const [credential, setCredential] = useState<{
-    contents: IClaimContents
-    attester: string
-  }>()
+    contents: IClaimContents;
+    attester: string;
+  }>();
 
-  const [error, setError] = useState<string>()
+  const [error, setError] = useState<string>();
 
   const handleFetch = useCallback(async () => {
-    setFetching(true)
+    setFetching(true);
 
     try {
-      const response = await fetch(endpointURL)
-      const json = await response.json()
+      const response = await fetch(endpointURL);
+      const json = await response.json();
 
-      let request: IRequestForAttestation | undefined
-      let attestation: Attestation | undefined
+      let request: IRequestForAttestation | undefined;
+      let attestation: Attestation | undefined;
 
       if (Credential.isICredential(json)) {
-        request = json.request
-        attestation = Attestation.fromAttestation(json.attestation)
+        request = json.request;
+        attestation = Attestation.fromAttestation(json.attestation);
       }
 
       if (RequestForAttestation.isIRequestForAttestation(json)) {
-        const attestationForRequest = await Attestation.query(json.rootHash)
+        const attestationForRequest = await Attestation.query(json.rootHash);
         if (!attestationForRequest) {
-          throw new ExplicitError('No Attestation found for credential')
+          throw new ExplicitError('No Attestation found for credential');
         }
-        request = json
-        attestation = attestationForRequest
+        request = json;
+        attestation = attestationForRequest;
       }
 
       if (!request || !attestation) {
-        throw new ExplicitError('Not valid Kilt Credential')
+        throw new ExplicitError('Not valid Kilt Credential');
       }
 
       if (!Did.Utils.isSameSubject(request.claim.owner, did)) {
         throw new ExplicitError(
-          'Credential subject and signer DID are not the same'
-        )
+          'Credential subject and signer DID are not the same',
+        );
       }
 
       if (!(await validateCredential({ attestation, request }))) {
-        throw new ExplicitError('Invalid credential')
+        throw new ExplicitError('Invalid credential');
       }
 
       if (attestation.revoked) {
-        throw new ExplicitError('Credential attestation revoked')
+        throw new ExplicitError('Credential attestation revoked');
       }
 
       const web3name = await Did.Web3Names.queryWeb3NameForDid(
-        attestation.owner
-      )
-      const attester = web3name ? `w3n:${web3name}` : attestation.owner
+        attestation.owner,
+      );
+      const attester = web3name ? `w3n:${web3name}` : attestation.owner;
 
-      setCredential({ contents: request.claim.contents, attester })
+      setCredential({ contents: request.claim.contents, attester });
     } catch (exception) {
       setError(
         exception instanceof ExplicitError
           ? exception.message
-          : 'Cannot fetch the credentials from the given endpoint'
-      )
+          : 'Cannot fetch the credentials from the given endpoint',
+      );
     } finally {
-      setFetching(false)
+      setFetching(false);
     }
-  }, [endpointURL, did])
+  }, [endpointURL, did]);
 
   const handleClose = useCallback(() => {
-    setError(undefined)
-    setCredential(undefined)
-  }, [])
+    setError(undefined);
+    setCredential(undefined);
+  }, []);
 
   return (
     <Container>
@@ -215,5 +217,5 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
       {error && <CredentialErrors error={error} />}
       <Seperator />
     </Container>
-  )
-}
+  );
+};

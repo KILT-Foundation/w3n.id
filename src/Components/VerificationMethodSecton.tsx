@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
-  did: string
+  did: string;
 }
 const VerificationContainer = styled.div`
   display: flex;
@@ -11,14 +11,14 @@ const VerificationContainer = styled.div`
   width: 100%;
   gap: 10px;
   height: fit-content;
-`
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
   margin-top: 20px;
   margin-bottom: 20px;
-`
+`;
 const VerificationMethodTitle = styled.span`
   width: 90px;
   font-size: 14px;
@@ -26,7 +26,7 @@ const VerificationMethodTitle = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: start;
-`
+`;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,18 +35,18 @@ const TextContainer = styled.div`
   letter-spacing: 0.1px;
   line-height: 22px;
   word-break: break-all;
-`
+`;
 const Text = styled.span`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   max-width: 400px;
-`
+`;
 const TextLink = styled.a`
   cursor: pointer;
   color: ${(props) => props.theme.web3name};
   text-decoration: none;
-`
+`;
 
 export const VerificationMethodSecton = (props: Props) => {
   return (
@@ -65,5 +65,5 @@ export const VerificationMethodSecton = (props: Props) => {
         </TextContainer>
       </VerificationContainer>
     </Container>
-  )
-}
+  );
+};

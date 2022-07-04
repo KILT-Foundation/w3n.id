@@ -1,9 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import { CopyToClipboard } from './CopyToClipboard'
+import React from 'react';
+import styled from 'styled-components';
+
+import { CopyToClipboard } from './CopyToClipboard';
 
 interface Props {
-  did: string
+  did: string;
 }
 
 const Container = styled.div`
@@ -16,7 +17,7 @@ const Container = styled.div`
   justify-content: flex-start;
   height: fit-content;
   margin-top: 50px;
-`
+`;
 const DidTitle = styled.span`
   max-width: 100px;
   width: 20%;
@@ -25,7 +26,7 @@ const DidTitle = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: left;
-`
+`;
 const DidSpan = styled.span`
   display: flex;
   justify-content: start;
@@ -33,7 +34,7 @@ const DidSpan = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
-`
+`;
 const DidContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -41,10 +42,10 @@ const DidContainer = styled.div`
   align-items: center;
   min-width: 250px;
   gap: 7px;
-`
+`;
 
 export const DidSection = (props: Props) => {
-  if (props.did === '') return null
+  if (props.did === '') return null;
   return (
     <Container>
       <DidTitle>DID</DidTitle>
@@ -53,5 +54,5 @@ export const DidSection = (props: Props) => {
         <CopyToClipboard text={props.did} />
       </DidContainer>
     </Container>
-  )
-}
+  );
+};

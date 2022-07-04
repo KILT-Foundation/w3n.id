@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Footer } from './Footer'
-import styled from 'styled-components'
-import { SearchComponent } from './SearchComponent'
-import { Header } from './Header'
-import { ThemeProvider } from 'styled-components'
-import { Theme } from '../Themes/Theme'
-import { ImprintPopup } from './ImprintPopup'
+import React, { useEffect, useState } from 'react';
 
+import styled, { ThemeProvider } from 'styled-components';
+
+import { Theme } from '../Themes/Theme';
+
+import { Footer } from './Footer';
+import { SearchComponent } from './SearchComponent';
+import { Header } from './Header';
+
+import { ImprintPopup } from './ImprintPopup';
 
 const StyledBody = styled.div`
   min-height: 100vh;
@@ -21,7 +23,7 @@ const StyledBody = styled.div`
   font-family: 'Overpass';
   color: ${(props) => props.theme.text};
   position: relative;
-`
+`;
 const DarkOverlay = styled.div`
   top: 0;
   bottom: 0;
@@ -33,51 +35,59 @@ const DarkOverlay = styled.div`
   background-color: black;
   opacity: 0.7;
   z-index: 30;
-`
+`;
 export const W3NId = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
-  const getTheme = window.matchMedia('(prefers-color-scheme: dark)')
-  const [showImprint, setShowImprint] = useState<boolean>(false)
-  const [tourSection, setTourSection] = useState<boolean>(false)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const getTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const [showImprint, setShowImprint] = useState<boolean>(false);
+  const [tourSection, setTourSection] = useState<boolean>(false);
 
   const handleImprint = () => {
-    if (showImprint) setShowImprint(false)
-    else setShowImprint(true)
-  }
+    if (showImprint) setShowImprint(false);
+    else setShowImprint(true);
+  };
 
   const handleTheme = () => {
     if (theme === 'light') {
-      setTheme('dark')
-      localStorage.setItem('theme', 'dark')
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      setTheme('light')
-      localStorage.setItem('theme', 'light')
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
     }
-  }
+  };
   getTheme.onchange = (darktheme) => {
     if (localStorage.getItem('theme') === null)
       if (darktheme.matches) {
-        setTheme('dark')
+        setTheme('dark');
       } else {
-        setTheme('light')
+        setTheme('light');
       }
-  }
+  };
   useEffect(() => {
     if (localStorage.getItem('theme') !== null) {
       localStorage.getItem('theme') === 'dark'
         ? setTheme('dark')
-        : setTheme('light')
+        : setTheme('light');
     }
-  }, [setTheme])
+  }, [setTheme]);
   return (
     <ThemeProvider theme={Theme[theme]}>
       <StyledBody>
-        <Header handleTheme={handleTheme} theme={theme} handleTourSection={()=> setTourSection(!tourSection)} tourSection={tourSection} />
+        <Header
+          handleTheme={handleTheme}
+          theme={theme}
+          handleTourSection={() => setTourSection(!tourSection)}
+          tourSection={tourSection}
+        />
         <SearchComponent />
-        <Footer handleImprint={handleImprint} handleTourSection={()=>setTourSection(true)} />
+        <Footer
+          handleImprint={handleImprint}
+          handleTourSection={() => setTourSection(true)}
+        />
         {showImprint && <DarkOverlay />}
       </StyledBody>
       {showImprint && <ImprintPopup handleCloseImprint={handleImprint} />}
     </ThemeProvider>
-  )
-}
+  );
+};

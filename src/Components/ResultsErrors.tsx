@@ -1,18 +1,18 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 interface Style {
-  setMargin?: boolean
+  setMargin?: boolean;
 }
 interface Props {
-  name: string
+  name: string;
   errors:
     | 'Not Claimed'
     | 'Max limit'
     | 'Invalid Chars'
     | 'Min limit'
     | 'Invalid Kilt'
-    | null
+    | null;
 }
 const Container = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const Container = styled.div`
   justify-content: flex-start;
   height: fit-content;
   margin-top: 50px;
-`
+`;
 const NoteSpan = styled.span`
   max-width: 100px;
   width: 20%;
@@ -33,14 +33,14 @@ const NoteSpan = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: left;
-`
+`;
 const ClaimW3NSteps = styled.span`
   word-break: break-all;
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 22px;
   margin-bottom: ${(props: Style) => props.setMargin && '15px'};
-`
+`;
 const ClaimW3NContainer = styled.div`
   a {
     color: ${(props) => props.theme.web3name};
@@ -52,7 +52,7 @@ const ClaimW3NContainer = styled.div`
   align-items: flex-start;
   min-width: 250px;
   gap: 7px;
-`
+`;
 const ClaimWeb3Name = (props: Props) => {
   return (
     <Container>
@@ -115,22 +115,22 @@ const ClaimWeb3Name = (props: Props) => {
         </ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
-  )
-}
+  );
+};
 export const ResultsErrors = (props: Props) => {
   if (props.errors === 'Not Claimed')
-    return <ClaimWeb3Name name={props.name} errors={null} />
+    return <ClaimWeb3Name name={props.name} errors={null} />;
 
-  if (props.errors === 'Max limit') return <MaxCharError />
+  if (props.errors === 'Max limit') return <MaxCharError />;
 
-  if (props.errors === 'Min limit') return <MinCharError />
+  if (props.errors === 'Min limit') return <MinCharError />;
 
-  if (props.errors === 'Invalid Chars') return <InvalidCharError />
+  if (props.errors === 'Invalid Chars') return <InvalidCharError />;
 
-  if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />
+  if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />;
 
-  return null
-}
+  return null;
+};
 const MaxCharError = () => {
   return (
     <Container>
@@ -139,8 +139,8 @@ const MaxCharError = () => {
         <ClaimW3NSteps>Maximum 30 characters allowed</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
-  )
-}
+  );
+};
 const MinCharError = () => {
   return (
     <Container>
@@ -149,8 +149,8 @@ const MinCharError = () => {
         <ClaimW3NSteps>Minimum characters length should be 3</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
-  )
-}
+  );
+};
 
 const InvalidCharError = () => {
   return (
@@ -160,8 +160,8 @@ const InvalidCharError = () => {
         <ClaimW3NSteps setMargin={false}>Invalid Characters.</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
-  )
-}
+  );
+};
 const InvalidKiltDid = () => {
   return (
     <Container>
@@ -170,5 +170,5 @@ const InvalidKiltDid = () => {
         <ClaimW3NSteps setMargin={false}>Not a valid Kilt DID</ClaimW3NSteps>
       </ClaimW3NContainer>
     </Container>
-  )
-}
+  );
+};

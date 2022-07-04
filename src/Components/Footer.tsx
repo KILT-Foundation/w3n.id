@@ -1,13 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-import { ReactComponent as Kilt } from '../ImageAssets/Kilt.svg'
-import { ClaimW3Span } from './ClaimW3Span'
-import Terms from '../DocAssets/w3n-id_Terms_2022.pdf'
-import Privacy from '../DocAssets/w3n-id_PrivacyPolicy_2022.pdf'
+import React from 'react';
+import styled from 'styled-components';
+
+import { ReactComponent as Kilt } from '../ImageAssets/Kilt.svg';
+
+import Terms from '../DocAssets/w3n-id_Terms_2022.pdf';
+import Privacy from '../DocAssets/w3n-id_PrivacyPolicy_2022.pdf';
+
+import { ClaimW3Span } from './ClaimW3Span';
 
 interface Toggle {
-  handleImprint: React.MouseEventHandler<HTMLSpanElement>
-  handleTourSection: React.MouseEventHandler<HTMLButtonElement>
+  handleImprint: React.MouseEventHandler<HTMLSpanElement>;
+  handleTourSection: React.MouseEventHandler<HTMLButtonElement>;
 }
 const StyledFooter = styled.footer`
   background-color: ${(props) => props.theme.searchbackground};
@@ -17,7 +20,7 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 const StyledFooterContainer = styled.div`
   height: 100px;
   min-height: fit-content;
@@ -27,7 +30,7 @@ const StyledFooterContainer = styled.div`
   margin-top: auto;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const StyledFooterLinksContainer = styled.div`
   display: flex;
@@ -40,7 +43,7 @@ const StyledFooterLinksContainer = styled.div`
   line-height: 16px;
   letter-spacing: 0.1px;
   text-align: left;
-`
+`;
 const ImprintContainer = styled.div`
   width: 63px;
   display: flex;
@@ -49,7 +52,7 @@ const ImprintContainer = styled.div`
   @media (max-width: 400px) {
     display: none;
   }
-`
+`;
 const LinksContainer = styled.div`
   width: 80%;
   max-width: 600px;
@@ -71,28 +74,28 @@ const LinksContainer = styled.div`
       text-decoration: underline;
     }
   }
-`
+`;
 const TermsOfUseSpan = styled.span`
   @media (min-width: 450px) {
     ::after {
       content: ' Of Use';
     }
   }
-`
+`;
 const PrivacyPolicySpan = styled.span`
   @media (min-width: 450px) {
     ::after {
       content: ' Policy';
     }
   }
-`
+`;
 const TechnicalSupportSpan = styled.span`
   @media (min-width: 450px) {
     ::before {
       content: 'Technical ';
     }
   }
-`
+`;
 const LogoContainer = styled.div`
   width: 103px;
   display: flex;
@@ -102,7 +105,7 @@ const LogoContainer = styled.div`
   @media (max-width: 530px) {
     display: none;
   }
-`
+`;
 const ImprintText = styled.span`
   display: none;
   justify-content: center;
@@ -114,13 +117,13 @@ const ImprintText = styled.span`
   @media (max-width: 400px) {
     display: flex;
   }
-`
+`;
 const LogoSvg = styled(Kilt)`
   fill: ${(props) => props.theme.text};
   height: 15px;
   width: 72px;
   margin-bottom: 2px;
-`
+`;
 export const Footer = (props: Toggle) => {
   return (
     <StyledFooterContainer>
@@ -155,5 +158,5 @@ export const Footer = (props: Toggle) => {
         </StyledFooterLinksContainer>
       </StyledFooter>
     </StyledFooterContainer>
-  )
-}
+  );
+};

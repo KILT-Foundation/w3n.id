@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg'
-import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg'
-import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg'
-import Tour1 from '../ImageAssets/Tour_1@2x.png'
-import Tour2 from '../ImageAssets/Tour_2@2x.png'
-import Tour3 from '../ImageAssets/Tour_3@2x.png'
-import Tour4 from '../ImageAssets/Tour_4@2x.png'
-import Tour5 from '../ImageAssets/Tour_5@2x.png'
-import Tour6 from '../ImageAssets/Tour_6@2x.png'
-import Tour7 from '../ImageAssets/Tour_7@2x.png'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+import { ReactComponent as Open } from '../ImageAssets/chevron_up_blue.svg';
+import { ReactComponent as PageSelected } from '../ImageAssets/pagination_selected.svg';
+import { ReactComponent as PageUnselected } from '../ImageAssets/pagination_unselected.svg';
+import Tour1 from '../ImageAssets/Tour_1@2x.png';
+import Tour2 from '../ImageAssets/Tour_2@2x.png';
+import Tour3 from '../ImageAssets/Tour_3@2x.png';
+import Tour4 from '../ImageAssets/Tour_4@2x.png';
+import Tour5 from '../ImageAssets/Tour_5@2x.png';
+import Tour6 from '../ImageAssets/Tour_6@2x.png';
+import Tour7 from '../ImageAssets/Tour_7@2x.png';
 interface Style {
-  BackgroundImage?: string
-  isOpen?: boolean
+  BackgroundImage?: string;
+  isOpen?: boolean;
 }
 interface Toggle {
-  isOpen: boolean
+  isOpen: boolean;
 }
 
 const TourSlidesContainer = styled.div`
@@ -23,7 +24,7 @@ const TourSlidesContainer = styled.div`
   width: 90%;
   height: fit-content;
   align-items: flex-start;
-`
+`;
 const ChangeSlideSvgWrapper = styled.div`
   width: 10%;
   height: 500px;
@@ -31,7 +32,7 @@ const ChangeSlideSvgWrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`
+`;
 const SlidesImageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,23 +41,23 @@ const SlidesImageContainer = styled.div`
   gap: 5px;
   height: 550px;
   width: 80%;
-`
+`;
 const SlidesImage = styled.img`
   object-fit: contain;
   max-height: 300px;
   width: 100%;
-`
+`;
 const NextSvg = styled(Open)`
   fill: ${(props) => props.theme.headertext};
   cursor: pointer;
   transform: rotate(270deg);
-`
+`;
 
 const PrevSvg = styled(Open)`
   fill: ${(props) => props.theme.headertext};
   cursor: pointer;
   transform: rotate(90deg);
-`
+`;
 const Slidetext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
@@ -90,7 +91,7 @@ const Slidetext = styled.span`
   &::-webkit-scrollbar-thumb:hover {
     background: green;
   }
-`
+`;
 const Toptext = styled.span`
   font-size: 14px;
   letter-spacing: 0.1px;
@@ -100,7 +101,7 @@ const Toptext = styled.span`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-`
+`;
 const PagerDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -109,7 +110,7 @@ const PagerDiv = styled.div`
   align-items: center;
   height: fit-content;
   width: 100%;
-`
+`;
 
 const TourSlidesSection = styled.div`
   display: flex;
@@ -120,7 +121,7 @@ const TourSlidesSection = styled.div`
   @media (max-width: 450px) {
     margin-top: 0px;
   }
-`
+`;
 const TakeTour = styled.section`
   background-color: ${(props) => props.theme.taketour};
   display: flex;
@@ -132,14 +133,14 @@ const TakeTour = styled.section`
   color: ${(props) => props.theme.headertext};
   transition: height 0.5s ease-in;
   overflow: hidden;
-`
+`;
 const PagerUnselectedSvg = styled(PageUnselected)`
   cursor: pointer;
-`
+`;
 type Slide = {
-  image: string
-  text: JSX.Element
-}
+  image: string;
+  text: JSX.Element;
+};
 
 const SlideData: Slide[] = [
   {
@@ -165,7 +166,7 @@ const SlideData: Slide[] = [
         <br />
         Enter the web3name in the search bar
         <br />
-        Click "LOOK UP"
+        {`Click "LOOK UP"`}
       </Slidetext>
     ),
   },
@@ -180,7 +181,7 @@ const SlideData: Slide[] = [
         Enter the DID in the search bar (be sure to include did:kilt: before the
         string)
         <br />
-        Click "LOOK UP"
+        {`Click "LOOK UP"`}
       </Slidetext>
     ),
   },
@@ -207,7 +208,7 @@ const SlideData: Slide[] = [
         The data in linked credentials are stored in the service endpoint and
         not on the blockchain itself
         <br />
-        Click “FETCH” to read the associated KILT credential
+        {`Click “FETCH” to read the associated KILT credential`}
       </Slidetext>
     ),
   },
@@ -246,29 +247,37 @@ const SlideData: Slide[] = [
       </Slidetext>
     ),
   },
-]
+];
 
 export const TakeTourSection = (props: Toggle) => {
-  const imageArray: string[] = [Tour1, Tour2, Tour3, Tour4, Tour5, Tour6, Tour7]
-  const [slide, setSlide] = useState<Slide>(SlideData[0])
+  const imageArray: string[] = [
+    Tour1,
+    Tour2,
+    Tour3,
+    Tour4,
+    Tour5,
+    Tour6,
+    Tour7,
+  ];
+  const [slide, setSlide] = useState<Slide>(SlideData[0]);
   const handleNext = () => {
-    const index = SlideData.indexOf(slide)
+    const index = SlideData.indexOf(slide);
     if (index === imageArray.length - 1) {
-      setSlide(SlideData[0])
-      return
+      setSlide(SlideData[0]);
+      return;
     }
-    setSlide(SlideData[index + 1])
-  }
+    setSlide(SlideData[index + 1]);
+  };
   const handlePrev = () => {
-    const index = SlideData.indexOf(slide)
+    const index = SlideData.indexOf(slide);
     if (index === 0) {
-      return
+      return;
     }
-    setSlide(SlideData[index - 1])
-  }
+    setSlide(SlideData[index - 1]);
+  };
   const handleClick = (index: number) => {
-    setSlide(SlideData[index])
-  }
+    setSlide(SlideData[index]);
+  };
   return (
     <TakeTour isOpen={props.isOpen}>
       <TourSlidesSection>
@@ -291,7 +300,7 @@ export const TakeTourSection = (props: Toggle) => {
                     key={index}
                     onClick={() => handleClick(index)}
                   />
-                )
+                ),
               )}
             </PagerDiv>
           </SlidesImageContainer>
@@ -302,5 +311,5 @@ export const TakeTourSection = (props: Toggle) => {
         </TourSlidesContainer>
       </TourSlidesSection>
     </TakeTour>
-  )
-}
+  );
+};

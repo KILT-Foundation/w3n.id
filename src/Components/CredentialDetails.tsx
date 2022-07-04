@@ -1,14 +1,15 @@
-import { IClaimContents } from '@kiltprotocol/sdk-js'
-import styled from 'styled-components'
-import { ReactComponent as OkIcon } from '../ImageAssets/icon_oK.svg'
-import { stringStartsWithW3 } from '../Utils/w3n-helpers'
+import { IClaimContents } from '@kiltprotocol/sdk-js';
+import styled from 'styled-components';
+
+import { ReactComponent as OkIcon } from '../ImageAssets/icon_oK.svg';
+import { stringStartsWithW3 } from '../Utils/w3n-helpers';
 
 const Container = styled.div`
   display: flex;
   justify-content: start;
   width: 100%;
   gap: 20px;
-`
+`;
 const CredentialContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@ const CredentialContainer = styled.div`
   width: 100%;
   gap: 10px;
   margin-top: 20px;
-`
+`;
 const CredentialSpan = styled.span`
   display: block;
   font-family: 'Overpass';
@@ -27,7 +28,7 @@ const CredentialSpan = styled.span`
   width: 80%;
   max-width: 400px;
   word-break: break-all;
-`
+`;
 const CredentialTitle = styled.span`
   max-width: 100px;
   width: 20%;
@@ -36,15 +37,15 @@ const CredentialTitle = styled.span`
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: left;
-`
+`;
 interface Props {
   credential: {
-    contents: IClaimContents
-    attester: string
-  }
+    contents: IClaimContents;
+    attester: string;
+  };
 }
 export const CredentialDetails = ({ credential }: Props) => {
-  const { contents, attester } = credential
+  const { contents, attester } = credential;
 
   return (
     <CredentialContainer>
@@ -67,5 +68,5 @@ export const CredentialDetails = ({ credential }: Props) => {
         </CredentialSpan>
       </Container>
     </CredentialContainer>
-  )
-}
+  );
+};

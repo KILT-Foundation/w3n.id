@@ -1,9 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
-  handleTourSection: React.MouseEventHandler<HTMLButtonElement>
-
+  handleTourSection: React.MouseEventHandler<HTMLButtonElement>;
 }
 const Container = styled.div`
   display: flex;
@@ -13,7 +12,7 @@ const Container = styled.div`
   max-width: 740px;
   width: 90%;
   margin-bottom: 20px;
-`
+`;
 const HowToSpan = styled.span`
   display: flex;
   flex-direction: column;
@@ -27,26 +26,24 @@ const HowToSpan = styled.span`
     color: ${(props) => props.theme.web3name};
     text-decoration: none;
   }
-`
+`;
 const TakeTourBtn = styled.button`
-background:none;
-border: none;
-margin: 0;
-color: ${(props) => props.theme.web3name};
-cursor: pointer;
-:hover{
-  text-decoration: underline;
-}
-`
-export const ClaimW3Span = ({handleTourSection}:Props) => {
+  background: none;
+  border: none;
+  margin: 0;
+  color: ${(props) => props.theme.web3name};
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+`;
+export const ClaimW3Span = ({ handleTourSection }: Props) => {
   return (
     <Container>
       <HowToSpan>
         <span>*Want your own web3name?</span>
-        <TakeTourBtn onClick={handleTourSection}>
-            Take a tour
-        </TakeTourBtn>
+        <TakeTourBtn onClick={handleTourSection}>Take a tour</TakeTourBtn>
       </HowToSpan>
     </Container>
-  )
-}
+  );
+};
