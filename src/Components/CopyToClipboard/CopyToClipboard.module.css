@@ -1,0 +1,16 @@
+.container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+}
+
+.copy {
+  fill: var(--btn-border);
+  cursor: pointer;
+}
+
+.copied {
+  stroke: var(--btn-border);
+  width: 22px;
+  height: 22px;
+}

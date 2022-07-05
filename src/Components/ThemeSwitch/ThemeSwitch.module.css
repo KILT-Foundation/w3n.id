@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 20px;
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  height: fit;
+  cursor: pointer;
+}

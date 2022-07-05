@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { init } from '@kiltprotocol/sdk-js';
 
-import { W3NId } from './Components/W3NId';
+import { App } from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 
 init({ address: process.env.REACT_APP_CHAIN_ENDPOINT });
 
 ReactDOM.render(
   <React.StrictMode>
-    <W3NId />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
