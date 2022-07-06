@@ -1,0 +1,99 @@
+.header {
+  background-color: var(--header);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100vw;
+  position: relative;
+}
+
+.logoWrapper {
+  display: flex;
+  max-width: 340px;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
+  height: 74px;
+}
+
+.topHeaderContainer {
+  display: flex;
+  max-width: 740px;
+  width: 90%;
+  justify-content: center;
+  align-items: flex-end;
+  height: 74px;
+  margin: auto;
+}
+
+.tourBtnWrapper {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 74px;
+}
+
+.tourBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 130px;
+  gap: 5px;
+  color: var(--header-text);
+  width: 85%;
+  height: 26px;
+  background-color: var(--header-secondary);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 350px) {
+  .tourBtn {
+    justify-content: flex-start;
+  }
+}
+
+.textLabel {
+  background-color: var(--header-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 24px;
+}
+
+.text {
+  max-width: 740px;
+  width: 90%;
+  color: var(--header-text);
+  font-family: Overpass, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 22px;
+}
+
+.bottomSeperator {
+  background-color: var(--header-bottom);
+  width: 100%;
+  height: 9px;
+}
+
+.logo {
+  fill: var(--text);
+}
+
+.open {
+  fill: var(--header-text);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.close {
+  composes: open;
+  transform: rotate('180deg');
+}
