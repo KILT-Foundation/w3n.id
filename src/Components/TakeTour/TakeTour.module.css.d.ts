@@ -4,8 +4,8 @@ declare const styles: {
   readonly slidesWrapper: string;
   readonly slides: string;
   readonly changeSlide: string;
-  readonly next: string;
   readonly previous: string;
+  readonly next: string;
   readonly slide: string;
   readonly slideTitle: string;
   readonly slideImage: string;

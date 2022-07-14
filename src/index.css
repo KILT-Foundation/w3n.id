@@ -1,11 +1,21 @@
 @font-face {
-  font-family: 'Overpass';
+  font-family: Overpass;
   src: url('./Fonts/Overpass-Regular.woff2') format('woff2');
 }
 
 :root {
-  font-family: Overpass, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    Overpass,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,4 +23,53 @@
 
 body {
   margin: 0;
+}
+
+html {
+  --body: #fff;
+  --web3-name: #2d8b00;
+  --search-background: #eaeaea;
+  --search-btn: #df8601;
+  --header-secondary: #2d8b00;
+  --header-bottom: #d8d8d8;
+  --search-bar: #d8d8d8;
+  --text: #0d0d0d;
+  --header-text: #f3f3f3;
+  --take-tour: #2d9403;
+  --dark-grey: #322b2b;
+  --link-disabled-rgb: 13 13 13;
+  --scroll-rgb: 71 224 0;
+  --fetch-rgb: 45 139 0;
+}
+
+html.dark {
+  --body: #000;
+  --web3-name: #47e000;
+  --search-background: #191919;
+  --search-btn: #df8601;
+  --header-secondary: #256606;
+  --header-bottom: #454545;
+  --search-bar: #d8d8d8;
+  --text: #f3f3f3;
+  --header-text: #f3f3f3;
+  --take-tour: #2d7011;
+  --link-disabled-rgb: 255 255 255;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(var(--scroll-rgb)/20%);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--scroll-rgb)/30%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--web3-name);
 }

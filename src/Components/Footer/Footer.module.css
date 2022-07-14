@@ -1,127 +1,59 @@
 .footer {
-  height: 100px;
-  min-height: fit-content;
-  width: 100vw;
+  background: url('../../ImageAssets/footer_light.svg') no-repeat center/cover;
+  min-height: calc(410rem / 16);
+  width: 100%;
+  display: flex;
+  place-content: center;
+  margin-top: auto;
+}
+
+:global(html.dark) .footer {
+  background: url('../../ImageAssets/footer_dark.svg') no-repeat center/cover;
+}
+
+.content {
+  max-width: 740px;
+  width: 82%;
   display: flex;
   flex-direction: column;
-  margin-top: auto;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 1.75rem 0;
+  font-size: 0.875rem;
 }
 
-.container {
-  background-color: var(--search-background);
-  height: 35px;
-  min-height: fit-content;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.anchor {
+  color: var(--web3-name);
 }
 
-.linksContainer {
-  display: flex;
-  flex-direction: row;
-  width: 90%;
-  max-width: 740px;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.1px;
-  text-align: left;
-}
-
-.imprintContainer {
-  width: 63px;
-  display: flex;
-  justify-content: flex-start;
-  cursor: pointer;
-}
-
-@media (max-width: 400px) {
-  .imprintContainer {
-    display: none;
-  }
-}
-
-.links {
-  width: 80%;
-  max-width: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  text-align: right;
-  gap: 4px;
-}
-
-@media (max-width: 400px) {
-  .links {
-    width: 100%;
-  }
-}
-
-@media (max-width: 300px) {
-  .links {
-    font-size: 12px;
-  }
-}
-
-.link {
-  color: var(--text);
+.anchorActive {
+  composes: anchor;
+  color: rgb(var(--link-disabled-rgb) / 50%);
+  pointer-events: none;
   text-decoration: none;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
-@media (min-width: 450px) {
-  .terms::after {
-    content: ' Of Use';
-  }
-
-  .privacy::after {
-    content: ' Policy';
-  }
-
-  .support::before {
-    content: 'Technical ';
-  }
-}
-
-.logoContainer {
-  width: 103px;
+.imprint {
   display: flex;
-  height: 20px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-@media (max-width: 530px) {
-  .logoContainer {
-    display: none;
-  }
+.imprintHeading {
+  font-size: inherit;
+  font-weight: bold;
+  margin: 0.8rem 0;
 }
 
-.imprintText {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  gap: 4px;
-  cursor: pointer;
+.imprintLine {
+  margin: 0;
 }
 
-@media (max-width: 400px) {
-  .imprintText {
-    display: flex;
-  }
+.spacedLine {
+  margin: 0;
+  margin-top: 0.8rem;
 }
 
-.logo {
+.kiltLogo {
+  margin-top: 10px;
+  width: 80px;
   fill: var(--text);
-  height: 15px;
-  width: 72px;
-  margin-bottom: 2px;
 }

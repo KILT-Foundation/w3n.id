@@ -1,0 +1,47 @@
+.headingContainer {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100px;
+  background: var(--search-background);
+}
+
+.termsHeading {
+  display: flex;
+  max-width: 740px;
+  width: 90%;
+  justify-content: flex-start;
+  padding-top: 40px;
+  font-size: 18px;
+  letter-spacing: 0.13px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 740px;
+  width: 90%;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 16px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 702px;
+  padding-right: 5px;
+  padding-left: 5px;
+  overflow: auto;
+}
+
+.spacedHeading {
+  margin-top: 40px;
+}
+
+.bulletList {
+  list-style-type: circle;
+}
+
+.anchor {
+  color: var(--web3-name);
+}

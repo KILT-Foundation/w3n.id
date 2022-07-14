@@ -1,38 +1,37 @@
 import { useState } from 'react';
 
+import { Route, Routes } from 'react-router-dom';
+
 import styles from './App.module.css';
 
 import { Footer } from '../Footer/Footer';
-import { Search } from '../Search/Search';
+import { Terms } from '../Terms/Terms';
 import { Header } from '../Header/Header';
 
-import { ImprintPopup } from '../ImprintPopup/ImprintPopup';
+import { Search } from '../Search/Search';
+import { paths } from '../../Utils/paths';
+import { Privacy } from '../Privacy/Privacy';
 
 export const App = () => {
-  const [showImprint, setShowImprint] = useState<boolean>(false);
   const [tourSection, setTourSection] = useState<boolean>(false);
 
-  const handleImprint = () => {
-    if (showImprint) setShowImprint(false);
-    else setShowImprint(true);
-  };
-
   return (
-    <body className={styles.container}>
+    <div className={styles.container}>
       <Header
         handleTourSection={() => setTourSection(!tourSection)}
         tourSection={tourSection}
       />
 
-      <Search />
+      <Routes>
+        <Route path={paths.main} element={<Search />} />
 
-      <Footer
-        handleImprint={handleImprint}
-        handleTourSection={() => setTourSection(true)}
-      />
+        <Route path={paths.terms} element={<Terms />} />
 
-      {showImprint && <div className={styles.darkOverlay} />}
-      {showImprint && <ImprintPopup handleCloseImprint={handleImprint} />}
-    </body>
+        <Route path={paths.privacy} element={<Privacy />} />
+
+        <Route path="*" element={<Search />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 };

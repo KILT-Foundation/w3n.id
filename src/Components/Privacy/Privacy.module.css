@@ -1,0 +1,28 @@
+.headingContainer {
+  composes: headingContainer from '../Terms/Terms.module.css';
+}
+
+.privacyHeading {
+  composes: termsHeading from '../Terms/Terms.module.css';
+}
+
+.textContainer {
+  composes: textContainer from '../Terms/Terms.module.css';
+}
+
+li::marker {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.spacedHeading {
+  composes: spacedHeading from '../Terms/Terms.module.css';
+}
+
+.bulletList {
+  composes: bulletList from '../Terms/Terms.module.css';
+}
+
+.anchor {
+  composes: anchor from '../Terms/Terms.module.css';
+}
