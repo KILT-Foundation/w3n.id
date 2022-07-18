@@ -1,8 +1,14 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import styles from './Privacy.module.css';
 
+import { scrollToTop } from '../../Utils/w3n-helpers';
+
 export function Privacy() {
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
     <Fragment>
       <div className={styles.headingContainer}>

@@ -15,8 +15,6 @@ export const Footer = () => {
           className={({ isActive }) =>
             isActive ? styles.anchorActive : styles.anchor
           }
-          target="_blank"
-          rel="noreferrer"
         >
           Terms and Conditions
         </NavLink>
@@ -26,8 +24,6 @@ export const Footer = () => {
           className={({ isActive }) =>
             isActive ? styles.anchorActive : styles.anchor
           }
-          target="_blank"
-          rel="noreferrer"
         >
           Privacy Policy
         </NavLink>
@@ -64,7 +60,7 @@ export const Footer = () => {
             >
               Tech Support
             </a>{' '}
-            and click on &quot;Contact Us&quot;
+            and click on “Contact Us“
           </p>
           <p className={styles.spacedLine}>
             Requirements according to § 5 TMG (Germany)

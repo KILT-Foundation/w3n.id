@@ -1,8 +1,14 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import styles from './Terms.module.css';
 
+import { scrollToTop } from '../../Utils/w3n-helpers';
+
 export function Terms() {
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
     <Fragment>
       <div className={styles.headingContainer}>
@@ -61,8 +67,8 @@ export function Terms() {
           >
             https://www.sporran.org/
           </a>{' '}
-          (the “Sporran Website) or any other wallet and is not subject of these
-          Terms and Conditions.
+          (the “Sporran Website“) or any other wallet and is not subject of
+          these Terms and Conditions.
         </p>
         <p>
           Please note that web3name is not connected to your KILT Identity but
@@ -265,8 +271,8 @@ export function Terms() {
         </ul>
         <p>
           Disclaimer: The Liability of the B.T.E. BOTLabs Trusted Entity GmbH
-          (hereinafter referred to as &quot;BTE&quot;) is limited according to
-          these Terms and Conditions for w3n.id.
+          (hereinafter referred to as “BTE“) is limited according to these Terms
+          and Conditions for w3n.id.
         </p>
 
         <p>(BSD 4-Clause)</p>

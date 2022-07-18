@@ -66,3 +66,5 @@ export const replaceHistoryState = (shouldChangeUrl: boolean, name: string) => {
   const url = window.location.origin + '/' + name;
   if (shouldChangeUrl) window.history.replaceState({ path: url }, '', url);
 };
+
+export const scrollToTop = () => window.scrollTo(0, 0);
