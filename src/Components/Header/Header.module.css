@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--header);
+  background-color: var(--body);
   display: flex;
   flex-direction: column;
   height: fit-content;

@@ -56,13 +56,13 @@
   justify-content: center;
   height: 24px;
   width: 140px;
-  border: 2px solid var(--btn-border);
+  border: 2px solid rgb(var(--fetch-rgb));
   border-radius: 15px;
-  background-color: var(--fetch-background);
+  background-color: rgb(var(--fetch-rgb) / 15%);
 }
 
 .open {
-  fill: var(--btn-border);
+  fill: var(--web3-name);
   cursor: pointer;
   position: absolute;
   right: 12px;
@@ -75,7 +75,7 @@
 }
 
 .loader {
-  stroke: var(--btn-border);
+  stroke: var(--web3-name);
   position: absolute;
   left: 12px;
   top: 3px;
@@ -84,7 +84,7 @@
 }
 
 .seperator {
-  border: 1px dashed var(--seperator);
+  border: 1px dashed var(--web3-name);
   margin-top: 18px;
   width: 100%;
   opacity: 0.5;

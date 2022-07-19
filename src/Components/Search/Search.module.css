@@ -48,7 +48,7 @@
   letter-spacing: 0.1px;
   line-height: 22px;
   text-align: center;
-  color: var(--search-btn-text);
+  color: var(--header-text);
   cursor: pointer;
   border-radius: 30px;
   font-size: 12px;
