@@ -67,7 +67,7 @@ export function Terms() {
           >
             https://www.sporran.org/
           </a>{' '}
-          (the “Sporran Website“) or any other wallet and is not subject of
+          (the “Sporran Website”) or any other wallet and is not subject of
           these Terms and Conditions.
         </p>
         <p>
@@ -271,7 +271,7 @@ export function Terms() {
         </ul>
         <p>
           Disclaimer: The Liability of the B.T.E. BOTLabs Trusted Entity GmbH
-          (hereinafter referred to as “BTE“) is limited according to these Terms
+          (hereinafter referred to as “BTE”) is limited according to these Terms
           and Conditions for w3n.id.
         </p>
 

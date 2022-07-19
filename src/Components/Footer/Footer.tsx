@@ -60,7 +60,7 @@ export const Footer = () => {
             >
               Tech Support
             </a>{' '}
-            and click on “Contact Us“
+            and click on “Contact Us”
           </p>
           <p className={styles.spacedLine}>
             Requirements according to § 5 TMG (Germany)
