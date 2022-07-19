@@ -5,12 +5,12 @@
 }
 
 .copy {
-  fill: var(--btn-border);
+  fill: var(--web3-name);
   cursor: pointer;
 }
 
 .copied {
-  stroke: var(--btn-border);
+  stroke: var(--web3-name);
   width: 22px;
   height: 22px;
 }

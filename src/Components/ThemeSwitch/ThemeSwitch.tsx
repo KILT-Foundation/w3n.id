@@ -44,7 +44,7 @@ export function ThemeSwitch() {
   return (
     <div className={styles.container}>
       <div onClick={toggleTheme}>
-        {theme === 'dark' ? <DarkModeSwitch /> : <LightModeSwitch />}
+        {theme === 'light' ? <DarkModeSwitch /> : <LightModeSwitch />}
       </div>
     </div>
   );
