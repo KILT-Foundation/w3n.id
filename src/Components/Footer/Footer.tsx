@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className={styles.content}>
         <NavLink
           to={paths.terms}
-          replace
+          onClick={() => window.scrollTo(0, 0)}
           className={({ isActive }) =>
             isActive ? styles.anchorActive : styles.anchor
           }
@@ -20,7 +20,7 @@ export const Footer = () => {
         </NavLink>
         <NavLink
           to={paths.privacy}
-          replace
+          onClick={() => window.scrollTo(0, 0)}
           className={({ isActive }) =>
             isActive ? styles.anchorActive : styles.anchor
           }

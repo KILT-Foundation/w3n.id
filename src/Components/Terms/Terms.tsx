@@ -1,14 +1,8 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 
 import styles from './Terms.module.css';
 
-import { scrollToTop } from '../../Utils/w3n-helpers';
-
 export function Terms() {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
   return (
     <Fragment>
       <div className={styles.headingContainer}>
