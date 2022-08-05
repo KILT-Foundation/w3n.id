@@ -37,11 +37,10 @@ export const Search = () => {
     | 'Min limit'
     | 'Invalid Kilt'
     | 'No linked account'
-    | null
-  >(null);
+  >();
 
   window.onpopstate = function () {
-    setError(null);
+    setError(undefined);
     const path = window.location.pathname.split('/')[1];
     setSearchedText(path);
     if (searchedText.length) {
@@ -166,7 +165,7 @@ export const Search = () => {
     if (searchedText.length < 3) {
       return;
     }
-    setError(null);
+    setError(undefined);
     if (did) {
       setServiceEndpoints([]);
       setDid(undefined);

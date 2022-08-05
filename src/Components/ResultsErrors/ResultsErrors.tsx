@@ -2,14 +2,13 @@ import styles from './ResultsErrors.module.css';
 
 interface Props {
   name: string;
-  error:
+  error?:
     | 'Not Claimed'
     | 'Max limit'
     | 'Invalid Chars'
     | 'Min limit'
     | 'Invalid Kilt'
-    | 'No linked account'
-    | null;
+    | 'No linked account';
 }
 
 const ClaimWeb3Name = (props: Props) => {
@@ -97,7 +96,7 @@ export const Error = ({ message }: { message: string }) => {
 
 export const ResultsErrors = ({ name, error }: Props) => {
   if (error === 'Not Claimed') {
-    return <ClaimWeb3Name name={name} error={null} />;
+    return <ClaimWeb3Name name={name} />;
   }
 
   if (error === 'Max limit') {
