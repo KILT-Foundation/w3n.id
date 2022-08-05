@@ -1,23 +1,33 @@
 import styles from './ResultsErrors.module.css';
 
+export type Error =
+  | 'not_claimed'
+  | 'max_limit'
+  | 'invalid_chars'
+  | 'min_limit'
+  | 'invalid_kilt'
+  | 'no_linked_account';
+
+const errorMessages = {
+  max_limit: 'Maximum 30 characters allowed',
+  min_limit: 'Minimum characters length should be 3',
+  invalid_chars: 'Invalid Characters',
+  invalid_kilt: 'Not a valid Kilt DID',
+  no_linked_account: 'No web3name has been linked to this account',
+};
+
 interface Props {
   name: string;
-  error?:
-    | 'Not Claimed'
-    | 'Max limit'
-    | 'Invalid Chars'
-    | 'Min limit'
-    | 'Invalid Kilt'
-    | 'No linked account';
+  error: Error;
 }
 
-const ClaimWeb3Name = (props: Props) => {
+const ClaimWeb3Name = ({ name }: { name: string }) => {
   return (
     <div>
       <span className={styles.note}>Note</span>
       <div className={styles.claimW3NSteps}>
         <span className={styles.bottomMarginStep}>
-          No results found for {props.name}
+          No results found for {name}
         </span>
         <span className={styles.bottomMarginStep}>
           Here’s how to claim your web3name
@@ -83,41 +93,30 @@ const ClaimWeb3Name = (props: Props) => {
   );
 };
 
-export const Error = ({ message }: { message: string }) => {
+const ErrorMessage = ({
+  error,
+}: {
+  error:
+    | 'max_limit'
+    | 'invalid_chars'
+    | 'min_limit'
+    | 'invalid_kilt'
+    | 'no_linked_account';
+}) => {
   return (
     <div className={styles.container}>
       <span className={styles.note}>Error</span>
       <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>{message}</span>
+        <span className={styles.step}>{errorMessages[error]}</span>
       </div>
     </div>
   );
 };
 
 export const ResultsErrors = ({ name, error }: Props) => {
-  if (error === 'Not Claimed') {
-    return <ClaimWeb3Name name={name} />;
-  }
-
-  if (error === 'Max limit') {
-    return <Error message="Maximum 30 characters allowed" />;
-  }
-
-  if (error === 'Min limit') {
-    return <Error message="Minimum characters length should be 3" />;
-  }
-
-  if (error === 'Invalid Chars') {
-    return <Error message="Invalid Characters" />;
-  }
-
-  if (error === 'Invalid Kilt') {
-    return <Error message="Not a valid Kilt DID" />;
-  }
-
-  if (error === 'No linked account') {
-    return <Error message="No web3name has been linked to this account" />;
-  }
-
-  return null;
+  return error === 'not_claimed' ? (
+    <ClaimWeb3Name name={name} />
+  ) : (
+    <ErrorMessage error={error} />
+  );
 };

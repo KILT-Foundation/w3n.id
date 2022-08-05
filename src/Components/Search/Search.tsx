@@ -20,7 +20,7 @@ import { ServiceEndpoint } from '../ServiceEndpoint/ServiceEndpoint';
 import { DidSection } from '../DidSection/DidSection';
 import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
-import { ResultsErrors } from '../ResultsErrors/ResultsErrors';
+import { Error, ResultsErrors } from '../ResultsErrors/ResultsErrors';
 
 export const Search = () => {
   const [searchedText, setSearchedText] = useState<string>('');
@@ -30,14 +30,7 @@ export const Search = () => {
   >([]);
   const [did, setDid] = useState<DidUri>();
   const [w3Name, setW3Name] = useState<string>('');
-  const [error, setError] = useState<
-    | 'Not Claimed'
-    | 'Max limit'
-    | 'Invalid Chars'
-    | 'Min limit'
-    | 'Invalid Kilt'
-    | 'No linked account'
-  >();
+  const [error, setError] = useState<Error>();
 
   window.onpopstate = function () {
     setError(undefined);
@@ -70,7 +63,7 @@ export const Search = () => {
         setW3Name('No web3name found');
       }
     } catch {
-      setError('Invalid Kilt');
+      setError('invalid_kilt');
     }
   };
 
@@ -79,7 +72,7 @@ export const Search = () => {
       pushHistoryState(shouldChangeUrl, textFromSearch);
       if (!textFromSearch.length) return;
       if (textFromSearch.length < 3) {
-        setError('Min limit');
+        setError('min_limit');
         return;
       }
 
@@ -91,7 +84,7 @@ export const Search = () => {
         // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
       } catch {
         if (isSearchedTextDid(textFromSearch)) {
-          setError('Invalid Kilt');
+          setError('invalid_kilt');
           return;
         }
 
@@ -105,7 +98,7 @@ export const Search = () => {
           );
 
           if (!identifier) {
-            setError('No linked account');
+            setError('no_linked_account');
             return;
           }
           const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
@@ -120,7 +113,7 @@ export const Search = () => {
           replaceHistoryState(shouldChangeUrl, textFromSearch);
 
           if (textFromSearch.length > 30) {
-            setError('Max limit');
+            setError('max_limit');
             return;
           }
 
@@ -135,13 +128,13 @@ export const Search = () => {
                 replaceHistoryState(shouldChangeUrl, name);
               } else {
                 setUnclaimedName(name);
-                setError('Not Claimed');
+                setError('not_claimed');
               }
             }
             return;
           }
           if (!validSearchedText(textFromSearch)) {
-            setError('Invalid Chars');
+            setError('invalid_chars');
             return;
           }
 
@@ -153,7 +146,7 @@ export const Search = () => {
           } else {
             replaceHistoryState(shouldChangeUrl, textFromSearch);
             setUnclaimedName(textFromSearch);
-            setError('Not Claimed');
+            setError('not_claimed');
           }
         }
       }
@@ -212,7 +205,7 @@ export const Search = () => {
           </div>
         </div>
       </div>
-      <ResultsErrors name={unclaimedName} error={error} />
+      {error && <ResultsErrors name={unclaimedName} error={error} />}
 
       {did && (
         <div className={styles.results}>
