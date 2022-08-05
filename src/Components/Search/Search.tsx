@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { DidServiceEndpoint, DidUri, Did } from '@kiltprotocol/sdk-js';
 
+import { decodeAddress } from '@polkadot/util-crypto';
+
 import styles from './Search.module.css';
 
 import {
@@ -34,6 +36,7 @@ export const Search = () => {
     | 'Invalid Chars'
     | 'Min limit'
     | 'Invalid Kilt'
+    | 'No linked account'
     | null
   >(null);
 
@@ -50,6 +53,7 @@ export const Search = () => {
       resolveDidDocument(path, false);
     }
   };
+
   const setDidDocumentFromDid = async (
     did: DidUri,
     shouldChangeUrl: boolean,
@@ -70,6 +74,7 @@ export const Search = () => {
       setErrors('Invalid Kilt');
     }
   };
+
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
       pushHistoryState(shouldChangeUrl, textFromSearch);
@@ -84,52 +89,73 @@ export const Search = () => {
           await setDidDocumentFromDid(textFromSearch, shouldChangeUrl);
           return;
         }
-        // throws if not valid Kilt DID, but could still be valid web3name
+        // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
       } catch {
         if (isSearchedTextDid(textFromSearch)) {
           setErrors('Invalid Kilt');
           return;
         }
 
-        textFromSearch = textFromSearch.toLocaleLowerCase();
-        setSearchedText(textFromSearch);
-        replaceHistoryState(shouldChangeUrl, textFromSearch);
+        try {
+          decodeAddress(textFromSearch, false, 38);
 
-        if (textFromSearch.length > 30) {
-          setErrors('Max limit');
-          return;
-        }
+          const address = textFromSearch;
 
-        if (stringStartsWithW3(textFromSearch)) {
-          const name = textFromSearch.split(':').pop();
-          if (name) {
-            const didDocumentInstance = await getDidDocFromW3Name(name);
-            if (didDocumentInstance) {
-              setServiceEndpoints(didDocumentInstance.endpoints);
-              setDid(didDocumentInstance.did);
-              setW3Name('w3n:' + name);
-              replaceHistoryState(shouldChangeUrl, name);
-            } else {
-              setUnclaimedName(name);
-              setErrors('Not Claimed');
-            }
+          const identifier = await Did.AccountLinks.queryConnectedDidForAccount(
+            address,
+          );
+
+          if (!identifier) {
+            setErrors('No linked account');
+            return;
           }
-          return;
-        }
-        if (!validSearchedText(textFromSearch)) {
-          setErrors('Invalid Chars');
-          return;
-        }
+          const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
 
-        const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
-        if (didDocumentInstance) {
-          setServiceEndpoints(didDocumentInstance.endpoints);
-          setDid(didDocumentInstance.did);
-          setW3Name('w3n:' + textFromSearch);
-        } else {
+          await setDidDocumentFromDid(did, shouldChangeUrl);
+          return;
+
+          // throws if not a valid Kilt address, but could still be valid web3name
+        } catch {
+          textFromSearch = textFromSearch.toLocaleLowerCase();
+          setSearchedText(textFromSearch);
           replaceHistoryState(shouldChangeUrl, textFromSearch);
-          setUnclaimedName(textFromSearch);
-          setErrors('Not Claimed');
+
+          if (textFromSearch.length > 30) {
+            setErrors('Max limit');
+            return;
+          }
+
+          if (stringStartsWithW3(textFromSearch)) {
+            const name = textFromSearch.split(':').pop();
+            if (name) {
+              const didDocumentInstance = await getDidDocFromW3Name(name);
+              if (didDocumentInstance) {
+                setServiceEndpoints(didDocumentInstance.endpoints);
+                setDid(didDocumentInstance.did);
+                setW3Name('w3n:' + name);
+                replaceHistoryState(shouldChangeUrl, name);
+              } else {
+                setUnclaimedName(name);
+                setErrors('Not Claimed');
+              }
+            }
+            return;
+          }
+          if (!validSearchedText(textFromSearch)) {
+            setErrors('Invalid Chars');
+            return;
+          }
+
+          const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
+          if (didDocumentInstance) {
+            setServiceEndpoints(didDocumentInstance.endpoints);
+            setDid(didDocumentInstance.did);
+            setW3Name('w3n:' + textFromSearch);
+          } else {
+            replaceHistoryState(shouldChangeUrl, textFromSearch);
+            setUnclaimedName(textFromSearch);
+            setErrors('Not Claimed');
+          }
         }
       }
     },
@@ -148,6 +174,7 @@ export const Search = () => {
     }
     await resolveDidDocument(searchedText);
   };
+
   const handleKeypress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') handleSearch();
   };

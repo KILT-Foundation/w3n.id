@@ -8,6 +8,7 @@ interface Props {
     | 'Invalid Chars'
     | 'Min limit'
     | 'Invalid Kilt'
+    | 'No linked account'
     | null;
 }
 
@@ -94,6 +95,8 @@ export const ResultsErrors = (props: Props) => {
 
   if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />;
 
+  if (props.errors === 'No linked account') return <NoLinkedAccount />;
+
   return null;
 };
 const MaxCharError = () => {
@@ -135,6 +138,18 @@ const InvalidKiltDid = () => {
       <span className={styles.note}>Error</span>
       <div className={styles.claimW3NSteps}>
         <span className={styles.step}>Not a valid Kilt DID</span>
+      </div>
+    </div>
+  );
+};
+const NoLinkedAccount = () => {
+  return (
+    <div className={styles.container}>
+      <span className={styles.note}>Error</span>
+      <div className={styles.claimW3NSteps}>
+        <span className={styles.step}>
+          No web3name has been linked to this account.
+        </span>
       </div>
     </div>
   );
