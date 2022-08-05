@@ -197,7 +197,7 @@ export const Search = () => {
             onInput={(e) =>
               setSearchedText((e.target as HTMLInputElement).value)
             }
-            placeholder="Enter web3name or DID here"
+            placeholder="Type web3name, DID or account address here"
           />
 
           <div className={styles.buttonWrapper}>
