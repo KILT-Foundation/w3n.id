@@ -2,7 +2,7 @@ import styles from './ResultsErrors.module.css';
 
 interface Props {
   name: string;
-  errors:
+  error:
     | 'Not Claimed'
     | 'Max limit'
     | 'Invalid Chars'
@@ -83,74 +83,42 @@ const ClaimWeb3Name = (props: Props) => {
     </div>
   );
 };
-export const ResultsErrors = (props: Props) => {
-  if (props.errors === 'Not Claimed')
-    return <ClaimWeb3Name name={props.name} errors={null} />;
 
-  if (props.errors === 'Max limit') return <MaxCharError />;
+export const Error = ({ message }: { message: string }) => {
+  return (
+    <div className={styles.container}>
+      <span className={styles.note}>Error</span>
+      <div className={styles.claimW3NSteps}>
+        <span className={styles.step}>{message}</span>
+      </div>
+    </div>
+  );
+};
 
-  if (props.errors === 'Min limit') return <MinCharError />;
+export const ResultsErrors = ({ name, error }: Props) => {
+  if (error === 'Not Claimed') {
+    return <ClaimWeb3Name name={name} error={null} />;
+  }
 
-  if (props.errors === 'Invalid Chars') return <InvalidCharError />;
+  if (error === 'Max limit') {
+    return <Error message="Maximum 30 characters allowed" />;
+  }
 
-  if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />;
+  if (error === 'Min limit') {
+    return <Error message="Minimum characters length should be 3" />;
+  }
 
-  if (props.errors === 'No linked account') return <NoLinkedAccount />;
+  if (error === 'Invalid Chars') {
+    return <Error message="Invalid Characters" />;
+  }
+
+  if (error === 'Invalid Kilt') {
+    return <Error message="Not a valid Kilt DID" />;
+  }
+
+  if (error === 'No linked account') {
+    return <Error message="No web3name has been linked to this account" />;
+  }
 
   return null;
-};
-const MaxCharError = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Maximum 30 characters allowed</span>
-      </div>
-    </div>
-  );
-};
-const MinCharError = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>
-          Minimum characters length should be 3
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const InvalidCharError = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Invalid Characters.</span>
-      </div>
-    </div>
-  );
-};
-const InvalidKiltDid = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Not a valid Kilt DID</span>
-      </div>
-    </div>
-  );
-};
-const NoLinkedAccount = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>
-          No web3name has been linked to this account.
-        </span>
-      </div>
-    </div>
-  );
 };
