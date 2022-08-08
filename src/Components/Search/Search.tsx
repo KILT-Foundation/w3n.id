@@ -20,7 +20,7 @@ import { ServiceEndpoint } from '../ServiceEndpoint/ServiceEndpoint';
 import { DidSection } from '../DidSection/DidSection';
 import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
-import { Error, ResultsErrors } from '../ResultsErrors/ResultsErrors';
+import { SearchError, ResultsErrors } from '../ResultsErrors/ResultsErrors';
 
 export const Search = () => {
   const [searchedText, setSearchedText] = useState<string>('');
@@ -30,7 +30,7 @@ export const Search = () => {
   >([]);
   const [did, setDid] = useState<DidUri>();
   const [w3Name, setW3Name] = useState<string>('');
-  const [error, setError] = useState<Error>();
+  const [error, setError] = useState<SearchError>();
 
   window.onpopstate = function () {
     setError(undefined);

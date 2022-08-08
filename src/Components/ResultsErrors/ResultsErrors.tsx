@@ -72,15 +72,16 @@ const ClaimWeb3Name = ({ name }: { name: string }) => {
   );
 };
 
-export type Error =
-  | 'not_claimed'
+type GeneralError =
   | 'max_limit'
   | 'invalid_chars'
   | 'min_limit'
   | 'invalid_kilt'
   | 'no_linked_account';
 
-const errorMessages = {
+export type SearchError = 'not_claimed' | GeneralError;
+
+const errorMessages: Record<GeneralError, string> = {
   max_limit: 'Maximum 30 characters allowed',
   min_limit: 'Minimum characters length should be 3',
   invalid_chars: 'Invalid Characters',
@@ -101,7 +102,7 @@ const ErrorMessage = ({ message }: { message: string }) => {
 
 interface Props {
   name: string;
-  error: Error;
+  error: SearchError;
 }
 
 export const ResultsErrors = ({ name, error }: Props) => {
