@@ -82,73 +82,73 @@ export const Search = () => {
           return;
         }
         // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
-      } catch {
-        if (isSearchedTextDid(textFromSearch)) {
-          setError('invalid_kilt');
+      } catch {}
+
+      if (isSearchedTextDid(textFromSearch)) {
+        setError('invalid_kilt');
+        return;
+      }
+
+      try {
+        decodeAddress(textFromSearch);
+
+        const address = textFromSearch;
+
+        const identifier = await Did.AccountLinks.queryConnectedDidForAccount(
+          address,
+        );
+
+        if (!identifier) {
+          setError('no_linked_account');
           return;
         }
+        const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
 
-        try {
-          decodeAddress(textFromSearch);
+        await setDidDocumentFromDid(did, shouldChangeUrl);
+        return;
 
-          const address = textFromSearch;
+        // throws if not a valid Kilt address, but could still be valid web3name
+      } catch {}
 
-          const identifier = await Did.AccountLinks.queryConnectedDidForAccount(
-            address,
-          );
+      textFromSearch = textFromSearch.toLocaleLowerCase();
+      setSearchedText(textFromSearch);
+      replaceHistoryState(shouldChangeUrl, textFromSearch);
 
-          if (!identifier) {
-            setError('no_linked_account');
-            return;
-          }
-          const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
+      if (textFromSearch.length > 30) {
+        setError('max_limit');
+        return;
+      }
 
-          await setDidDocumentFromDid(did, shouldChangeUrl);
-          return;
-
-          // throws if not a valid Kilt address, but could still be valid web3name
-        } catch {
-          textFromSearch = textFromSearch.toLocaleLowerCase();
-          setSearchedText(textFromSearch);
-          replaceHistoryState(shouldChangeUrl, textFromSearch);
-
-          if (textFromSearch.length > 30) {
-            setError('max_limit');
-            return;
-          }
-
-          if (stringStartsWithW3(textFromSearch)) {
-            const name = textFromSearch.split(':').pop();
-            if (name) {
-              const didDocumentInstance = await getDidDocFromW3Name(name);
-              if (didDocumentInstance) {
-                setServiceEndpoints(didDocumentInstance.endpoints);
-                setDid(didDocumentInstance.did);
-                setW3Name('w3n:' + name);
-                replaceHistoryState(shouldChangeUrl, name);
-              } else {
-                setUnclaimedName(name);
-                setError('not_claimed');
-              }
-            }
-            return;
-          }
-          if (!validSearchedText(textFromSearch)) {
-            setError('invalid_chars');
-            return;
-          }
-
-          const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
+      if (stringStartsWithW3(textFromSearch)) {
+        const name = textFromSearch.split(':').pop();
+        if (name) {
+          const didDocumentInstance = await getDidDocFromW3Name(name);
           if (didDocumentInstance) {
             setServiceEndpoints(didDocumentInstance.endpoints);
             setDid(didDocumentInstance.did);
-            setW3Name('w3n:' + textFromSearch);
+            setW3Name('w3n:' + name);
+            replaceHistoryState(shouldChangeUrl, name);
           } else {
-            replaceHistoryState(shouldChangeUrl, textFromSearch);
-            setUnclaimedName(textFromSearch);
+            setUnclaimedName(name);
             setError('not_claimed');
           }
         }
+        return;
+      }
+      if (!validSearchedText(textFromSearch)) {
+        setError('invalid_chars');
+        return;
+      }
+
+      const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
+      if (didDocumentInstance) {
+        setServiceEndpoints(didDocumentInstance.endpoints);
+        setDid(didDocumentInstance.did);
+        setW3Name('w3n:' + textFromSearch);
+      } else {
+        replaceHistoryState(shouldChangeUrl, textFromSearch);
+        setUnclaimedName(textFromSearch);
+        setError('not_claimed');
       }
     },
     [],
