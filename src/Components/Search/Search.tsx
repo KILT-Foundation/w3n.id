@@ -89,7 +89,7 @@ export const Search = () => {
         }
 
         try {
-          decodeAddress(textFromSearch, false, 38);
+          decodeAddress(textFromSearch);
 
           const address = textFromSearch;
 
