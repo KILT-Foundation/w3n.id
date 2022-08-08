@@ -1,23 +1,12 @@
 import styles from './ResultsErrors.module.css';
 
-interface Props {
-  name: string;
-  errors:
-    | 'Not Claimed'
-    | 'Max limit'
-    | 'Invalid Chars'
-    | 'Min limit'
-    | 'Invalid Kilt'
-    | null;
-}
-
-const ClaimWeb3Name = (props: Props) => {
+const ClaimWeb3Name = ({ name }: { name: string }) => {
   return (
     <div>
       <span className={styles.note}>Note</span>
       <div className={styles.claimW3NSteps}>
         <span className={styles.bottomMarginStep}>
-          No results found for {props.name}
+          No results found for {name}
         </span>
         <span className={styles.bottomMarginStep}>
           Here’s how to claim your web3name
@@ -82,60 +71,44 @@ const ClaimWeb3Name = (props: Props) => {
     </div>
   );
 };
-export const ResultsErrors = (props: Props) => {
-  if (props.errors === 'Not Claimed')
-    return <ClaimWeb3Name name={props.name} errors={null} />;
 
-  if (props.errors === 'Max limit') return <MaxCharError />;
+type GeneralError =
+  | 'max_limit'
+  | 'invalid_chars'
+  | 'min_limit'
+  | 'invalid_kilt'
+  | 'no_linked_account';
 
-  if (props.errors === 'Min limit') return <MinCharError />;
+export type SearchError = 'not_claimed' | GeneralError;
 
-  if (props.errors === 'Invalid Chars') return <InvalidCharError />;
-
-  if (props.errors === 'Invalid Kilt') return <InvalidKiltDid />;
-
-  return null;
+const errorMessages: Record<GeneralError, string> = {
+  max_limit: 'Maximum 30 characters allowed',
+  min_limit: 'Minimum characters length should be 3',
+  invalid_chars: 'Invalid Characters',
+  invalid_kilt: 'Not a valid Kilt DID',
+  no_linked_account: 'No web3name has been linked to this account',
 };
-const MaxCharError = () => {
+
+const ErrorMessage = ({ message }: { message: string }) => {
   return (
     <div className={styles.container}>
       <span className={styles.note}>Error</span>
       <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Maximum 30 characters allowed</span>
-      </div>
-    </div>
-  );
-};
-const MinCharError = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>
-          Minimum characters length should be 3
-        </span>
+        <span className={styles.step}>{message}</span>
       </div>
     </div>
   );
 };
 
-const InvalidCharError = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Invalid Characters.</span>
-      </div>
-    </div>
-  );
-};
-const InvalidKiltDid = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.note}>Error</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.step}>Not a valid Kilt DID</span>
-      </div>
-    </div>
+interface Props {
+  name: string;
+  error: SearchError;
+}
+
+export const ResultsErrors = ({ name, error }: Props) => {
+  return error === 'not_claimed' ? (
+    <ClaimWeb3Name name={name} />
+  ) : (
+    <ErrorMessage message={errorMessages[error]} />
   );
 };
