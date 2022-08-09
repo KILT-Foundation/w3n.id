@@ -9,7 +9,6 @@ export function Privacy() {
         <h1 className={styles.privacyHeading}> Privacy Policy </h1>
       </div>
       <section className={styles.textContainer}>
-        <h3>Privacy Policy for w3n.id</h3>
         <p>
           We are very delighted that you have shown interest in our enterprise.
           Data protection is of a particularly high priority for the management

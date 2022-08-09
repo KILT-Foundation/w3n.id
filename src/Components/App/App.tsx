@@ -11,6 +11,7 @@ import { Header } from '../Header/Header';
 import { Search } from '../Search/Search';
 import { paths } from '../../Utils/paths';
 import { Privacy } from '../Privacy/Privacy';
+import { Imprint } from '../Imprint/Imprint';
 
 export const App = () => {
   const [tourSection, setTourSection] = useState<boolean>(false);
@@ -28,6 +29,8 @@ export const App = () => {
         <Route path={paths.terms} element={<Terms />} />
 
         <Route path={paths.privacy} element={<Privacy />} />
+
+        <Route path={paths.imprint} element={<Imprint />} />
 
         <Route path="*" element={<Search />} />
       </Routes>
