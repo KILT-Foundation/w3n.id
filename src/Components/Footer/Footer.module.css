@@ -1,59 +1,73 @@
 .footer {
-  background: url('../../ImageAssets/footer_light.svg') no-repeat center/cover;
-  min-height: calc(410rem / 16);
   width: 100%;
   display: flex;
   place-content: center;
+  min-height: 34px;
+  background: var(--footer);
+  border-top: 1px solid var(--take-tour);
   margin-top: auto;
 }
 
-:global(html.dark) .footer {
-  background: url('../../ImageAssets/footer_dark.svg') no-repeat center/cover;
-}
-
 .content {
-  max-width: 740px;
-  width: 82%;
+  max-width: 766px;
+  width: 90%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1.75rem 0;
-  font-size: 0.875rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
 }
 
-.anchor {
+@media (max-width: 700px) {
+  .content {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .navMenu {
+    width: 100%;
+    display: flex;
+    place-content: center;
+    padding: 7px 0;
+    border-bottom: 1px solid rgb(var(--link-disabled-rgb) / 30%);
+  }
+}
+
+.navLink {
   color: var(--web3-name);
-}
-
-.anchorActive {
-  composes: anchor;
-  color: rgb(var(--link-disabled-rgb) / 50%);
-  pointer-events: none;
   text-decoration: none;
+  line-height: 20px;
 }
 
-.imprint {
-  display: flex;
-  flex-direction: column;
+.navLinkActive {
+  composes: navLink;
+  opacity: 0.5;
 }
 
-.imprintHeading {
-  font-size: inherit;
-  font-weight: bold;
-  margin: 0.8rem 0;
-}
-
-.imprintLine {
+.copyright {
+  color: var(--text);
+  padding: 7px 90px 0 0;
+  line-height: 20px;
+  font-size: 10px;
   margin: 0;
+  background: url('../../ImageAssets/built_on_kilt_light.svg') no-repeat center right/25%;
 }
 
-.spacedLine {
-  margin: 0;
-  margin-top: 0.8rem;
+:global(html.dark) .copyright {
+  background:
+    url('../../ImageAssets/built_on_KILT_dark.svg') no-repeat center
+    right/25%;
 }
 
-.kiltLogo {
-  margin-top: 10px;
-  width: 80px;
-  fill: var(--text);
+@media (max-width: 700px) {
+  .copyright {
+    margin: 0 0 7px;
+  }
 }
