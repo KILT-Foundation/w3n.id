@@ -38,7 +38,6 @@ html {
   --take-tour: #2d9403;
   --dark-grey: #322b2b;
   --link-disabled-rgb: 13 13 13;
-  --scroll-rgb: 71 224 0;
   --fetch-rgb: 45 139 0;
 }
 
@@ -55,22 +54,4 @@ html.dark {
   --take-tour: #2d7011;
   --link-disabled-rgb: 255 255 255;
   --footer: #181818;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgb(var(--scroll-rgb)/20%);
-  border-radius: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--scroll-rgb)/30%);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--web3-name);
 }
