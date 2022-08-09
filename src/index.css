@@ -54,6 +54,7 @@ html.dark {
   --header-text: #f3f3f3;
   --take-tour: #2d7011;
   --link-disabled-rgb: 255 255 255;
+  --footer: #181818;
 }
 
 ::-webkit-scrollbar {
