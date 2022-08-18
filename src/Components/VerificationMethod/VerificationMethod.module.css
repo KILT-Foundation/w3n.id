@@ -1,47 +1,29 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
+  composes: container from '../DidSection/DidSection.module.css';
   margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.verificationMethod {
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-  gap: 10px;
-  height: fit-content;
 }
 
 .title {
-  width: 90px;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  line-height: 22px;
-  text-align: flex-start;
-}
-
-.textContainer {
+  composes: title from '../DidSection/DidSection.module.css';
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 14px;
-  letter-spacing: 0.1px;
-  line-height: 22px;
-  word-break: break-all;
+  min-width: 105px;
 }
 
 .text {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-width: 400px;
+  composes: text from '../DidSection/DidSection.module.css';
+  word-break: normal;
 }
 
-.textLink {
-  cursor: pointer;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 620px;
+  width: 90%;
+}
+
+.anchor {
+  display: inline-flex;
+  width: 80%;
   color: var(--web3-name);
-  text-decoration: none;
+  word-break: break-all;
 }

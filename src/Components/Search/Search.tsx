@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 
 import { DidServiceEndpoint, DidUri, Did } from '@kiltprotocol/sdk-js';
 
@@ -16,11 +16,34 @@ import {
   isSearchedTextDid,
 } from '../../Utils/w3n-helpers';
 
-import { ServiceEndpoint } from '../ServiceEndpoint/ServiceEndpoint';
+import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
 import { DidSection } from '../DidSection/DidSection';
 import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
 import { SearchError, ResultsErrors } from '../ResultsErrors/ResultsErrors';
+import { LinkingInfo } from '../LinkingInfo/LinkingInfo';
+import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
+
+interface Props {
+  did: DidUri;
+  w3Name: string;
+  serviceEndpoints: DidServiceEndpoint[];
+}
+
+function ResolvedData({ did, w3Name, serviceEndpoints }: Props) {
+  return (
+    <div className={styles.results}>
+      <div className={styles.modeContainer}>
+        <span className={styles.takenMode}>Taken</span>
+        <span className={styles.availableMode}>Available</span>
+      </div>
+      <DidSection did={did} />
+      <Web3Name web3Name={w3Name} />
+      <EndpointSection did={did} serviceEndpoints={serviceEndpoints} />
+      <VerificationMethod did={did} />
+    </div>
+  );
+}
 
 export const Search = () => {
   const [searchedText, setSearchedText] = useState<string>('');
@@ -31,6 +54,10 @@ export const Search = () => {
   const [did, setDid] = useState<DidUri>();
   const [w3Name, setW3Name] = useState<string>('');
   const [error, setError] = useState<SearchError>();
+  const [showModal, setShowModal] = useState(false);
+  const modalRef = useRef(null);
+
+  useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
 
   window.onpopstate = function () {
     setError(undefined);
@@ -60,7 +87,7 @@ export const Search = () => {
         setW3Name('w3n:' + didDocInstance.web3name);
         replaceHistoryState(shouldChangeUrl, didDocInstance.web3name);
       } else {
-        setW3Name('No web3name found');
+        setW3Name('no web3name yet');
       }
     } catch {
       setError('invalid_kilt');
@@ -178,8 +205,12 @@ export const Search = () => {
     }
   }, [resolveDidDocument]);
   return (
-    <main className={styles.container}>
+    <Fragment>
       <div className={styles.search}>
+        <p className={styles.infoText}>
+          Find an available web3name to <b>claim</b>, or <b>look up</b> an
+          existing one!
+        </p>
         <div className={styles.searchBar}>
           <input
             className={styles.input}
@@ -192,44 +223,42 @@ export const Search = () => {
             placeholder="Type web3name, DID or account address here"
           />
 
-          <div className={styles.buttonWrapper}>
-            <button
-              className={
-                searchedText.length < 3 ? styles.buttonGrey : styles.button
-              }
-              onClick={() => handleSearch()}
-              type="submit"
-            >
-              LOOK UP
-            </button>
-          </div>
+          <button
+            className={styles.button}
+            onClick={() => handleSearch()}
+            type="submit"
+            aria-label="search"
+          />
+        </div>
+        <div className={styles.infoContainer}>
+          <p className={styles.infoTextAddress}>
+            You can also look up DIDs or account addresses
+          </p>
+          <button className={styles.infoBtn} onClick={() => setShowModal(true)}>
+            {showModal && (
+              <div className={styles.modal}>
+                <p className={`${styles.text} ${styles.top}`} ref={modalRef}>
+                  Searching by web3name, DID or account address will give all
+                  the information, including credentials, publicly linked to
+                  that digital identity.
+                </p>
+              </div>
+            )}
+          </button>
         </div>
       </div>
       {error && <ResultsErrors name={unclaimedName} error={error} />}
+      <section className={did ? styles.mainResults : styles.main}>
+        {did && (
+          <ResolvedData
+            did={did}
+            w3Name={w3Name}
+            serviceEndpoints={serviceEndpoints}
+          />
+        )}
 
-      {did && (
-        <div className={styles.results}>
-          <DidSection did={did} />
-          <Web3Name web3Name={w3Name} />
-          <div className={styles.didDocument}>
-            {serviceEndpoints.length > 0 && (
-              <span className={styles.title}>Service</span>
-            )}
-
-            <div className={styles.endpoints}>
-              {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
-                <ServiceEndpoint
-                  key={serviceEndpoint.id}
-                  endpointType={serviceEndpoint.types[0]}
-                  endpointURL={serviceEndpoint.urls[0]}
-                  did={did}
-                />
-              ))}
-            </div>
-          </div>
-          <VerificationMethod did={did} />
-        </div>
-      )}
-    </main>
+        <LinkingInfo />
+      </section>
+    </Fragment>
   );
 };

@@ -1,40 +1,21 @@
 .container {
-  display: flex;
-  flex-flow: row wrap;
-  max-width: 740px;
-  width: 90%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: fit-content;
+  composes: container from '../DidSection/DidSection.module.css';
   margin-top: 20px;
 }
 
 .title {
-  width: 100px;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  line-height: 22px;
-  text-align: left;
-  height: 31px;
+  composes: title from '../DidSection/DidSection.module.css';
   display: flex;
-  align-items: center;
+  min-width: 105px;
 }
 
 .text {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  composes: text from '../DidSection/DidSection.module.css';
   font-size: 24px;
   letter-spacing: 0.17px;
-  line-height: 37px;
-  color: var(--web3-name);
+  line-height: 26px;
 }
 
 .wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 350px;
-  gap: 7px;
+  composes: wrapper from '../DidSection/DidSection.module.css';
 }
