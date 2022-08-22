@@ -47,18 +47,14 @@
   min-width: 60px;
 }
 
-.modalText {
-  composes: text from '../Search/Search.module.css';
-}
-
-.top {
-  composes: top from '../Search/Search.module.css';
-}
-
 .modal {
   composes: modal from '../Search/Search.module.css';
   left: -16px;
   top: 20px;
+}
+
+.modalText {
+  composes: text from '../Search/Search.module.css';
 }
 
 .modalText::after {
@@ -67,6 +63,9 @@
 
 /* Variant : top
   ------------------------------------------ */
+.top {
+  composes: top from '../Search/Search.module.css';
+}
 
 /* creates the larger triangle */
 .modalText.top::before {

@@ -30,7 +30,7 @@ export const DidSection = (props: Props) => {
               </p>
             </div>
           )}
-        </button>{' '}
+        </button>
       </div>
       <div className={styles.wrapper}>
         <span className={styles.text}>{props.did}</span>
