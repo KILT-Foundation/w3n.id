@@ -1,7 +1,12 @@
 declare const styles: {
   readonly container: string;
-  readonly didTitle: string;
-  readonly didSpan: string;
-  readonly didContainer: string;
+  readonly title: string;
+  readonly text: string;
+  readonly wrapper: string;
+  readonly infoBtn: string;
+  readonly titleWrapper: string;
+  readonly modalText: string;
+  readonly top: string;
+  readonly modal: string;
 };
 export = styles;

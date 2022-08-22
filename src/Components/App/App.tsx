@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Route, Routes } from 'react-router-dom';
 
 import styles from './App.module.css';
@@ -14,14 +12,9 @@ import { Privacy } from '../Privacy/Privacy';
 import { Imprint } from '../Imprint/Imprint';
 
 export const App = () => {
-  const [tourSection, setTourSection] = useState<boolean>(false);
-
   return (
     <div className={styles.container}>
-      <Header
-        handleTourSection={() => setTourSection(!tourSection)}
-        tourSection={tourSection}
-      />
+      <Header />
 
       <Routes>
         <Route path={paths.main} element={<Search />} />

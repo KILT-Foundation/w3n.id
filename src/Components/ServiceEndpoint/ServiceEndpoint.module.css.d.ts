@@ -9,5 +9,14 @@ declare const styles: {
   readonly close: string;
   readonly loader: string;
   readonly seperator: string;
+  readonly titleWrapper: string;
+  readonly title: string;
+  readonly infoBtn: string;
+  readonly didDocument: string;
+  readonly endpoints: string;
+  readonly endpointWrapper: string;
+  readonly modalText: string;
+  readonly top: string;
+  readonly modal: string;
 };
 export = styles;

@@ -2,9 +2,7 @@ declare const styles: {
   readonly header: string;
   readonly logoWrapper: string;
   readonly topHeaderContainer: string;
-  readonly tourBtnWrapper: string;
-  readonly tourBtn: string;
-  readonly textLabel: string;
+  readonly headingTextContainer: string;
   readonly text: string;
   readonly bottomSeperator: string;
   readonly logo: string;

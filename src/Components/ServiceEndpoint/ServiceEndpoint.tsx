@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import {
   Credential,
   RequestForAttestation,
@@ -7,19 +7,61 @@ import {
   Attestation,
   IClaimContents,
   DidUri,
+  DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js';
 
 import styles from './ServiceEndpoint.module.css';
 
 import { validateCredential } from '../../Utils/w3n-helpers';
-import { ReactComponent as Chevron } from '../../ImageAssets/chevron_down_white.svg';
 import { ReactComponent as Loader } from '../../ImageAssets/oval.svg';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { CredentialDetails } from '../CredentialDetails/CredentialDetails';
+import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 
 class ExplicitError extends Error {}
+
+interface EndpointsProps {
+  serviceEndpoints: DidServiceEndpoint[];
+  did: DidUri;
+}
+
+export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
+  const [showModal, setShowModal] = useState(false);
+  const modalRef = useRef(null);
+
+  useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
+
+  return (
+    <div className={styles.didDocument}>
+      <div className={styles.titleWrapper}>
+        <span className={styles.title}>Service Endpoints</span>
+        <button className={styles.infoBtn} onClick={() => setShowModal(true)}>
+          {showModal && (
+            <div className={styles.modal}>
+              <p className={`${styles.modalText} ${styles.top}`} ref={modalRef}>
+                Credentials may be linked with your on-chain DID & web3name and
+                displayed publicly on service endpoints such as GitHub public or
+                IPFS.
+              </p>
+            </div>
+          )}
+        </button>
+      </div>
+      <div className={styles.endpoints}>
+        {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
+          <ServiceEndpoint
+            key={serviceEndpoint.id}
+            endpointType={serviceEndpoint.types[0]}
+            endpointURL={serviceEndpoint.urls[0]}
+            did={did}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 interface Props {
   endpointType: string;
@@ -27,7 +69,7 @@ interface Props {
   did: DidUri;
 }
 
-export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
+const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
   const [fetching, setFetching] = useState(false);
 
   const [credential, setCredential] = useState<{
@@ -102,7 +144,7 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.endpointWrapper}>
       <span className={styles.type}>{endpointType}</span>
 
       <div className={styles.endpoint}>
@@ -115,22 +157,18 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
           <button className={styles.button} onClick={handleFetch}>
             {fetching && <Loader className={styles.loader} />}
             Fetch
-            <Chevron className={styles.open} />
           </button>
         )}
 
         {(credential || error) && (
           <button className={styles.button} onClick={handleClose}>
             Close
-            <Chevron className={styles.close} />
           </button>
         )}
+        {credential && !error && <CredentialDetails credential={credential} />}
       </div>
 
-      {credential && !error && <CredentialDetails credential={credential} />}
-
       {error && <CredentialErrors error={error} />}
-      <div className={styles.seperator} />
     </div>
   );
 };

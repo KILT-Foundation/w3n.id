@@ -39,12 +39,22 @@ html {
   --dark-grey: #322b2b;
   --link-disabled-rgb: 13 13 13;
   --fetch-rgb: 45 139 0;
+  --gradient-1-3-rgb: 255 255 255;
+  --gradient-1-2-rgb: 45 139 0;
+  --separator-rgb: 69 69 69;
+  --gradient-1-1-rgb: 45 139 0;
+  --gradient-2-1-rgb: 37 102 6;
+  --gradient-2-2-rgb: 22 48 10;
+  --gradient-2-3-rgb: 13 13 13;
+  --modal-bg: var(--header-text);
+  --black-rgb: 0 0 0;
+  --fetch-btn: var(--header-text);
 }
 
 html.dark {
   --body: #000;
   --web3-name: #47e000;
-  --search-background: #191919;
+  --search-background: #242424;
   --search-btn: #df8601;
   --header-secondary: #256606;
   --header-bottom: #454545;
@@ -54,4 +64,6 @@ html.dark {
   --take-tour: #2d7011;
   --link-disabled-rgb: 255 255 255;
   --footer: #181818;
+  --modal-bg: #14280b;
+  --fetch-btn: #2d1f0b;
 }
