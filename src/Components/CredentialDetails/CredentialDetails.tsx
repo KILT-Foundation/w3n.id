@@ -2,7 +2,7 @@ import { IClaimContents } from '@kiltprotocol/sdk-js';
 
 import styles from '../CredentialDetails/CredentialDetails.module.css';
 
-import { ReactComponent as OkIcon } from '../../ImageAssets/icon_oK.svg';
+import { ReactComponent as OkIcon } from '../../ImageAssets/ok_light.svg';
 import { stringStartsWithW3 } from '../../Utils/w3n-helpers';
 
 interface Props {
@@ -30,9 +30,8 @@ export const CredentialDetails = ({ credential }: Props) => {
       </div>
       <div className={styles.container}>
         <span className={styles.credentialTitle}>Valid</span>
-        <span className={styles.credentialSpan}>
-          <OkIcon />
-        </span>
+
+        <OkIcon className={styles.credentialSpan} />
       </div>
     </div>
   );

@@ -1,84 +1,80 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .type {
   overflow-wrap: break-word;
-  font-family: Overpass, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.1px;
-  line-height: 22px;
-  margin-top: 10px;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 17px;
+  margin: 5px 0 5px 22px;
+  color: var(--text);
 }
 
 .endpoint {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width: 100%;
+  width: 99%;
+  margin: 2px 0;
+  border-radius: 5px 5px 15px 15px;
+  align-self: center;
+  background-color: var(--search-background);
+  min-height: 60px;
+  position: relative;
 }
 
 .urlContainer {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   gap: 5px;
-  width: 95%;
-  max-width: 500px;
+  margin-left: 8px;
+  margin-right: 10px;
+  margin-top: 20px;
+  max-width: 450px;
+  width: 70%;
 }
 
 .url {
   display: block;
   font-family: Overpass, sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.1px;
-  line-height: 22px;
-  width: 90%;
-  max-width: 400px;
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .button {
-  display: inline-flex;
-  cursor: pointer;
-  font-family: Overpass, sans-serif;
-  text-transform: uppercase;
-  position: relative;
-  color: var(--web3-name);
-  font-size: 14px;
-  letter-spacing: 0.1px;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-  width: 140px;
-  border: 2px solid rgb(var(--fetch-rgb));
-  border-radius: 15px;
-  background-color: rgb(var(--fetch-rgb) / 15%);
-}
-
-.open {
-  fill: var(--web3-name);
-  cursor: pointer;
   position: absolute;
-  right: 12px;
-  top: 6px;
+  bottom: 15px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  text-align: center;
+  color: var(--text);
+  justify-content: center;
+  height: 28px;
+  max-width: 124px;
+  width: 20%;
+  border: 2px solid #df8601;
+  border-radius: 15px;
+  background-color: var(--fetch-btn);
 }
 
-.close {
-  composes: open;
-  transform: rotate(180deg);
+@media (max-width: 400px) {
+  .button {
+    font-size: 12px;
+  }
 }
 
 .loader {
-  stroke: var(--web3-name);
+  stroke: var(--text);
   position: absolute;
-  left: 12px;
-  top: 3px;
+  left: 10px;
+  top: 5px;
   height: 13px;
   width: 20px;
 }
@@ -88,4 +84,71 @@
   margin-top: 18px;
   width: 100%;
   opacity: 0.5;
+}
+
+.didDocument {
+  composes: container from '../DidSection/DidSection.module.css';
+  margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.endpoints {
+  composes: wrapper from '../DidSection/DidSection.module.css';
+  width: 620px;
+}
+
+.title {
+  composes: title from '../DidSection/DidSection.module.css';
+}
+
+.titleWrapper {
+  composes: titleWrapper from '../DidSection/DidSection.module.css';
+  align-self: start;
+}
+
+.infoBtn {
+  composes: infoBtn from '../DidSection/DidSection.module.css';
+}
+
+.endpointWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background-color: var(--header-secondary);
+  width: 100%;
+  box-shadow: 0 6px 8px 0 rgb(var(--black-rgb) / 25%);
+  margin-bottom: 20px;
+}
+
+.modalText {
+  composes: text from '../Search/Search.module.css';
+}
+
+.top {
+  composes: top from '../Search/Search.module.css';
+}
+
+.modal {
+  composes: modal from '../Search/Search.module.css';
+  left: -16px;
+  top: 20px;
+}
+
+.modalText::after {
+  right: 17px;
+}
+
+/* Variant : top
+  ------------------------------------------ */
+
+/* creates the larger triangle */
+.modalText.top::before {
+  left: 10px;
+  right: auto;
+}
+
+/* creates the smaller  triangle */
+.modalText.top::after {
+  left: 11px;
+  right: auto;
 }

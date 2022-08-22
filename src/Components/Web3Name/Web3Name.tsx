@@ -14,6 +14,7 @@ export const Web3Name = (props: Props) => {
   return (
     <div className={styles.container}>
       <span className={styles.title}>web3name</span>
+
       <div className={styles.wrapper}>
         <span className={styles.text}>{props.web3Name}</span>
         <CopyToClipboard text={props.web3Name} />
