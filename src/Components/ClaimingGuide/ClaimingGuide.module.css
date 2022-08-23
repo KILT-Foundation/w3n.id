@@ -1,0 +1,149 @@
+.container {
+  composes: container from '../DidSection/DidSection.module.css';
+  margin-top: 20px;
+}
+
+.title {
+  composes: title from '../DidSection/DidSection.module.css';
+  display: flex;
+  min-width: 105px;
+  align-self: flex-start;
+  margin-top: 15px;
+}
+
+.text {
+  composes: text from '../DidSection/DidSection.module.css';
+}
+
+.wrapper {
+  composes: wrapper from '../DidSection/DidSection.module.css';
+  width: 620px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.window {
+  composes: endpointWrapper from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  width: 100%;
+  position: relative;
+  min-height: 36px;
+  margin-top: 20px;
+  justify-content: center;
+  background-color: var(--light-green);
+}
+
+.windowTitle {
+  composes: type from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  color: white;
+  width: 70%;
+  margin-top: 8px;
+}
+
+.windowContents {
+  composes: endpoint from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  min-height: 0;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.controlBtn {
+  composes: controlBtn from '../ClaimW3Name/ClaimW3Name.module.css';
+}
+
+.controlBtnExpand {
+  composes: controlBtnExpand from '../ClaimW3Name/ClaimW3Name.module.css';
+}
+
+.guide {
+  width: 95%;
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  margin-left: 20px;
+}
+
+.extensionWrapper {
+  display: flex;
+  margin-left: 20px;
+  width: 90%;
+  gap: 30px;
+}
+
+.linkToGuide {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.chromeExtension {
+  height: 66px;
+  max-width: 251px;
+  width: 40%;
+  background: url('../../ImageAssets/chrome_512x512.png') no-repeat center left 10%/20%;
+  border: 1px solid rgb(var(--extension-border-rgb)/50%);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+
+.firefoxExtension {
+  composes: chromeExtension;
+  background: url('../../ImageAssets/firefox_512x512.png') no-repeat center left 10%/20%;
+}
+
+.linkTextSmall {
+  composes: text;
+  font-size: 11px;
+  line-height: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 50px;
+  color: var(--text);
+}
+
+.linkTextBig {
+  composes: text;
+  font-size: 16px;
+}
+
+@media (max-width: 580px) {
+  .linkTextSmall {
+    margin-left: 40px;
+  }
+
+  .linkTextBig {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+
+.list {
+  margin-left: 0;
+  list-style-type: none;
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  line-height: 17px;
+}
+
+.list > li {
+  text-indent: -10px;
+  margin-bottom: 10px;
+}
+
+.list > li::before {
+  content: '-';
+}
+
+.numberedList {
+  margin-left: 10px;
+  list-style: decimal;
+}
+
+.numberedList > li {
+  margin-bottom: 10px;
+}

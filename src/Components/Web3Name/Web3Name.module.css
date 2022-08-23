@@ -1,6 +1,6 @@
 .container {
   composes: container from '../DidSection/DidSection.module.css';
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .title {

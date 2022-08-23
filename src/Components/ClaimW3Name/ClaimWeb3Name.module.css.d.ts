@@ -1,0 +1,21 @@
+declare const styles: {
+  readonly container: string;
+  readonly title: string;
+  readonly text: string;
+  readonly wrapper: string;
+  readonly claimContainer: string;
+  readonly controlBtn: string;
+  readonly controlBtnExpand: string;
+  readonly claimContents: string;
+  readonly claimContainerExpand: string;
+  readonly steps: string;
+  readonly stepsHeading: string;
+  readonly list: string;
+  readonly btn: string;
+  readonly select: string;
+  readonly optionsContainer: string;
+  readonly options: string;
+  readonly optionText: string;
+  readonly selectShow: string;
+};
+export = styles;

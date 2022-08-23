@@ -1,0 +1,189 @@
+.container {
+  composes: container from '../DidSection/DidSection.module.css';
+  margin-top: 20px;
+}
+
+.title {
+  composes: title from '../DidSection/DidSection.module.css';
+  display: flex;
+  min-width: 105px;
+  align-self: start;
+  margin-bottom: 2px;
+}
+
+.text {
+  composes: text from '../DidSection/DidSection.module.css';
+}
+
+.wrapper {
+  composes: wrapper from '../DidSection/DidSection.module.css';
+  width: 620px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.claimContainer {
+  composes: endpointWrapper from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  width: 100%;
+  position: relative;
+  min-height: 36px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.controlBtn {
+  composes: type from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  color: white;
+  width: 95%;
+  border: none;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  background: url('../../ImageAssets/open_chevron.svg') no-repeat center right 1%/20px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.controlBtnExpand {
+  composes: controlBtn;
+  background: url('../../ImageAssets/close_chevron.svg') no-repeat center right 1%/20px;
+}
+
+.claimContents {
+  composes: endpoint from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  min-height: 0;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.steps {
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  margin-bottom: 25px;
+}
+
+.stepHeading {
+  composes: steps;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.list {
+  margin-top: 10px;
+  width: 80%;
+}
+
+.btn {
+  box-sizing: border-box;
+  height: 28px;
+  max-width: 320px;
+  width: 80%;
+  margin-top: 10px;
+  border: 3px solid var(--search-btn);
+  border-radius: 15px;
+  background-color: var(--search-background);
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  color: rgb(var(--modal-btn-disabled-rgb) /50%);
+  border: 3px solid rgb(var(--modal-btn-disabled-rgb) /50%);
+  cursor: none;
+}
+
+@media (max-width: 420px) {
+  .btn {
+    font-size: 12px;
+  }
+
+  .steps {
+    font-size: 14px;
+  }
+}
+
+.select {
+  min-height: 28px;
+  max-width: 320px;
+  width: 80%;
+  border-radius: 16px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  background:
+    url('../../ImageAssets/open_triangle.svg') no-repeat center right
+    10px,
+    var(--search-btn);
+}
+
+.select[aria-disabled='true'] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.selectShow {
+  composes: select;
+  background:
+    url('../../ImageAssets/close_triangle.svg') no-repeat top 20%
+    right 10px,
+    var(--search-btn);
+}
+
+.optionsContainer {
+  width: 99%;
+  background-color: var(--search-background);
+  border-radius: 5px 5px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1px;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+.selectText {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 14px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  width: 90%;
+  text-align: left;
+  height: 20px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  list-style-type: none;
+  justify-content: center;
+}
+
+.options:last-child {
+  border-radius: 0 0 15px 15px;
+}
+
+.options:hover {
+  background-color: rgb(223 134 1 /50%);
+}
+
+.optionText {
+  width: 90%;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+  margin-left: 10px;
+}

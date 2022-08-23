@@ -49,6 +49,10 @@ html {
   --modal-bg: var(--header-text);
   --black-rgb: 0 0 0;
   --fetch-btn: var(--header-text);
+  --light-green: #678956;
+  --extension-border-rgb: var(--black-rgb);
+  --contents: #f3f3f3;
+  --modal-btn-disabled-rgb: 223 134 1;
 }
 
 html.dark {
@@ -66,4 +70,7 @@ html.dark {
   --footer: #181818;
   --modal-bg: #14280b;
   --fetch-btn: #2d1f0b;
+  --extension-border-rgb: 255 255 255;
+  --contents: #0d0d0d;
+  --light-green: #3a5530;
 }

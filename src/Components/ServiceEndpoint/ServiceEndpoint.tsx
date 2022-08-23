@@ -24,7 +24,7 @@ class ExplicitError extends Error {}
 
 interface EndpointsProps {
   serviceEndpoints: DidServiceEndpoint[];
-  did: DidUri;
+  did?: DidUri;
 }
 
 export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
@@ -66,7 +66,7 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
 interface Props {
   endpointType: string;
   endpointURL: string;
-  did: DidUri;
+  did?: DidUri;
 }
 
 const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
@@ -76,10 +76,10 @@ const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
     contents: IClaimContents;
     attester: string;
   }>();
-
   const [error, setError] = useState<string>();
 
   const handleFetch = useCallback(async () => {
+    if (!did) throw new Error('No did');
     setFetching(true);
 
     try {

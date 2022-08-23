@@ -40,7 +40,7 @@
 }
 
 .bottomSeperator {
-  background-color: rgb(var(--seperator-rgb) / 25%);
+  background-color: rgb(var(--separator-rgb) / 25%);
   width: 100%;
   height: 10px;
   box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 2%);

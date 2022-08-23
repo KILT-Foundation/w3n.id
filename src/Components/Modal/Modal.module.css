@@ -1,0 +1,103 @@
+.modalContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(var(--color-shadow-rgb) / 10%);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+.modal {
+  max-width: 380px;
+  width: 80%;
+  background-color: var(--contents);
+  box-shadow: 0 6px 8px 0 rgb(var(--color-shadow-rgb/25%));
+  border: 1px solid var(--header-secondary);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+}
+
+.heading {
+  color: var(--text);
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  line-height: 17px;
+  font-weight: 300;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.modalText {
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  line-height: 17px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+
+.status {
+  margin-top: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  color: var(--search-btn);
+  margin: 24px 0;
+  width: 80%;
+  height: 30px;
+  border-radius: 15px;
+  border: 3px solid var(--search-btn);
+  font-size: 16px;
+  line-height: 17px;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+}
+
+.btnDisabled {
+  composes: btn;
+  color: rgb(var(--modal-btn-disabled-rgb) /50%);
+  border: 3px solid rgb(var(--modal-btn-disabled-rgb) /50%);
+  cursor: none;
+}
+
+.step {
+  color: white;
+  position: absolute;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 16px;
+}
+
+.successIcon {
+  background: url('../../ImageAssets/ok_light.svg') no-repeat center/100%;
+  height: 60px;
+  width: 60px;
+}
+
+.errorIcon {
+  composes: successIcon;
+  background: url('../../ImageAssets/not_ok_light.svg') no-repeat center/100%;
+}
+
+.spinner {
+  composes: successIcon;
+  background: url('../../ImageAssets/loader.svg') no-repeat center/100%;
+}
