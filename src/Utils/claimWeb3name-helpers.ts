@@ -38,8 +38,8 @@ export async function getW3NameExtrinsic(
   web3name: string,
   payerAddress: string,
 ) {
-  const extrinsic = await Did.Web3Names.getClaimTx(web3name);
   const api = await connect();
+  const extrinsic = await Did.Web3Names.getClaimTx(web3name);
 
   const signedOutputFromExtension =
     await window.kilt.sporran.signExtrinsicWithDid(

@@ -68,11 +68,11 @@ function ResolvedData({ did, web3name, serviceEndpoints, isClaimed }: Props) {
   );
 }
 
-interface UnclaimProps {
+interface UnclaimedProps {
   web3name: string;
 }
 
-function Unclaimed({ web3name }: UnclaimProps) {
+function Unclaimed({ web3name }: UnclaimedProps) {
   return (
     <Fragment>
       <ClaimW3Name web3name={web3name} />

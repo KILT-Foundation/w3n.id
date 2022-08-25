@@ -2,6 +2,8 @@ import { useCallback, useState, SyntheticEvent } from 'react';
 
 import { web3FromAddress } from '@polkadot/extension-dapp';
 
+import { ChainHelpers } from '@kiltprotocol/sdk-js';
+
 import styles from './ClaimW3Name.module.css';
 
 import {
@@ -22,7 +24,7 @@ export const ClaimW3Name = ({ web3name }: Props) => {
   const [showOptions, setShowOptions] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [claimingStatus, setClaimingStatus] = useState<
-    'claiming' | 'success' | 'error' | undefined
+    'claiming' | 'success' | 'error'
   >();
 
   const handleConnectWallets = useCallback(async () => {
@@ -41,16 +43,11 @@ export const ClaimW3Name = ({ web3name }: Props) => {
         const { address } = selectedAccount;
         const extrinsic = await getW3NameExtrinsic(web3name, address);
         const { signer } = await web3FromAddress(address);
+        const signed = await extrinsic.signAsync(address, { signer });
 
-        return extrinsic.signAndSend(address, { signer }, ({ status }) => {
-          if (status.isFinalized) {
-            setClaimingStatus('success');
-          }
+        await ChainHelpers.BlockchainUtils.submitSignedTx(signed);
 
-          if (status.isFinalityTimeout) {
-            setClaimingStatus('error');
-          }
-        });
+        setClaimingStatus('success');
       } catch (error) {
         setClaimingStatus('error');
         return;
@@ -69,9 +66,10 @@ export const ClaimW3Name = ({ web3name }: Props) => {
 
         <div className={styles.claimContainer}>
           <button
-            className={isExpanded ? styles.controlBtnExpand : styles.controlBtn}
+            className={styles.controlBtn}
             onClick={() => setIsExpanded(!isExpanded)}
             type="button"
+            aria-expanded={isExpanded}
           >{`Claim w3n:${web3name}`}</button>
           {isExpanded && (
             <div className={styles.claimContents}>
@@ -94,7 +92,7 @@ export const ClaimW3Name = ({ web3name }: Props) => {
                   Polkadot-enabled extensions, including Sporran.
                 </li>
                 <li className={styles.steps}>
-                  <p>Click “Allow access” on each wallet</p>{' '}
+                  <p>Click “Allow access” on each wallet</p>
                   <p>
                     Choose the account address you wish to pay the transaction
                     fees from (Please ensure you choose a wallet containing
@@ -102,15 +100,16 @@ export const ClaimW3Name = ({ web3name }: Props) => {
                     0.0045 KILT.)
                   </p>
                   <div
-                    role="button"
+                    role="listbox"
                     aria-disabled={filteredAccounts.length === 0}
                     className={showOptions ? styles.selectShow : styles.select}
                     onClick={() => setShowOptions(!showOptions)}
                   >
                     {selectedAccount ? (
-                      <span
-                        className={styles.selectText}
-                      >{`${selectedAccount.meta.name} ${selectedAccount.meta.source}`}</span>
+                      <span className={styles.selectText}>
+                        {selectedAccount.meta.name}{' '}
+                        {selectedAccount.meta.source}
+                      </span>
                     ) : (
                       <span className={styles.selectText}>
                         Choose payer account
@@ -138,7 +137,7 @@ export const ClaimW3Name = ({ web3name }: Props) => {
                   <p>Click “CLAIM NOW”</p>
                   <p>
                     This opens up Sporran. Select the DID you want to connect to
-                    this web3name. Then enter your password and click “Sign”{' '}
+                    this web3name. Then enter your password and click “Sign”
                   </p>
                   <button
                     type="submit"
@@ -154,7 +153,7 @@ export const ClaimW3Name = ({ web3name }: Props) => {
                   onSuccess={() => window.location.reload()}
                   web3name={web3name}
                 />
-                <span className={styles.steps}>That&apos;s it </span>
+                <span className={styles.steps}>That’s it </span>
               </ol>
             </div>
           )}

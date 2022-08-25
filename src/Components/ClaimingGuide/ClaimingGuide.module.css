@@ -51,8 +51,8 @@
   composes: controlBtn from '../ClaimW3Name/ClaimW3Name.module.css';
 }
 
-.controlBtnExpand {
-  composes: controlBtnExpand from '../ClaimW3Name/ClaimW3Name.module.css';
+.controlBtn[aria-expanded='true'] {
+  background: url('../../ImageAssets/close_chevron.svg') no-repeat center right 1%/20px;
 }
 
 .guide {
@@ -79,7 +79,7 @@
   height: 66px;
   max-width: 251px;
   width: 40%;
-  background: url('../../ImageAssets/chrome_512x512.png') no-repeat center left 10%/20%;
+  background: url('../../ImageAssets/chrome_icon.svg') no-repeat center left 10%/20%;
   border: 1px solid rgb(var(--extension-border-rgb)/50%);
   border-radius: 5px;
   display: flex;
@@ -92,7 +92,7 @@
 
 .firefoxExtension {
   composes: chromeExtension;
-  background: url('../../ImageAssets/firefox_512x512.png') no-repeat center left 10%/20%;
+  background-image: url('../../ImageAssets/firefox_icon.svg');
 }
 
 .linkTextSmall {
@@ -124,19 +124,15 @@
 
 .list {
   margin-left: 0;
-  list-style-type: none;
   font-size: 16px;
   letter-spacing: 0.1px;
   line-height: 17px;
+  list-style-type: '-';
 }
 
 .list > li {
-  text-indent: -10px;
+  text-indent: 2px;
   margin-bottom: 10px;
-}
-
-.list > li::before {
-  content: '-';
 }
 
 .numberedList {

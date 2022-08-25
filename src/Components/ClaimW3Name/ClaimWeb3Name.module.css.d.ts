@@ -5,7 +5,6 @@ declare const styles: {
   readonly wrapper: string;
   readonly claimContainer: string;
   readonly controlBtn: string;
-  readonly controlBtnExpand: string;
   readonly claimContents: string;
   readonly claimContainerExpand: string;
   readonly steps: string;

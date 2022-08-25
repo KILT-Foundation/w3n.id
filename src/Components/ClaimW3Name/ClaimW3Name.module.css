@@ -45,9 +45,8 @@
   cursor: pointer;
 }
 
-.controlBtnExpand {
-  composes: controlBtn;
-  background: url('../../ImageAssets/close_chevron.svg') no-repeat center right 1%/20px;
+.controlBtn[aria-expanded='true'] {
+  background-image: url('../../ImageAssets/close_chevron.svg');
 }
 
 .claimContents {

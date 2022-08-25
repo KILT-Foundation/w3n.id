@@ -7,7 +7,6 @@ declare const styles: {
   readonly windowTitle: string;
   readonly windowContents: string;
   readonly controlBtn: string;
-  readonly controlBtnExpand: string;
   readonly guide: string;
   readonly linkToGuide: string;
   readonly extensionWrapper: string;
