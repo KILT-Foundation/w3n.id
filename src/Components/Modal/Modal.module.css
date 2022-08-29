@@ -93,10 +93,10 @@
 
 .errorIcon {
   composes: successIcon;
-  background: url('../../ImageAssets/not_ok_light.svg') no-repeat center/100%;
+  background-image: url('../../ImageAssets/not_ok_light.svg');
 }
 
 .spinner {
   composes: successIcon;
-  background: url('../../ImageAssets/loader.svg') no-repeat center/100%;
+  background-image: url('../../ImageAssets/loader.svg');
 }
