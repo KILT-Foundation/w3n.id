@@ -18,7 +18,9 @@ declare const styles: {
   readonly infoContainer: string;
   readonly infoBtn: string;
   readonly modeContainer: string;
-  readonly takenMode: string;
-  readonly availableMode: string;
+  readonly availableActiveMode: string;
+  readonly availableInactiveMode: string;
+  readonly takenActiveMode: string;
+  readonly takenInactiveMode: string;
 };
 export = styles;

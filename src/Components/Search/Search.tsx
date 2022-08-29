@@ -20,34 +20,70 @@ import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
 import { DidSection } from '../DidSection/DidSection';
 import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
-import { SearchError, ResultsErrors } from '../ResultsErrors/ResultsErrors';
+import { ResultsErrors, SearchError } from '../ResultsErrors/ResultsErrors';
 import { LinkingInfo } from '../LinkingInfo/LinkingInfo';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
+import { ClaimW3Name } from '../ClaimW3Name/ClaimW3Name';
+import { ClaimingGuide } from '../ClaimingGuide/ClaimingGuide';
 
 interface Props {
-  did: DidUri;
-  w3Name: string;
+  did?: DidUri;
+  web3name: string;
   serviceEndpoints: DidServiceEndpoint[];
+  isClaimed: boolean;
 }
 
-function ResolvedData({ did, w3Name, serviceEndpoints }: Props) {
+function ResolvedData({ did, web3name, serviceEndpoints, isClaimed }: Props) {
   return (
     <div className={styles.results}>
       <div className={styles.modeContainer}>
-        <span className={styles.takenMode}>Taken</span>
-        <span className={styles.availableMode}>Available</span>
+        <label
+          className={
+            !isClaimed
+              ? styles.availableActiveMode
+              : styles.availableInactiveMode
+          }
+        >
+          Available
+        </label>
+        <label
+          className={
+            isClaimed ? styles.takenActiveMode : styles.takenInactiveMode
+          }
+        >
+          Taken
+        </label>
       </div>
-      <DidSection did={did} />
-      <Web3Name web3Name={w3Name} />
-      <EndpointSection did={did} serviceEndpoints={serviceEndpoints} />
-      <VerificationMethod did={did} />
+      {!isClaimed ? (
+        <Unclaimed web3name={web3name} />
+      ) : (
+        <Fragment>
+          <DidSection did={did} />
+          <Web3Name web3Name={web3name} />
+          <EndpointSection did={did} serviceEndpoints={serviceEndpoints} />
+          <VerificationMethod did={did} />
+        </Fragment>
+      )}
     </div>
+  );
+}
+
+interface UnclaimedProps {
+  web3name: string;
+}
+
+function Unclaimed({ web3name }: UnclaimedProps) {
+  return (
+    <Fragment>
+      <ClaimW3Name web3name={web3name} />
+      <ClaimingGuide />
+    </Fragment>
   );
 }
 
 export const Search = () => {
   const [searchedText, setSearchedText] = useState<string>('');
-  const [unclaimedName, setUnclaimedName] = useState<string>('');
+  const [isClaimed, setIsClaimed] = useState(true);
   const [serviceEndpoints, setServiceEndpoints] = useState<
     DidServiceEndpoint[]
   >([]);
@@ -84,7 +120,7 @@ export const Search = () => {
         setServiceEndpoints(didDocInstance.endpoints);
       }
       if (didDocInstance.web3name) {
-        setW3Name('w3n:' + didDocInstance.web3name);
+        setW3Name(didDocInstance.web3name);
         replaceHistoryState(shouldChangeUrl, didDocInstance.web3name);
       } else {
         setW3Name('no web3name yet');
@@ -113,6 +149,7 @@ export const Search = () => {
 
       if (isSearchedTextDid(textFromSearch)) {
         setError('invalid_kilt');
+        setW3Name('');
         return;
       }
 
@@ -127,6 +164,7 @@ export const Search = () => {
 
         if (!identifier) {
           setError('no_linked_account');
+          setW3Name('');
           return;
         }
         const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
@@ -143,6 +181,7 @@ export const Search = () => {
 
       if (textFromSearch.length > 30) {
         setError('max_limit');
+        setW3Name('');
         return;
       }
 
@@ -150,32 +189,33 @@ export const Search = () => {
         const name = textFromSearch.split(':').pop();
         if (name) {
           const didDocumentInstance = await getDidDocFromW3Name(name);
+          setW3Name(name);
           if (didDocumentInstance) {
             setServiceEndpoints(didDocumentInstance.endpoints);
             setDid(didDocumentInstance.did);
-            setW3Name('w3n:' + name);
+            setIsClaimed(true);
             replaceHistoryState(shouldChangeUrl, name);
           } else {
-            setUnclaimedName(name);
-            setError('not_claimed');
+            setIsClaimed(false);
           }
         }
         return;
       }
       if (!validSearchedText(textFromSearch)) {
         setError('invalid_chars');
+        setW3Name('');
         return;
       }
 
       const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
+      setW3Name(textFromSearch);
       if (didDocumentInstance) {
         setServiceEndpoints(didDocumentInstance.endpoints);
         setDid(didDocumentInstance.did);
-        setW3Name('w3n:' + textFromSearch);
+        setIsClaimed(true);
       } else {
         replaceHistoryState(shouldChangeUrl, textFromSearch);
-        setUnclaimedName(textFromSearch);
-        setError('not_claimed');
+        setIsClaimed(false);
       }
     },
     [],
@@ -247,16 +287,17 @@ export const Search = () => {
           </button>
         </div>
       </div>
-      {error && <ResultsErrors name={unclaimedName} error={error} />}
+      {error && <ResultsErrors error={error} />}
+
       <section className={did ? styles.mainResults : styles.main}>
-        {did && (
+        {w3Name && (
           <ResolvedData
             did={did}
-            w3Name={w3Name}
+            web3name={w3Name}
             serviceEndpoints={serviceEndpoints}
+            isClaimed={isClaimed}
           />
         )}
-
         <LinkingInfo />
       </section>
     </Fragment>
