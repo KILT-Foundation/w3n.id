@@ -70,7 +70,9 @@ export const ClaimW3Name = ({ web3name }: Props) => {
             onClick={() => setIsExpanded(!isExpanded)}
             type="button"
             aria-expanded={isExpanded}
-          >{`Claim w3n:${web3name}`}</button>
+          >
+            Claim w3n:{web3name}
+          </button>
           {isExpanded && (
             <div className={styles.claimContents}>
               <p className={styles.stepHeading}>
