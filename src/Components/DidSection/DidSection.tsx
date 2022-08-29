@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react';
 
+import { DidUri } from '@kiltprotocol/sdk-js';
+
 import styles from './DidSection.module.css';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 
 interface Props {
-  did: string;
+  did?: DidUri;
 }
 
 export const DidSection = (props: Props) => {
@@ -15,7 +17,6 @@ export const DidSection = (props: Props) => {
 
   useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
 
-  if (props.did === '') return null;
   return (
     <div className={styles.container}>
       <div className={styles.titleWrapper}>
@@ -34,7 +35,7 @@ export const DidSection = (props: Props) => {
       </div>
       <div className={styles.wrapper}>
         <span className={styles.text}>{props.did}</span>
-        <CopyToClipboard text={props.did} />
+        {props.did && <CopyToClipboard text={props.did} />}
       </div>
     </div>
   );

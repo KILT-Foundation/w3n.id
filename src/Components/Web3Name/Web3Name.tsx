@@ -16,7 +16,7 @@ export const Web3Name = (props: Props) => {
       <span className={styles.title}>web3name</span>
 
       <div className={styles.wrapper}>
-        <span className={styles.text}>{props.web3Name}</span>
+        <span className={styles.text}>{`w3n:${props.web3Name}`}</span>
         <CopyToClipboard text={props.web3Name} />
       </div>
     </div>

@@ -1,87 +1,13 @@
 import styles from './ResultsErrors.module.css';
 
-const ClaimWeb3Name = ({ name }: { name: string }) => {
-  return (
-    <div>
-      <span className={styles.note}>Note</span>
-      <div className={styles.claimW3NSteps}>
-        <span className={styles.bottomMarginStep}>
-          No results found for {name}
-        </span>
-        <span className={styles.bottomMarginStep}>
-          Here’s how to claim your web3name
-        </span>
-        <span className={styles.step}>
-          - Download Sporran extension for{' '}
-          <a
-            className={styles.link}
-            href="https://chrome.google.com/webstore/detail/djdnajgjcbjhhbdblkegbcgodlkkfhcl"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Chrome
-          </a>{' '}
-          or{' '}
-          <a
-            className={styles.link}
-            href="https://addons.mozilla.org/firefox/addon/sporran/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Firefox
-          </a>
-        </span>
-        <span className={styles.step}>
-          -
-          <a
-            className={styles.link}
-            href="https://www.kilt.io/wp-content/uploads/2021/11/How-to-Set-Up-Sporran_22-Nov.pdf"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Generate a KILT Identity within Sporran
-          </a>
-        </span>
-        <span className={styles.step}>
-          - Upgrade to an{' '}
-          <a
-            className={styles.link}
-            href="https://www.trusted-entity.io/assets/pdf/w3n_Promo_On-Chain-DID.pdf"
-            target="_blank"
-            rel="noreferrer"
-          >
-            on-chain DID
-          </a>
-        </span>
-        <span className={styles.bottomMarginStep}>
-          - Claim web3name in Sporran
-        </span>
-        <span className={styles.step}>
-          For more details, follow our{' '}
-          <a
-            className={styles.link}
-            href="https://www.trusted-entity.io/assets/pdf/How_To_Guide_web3name_Promo.pdf"
-            target="_blank"
-            rel="noreferrer"
-          >
-            How-to guide
-          </a>
-        </span>
-      </div>
-    </div>
-  );
-};
-
-type GeneralError =
+export type SearchError =
   | 'max_limit'
   | 'invalid_chars'
   | 'min_limit'
   | 'invalid_kilt'
   | 'no_linked_account';
 
-export type SearchError = 'not_claimed' | GeneralError;
-
-const errorMessages: Record<GeneralError, string> = {
+const errorMessages: Record<SearchError, string> = {
   max_limit: 'Maximum 30 characters allowed',
   min_limit: 'Minimum characters length should be 3',
   invalid_chars: 'Invalid Characters',
@@ -101,14 +27,9 @@ const ErrorMessage = ({ message }: { message: string }) => {
 };
 
 interface Props {
-  name: string;
   error: SearchError;
 }
 
-export const ResultsErrors = ({ name, error }: Props) => {
-  return error === 'not_claimed' ? (
-    <ClaimWeb3Name name={name} />
-  ) : (
-    <ErrorMessage message={errorMessages[error]} />
-  );
+export const ResultsErrors = ({ error }: Props) => {
+  return <ErrorMessage message={errorMessages[error]} />;
 };

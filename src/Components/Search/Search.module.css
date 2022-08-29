@@ -159,10 +159,34 @@
   letter-spacing: 0.1px;
   line-height: 16px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
 
-.takenMode {
+.availableActiveMode {
+  position: absolute;
+  height: 35px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  background-color: var(--header-secondary);
+  box-shadow: -3px 6px 8px 0 rgb(var(--black-rgb) /25%);
+  top: 0;
+  right: 160px;
+  color: var(--header-text);
+  z-index: 10;
+}
+
+.availableInactiveMode {
+  composes: availableActiveMode;
+  background-color: rgb(107 111 105 / 50%);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.takenActiveMode {
   position: absolute;
   height: 35px;
   width: 180px;
@@ -179,21 +203,11 @@
   z-index: 10;
 }
 
-.availableMode {
-  position: absolute;
-  height: 35px;
-  width: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom-left-radius: 13px;
-  border-bottom-right-radius: 13px;
+.takenInactiveMode {
+  composes: takenActiveMode;
   background-color: rgb(107 111 105 / 50%);
-  box-shadow: -3px 6px 8px 0 rgb(var(--black-rgb) /25%);
   opacity: 0.5;
-  top: 0;
-  right: 160px;
-  color: var(--header-text);
+  z-index: 0;
 }
 
 .modal {
