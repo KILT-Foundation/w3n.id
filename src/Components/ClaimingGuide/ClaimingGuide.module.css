@@ -61,6 +61,7 @@
   letter-spacing: 0.11px;
   line-height: 17px;
   margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 .extensionWrapper {
@@ -68,6 +69,7 @@
   margin-left: 20px;
   width: 90%;
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .linkToGuide {
@@ -131,15 +133,20 @@
 }
 
 .list > li {
-  text-indent: 2px;
   margin-bottom: 10px;
+  padding-left: 8px;
 }
 
 .numberedList {
-  margin-left: 10px;
   list-style: decimal;
 }
 
 .numberedList > li {
+  margin-bottom: 10px;
+  padding-left: 3px;
+}
+
+.onchainGuide {
+  composes: guide;
   margin-bottom: 10px;
 }

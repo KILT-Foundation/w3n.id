@@ -166,9 +166,8 @@ const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
           </button>
         )}
         {credential && !error && <CredentialDetails credential={credential} />}
+        {error && <CredentialErrors error={error} />}
       </div>
-
-      {error && <CredentialErrors error={error} />}
     </div>
   );
 };
