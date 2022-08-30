@@ -1,6 +1,6 @@
 import styles from './CredentialErrors.module.css';
 
-import { ReactComponent as AlertIcon } from '../../ImageAssets/iconAttention_red.svg';
+import { ReactComponent as AlertIcon } from '../../ImageAssets/not_ok_light.svg';
 
 interface ICredentialErrors {
   error: string | null;
