@@ -16,5 +16,6 @@ declare const styles: {
   readonly linkTextBig: string;
   readonly list: string;
   readonly numberedList: string;
+  readonly onchainGuide: string;
 };
 export = styles;

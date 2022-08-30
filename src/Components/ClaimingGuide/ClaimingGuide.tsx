@@ -16,7 +16,7 @@ export const OnChainDidGuide = () => {
       </button>
       {isExpanded && (
         <div className={styles.windowContents}>
-          <p className={styles.guide}>
+          <p className={styles.onchainGuide}>
             Your decentralized Identifier (DID) is a unique set of numbers and
             letters that represents your identity, like a digital fingerprint.
             When you upgrade to an on-chain DID, you can link multiple things to
@@ -34,16 +34,16 @@ export const OnChainDidGuide = () => {
             </li>
             <li>Communication endpoints, e.g., your website</li>
           </ul>
-          <p className={styles.guide}>
+          <p className={styles.onchainGuide}>
             Upgrading to an on-chain DID requires a deposit of 2 KILT and a
             small transaction fee (around 0.0045 KILT).
           </p>
-          <p className={styles.guide}>To upgrade to an on-chain DID:</p>
+          <p className={styles.onchainGuide}>To upgrade to an on-chain DID:</p>
           <ol className={styles.numberedList}>
             <li>Open your Sporran extension</li>
             <li>Click “Upgrade to on-chain DID”</li>
           </ol>
-          <p className={styles.guide}>
+          <p className={styles.onchainGuide}>
             <a
               className={styles.linkToGuide}
               href="https://www.trusted-entity.io/assets/pdf/Upgrading-to-on-chain-DID.pdf"
