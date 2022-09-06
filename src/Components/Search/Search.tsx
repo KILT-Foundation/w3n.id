@@ -73,10 +73,12 @@ interface UnclaimedProps {
 }
 
 function Unclaimed({ web3name }: UnclaimedProps) {
+  const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
   return (
     <Fragment>
       <ClaimW3Name web3name={web3name} />
-      <ClaimingGuide />
+
+      {!maintenanceMode && <ClaimingGuide />}
     </Fragment>
   );
 }
@@ -92,6 +94,7 @@ export const Search = () => {
   const [error, setError] = useState<SearchError>();
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
+  const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 
   useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
 
@@ -298,7 +301,7 @@ export const Search = () => {
             isClaimed={isClaimed}
           />
         )}
-        <LinkingInfo />
+        {!maintenanceMode && <LinkingInfo />}
       </section>
     </Fragment>
   );
