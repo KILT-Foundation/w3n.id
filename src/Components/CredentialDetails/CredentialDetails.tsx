@@ -1,8 +1,10 @@
 import { IClaimContents } from '@kiltprotocol/sdk-js';
 
-import styles from '../CredentialDetails/CredentialDetails.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import OkIcon from 'jsx:../../ImageAssets/icon_oK.svg';
 
-import { ReactComponent as OkIcon } from '../../ImageAssets/ok_light.svg';
+import * as styles from '../CredentialDetails/CredentialDetails.module.css';
+
 import { stringStartsWithW3 } from '../../Utils/w3n-helpers';
 
 interface Props {

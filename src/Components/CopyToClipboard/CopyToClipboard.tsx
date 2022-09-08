@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import styles from './CopyToClipboard.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import Copied from 'jsx:../../ImageAssets/copied.svg';
+import Copy from 'jsx:../../ImageAssets/copy2clipboard_light.svg';
 
-import { ReactComponent as Copied } from '../../ImageAssets/copied.svg';
-import { ReactComponent as Copy } from '../../ImageAssets/copy2clipboard_light.svg';
+import * as styles from './CopyToClipboard.module.css';
 
 interface CopyText {
   text: string;

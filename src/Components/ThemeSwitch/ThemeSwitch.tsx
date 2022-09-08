@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import styles from './ThemeSwitch.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import DarkModeSwitch from 'jsx:../../ImageAssets/switch2dark.svg';
+import LightModeSwitch from 'jsx:../../ImageAssets/switch2light.svg';
 
-import { ReactComponent as DarkModeSwitch } from '../../ImageAssets/switch2dark.svg';
-import { ReactComponent as LightModeSwitch } from '../../ImageAssets/switch2light.svg';
+import * as styles from './ThemeSwitch.module.css';
 
 import { useTheme } from '../../Theme/useTheme';
 

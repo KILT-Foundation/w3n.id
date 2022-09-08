@@ -2,11 +2,11 @@
   "name": "w3n.id",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "parcel --open",
+    "build": "parcel build",
+    "check": "tsc --noEmit",
     "lint": "yarn run lint-css && yarn run lint-js",
     "lint-js": "eslint --max-warnings 0 --config ./.eslintrc.json \"src/**/*.ts*\"",
     "lint-css": "stylelint --fix \"src/**/*.css\"",
@@ -14,36 +14,30 @@
     "prettify": "prettier --write \"src/**/*.ts*\""
   },
   "dependencies": {
-    "@craco/craco": "^6.4.3",
     "@kiltprotocol/sdk-js": "0.28.1",
     "@polkadot/api": "^8.14.1",
     "@polkadot/extension-dapp": "0.44.2",
     "@polkadot/util-crypto": "^10.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "6",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "6"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.26",
+    "@parcel/transformer-svg-react": "^2.7.0",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
-    "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
     "@typescript-eslint/parser": "^5.30.4",
     "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "events": "^3.3.0",
+    "parcel": "^2.7.0",
+    "postcss": "^8.4.16",
     "prettier": "2.6.0",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
@@ -51,7 +45,7 @@
     "stylelint-config-css-modules": "^4.1.0",
     "stylelint-config-standard": "^26.0.0",
     "typed-css-modules": "^0.7.2",
-    "typescript": "^4.6.2",
+    "typescript": "^4.7.4",
     "typescript-plugin-css-modules": "^3.4.0"
   },
   "browserslist": {
@@ -68,5 +62,12 @@
   },
   "resolutions": {
     "@polkadot/extension-inject": "0.44.2"
+  },
+  "targets": {
+    "default": {
+      "source": "src/index.html",
+      "distDir": "build",
+      "context": "browser"
+    }
   }
 }

@@ -1,4 +1,4 @@
-import styles from './Web3Name.module.css';
+import * as styles from './Web3Name.module.css';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 

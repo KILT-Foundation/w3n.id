@@ -10,10 +10,14 @@ import {
   DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js';
 
-import styles from './ServiceEndpoint.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import Chevron from 'jsx:../../ImageAssets/chevron_down_white.svg';
+
+import Loader from 'jsx:../../ImageAssets/oval.svg';
+
+import * as styles from './ServiceEndpoint.module.css';
 
 import { validateCredential } from '../../Utils/w3n-helpers';
-import { ReactComponent as Loader } from '../../ImageAssets/oval.svg';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
@@ -69,8 +73,8 @@ interface Props {
   did?: DidUri;
 }
 
-const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
-  const [fetching, setFetching] = useState(false);
+export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
+  const [fetching, setFetching] = useState(true);
 
   const [credential, setCredential] = useState<{
     contents: IClaimContents;
@@ -155,7 +159,7 @@ const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
 
         {!credential && !error && (
           <button className={styles.button} onClick={handleFetch}>
-            {fetching && <Loader className={styles.loader} />}
+            {fetching && <img src={Loader} className={styles.loader} />}
             Fetch
           </button>
         )}

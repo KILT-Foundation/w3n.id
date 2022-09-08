@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import styles from './App.module.css';
+import * as styles from './App.module.css';
 
 import { Footer } from '../Footer/Footer';
 import { Terms } from '../Terms/Terms';

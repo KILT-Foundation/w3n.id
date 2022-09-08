@@ -1,6 +1,7 @@
-import styles from './CredentialErrors.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import AlertIcon from 'jsx:../../ImageAssets/iconAttention_red.svg';
 
-import { ReactComponent as AlertIcon } from '../../ImageAssets/not_ok_light.svg';
+import * as styles from './CredentialErrors.module.css';
 
 interface ICredentialErrors {
   error: string | null;

@@ -1,6 +1,10 @@
-import styles from './Header.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import Logo from 'jsx:../../ImageAssets/w3n_logo.svg';
+import Chevron from 'jsx:../../ImageAssets/chevron_down_white.svg';
 
-import { ReactComponent as Logo } from '../../ImageAssets/w3n_logo.svg';
+import * as styles from './Header.module.css';
+
+import { TakeTour } from '../TakeTour/TakeTour';
 
 import { ThemeSwitch } from '../ThemeSwitch/ThemeSwitch';
 
