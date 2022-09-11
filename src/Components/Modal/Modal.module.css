@@ -16,7 +16,7 @@
   max-width: 380px;
   width: 80%;
   background-color: var(--contents);
-  box-shadow: 0 6px 8px 0 rgb(var(--color-shadow-rgb/25%));
+  box-shadow: 0 6px 8px 0 rgb(var(--color-shadow-rgb) / 25%);
   border: 1px solid var(--header-secondary);
   border-radius: 12px;
   display: flex;
@@ -71,8 +71,8 @@
 }
 
 .btn:disabled {
-  color: rgb(var(--modal-btn-disabled-rgb) /50%);
-  border: 3px solid rgb(var(--modal-btn-disabled-rgb) /50%);
+  color: rgb(var(--modal-btn-disabled-rgb) / 50%);
+  border: 3px solid rgb(var(--modal-btn-disabled-rgb) / 50%);
   cursor: none;
 }
 
@@ -86,17 +86,17 @@
 }
 
 .successIcon {
-  background: url('../../ImageAssets/ok_light.svg') no-repeat center/100%;
+  background: url('../../ImageAssets/ok.svg') no-repeat center/100%;
   height: 60px;
   width: 60px;
 }
 
 .errorIcon {
   composes: successIcon;
-  background-image: url('../../ImageAssets/not_ok_light.svg');
+  background-image: url('../../ImageAssets/not_ok.svg');
 }
 
 .spinner {
   composes: successIcon;
-  background-image: url('../../ImageAssets/loader.svg');
+  background-image: url('../../ImageAssets/loader_default.svg');
 }

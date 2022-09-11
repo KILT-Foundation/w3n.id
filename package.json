@@ -60,9 +60,6 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-    "@polkadot/extension-inject": "0.44.2"
-  },
   "targets": {
     "default": {
       "source": "src/index.html",

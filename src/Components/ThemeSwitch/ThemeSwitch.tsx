@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
-import DarkModeSwitch from 'jsx:../../ImageAssets/switch2dark.svg';
-import LightModeSwitch from 'jsx:../../ImageAssets/switch2light.svg';
-
 import * as styles from './ThemeSwitch.module.css';
 
 import { useTheme } from '../../Theme/useTheme';
@@ -42,11 +38,5 @@ export function ThemeSwitch() {
     }
   }, [setTheme]);
 
-  return (
-    <div className={styles.container}>
-      <div onClick={toggleTheme}>
-        {theme === 'light' ? <DarkModeSwitch /> : <LightModeSwitch />}
-      </div>
-    </div>
-  );
+  return <button onClick={toggleTheme} className={styles.switch}></button>;
 }

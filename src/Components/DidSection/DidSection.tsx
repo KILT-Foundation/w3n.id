@@ -1,3 +1,7 @@
+import { useRef, useState } from 'react';
+
+import { DidUri } from '@kiltprotocol/sdk-js';
+
 import * as styles from './DidSection.module.css';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';

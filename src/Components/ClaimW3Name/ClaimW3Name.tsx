@@ -4,7 +4,7 @@ import { web3FromAddress } from '@polkadot/extension-dapp';
 
 import { ChainHelpers } from '@kiltprotocol/sdk-js';
 
-import styles from './ClaimW3Name.module.css';
+import * as styles from './ClaimW3Name.module.css';
 
 import {
   getAccounts,

@@ -8,8 +8,8 @@ declare const styles: {
   readonly windowContents: string;
   readonly controlBtn: string;
   readonly guide: string;
-  readonly linkToGuide: string;
   readonly extensionWrapper: string;
+  readonly linkToGuide: string;
   readonly chromeExtension: string;
   readonly firefoxExtension: string;
   readonly linkTextSmall: string;

@@ -1,9 +1,8 @@
 import { IClaimContents } from '@kiltprotocol/sdk-js';
 
-/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
-import OkIcon from 'jsx:../../ImageAssets/icon_oK.svg';
-
 import * as styles from '../CredentialDetails/CredentialDetails.module.css';
+
+import ValidIcon from '../../ImageAssets/ok.svg';
 
 import { stringStartsWithW3 } from '../../Utils/w3n-helpers';
 
@@ -19,22 +18,23 @@ export const CredentialDetails = ({ credential }: Props) => {
   return (
     <div className={styles.credentialContainer}>
       {Object.keys(contents).map((key) => (
-        <div className={styles.container} key={key}>
-          <span className={styles.credentialTitle}>{key}</span>
-          <span className={styles.credentialSpan}>{contents[key]}</span>
-        </div>
+        <dl className={styles.container} key={key}>
+          <dt className={styles.credentialTitle}>{key}</dt>
+          <dd className={styles.credentialDescription}>{contents[key]}</dd>
+        </dl>
       ))}
-      <div className={styles.container}>
-        <span className={styles.credentialTitle}>
+      <dl className={styles.container}>
+        <dt className={styles.credentialTitle}>
           {stringStartsWithW3(attester) ? 'Attester' : 'Attester DID'}
-        </span>
-        <span className={styles.credentialSpan}>{attester}</span>
-      </div>
-      <div className={styles.container}>
-        <span className={styles.credentialTitle}>Valid</span>
-
-        <OkIcon className={styles.credentialSpan} />
-      </div>
+        </dt>
+        <dd className={styles.credentialDescription}>{attester}</dd>
+      </dl>
+      <dl className={styles.container}>
+        <dt className={styles.credentialTitle}>Valid</dt>
+        <dd className={styles.valid}>
+          <img src={ValidIcon} alt="valid" />
+        </dd>
+      </dl>
     </div>
   );
 };
