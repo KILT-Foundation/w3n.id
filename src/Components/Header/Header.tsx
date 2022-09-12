@@ -7,7 +7,7 @@ export const Header = () => {
     <header className={styles.header}>
       <ThemeSwitch />
 
-      <div className={styles.logoWrapper} />
+      <div className={styles.logo} />
 
       <div className={styles.headingTextContainer}>
         <span className={styles.text}>

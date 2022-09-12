@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.logoWrapper {
+.logo {
   display: flex;
   max-width: 740px;
   width: 90%;
@@ -18,7 +18,7 @@
   background: url('../../ImageAssets/w3n_logo_light.svg') no-repeat center left;
 }
 
-:global(html.dark) .logoWrapper {
+:global(html.dark) .logo {
   background: url('../../ImageAssets/w3n_logo_dark.svg') no-repeat center left;
 }
 
