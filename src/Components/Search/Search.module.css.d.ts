@@ -1,20 +1,14 @@
 declare const styles: {
-  readonly container: string;
   readonly search: string;
   readonly searchBar: string;
-  readonly infoTextAddress: string;
   readonly button: string;
-  readonly infoText: string;
   readonly input: string;
-  readonly results: string;
-  readonly didDocument: string;
-  readonly endpoints: string;
-  readonly title: string;
+  readonly infoText: string;
+  readonly infoTextAddress: string;
   readonly main: string;
+  readonly results: string;
   readonly mainResults: string;
-  readonly text: string;
-  readonly top: string;
-  readonly modal: string;
+  readonly title: string;
   readonly infoContainer: string;
   readonly infoBtn: string;
   readonly modeContainer: string;
@@ -22,5 +16,8 @@ declare const styles: {
   readonly availableInactiveMode: string;
   readonly takenActiveMode: string;
   readonly takenInactiveMode: string;
+  readonly modal: string;
+  readonly text: string;
+  readonly top: string;
 };
 export = styles;

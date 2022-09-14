@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import styles from './Privacy.module.css';
+import * as styles from './Privacy.module.css';
 
 export function Privacy() {
   return (

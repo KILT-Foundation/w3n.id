@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import styles from './Terms.module.css';
+import * as styles from './Terms.module.css';
 
 export function Terms() {
   return (

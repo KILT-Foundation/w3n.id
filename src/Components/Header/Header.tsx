@@ -1,6 +1,4 @@
-import styles from './Header.module.css';
-
-import { ReactComponent as Logo } from '../../ImageAssets/w3n_logo.svg';
+import * as styles from './Header.module.css';
 
 import { ThemeSwitch } from '../ThemeSwitch/ThemeSwitch';
 
@@ -9,9 +7,8 @@ export const Header = () => {
     <header className={styles.header}>
       <ThemeSwitch />
 
-      <div className={styles.logoWrapper}>
-        <Logo className={styles.logo} />
-      </div>
+      <div className={styles.logo} />
+
       <div className={styles.headingTextContainer}>
         <span className={styles.text}>
           Your go to place for everything about web3name

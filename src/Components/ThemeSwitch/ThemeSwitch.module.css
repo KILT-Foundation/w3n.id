@@ -1,11 +1,17 @@
-.container {
+.switch {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 20px;
+  width: 22px;
   position: absolute;
   right: 30px;
   top: 25px;
-  height: fit;
+  height: 22px;
   cursor: pointer;
+  background: url('../../ImageAssets/switch2dark.svg') no-repeat center;
+  border: none;
+}
+
+:global(html.dark) .switch {
+  background: url('../../ImageAssets/switch2light.svg') no-repeat center;
 }

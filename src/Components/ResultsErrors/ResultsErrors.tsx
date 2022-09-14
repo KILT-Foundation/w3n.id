@@ -1,4 +1,4 @@
-import styles from './ResultsErrors.module.css';
+import * as styles from './ResultsErrors.module.css';
 
 export type SearchError =
   | 'max_limit'

@@ -10,10 +10,9 @@ import {
   DidServiceEndpoint,
 } from '@kiltprotocol/sdk-js';
 
-import styles from './ServiceEndpoint.module.css';
+import * as styles from './ServiceEndpoint.module.css';
 
 import { validateCredential } from '../../Utils/w3n-helpers';
-import { ReactComponent as Loader } from '../../ImageAssets/oval.svg';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
@@ -69,7 +68,7 @@ interface Props {
   did?: DidUri;
 }
 
-const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
+export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
   const [fetching, setFetching] = useState(false);
 
   const [credential, setCredential] = useState<{
@@ -155,7 +154,12 @@ const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
 
         {!credential && !error && (
           <button className={styles.button} onClick={handleFetch}>
-            {fetching && <Loader className={styles.loader} />}
+            {fetching && (
+              <span
+                className={styles.loader}
+                aria-label="Fetching credential details..."
+              />
+            )}
             Fetch
           </button>
         )}

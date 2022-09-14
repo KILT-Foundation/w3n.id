@@ -1,4 +1,4 @@
-import styles from './LinkingInfo.module.css';
+import * as styles from './LinkingInfo.module.css';
 
 export const LinkingInfo = () => {
   return (
