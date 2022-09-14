@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import styles from './CopyToClipboard.module.css';
-
-import { ReactComponent as Copied } from '../../ImageAssets/copied.svg';
-import { ReactComponent as Copy } from '../../ImageAssets/copy2clipboard_light.svg';
+import * as styles from './CopyToClipboard.module.css';
 
 interface CopyText {
   text: string;
@@ -26,12 +23,10 @@ export const CopyToClipboard = (props: CopyText) => {
   }, [copied]);
 
   return (
-    <div className={styles.container}>
-      {copied ? (
-        <Copied className={styles.copied} />
-      ) : (
-        <Copy className={styles.copy} onClick={() => handleCopy()} />
-      )}
-    </div>
+    <button
+      disabled={copied}
+      className={styles.copy}
+      onClick={() => handleCopy()}
+    ></button>
   );
 };

@@ -1,6 +1,7 @@
-import styles from './CredentialErrors.module.css';
+/*eslint import/no-unresolved: [2, { ignore: ['^jsx'] }]*/
+import * as styles from './CredentialErrors.module.css';
 
-import { ReactComponent as AlertIcon } from '../../ImageAssets/not_ok_light.svg';
+import AlertIcon from '../../ImageAssets/not_ok.svg';
 
 interface ICredentialErrors {
   error: string | null;
@@ -9,17 +10,17 @@ interface ICredentialErrors {
 export const CredentialErrors = (props: ICredentialErrors) => {
   return (
     <div className={styles.credentialContainer}>
-      <div className={styles.container}>
-        <span className={styles.credentialTitle}>Error</span>
-        <span className={styles.credentialSpan}>{props.error}</span>
-      </div>
+      <dl className={styles.container}>
+        <dt className={styles.credentialTitle}>Error</dt>
+        <dd className={styles.credentialDescription}>{props.error}</dd>
+      </dl>
 
-      <div className={styles.container}>
-        <span className={styles.credentialTitle}>Valid</span>
-        <span className={styles.credentialSpan}>
-          <AlertIcon />
-        </span>
-      </div>
+      <dl className={styles.container}>
+        <dt className={styles.credentialTitle}>Valid</dt>
+        <dd className={styles.credentialDescription}>
+          <img src={AlertIcon} alt="invalid" />
+        </dd>
+      </dl>
     </div>
   );
 };

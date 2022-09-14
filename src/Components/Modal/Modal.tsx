@@ -1,6 +1,6 @@
 import { Fragment, MouseEventHandler } from 'react';
 
-import styles from './Modal.module.css';
+import * as styles from './Modal.module.css';
 
 interface ErrorContentsProps {
   onClose: MouseEventHandler;

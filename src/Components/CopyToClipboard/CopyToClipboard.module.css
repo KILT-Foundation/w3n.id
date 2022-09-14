@@ -1,16 +1,28 @@
-.container {
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-}
-
 .copy {
-  fill: var(--web3-name);
   cursor: pointer;
+  background:
+    url('../../ImageAssets/copy2clipboard_light.svg') no-repeat
+    center/contain;
+  width: 16px;
+  height: 16px;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
 }
 
-.copied {
-  stroke: var(--web3-name);
+.copy:disabled {
+  background: url('../../ImageAssets/copied_light.svg') no-repeat center/100%;
   width: 22px;
   height: 22px;
+  cursor: auto;
+}
+
+:global(html.dark) .copy {
+  background:
+    url('../../ImageAssets/copy2clipboard_dark.svg') no-repeat
+    cemter/100%;
+}
+
+:global(html.dark) .copy:disabled {
+  background: url('../../ImageAssets/copied_dark.svg') no-repeat center/100%;
 }

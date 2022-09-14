@@ -71,12 +71,17 @@
 }
 
 .loader {
-  stroke: var(--text);
   position: absolute;
   left: 10px;
-  top: 5px;
+  top: 50%;
+  transform: translateY(-50%);
   height: 13px;
   width: 20px;
+  background: url('../../ImageAssets/loader_light.svg') no-repeat center/contain;
+}
+
+:global(html.dark) .loader {
+  background: url('../../ImageAssets/loader_dark.svg') no-repeat center/contain;
 }
 
 .seperator {

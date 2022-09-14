@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 
 import { DidUri } from '@kiltprotocol/sdk-js';
 
-import styles from './DidSection.module.css';
+import * as styles from './DidSection.module.css';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';

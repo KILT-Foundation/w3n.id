@@ -1,6 +1,6 @@
 import { DidUri } from '@kiltprotocol/sdk-js';
 
-import styles from './VerificationMethod.module.css';
+import * as styles from './VerificationMethod.module.css';
 
 interface Props {
   did?: DidUri;

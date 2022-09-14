@@ -4,7 +4,7 @@ import { DidServiceEndpoint, DidUri, Did } from '@kiltprotocol/sdk-js';
 
 import { decodeAddress } from '@polkadot/util-crypto';
 
-import styles from './Search.module.css';
+import * as styles from './Search.module.css';
 
 import {
   getDidDocFromW3Name,

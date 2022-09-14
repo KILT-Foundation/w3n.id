@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import styles from './ClaimingGuide.module.css';
+import * as styles from './ClaimingGuide.module.css';
 
 export const OnChainDidGuide = () => {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="13px" height="8px" viewBox="0 0 13 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>close_triangle</title>
-    <g id="Version-2-dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Claim-3-(drop-down-open)" transform="translate(-785.000000, -761.000000)" fill="#F3F3F3">
-            <g id="Claim-it" transform="translate(350.000000, 378.500000)">
-                <g id="drop-down-Payer-Account" transform="translate(139.000000, 372.500000)">
-                    <polygon id="close_triangle" transform="translate(302.222222, 14.000000) scale(1, -1) rotate(-180.000000) translate(-302.222222, -14.000000) " points="302.222222 10 308.444444 18 296 18"></polygon>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="13" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M6.222 0 0 8h12.444z" fill="#F3F3F3" fill-rule="evenodd"/></svg>
