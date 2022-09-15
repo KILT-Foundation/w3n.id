@@ -66,3 +66,8 @@ export const replaceHistoryState = (shouldChangeUrl: boolean, name: string) => {
   const url = window.location.origin + '/' + name;
   if (shouldChangeUrl) window.history.replaceState({ path: url }, '', url);
 };
+
+export const getLinkedAccount = async (did: DidUri) =>
+  await Did.AccountLinks.queryConnectedAccountsForDid(
+    Did.Utils.getIdentifierFromKiltDid(did),
+  );
