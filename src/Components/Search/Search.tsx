@@ -145,6 +145,7 @@ export const Search = () => {
       try {
         if (Did.Utils.validateKiltDidUri(textFromSearch)) {
           await setDidDocumentFromDid(textFromSearch, shouldChangeUrl);
+          setIsClaimed(true);
           return;
         }
         // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
@@ -173,6 +174,7 @@ export const Search = () => {
         const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
 
         await setDidDocumentFromDid(did, shouldChangeUrl);
+        setIsClaimed(true);
         return;
 
         // throws if not a valid Kilt address, but could still be valid web3name
