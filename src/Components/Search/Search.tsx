@@ -14,6 +14,7 @@ import {
   getServiceEndpointsW3Name,
   replaceHistoryState,
   isSearchedTextDid,
+  getLinkedAccounts,
 } from '../../Utils/w3n-helpers';
 
 import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
@@ -25,15 +26,23 @@ import { LinkingInfo } from '../LinkingInfo/LinkingInfo';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 import { ClaimW3Name } from '../ClaimW3Name/ClaimW3Name';
 import { ClaimingGuide } from '../ClaimingGuide/ClaimingGuide';
+import { LinkedAccounts } from '../LinkedAccounts/LinkedAccounts';
 
 interface Props {
   did?: DidUri;
   web3name: string;
   serviceEndpoints: DidServiceEndpoint[];
   isClaimed: boolean;
+  linkedAccounts: string[];
 }
 
-function ResolvedData({ did, web3name, serviceEndpoints, isClaimed }: Props) {
+function ResolvedData({
+  did,
+  web3name,
+  serviceEndpoints,
+  isClaimed,
+  linkedAccounts,
+}: Props) {
   return (
     <div className={styles.results}>
       <div className={styles.modeContainer}>
@@ -61,6 +70,7 @@ function ResolvedData({ did, web3name, serviceEndpoints, isClaimed }: Props) {
           <DidSection did={did} />
           <Web3Name web3Name={web3name} />
           <EndpointSection did={did} serviceEndpoints={serviceEndpoints} />
+          <LinkedAccounts linkedAccounts={linkedAccounts} />
           <VerificationMethod did={did} />
         </Fragment>
       )}
@@ -93,6 +103,7 @@ export const Search = () => {
   const [w3Name, setW3Name] = useState<string>('');
   const [error, setError] = useState<SearchError>();
   const [showModal, setShowModal] = useState(false);
+  const [linkedAccounts, setLinkedAccounts] = useState<string[]>([]);
   const modalRef = useRef(null);
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 
@@ -118,7 +129,10 @@ export const Search = () => {
   ) => {
     try {
       const didDocInstance = await getServiceEndpointsW3Name(did);
+
+      setLinkedAccounts(await getLinkedAccounts(did));
       setDid(did);
+
       if (didDocInstance) {
         setServiceEndpoints(didDocInstance.endpoints);
       }
@@ -199,6 +213,8 @@ export const Search = () => {
             setServiceEndpoints(didDocumentInstance.endpoints);
             setDid(didDocumentInstance.did);
             setIsClaimed(true);
+            setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
+
             replaceHistoryState(shouldChangeUrl, name);
           } else {
             setIsClaimed(false);
@@ -218,6 +234,7 @@ export const Search = () => {
         setServiceEndpoints(didDocumentInstance.endpoints);
         setDid(didDocumentInstance.did);
         setIsClaimed(true);
+        setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
       } else {
         replaceHistoryState(shouldChangeUrl, textFromSearch);
         setIsClaimed(false);
@@ -301,6 +318,7 @@ export const Search = () => {
             web3name={w3Name}
             serviceEndpoints={serviceEndpoints}
             isClaimed={isClaimed}
+            linkedAccounts={linkedAccounts}
           />
         )}
         {!maintenanceMode && <LinkingInfo />}
