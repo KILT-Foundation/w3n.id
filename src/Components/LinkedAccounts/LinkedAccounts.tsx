@@ -23,9 +23,10 @@ export const LinkedAccounts = ({ linkedAccounts }: Props) => {
           {showModal && (
             <div className={styles.modal}>
               <p className={`${styles.modalText} ${styles.top}`} ref={modalRef}>
-                A DID (decentralized identifier) is a unique string of numbers
-                and letters that functions like a digital fingerprint. It forms
-                the core of a digital identity.
+                Linking your accounts with your on-chain DID & web3name is a
+                personal and recognizable way to represent yourself across the
+                Polkadot and (coming soon) Ethereum ecosystems. Any number of
+                your accounts may be linked.
               </p>
             </div>
           )}
