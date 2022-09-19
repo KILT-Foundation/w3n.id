@@ -14,7 +14,7 @@ import {
   getServiceEndpointsW3Name,
   replaceHistoryState,
   isSearchedTextDid,
-  getLinkedAccount,
+  getLinkedAccounts,
 } from '../../Utils/w3n-helpers';
 
 import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
@@ -129,9 +129,8 @@ export const Search = () => {
   ) => {
     try {
       const didDocInstance = await getServiceEndpointsW3Name(did);
-      const connectedAccounts = await getLinkedAccount(did);
 
-      setLinkedAccounts(connectedAccounts);
+      setLinkedAccounts(await getLinkedAccounts(did));
       setDid(did);
 
       if (didDocInstance) {
@@ -214,12 +213,8 @@ export const Search = () => {
             setServiceEndpoints(didDocumentInstance.endpoints);
             setDid(didDocumentInstance.did);
             setIsClaimed(true);
+            setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
 
-            const connectedAccounts = await getLinkedAccount(
-              didDocumentInstance.did,
-            );
-
-            setLinkedAccounts(connectedAccounts);
             replaceHistoryState(shouldChangeUrl, name);
           } else {
             setIsClaimed(false);
@@ -239,12 +234,7 @@ export const Search = () => {
         setServiceEndpoints(didDocumentInstance.endpoints);
         setDid(didDocumentInstance.did);
         setIsClaimed(true);
-
-        const connectedAccounts = await getLinkedAccount(
-          didDocumentInstance.did,
-        );
-
-        setLinkedAccounts(connectedAccounts);
+        setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
       } else {
         replaceHistoryState(shouldChangeUrl, textFromSearch);
         setIsClaimed(false);
