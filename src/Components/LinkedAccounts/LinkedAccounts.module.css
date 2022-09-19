@@ -1,0 +1,48 @@
+.container {
+  composes: container from '../DidSection/DidSection.module.css';
+}
+
+.title {
+  composes: title from '../DidSection/DidSection.module.css';
+}
+
+.text {
+  composes: text from '../DidSection/DidSection.module.css';
+}
+
+.wrapper {
+  composes: wrapper from '../DidSection/DidSection.module.css';
+  justify-content: space-between;
+}
+
+.accountsContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  width: 80%;
+  gap: 5px;
+}
+
+.infoBtn {
+  composes: infoBtn from '../Search/Search.module.css';
+  height: 20px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 60px;
+}
+
+.modal {
+  composes: modal from '../DidSection/DidSection.module.css';
+}
+
+.modalText {
+  composes: modalText from '../DidSection/DidSection.module.css';
+}
+
+.top {
+  composes: top from '../Search/Search.module.css';
+}
