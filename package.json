@@ -14,7 +14,7 @@
     "prettify": "prettier --write \"src/**/*.ts*\""
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.28.1",
+    "@kiltprotocol/sdk-js": "0.28.2",
     "@polkadot/api": "^8.14.1",
     "@polkadot/extension-dapp": "0.44.2",
     "@polkadot/util-crypto": "^10.1.6",
