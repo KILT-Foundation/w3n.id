@@ -1,17 +1,24 @@
 declare const styles: {
+  readonly endpointWrapper: string;
   readonly type: string;
   readonly endpoint: string;
+  readonly fetched: string;
   readonly urlContainer: string;
+  readonly fetchedUrlContainer: string;
   readonly url: string;
   readonly button: string;
+  readonly fetch: string;
+  readonly close: string;
   readonly loader: string;
+  readonly rotation: string;
   readonly seperator: string;
   readonly didDocument: string;
+  readonly wrapper: string;
   readonly endpoints: string;
+  readonly text: string;
   readonly title: string;
   readonly titleWrapper: string;
   readonly infoBtn: string;
-  readonly endpointWrapper: string;
   readonly modalText: string;
   readonly top: string;
   readonly modal: string;

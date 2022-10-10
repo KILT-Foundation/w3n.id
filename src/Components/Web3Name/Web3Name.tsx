@@ -3,22 +3,33 @@ import * as styles from './Web3Name.module.css';
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 
 interface Props {
-  web3Name: string;
+  web3Name?: string;
+  error?: 'no web3name yet' | '-';
 }
 
-export const Web3Name = (props: Props) => {
-  if (props.web3Name === '') {
-    return null;
-  }
-
+export const Web3Name = ({ web3Name, error }: Props) => {
   return (
     <div className={styles.container}>
       <span className={styles.title}>web3name</span>
 
-      <div className={styles.wrapper}>
-        <span className={styles.text}>{`w3n:${props.web3Name}`}</span>
-        <CopyToClipboard text={props.web3Name} />
-      </div>
+      {web3Name && (
+        <div className={styles.wrapper}>
+          <span className={styles.text}>{`w3n:${web3Name}`}</span>
+          <CopyToClipboard text={web3Name} />
+        </div>
+      )}
+
+      {error && (
+        <div className={styles.wrapper}>
+          <span
+            className={
+              error === 'no web3name yet' ? styles.italic : styles.error
+            }
+          >
+            {error}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

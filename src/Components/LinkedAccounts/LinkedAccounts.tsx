@@ -6,10 +6,11 @@ import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 
 interface Props {
-  linkedAccounts: string[];
+  linkedAccounts?: string[];
+  error?: string;
 }
 
-export const LinkedAccounts = ({ linkedAccounts }: Props) => {
+export const LinkedAccounts = ({ linkedAccounts, error }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -32,15 +33,19 @@ export const LinkedAccounts = ({ linkedAccounts }: Props) => {
           )}
         </button>
       </div>
-      <div className={styles.accountsContainer}>
-        {linkedAccounts.map((account) => (
-          <div className={styles.wrapper} key={account}>
-            <span className={styles.text}>{account}</span>
-            <CopyToClipboard text={account} />
-          </div>
-        ))}
-      </div>
-      {linkedAccounts.length === 0 && <span className={styles.text}>-</span>}
+
+      {linkedAccounts?.length && (
+        <div className={styles.accountsContainer}>
+          {linkedAccounts.map((account) => (
+            <div className={styles.wrapper} key={account}>
+              <span className={styles.text}>{account}</span>
+              <CopyToClipboard text={account} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {error && <span className={styles.text}>{error}</span>}
     </div>
   );
 };

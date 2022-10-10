@@ -75,12 +75,12 @@ function ClaimingSection({ web3name }: ClaimingProps) {
         </button>
         {isExpanded && (
           <div className={styles.claimContents}>
-            <p className={styles.stepHeading}>
+            <p className={styles.topText}>
               Follow these steps to claim your name:
             </p>
-            <ol type="1" className={styles.list}>
-              <li className={styles.steps}>
-                Click “Connect to wallet”
+            <ol type="1" className={styles.steps}>
+              <li className={styles.step}>
+                <p>Click “Connect to wallet”</p>
                 <button
                   type="button"
                   className={styles.btn}
@@ -89,11 +89,13 @@ function ClaimingSection({ web3name }: ClaimingProps) {
                   Connect to wallet
                 </button>
               </li>
-              <li className={styles.steps}>
-                This triggers pop-ups to request access to your Polkadot-enabled
-                extensions, including Sporran.
+              <li className={styles.step}>
+                <p>
+                  This triggers pop-ups to request access to your
+                  Polkadot-enabled extensions, including Sporran.
+                </p>
               </li>
-              <li className={styles.steps}>
+              <li className={styles.selectAccount}>
                 <p>Click “Allow access” on each wallet</p>
                 <p>
                   Choose the account address you wish to pay the transaction
@@ -109,7 +111,8 @@ function ClaimingSection({ web3name }: ClaimingProps) {
                 >
                   {selectedAccount ? (
                     <span className={styles.selectText}>
-                      {selectedAccount.meta.name} {selectedAccount.meta.source}
+                      {selectedAccount.meta.name} ({selectedAccount.meta.source}
+                      )
                     </span>
                   ) : (
                     <span className={styles.selectText}>
@@ -118,10 +121,10 @@ function ClaimingSection({ web3name }: ClaimingProps) {
                   )}
 
                   {showOptions && (
-                    <ul className={styles.optionsContainer}>
+                    <ul className={styles.options}>
                       {filteredAccounts.map((account) => (
                         <li
-                          className={styles.options}
+                          className={styles.option}
                           key={account.address}
                           onClick={() => setSelectedAccount(account)}
                         >
@@ -134,7 +137,7 @@ function ClaimingSection({ web3name }: ClaimingProps) {
                   )}
                 </div>
               </li>
-              <li className={styles.steps}>
+              <li className={styles.step}>
                 <p>Click “CLAIM NOW”</p>
                 <p>
                   This opens up Sporran. Select the DID you want to connect to
@@ -154,8 +157,8 @@ function ClaimingSection({ web3name }: ClaimingProps) {
                 onSuccess={() => window.location.reload()}
                 web3name={web3name}
               />
-              <span className={styles.steps}>That’s it </span>
             </ol>
+            <p className={styles.bottomText}>That’s it!</p>
           </div>
         )}
       </div>

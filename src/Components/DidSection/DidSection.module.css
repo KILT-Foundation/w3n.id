@@ -1,80 +1,46 @@
 .container {
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
+  composes: container from '../Results/Results.module.css';
   align-items: center;
-  height: fit-content;
-  margin-top: 20px;
-  gap: 10px;
 }
 
 .title {
-  width: 80px;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.11px;
-  line-height: 17px;
-  height: 31px;
-  display: flex;
-  align-items: center;
+  composes: title from '../Results/Results.module.css';
 }
 
 .text {
-  display: flex;
-  word-break: break-all;
-  font-size: 16px;
-  letter-spacing: 0.1px;
-  line-height: 22px;
+  composes: text from '../Results/Results.module.css';
+}
+
+.error {
+  composes: text;
+  padding-right: 24px;
+  font-style: italic;
+  font-weight: bold;
+  background: url('../../ImageAssets/attention.svg') no-repeat right;
 }
 
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
+  composes: wrapper from '../Results/Results.module.css';
   align-items: center;
-  min-width: 250px;
-  gap: 7px;
 }
 
 .infoBtn {
-  composes: infoBtn from '../Search/Search.module.css';
-  height: 20px;
+  composes: infoBtn from '../Results/Results.module.css';
 }
 
 .titleWrapper {
-  display: flex;
+  composes: titleWrapper from '../Results/Results.module.css';
   align-items: center;
-  gap: 10px;
-  min-width: 60px;
 }
 
 .modal {
-  composes: modal from '../Search/Search.module.css';
-  left: -16px;
-  top: 20px;
+  composes: modal from '../Results/Results.module.css';
 }
 
 .modalText {
-  composes: text from '../Search/Search.module.css';
+  composes: modalText from '../Results/Results.module.css';
 }
 
-.modalText::after {
-  right: 17px;
-}
-
-/* Variant : top
-  ------------------------------------------ */
 .top {
-  composes: top from '../Search/Search.module.css';
-}
-
-/* creates the larger triangle */
-.modalText.top::before {
-  left: 10px;
-  right: auto;
-}
-
-/* creates the smaller  triangle */
-.modalText.top::after {
-  left: 11px;
-  right: auto;
+  composes: top from '../Results/Results.module.css';
 }

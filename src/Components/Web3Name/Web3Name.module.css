@@ -1,21 +1,30 @@
 .container {
-  composes: container from '../DidSection/DidSection.module.css';
-  margin-top: 50px;
+  composes: container from '../Results/Results.module.css';
 }
 
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
-  display: flex;
+  composes: title from '../Results/Results.module.css';
   min-width: 105px;
+  align-self: center;
+}
+
+.wrapper {
+  composes: wrapper from '../Results/Results.module.css';
+  align-items: center;
 }
 
 .text {
-  composes: text from '../DidSection/DidSection.module.css';
+  composes: text from '../Results/Results.module.css';
   font-size: 24px;
   letter-spacing: 0.17px;
   line-height: 26px;
 }
 
-.wrapper {
-  composes: wrapper from '../DidSection/DidSection.module.css';
+.italic {
+  composes: text;
+  font-style: italic;
+}
+
+.error {
+  composes: text from '../Results/Results.module.css';
 }

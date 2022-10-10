@@ -63,12 +63,16 @@ function ResolvedData({
           Taken
         </label>
       </div>
+
       {!isClaimed ? (
-        <Unclaimed web3name={web3name} />
+        <Fragment>
+          <Web3Name web3Name={web3name} />
+          <Unclaimed web3name={web3name} />
+        </Fragment>
       ) : (
         <Fragment>
-          <DidSection did={did} />
           <Web3Name web3Name={web3name} />
+          <DidSection did={did} />
           <EndpointSection did={did} serviceEndpoints={serviceEndpoints} />
           <LinkedAccounts linkedAccounts={linkedAccounts} />
           <VerificationMethod did={did} />
@@ -140,7 +144,7 @@ export const Search = () => {
         setW3Name(didDocInstance.web3name);
         replaceHistoryState(shouldChangeUrl, didDocInstance.web3name);
       } else {
-        setW3Name('no web3name yet');
+        setError('no_web3name_for_did');
       }
     } catch {
       setError('invalid_kilt');
@@ -244,12 +248,13 @@ export const Search = () => {
   );
 
   const handleSearch = async () => {
-    if (searchedText.length < 3) {
+    if (!searchedText) {
       return;
     }
     setError(undefined);
     if (did) {
       setServiceEndpoints([]);
+      setLinkedAccounts([]);
       setDid(undefined);
       setW3Name('');
     }
@@ -267,7 +272,7 @@ export const Search = () => {
     }
   }, [resolveDidDocument]);
   return (
-    <Fragment>
+    <main className={styles.container}>
       <div className={styles.search}>
         <p className={styles.infoText}>
           Find an available web3name to <b>claim</b>, or <b>look up</b> an
@@ -309,10 +314,9 @@ export const Search = () => {
           </button>
         </div>
       </div>
-      {error && <ResultsErrors error={error} />}
 
-      <section className={did ? styles.mainResults : styles.main}>
-        {w3Name && (
+      <section className={styles.main}>
+        {w3Name && !error && (
           <ResolvedData
             did={did}
             web3name={w3Name}
@@ -321,8 +325,11 @@ export const Search = () => {
             linkedAccounts={linkedAccounts}
           />
         )}
+
+        {error && <ResultsErrors error={error} did={did} />}
+
         {!maintenanceMode && <LinkingInfo />}
       </section>
-    </Fragment>
+    </main>
   );
 };

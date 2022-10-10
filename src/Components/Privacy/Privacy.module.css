@@ -1,13 +1,28 @@
+.container {
+  composes: container from '../View/View.module.css';
+}
+
 .headingContainer {
-  composes: headingContainer from '../Terms/Terms.module.css';
+  composes: headingContainer from '../View/View.module.css';
+  height: 80px;
 }
 
 .privacyHeading {
-  composes: termsHeading from '../Terms/Terms.module.css';
+  composes: headingContent from '../View/View.module.css';
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.17px;
 }
 
-.textContainer {
-  composes: textContainer from '../Terms/Terms.module.css';
+.privacyContainer {
+  composes: mainContainer from '../View/View.module.css';
+}
+
+.privacy {
+  composes: mainContent from '../View/View.module.css';
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 16px;
 }
 
 li::marker {

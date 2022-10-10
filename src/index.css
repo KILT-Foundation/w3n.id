@@ -4,19 +4,7 @@
 }
 
 :root {
-  font-family:
-    Overpass,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: Overpass, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,8 +16,7 @@ body {
 html {
   --body: #fff;
   --web3-name: #2d8b00;
-  --search-background: #eaeaea;
-  --search-btn: #df8601;
+  --main-heading-background: #eaeaea;
   --header-secondary: #2d8b00;
   --header-bottom: #d8d8d8;
   --search-bar: #d8d8d8;
@@ -48,18 +35,31 @@ html {
   --gradient-2-3-rgb: 13 13 13;
   --modal-bg: var(--header-text);
   --black-rgb: 0 0 0;
-  --fetch-btn: var(--header-text);
+  --fetch-button: #f3f3f3;
+  --fetch-button-text: #2d8b00;
+  --fetch-button-border-disabled-rgb: 223 134 1;
+  --fetch-button-text-disabled-rgb: 45 139 0;
   --light-green: #678956;
   --extension-border-rgb: var(--black-rgb);
   --contents: #f3f3f3;
   --modal-btn-disabled-rgb: 223 134 1;
+  --footer: #f3f3f3;
+  --inactive-tab: #eaeaea;
+  --inactive-text: #c7c7c7;
+  --button-primary-background: #f3f3f3;
+  --button-primary-border: #df8601;
+  --button-primary-text: #df8601;
+  --select: #df8601;
+  --select-text: #fff;
+  --options-background: #f3f3f3;
+  --modal-background: #f3f3f3;
+  --modal-border: #3dc000;
 }
 
 html.dark {
   --body: #000;
   --web3-name: #47e000;
-  --search-background: #242424;
-  --search-btn: #df8601;
+  --main-heading-background: #242424;
   --header-secondary: #256606;
   --header-bottom: #454545;
   --search-bar: #d8d8d8;
@@ -69,8 +69,17 @@ html.dark {
   --link-disabled-rgb: 255 255 255;
   --footer: #181818;
   --modal-bg: #14280b;
-  --fetch-btn: #2d1f0b;
+  --fetch-button: #2d1f0b;
+  --fetch-button-text: #f3f3f3;
+  --fetch-button-text-disabled-rgb: 223 134 1;
   --extension-border-rgb: 255 255 255;
   --contents: #0d0d0d;
   --light-green: #3a5530;
+  --inactive-tab: #6b6f69;
+  --inactive-text: #f3f3f3;
+  --button-primary-background: #2d1f0b;
+  --button-primary-text: #f3f3f3;
+  --select-text: #f3f3f3;
+  --options-background: #2d1f0b;
+  --modal-background: #14280b;
 }
