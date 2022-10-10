@@ -1,16 +1,16 @@
 .container {
-  composes: container from '../DidSection/DidSection.module.css';
+  composes: container from '../Results/Results.module.css';
   margin-top: 20px;
 }
 
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
+  composes: title from '../Results/Results.module.css';
   display: flex;
   min-width: 105px;
 }
 
 .text {
-  composes: text from '../DidSection/DidSection.module.css';
+  composes: text from '../Results/Results.module.css';
   word-break: normal;
 }
 
@@ -26,4 +26,5 @@
   width: 80%;
   color: var(--web3-name);
   word-break: break-all;
+  text-decoration: none;
 }

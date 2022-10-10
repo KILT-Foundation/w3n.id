@@ -1,10 +1,10 @@
 .container {
-  composes: container from '../DidSection/DidSection.module.css';
+  composes: container from '../Results/Results.module.css';
   margin-top: 20px;
 }
 
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
+  composes: title from '../Results/Results.module.css';
   display: flex;
   min-width: 105px;
   align-self: start;
@@ -12,11 +12,24 @@
 }
 
 .text {
-  composes: text from '../DidSection/DidSection.module.css';
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.11px;
+  line-height: 17px;
+}
+
+.topText {
+  composes: text;
+  margin: 0;
+}
+
+.bottomText {
+  composes: text;
+  margin: 44px 0 0;
 }
 
 .wrapper {
-  composes: wrapper from '../DidSection/DidSection.module.css';
+  composes: wrapper from '../Results/Results.module.css';
   width: 620px;
   flex-direction: column;
   align-items: flex-start;
@@ -24,7 +37,7 @@
 }
 
 .claimContainer {
-  composes: endpointWrapper from '../ServiceEndpoint/ServiceEndpoint.module.css';
+  composes: cardContainer from '../Card/Card.module.css';
   width: 100%;
   position: relative;
   min-height: 36px;
@@ -33,46 +46,34 @@
 }
 
 .controlBtn {
-  composes: type from '../ServiceEndpoint/ServiceEndpoint.module.css';
-  color: white;
-  width: 95%;
-  border: none;
-  display: flex;
-  align-items: center;
-  height: 24px;
-  background: url('../../ImageAssets/open_chevron.svg') no-repeat center right 1%/20px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.controlBtn[aria-expanded='true'] {
-  background-image: url('../../ImageAssets/close_chevron.svg');
+  composes: expand from '../Card/Card.module.css';
 }
 
 .claimContents {
-  composes: endpoint from '../ServiceEndpoint/ServiceEndpoint.module.css';
-  min-height: 0;
-  flex-direction: column;
-  margin-top: 5px;
+  composes: cardContents from '../Card/Card.module.css';
 }
 
 .steps {
-  color: var(--text);
-  font-size: 16px;
-  letter-spacing: 0.11px;
-  line-height: 17px;
-  margin-bottom: 25px;
+  margin: 0;
+  padding-left: 16px;
 }
 
-.stepHeading {
-  composes: steps;
-  margin-top: 30px;
-  margin-left: 20px;
+.step {
+  composes: text;
 }
 
-.list {
-  margin-top: 10px;
-  width: 80%;
+.step::marker {
+  font-weight: normal;
+}
+
+.selectAccount {
+  composes: step;
+  margin-bottom: 64px;
+}
+
+.stepsHeading {
+  composes: step;
+  margin: 0;
 }
 
 .btn {
@@ -80,11 +81,10 @@
   height: 28px;
   max-width: 320px;
   width: 80%;
-  margin-top: 10px;
-  border: 3px solid var(--search-btn);
+  border: 3px solid var(--button-primary-border);
   border-radius: 15px;
-  background-color: var(--search-background);
-  color: var(--text);
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-text);
   font-size: 16px;
   letter-spacing: 0.11px;
   line-height: 17px;
@@ -94,8 +94,8 @@
 }
 
 .btn:disabled {
-  color: rgb(var(--modal-btn-disabled-rgb) /50%);
-  border: 3px solid rgb(var(--modal-btn-disabled-rgb) /50%);
+  color: rgb(var(--modal-btn-disabled-rgb) / 50%);
+  border: 3px solid rgb(var(--modal-btn-disabled-rgb) / 50%);
   cursor: none;
 }
 
@@ -104,26 +104,25 @@
     font-size: 12px;
   }
 
-  .steps {
+  .step {
     font-size: 14px;
   }
 }
 
 .select {
+  position: absolute;
   min-height: 28px;
   max-width: 320px;
   width: 80%;
   border-radius: 16px;
-  margin-top: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   cursor: pointer;
   background:
-    url('../../ImageAssets/open_triangle.svg') no-repeat center right
-    10px,
-    var(--search-btn);
+    url('../../ImageAssets/open_triangle.svg') no-repeat top 11px
+    right 10px/9px 6px,
+    var(--select);
+  color: var(--select-text);
 }
 
 .select[aria-disabled='true'] {
@@ -134,26 +133,26 @@
 .selectShow {
   composes: select;
   background:
-    url('../../ImageAssets/close_triangle.svg') no-repeat top 20%
-    right 10px,
-    var(--search-btn);
+    url('../../ImageAssets/close_triangle.svg') no-repeat top 11px
+    right 10px/9px 6px,
+    var(--select);
 }
 
-.optionsContainer {
-  width: 99%;
-  background-color: var(--search-background);
+.options {
+  background: var(--options-background);
+  color: var(--text);
   border-radius: 5px 5px 15px 15px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1px;
   list-style-position: inside;
   padding-left: 0;
+  margin: 0 3px 3px;
 }
 
 .selectText {
-  margin-left: 10px;
+  padding-left: 17px;
   margin-top: 5px;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.11px;
   line-height: 17px;
   width: 90%;
@@ -161,28 +160,27 @@
   height: 20px;
 }
 
-.options {
+.option {
   display: flex;
   align-items: center;
-  width: 100%;
   height: 30px;
   list-style-type: none;
-  justify-content: center;
+  margin: 0;
+  padding-left: 14px;
 }
 
-.options:last-child {
+.option:last-child {
   border-radius: 0 0 15px 15px;
 }
 
-.options:hover {
+.option:hover {
   background-color: rgb(223 134 1 /50%);
 }
 
 .optionText {
   width: 90%;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.11px;
   line-height: 17px;
-  margin-left: 10px;
 }

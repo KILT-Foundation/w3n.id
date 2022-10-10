@@ -9,9 +9,10 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 
 interface Props {
   did?: DidUri;
+  error?: string;
 }
 
-export const DidSection = (props: Props) => {
+export const DidSection = ({ did, error }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -33,10 +34,19 @@ export const DidSection = (props: Props) => {
           )}
         </button>
       </div>
-      <div className={styles.wrapper}>
-        <span className={styles.text}>{props.did}</span>
-        {props.did && <CopyToClipboard text={props.did} />}
-      </div>
+
+      {did && (
+        <div className={styles.wrapper}>
+          <span className={styles.text}>{did}</span>
+          {did && <CopyToClipboard text={did} />}
+        </div>
+      )}
+
+      {error && (
+        <div className={styles.wrapper}>
+          <span className={styles.error}>{error}</span>
+        </div>
+      )}
     </div>
   );
 };

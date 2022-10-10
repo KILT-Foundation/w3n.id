@@ -1,36 +1,28 @@
+.container {
+  composes: container from '../View/View.module.css';
+}
+
 .headingContainer {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  height: 100px;
-  background: var(--search-background);
+  composes: headingContainer from '../View/View.module.css';
+  height: 80px;
 }
 
 .termsHeading {
-  display: flex;
-  max-width: 740px;
-  width: 90%;
-  justify-content: flex-start;
-  padding-top: 40px;
-  font-size: 18px;
-  letter-spacing: 0.13px;
-  line-height: 20px;
-  text-decoration: none;
+  composes: headingContent from '../View/View.module.css';
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.17px;
 }
 
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  max-width: 740px;
-  width: 90%;
+.termsContainer {
+  composes: mainContainer from '../View/View.module.css';
+}
+
+.terms {
+  composes: mainContent from '../View/View.module.css';
   font-size: 14px;
   letter-spacing: 0.1px;
   line-height: 16px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding-right: 5px;
-  padding-left: 5px;
-  overflow: auto;
 }
 
 .spacedHeading {

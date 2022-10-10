@@ -22,11 +22,16 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 class ExplicitError extends Error {}
 
 interface EndpointsProps {
-  serviceEndpoints: DidServiceEndpoint[];
+  serviceEndpoints?: DidServiceEndpoint[];
   did?: DidUri;
+  error?: string;
 }
 
-export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
+export function EndpointSection({
+  serviceEndpoints,
+  did,
+  error,
+}: EndpointsProps) {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -48,16 +53,25 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
           )}
         </button>
       </div>
-      <div className={styles.endpoints}>
-        {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
-          <ServiceEndpoint
-            key={serviceEndpoint.id}
-            endpointType={serviceEndpoint.types[0]}
-            endpointURL={serviceEndpoint.urls[0]}
-            did={did}
-          />
-        ))}
-      </div>
+
+      {serviceEndpoints?.length && did && (
+        <div className={styles.endpoints}>
+          {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
+            <ServiceEndpoint
+              key={serviceEndpoint.id}
+              endpointType={serviceEndpoint.types[0]}
+              endpointURL={serviceEndpoint.urls[0]}
+              did={did}
+            />
+          ))}
+        </div>
+      )}
+
+      {error && (
+        <div className={styles.wrapper}>
+          <span className={styles.text}>{error}</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -76,6 +90,8 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
     attester: string;
   }>();
   const [error, setError] = useState<string>();
+
+  const ready = Boolean(credential || error);
 
   const handleFetch = useCallback(async () => {
     if (!did) throw new Error('No did');
@@ -144,34 +160,48 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
 
   return (
     <div className={styles.endpointWrapper}>
-      <span className={styles.type}>{endpointType}</span>
+      <h1 className={styles.type}>{endpointType}</h1>
 
-      <div className={styles.endpoint}>
-        <div className={styles.urlContainer}>
-          <span className={styles.url}>{endpointURL}</span>
-          <CopyToClipboard text={endpointURL} />
-        </div>
+      {!ready && (
+        <div className={styles.endpoint}>
+          <div className={styles.urlContainer}>
+            <span className={styles.url}>{endpointURL}</span>
+            <CopyToClipboard text={endpointURL} />
+          </div>
 
-        {!credential && !error && (
-          <button className={styles.button} onClick={handleFetch}>
+          <button
+            className={styles.button}
+            onClick={handleFetch}
+            disabled={fetching}
+          >
+            Fetch
             {fetching && (
               <span
                 className={styles.loader}
                 aria-label="Fetching credential details..."
               />
             )}
-            Fetch
           </button>
-        )}
+        </div>
+      )}
 
-        {(credential || error) && (
-          <button className={styles.button} onClick={handleClose}>
+      {ready && (
+        <div className={styles.fetched}>
+          <div className={styles.fetchedUrlContainer}>
+            <span className={styles.url}>{endpointURL}</span>
+            <CopyToClipboard text={endpointURL} />
+          </div>
+
+          {credential && !error && (
+            <CredentialDetails credential={credential} />
+          )}
+          {error && <CredentialErrors error={error} />}
+
+          <button className={styles.close} onClick={handleClose}>
             Close
           </button>
-        )}
-        {credential && !error && <CredentialDetails credential={credential} />}
-        {error && <CredentialErrors error={error} />}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
