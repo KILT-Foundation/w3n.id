@@ -109,19 +109,23 @@
   padding-left: 16px;
 }
 
-.list li {
+.listItem {
   line-height: 25px;
   margin: 0;
   padding-left: 8px;
 }
 
-.list li::marker {
+.listItem::marker {
   font-weight: normal;
 }
 
 .numberedList {
   composes: list;
   list-style: decimal;
+}
+
+.numberedListItem {
+  composes: listItem;
 }
 
 .onchainGuide {

@@ -115,7 +115,7 @@
 }
 
 :global(html.dark) .loader {
-  background: url('../../ImageAssets/spinner_dark.svg') no-repeat center/contain;
+  background-image: url('../../ImageAssets/spinner_dark.svg');
 }
 
 .seperator {

@@ -14,7 +14,9 @@ declare const styles: {
   readonly linkTextSmall: string;
   readonly linkTextBig: string;
   readonly list: string;
+  readonly listItem: string;
   readonly numberedList: string;
+  readonly numberedListItem: string;
   readonly onchainGuide: string;
   readonly listHeading: string;
 };

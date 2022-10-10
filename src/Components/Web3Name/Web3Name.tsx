@@ -4,7 +4,7 @@ import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 
 interface Props {
   web3Name?: string;
-  error?: string;
+  error?: 'no web3name yet' | '-';
 }
 
 export const Web3Name = ({ web3Name, error }: Props) => {

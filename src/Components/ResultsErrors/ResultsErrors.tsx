@@ -35,7 +35,7 @@ export const ResultsErrors = ({ error, did }: Props) => {
 
   return (
     <div className={styles.container}>
-      <Web3Name error={noWeb3nameForDid ? errorMessages[error] : '-'} />
+      <Web3Name error={noWeb3nameForDid ? 'no web3name yet' : '-'} />
       <DidSection
         did={noWeb3nameForDid ? did : undefined}
         error={noWeb3nameForDid ? undefined : errorMessages[error]}
