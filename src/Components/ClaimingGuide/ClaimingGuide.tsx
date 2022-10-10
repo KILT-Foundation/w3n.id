@@ -38,7 +38,8 @@ export const OnChainDidGuide = () => {
             Upgrading to an on-chain DID requires a deposit of 2 KILT and a
             small transaction fee (around 0.0045 KILT).
           </p>
-          <p className={styles.onchainGuide}>To upgrade to an on-chain DID:</p>
+
+          <h1 className={styles.listHeading}>To upgrade to an on-chain DID:</h1>
           <ol className={styles.numberedList}>
             <li>Open your Sporran extension</li>
             <li>Click “Upgrade to on-chain DID”</li>

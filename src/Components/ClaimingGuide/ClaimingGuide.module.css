@@ -1,10 +1,10 @@
 .container {
-  composes: container from '../DidSection/DidSection.module.css';
+  composes: container from '../Results/Results.module.css';
   margin-top: 20px;
 }
 
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
+  composes: title from '../Results/Results.module.css';
   display: flex;
   min-width: 105px;
   align-self: flex-start;
@@ -12,11 +12,11 @@
 }
 
 .text {
-  composes: text from '../DidSection/DidSection.module.css';
+  composes: text from '../Results/Results.module.css';
 }
 
 .wrapper {
-  composes: wrapper from '../DidSection/DidSection.module.css';
+  composes: wrapper from '../Results/Results.module.css';
   width: 620px;
   flex-direction: column;
   align-items: flex-start;
@@ -24,52 +24,30 @@
 }
 
 .window {
-  composes: endpointWrapper from '../ServiceEndpoint/ServiceEndpoint.module.css';
-  width: 100%;
-  position: relative;
-  min-height: 36px;
-  margin-top: 20px;
-  justify-content: center;
+  composes: cardContainer from '../Card/Card.module.css';
   background-color: var(--light-green);
 }
 
-.windowTitle {
-  composes: type from '../ServiceEndpoint/ServiceEndpoint.module.css';
-  color: white;
-  width: 70%;
-  margin-top: 8px;
-}
-
 .windowContents {
-  composes: endpoint from '../ServiceEndpoint/ServiceEndpoint.module.css';
-  min-height: 0;
-  flex-direction: column;
-  margin-top: 5px;
+  composes: cardContents from '../Card/Card.module.css';
+  line-height: 25px;
 }
 
 .controlBtn {
-  composes: controlBtn from '../ClaimW3Name/ClaimW3Name.module.css';
-}
-
-.controlBtn[aria-expanded='true'] {
-  background: url('../../ImageAssets/close_chevron.svg') no-repeat center right 1%/20px;
+  composes: expand from '../Card/Card.module.css';
 }
 
 .guide {
-  width: 95%;
   font-size: 16px;
   letter-spacing: 0.11px;
-  line-height: 17px;
-  margin-left: 20px;
-  margin-bottom: 30px;
+  line-height: 25px;
+  margin: 0;
 }
 
 .extensionWrapper {
   display: flex;
-  margin-left: 20px;
-  width: 90%;
   gap: 30px;
-  margin-bottom: 30px;
+  margin: 26px 0 37px;
 }
 
 .linkToGuide {
@@ -82,7 +60,7 @@
   max-width: 251px;
   width: 40%;
   background: url('../../ImageAssets/chrome_icon.svg') no-repeat center left 10%/20%;
-  border: 1px solid rgb(var(--extension-border-rgb)/50%);
+  border: 1px solid rgb(var(--extension-border-rgb) / 50%);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -125,28 +103,33 @@
 }
 
 .list {
-  margin-left: 0;
   font-size: 16px;
   letter-spacing: 0.1px;
-  line-height: 17px;
   list-style-type: '-';
+  padding-left: 16px;
 }
 
-.list > li {
-  margin-bottom: 10px;
+.list li {
+  line-height: 25px;
+  margin: 0;
   padding-left: 8px;
 }
 
-.numberedList {
-  list-style: decimal;
+.list li::marker {
+  font-weight: normal;
 }
 
-.numberedList > li {
-  margin-bottom: 10px;
-  padding-left: 3px;
+.numberedList {
+  composes: list;
+  list-style: decimal;
 }
 
 .onchainGuide {
   composes: guide;
-  margin-bottom: 10px;
+}
+
+.listHeading {
+  composes: guide;
+  font-weight: normal;
+  margin-top: 16px;
 }

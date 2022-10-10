@@ -9,12 +9,9 @@ interface ErrorContentsProps {
 function ErrorContents({ onClose }: ErrorContentsProps) {
   return (
     <Fragment>
-      <h3 className={styles.heading}>Error Occurred</h3>
+      <h3 className={styles.heading}>Oops!</h3>
 
-      <p className={styles.text}>
-        Oops!
-        <br /> Click “Try Again” or reload the page or restart your browser.
-      </p>
+      <p className={styles.text}>Something went wrong!</p>
       <div className={styles.errorIcon} />
       <button type="button" className={styles.btn} onClick={onClose}>
         Try again
@@ -34,7 +31,8 @@ function SuccessContents({ onSuccess, web3name }: SuccessContentsProps) {
       <h3 className={styles.heading}>Congratulations!</h3>
 
       <p className={styles.text}>
-        w3n:{web3name} <br /> is now your web3name
+        <span className={styles.web3name}>w3n:{web3name}</span> <br /> is now
+        your web3name
       </p>
       <div className={styles.successIcon} />
       <button type="button" className={styles.btn} onClick={onSuccess}>

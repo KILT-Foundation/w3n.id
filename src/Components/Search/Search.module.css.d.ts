@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly container: string;
   readonly search: string;
   readonly searchBar: string;
   readonly button: string;
@@ -7,7 +8,6 @@ declare const styles: {
   readonly infoTextAddress: string;
   readonly main: string;
   readonly results: string;
-  readonly mainResults: string;
   readonly title: string;
   readonly infoContainer: string;
   readonly infoBtn: string;

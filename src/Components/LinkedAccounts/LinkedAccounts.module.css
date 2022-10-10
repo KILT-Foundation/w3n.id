@@ -1,17 +1,17 @@
 .container {
-  composes: container from '../DidSection/DidSection.module.css';
+  composes: container from '../Results/Results.module.css';
 }
 
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
+  composes: title from '../Results/Results.module.css';
 }
 
 .text {
-  composes: text from '../DidSection/DidSection.module.css';
+  composes: text from '../Results/Results.module.css';
 }
 
 .wrapper {
-  composes: wrapper from '../DidSection/DidSection.module.css';
+  composes: wrapper from '../Results/Results.module.css';
   justify-content: space-between;
 }
 
@@ -20,7 +20,7 @@
   flex-direction: column;
   max-width: 520px;
   width: 80%;
-  gap: 5px;
+  gap: 10px;
 }
 
 .infoBtn {
@@ -29,18 +29,15 @@
 }
 
 .titleWrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 60px;
+  composes: titleWrapper from '../Results/Results.module.css';
 }
 
 .modal {
-  composes: modal from '../DidSection/DidSection.module.css';
+  composes: modal from '../Results/Results.module.css';
 }
 
 .modalText {
-  composes: modalText from '../DidSection/DidSection.module.css';
+  composes: modalText from '../Results/Results.module.css';
 }
 
 .top {

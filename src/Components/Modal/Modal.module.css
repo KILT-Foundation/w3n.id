@@ -15,9 +15,9 @@
 .modal {
   max-width: 380px;
   width: 80%;
-  background-color: var(--contents);
+  background-color: var(--modal-background);
   box-shadow: 0 6px 8px 0 rgb(var(--color-shadow-rgb) / 25%);
-  border: 1px solid var(--header-secondary);
+  border: 2px solid var(--modal-border);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
 
 .heading {
   color: var(--text);
-  font-size: 18px;
+  font-size: 24px;
   letter-spacing: 0.1px;
   line-height: 17px;
   font-weight: 300;
@@ -43,9 +43,13 @@
   letter-spacing: 0.1px;
   line-height: 17px;
   text-align: center;
-  display: flex;
-  justify-content: center;
   width: 70%;
+}
+
+.web3name {
+  composes: text;
+  font-size: 24px;
+  line-height: 26px;
 }
 
 .status {
@@ -54,12 +58,12 @@
 
 .btn {
   display: inline-flex;
-  color: var(--search-btn);
+  color: var(--button-primary-text);
   margin: 24px 0;
   width: 80%;
   height: 30px;
   border-radius: 15px;
-  border: 3px solid var(--search-btn);
+  border: 3px solid var(--button-primary-border);
   font-size: 16px;
   line-height: 17px;
   text-transform: uppercase;
@@ -67,7 +71,7 @@
   justify-content: center;
   cursor: pointer;
   position: relative;
-  background: transparent;
+  background: var(--button-primary-background);
 }
 
 .btn:disabled {
@@ -86,17 +90,36 @@
 }
 
 .successIcon {
-  background: url('../../ImageAssets/ok.svg') no-repeat center/100%;
-  height: 60px;
-  width: 60px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background: url('../../ImageAssets/ok.svg') no-repeat center/80%, #fff;
 }
 
 .errorIcon {
   composes: successIcon;
-  background-image: url('../../ImageAssets/not_ok.svg');
+  background: url('../../ImageAssets/not_ok.svg') no-repeat center/80%, #fff;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 .spinner {
-  composes: successIcon;
-  background-image: url('../../ImageAssets/loader_default.svg');
+  width: 70px;
+  height: 70px;
+  animation: rotation 1.5s infinite linear;
+  background:
+    url('../../ImageAssets/spinner_light.svg') no-repeat
+    center/contain;
+}
+
+:global(html.dark) .spinner {
+  background: url('../../ImageAssets/spinner_dark.svg') no-repeat center/contain;
 }

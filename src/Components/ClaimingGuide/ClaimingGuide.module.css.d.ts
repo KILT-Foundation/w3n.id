@@ -4,7 +4,6 @@ declare const styles: {
   readonly text: string;
   readonly wrapper: string;
   readonly window: string;
-  readonly windowTitle: string;
   readonly windowContents: string;
   readonly controlBtn: string;
   readonly guide: string;
@@ -17,5 +16,6 @@ declare const styles: {
   readonly list: string;
   readonly numberedList: string;
   readonly onchainGuide: string;
+  readonly listHeading: string;
 };
 export = styles;

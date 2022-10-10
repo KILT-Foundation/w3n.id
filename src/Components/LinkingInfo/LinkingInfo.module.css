@@ -33,4 +33,5 @@
 
 .anchor {
   color: var(--web3-name);
+  text-decoration: none;
 }

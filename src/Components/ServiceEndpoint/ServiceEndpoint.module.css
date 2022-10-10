@@ -1,23 +1,37 @@
+.endpointWrapper {
+  composes: cardContainer from '../Card/Card.module.css';
+}
+
 .type {
   overflow-wrap: break-word;
   font-size: 16px;
+  font-weight: normal;
   letter-spacing: 0;
   line-height: 17px;
   margin: 5px 0 5px 22px;
-  color: var(--text);
+  color: #fff;
 }
 
 .endpoint {
+  composes: cardContents from '../Card/Card.module.css';
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  width: 99%;
-  margin: 2px 0;
-  border-radius: 5px 5px 15px 15px;
-  align-self: center;
-  background-color: var(--contents);
-  min-height: 60px;
-  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 18px;
+}
+
+@media (max-width: 700px) {
+  .endpoint {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.fetched {
+  composes: endpoint;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18px;
 }
 
 .urlContainer {
@@ -26,9 +40,14 @@
   gap: 5px;
   margin-left: 8px;
   margin-right: 10px;
-  margin-top: 20px;
-  max-width: 450px;
   width: 70%;
+}
+
+.fetchedUrlContainer {
+  composes: urlContainer;
+  width: 100%;
+  max-width: none;
+  align-items: flex-start;
 }
 
 .url {
@@ -43,45 +62,60 @@
 }
 
 .button {
-  position: absolute;
-  bottom: 15px;
-  right: 10px;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 0.11px;
   line-height: 17px;
-  text-align: center;
-  color: var(--text);
-  justify-content: center;
-  height: 28px;
-  max-width: 124px;
-  width: 20%;
-  border: 2px solid #df8601;
+  color: var(--fetch-button-text);
+  border: 3px solid #df8601;
   border-radius: 15px;
-  background-color: var(--fetch-btn);
+  background-color: var(--fetch-button);
+  position: relative;
+  width: 124px;
+  height: 28px;
 }
 
-@media (max-width: 400px) {
-  .button {
-    font-size: 12px;
+.fetch {
+  composes: button;
+}
+
+.close {
+  composes: button;
+  align-self: flex-end;
+}
+
+.button:disabled {
+  border: 3px solid rgba(var(--fetch-button-border-disabled-rgb) / 50%);
+  color: rgba(var(--fetch-button-text-disabled-rgb) / 50%);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
   }
 }
 
 .loader {
   position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 13px;
-  width: 20px;
-  background: url('../../ImageAssets/loader_light.svg') no-repeat center/contain;
+  right: 2px;
+  height: 18px;
+  width: 18px;
+  animation: rotation 1.5s infinite linear;
+  background:
+    url('../../ImageAssets/spinner_light.svg') no-repeat
+    center/contain;
 }
 
 :global(html.dark) .loader {
-  background: url('../../ImageAssets/loader_dark.svg') no-repeat center/contain;
+  background: url('../../ImageAssets/spinner_dark.svg') no-repeat center/contain;
 }
 
 .seperator {
@@ -92,37 +126,35 @@
 }
 
 .didDocument {
-  composes: container from '../DidSection/DidSection.module.css';
+  composes: container from '../Results/Results.module.css';
   margin-top: 20px;
   justify-content: flex-start;
 }
 
+.wrapper {
+  composes: wrapper from '../Results/Results.module.css';
+}
+
 .endpoints {
-  composes: wrapper from '../DidSection/DidSection.module.css';
+  composes: wrapper;
   width: 620px;
 }
 
+.text {
+  composes: text from '../Results/Results.module.css';
+}
+
 .title {
-  composes: title from '../DidSection/DidSection.module.css';
+  composes: title from '../Results/Results.module.css';
 }
 
 .titleWrapper {
-  composes: titleWrapper from '../DidSection/DidSection.module.css';
+  composes: titleWrapper from '../Results/Results.module.css';
   align-self: start;
 }
 
 .infoBtn {
-  composes: infoBtn from '../DidSection/DidSection.module.css';
-}
-
-.endpointWrapper {
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: var(--header-secondary);
-  width: 100%;
-  box-shadow: 0 6px 8px 0 rgb(var(--black-rgb) / 25%);
-  margin-bottom: 20px;
+  composes: infoBtn from '../Results/Results.module.css';
 }
 
 .modalText {
