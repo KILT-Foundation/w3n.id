@@ -62,7 +62,7 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
         </div>
       )}
 
-      {(!serviceEndpoints?.length || !did) && (
+      {(!serviceEndpoints || serviceEndpoints.length === 0 || !did) && (
         <div className={styles.wrapper}>
           <span className={styles.text}>-</span>
         </div>

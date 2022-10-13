@@ -44,7 +44,7 @@ export const LinkedAccounts = ({ linkedAccounts }: Props) => {
         </div>
       )}
 
-      {!linkedAccounts?.length && (
+      {(!linkedAccounts || linkedAccounts.length === 0) && (
         <div className={styles.wrapper}>
           <span className={styles.text}>-</span>
         </div>
