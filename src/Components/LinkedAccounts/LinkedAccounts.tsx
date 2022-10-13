@@ -7,10 +7,9 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 
 interface Props {
   linkedAccounts?: string[];
-  error?: string;
 }
 
-export const LinkedAccounts = ({ linkedAccounts, error }: Props) => {
+export const LinkedAccounts = ({ linkedAccounts }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -34,7 +33,7 @@ export const LinkedAccounts = ({ linkedAccounts, error }: Props) => {
         </button>
       </div>
 
-      {linkedAccounts?.length && (
+      {linkedAccounts && linkedAccounts.length > 0 && (
         <div className={styles.accountsContainer}>
           {linkedAccounts.map((account) => (
             <div className={styles.wrapper} key={account}>
@@ -45,7 +44,11 @@ export const LinkedAccounts = ({ linkedAccounts, error }: Props) => {
         </div>
       )}
 
-      {error && <span className={styles.text}>{error}</span>}
+      {!linkedAccounts?.length && (
+        <div className={styles.wrapper}>
+          <span className={styles.text}>-</span>
+        </div>
+      )}
     </div>
   );
 };

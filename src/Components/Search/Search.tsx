@@ -43,26 +43,30 @@ function ResolvedData({
   isClaimed,
   linkedAccounts,
 }: Props) {
+  const noWeb3nameForDid = web3name === 'no web3name yet';
+
   return (
-    <div className={styles.results}>
-      <div className={styles.modeContainer}>
-        <label
-          className={
-            !isClaimed
-              ? styles.availableActiveMode
-              : styles.availableInactiveMode
-          }
-        >
-          Available
-        </label>
-        <label
-          className={
-            isClaimed ? styles.takenActiveMode : styles.takenInactiveMode
-          }
-        >
-          Taken
-        </label>
-      </div>
+    <div className={noWeb3nameForDid ? styles.noWeb3name : styles.results}>
+      {!noWeb3nameForDid && (
+        <div className={styles.modeContainer}>
+          <label
+            className={
+              !isClaimed
+                ? styles.availableActiveMode
+                : styles.availableInactiveMode
+            }
+          >
+            Available
+          </label>
+          <label
+            className={
+              isClaimed ? styles.takenActiveMode : styles.takenInactiveMode
+            }
+          >
+            Taken
+          </label>
+        </div>
+      )}
 
       {!isClaimed ? (
         <Fragment>
@@ -144,7 +148,7 @@ export const Search = () => {
         setW3Name(didDocInstance.web3name);
         replaceHistoryState(shouldChangeUrl, didDocInstance.web3name);
       } else {
-        setError('no_web3name_for_did');
+        setW3Name('no web3name yet');
       }
     } catch {
       setError('invalid_kilt');

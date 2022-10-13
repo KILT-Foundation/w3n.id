@@ -13,8 +13,7 @@ export type SearchError =
   | 'invalid_chars'
   | 'min_limit'
   | 'invalid_kilt'
-  | 'no_linked_account'
-  | 'no_web3name_for_did';
+  | 'no_linked_account';
 
 const errorMessages: Record<SearchError, string> = {
   max_limit: 'Maximum 30 characters allowed',
@@ -22,7 +21,6 @@ const errorMessages: Record<SearchError, string> = {
   invalid_chars: 'Invalid Characters',
   invalid_kilt: 'DID not found',
   no_linked_account: 'account address not connected to a KILT DID',
-  no_web3name_for_did: 'no web3name yet',
 };
 
 interface Props {
@@ -31,17 +29,12 @@ interface Props {
 }
 
 export const ResultsErrors = ({ error, did }: Props) => {
-  const noWeb3nameForDid = error === 'no_web3name_for_did';
-
   return (
     <div className={styles.container}>
-      <Web3Name error={noWeb3nameForDid ? 'no web3name yet' : '-'} />
-      <DidSection
-        did={noWeb3nameForDid ? did : undefined}
-        error={noWeb3nameForDid ? undefined : errorMessages[error]}
-      />
-      <EndpointSection error="-" />
-      <LinkedAccounts error="-" />
+      <Web3Name />
+      <DidSection error={errorMessages[error]} />
+      <EndpointSection />
+      <LinkedAccounts />
       {did && <VerificationMethod did={did} />}
     </div>
   );

@@ -8,6 +8,7 @@ declare const styles: {
   readonly infoTextAddress: string;
   readonly main: string;
   readonly results: string;
+  readonly noWeb3name: string;
   readonly title: string;
   readonly infoContainer: string;
   readonly infoBtn: string;
