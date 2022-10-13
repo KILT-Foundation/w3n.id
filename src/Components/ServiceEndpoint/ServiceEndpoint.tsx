@@ -24,14 +24,9 @@ class ExplicitError extends Error {}
 interface EndpointsProps {
   serviceEndpoints?: DidServiceEndpoint[];
   did?: DidUri;
-  error?: string;
 }
 
-export function EndpointSection({
-  serviceEndpoints,
-  did,
-  error,
-}: EndpointsProps) {
+export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -54,7 +49,7 @@ export function EndpointSection({
         </button>
       </div>
 
-      {serviceEndpoints?.length && did && (
+      {serviceEndpoints && serviceEndpoints.length > 0 && did && (
         <div className={styles.endpoints}>
           {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
             <ServiceEndpoint
@@ -67,9 +62,9 @@ export function EndpointSection({
         </div>
       )}
 
-      {error && (
+      {(!serviceEndpoints || serviceEndpoints.length === 0 || !did) && (
         <div className={styles.wrapper}>
-          <span className={styles.text}>{error}</span>
+          <span className={styles.text}>-</span>
         </div>
       )}
     </div>

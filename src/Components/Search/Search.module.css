@@ -82,6 +82,11 @@
   padding: 0;
 }
 
+.noWeb3name {
+  composes: results;
+  margin-top: 40px;
+}
+
 .title {
   width: 95px;
   margin-top: 10px;
