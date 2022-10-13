@@ -1,5 +1,7 @@
 .container {
   composes: container from '../Results/Results.module.css';
+  height: 31px;
+  margin: 0;
 }
 
 .title {
@@ -10,6 +12,7 @@
 
 .wrapper {
   composes: wrapper from '../Results/Results.module.css';
+  height: 100%;
   align-items: center;
 }
 
