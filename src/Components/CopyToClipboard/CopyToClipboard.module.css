@@ -2,7 +2,7 @@
   cursor: pointer;
   background:
     url('../../ImageAssets/copy2clipboard_light.svg') no-repeat
-    center/100%;
+    center/contain;
   width: 18px;
   height: 18px;
   border: none;
@@ -11,16 +11,16 @@
 }
 
 .copy:disabled {
-  background: url('../../ImageAssets/copied_light.svg') no-repeat center/100%;
+  background: url('../../ImageAssets/copied_light.svg') no-repeat center/contain;
   cursor: auto;
 }
 
 :global(html.dark) .copy {
   background:
     url('../../ImageAssets/copy2clipboard_dark.svg') no-repeat
-    center/100%;
+    center/contain;
 }
 
 :global(html.dark) .copy:disabled {
-  background: url('../../ImageAssets/copied_dark.svg') no-repeat center/100%;
+  background: url('../../ImageAssets/copied_dark.svg') no-repeat center/contain;
 }
