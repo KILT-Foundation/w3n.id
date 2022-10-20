@@ -136,6 +136,11 @@ export const Search = () => {
     shouldChangeUrl: boolean,
   ) => {
     try {
+      const didDocument = await Did.DidResolver.resolveDoc(did);
+      if (didDocument?.metadata.deactivated) {
+        throw new Error('DID deactivated');
+      }
+
       const didDocInstance = await getServiceEndpointsW3Name(did);
 
       setLinkedAccounts(await getLinkedAccounts(did));
