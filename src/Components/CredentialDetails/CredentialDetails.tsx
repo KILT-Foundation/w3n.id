@@ -17,10 +17,10 @@ export const CredentialDetails = ({ credential }: Props) => {
 
   return (
     <div className={styles.credentialContainer}>
-      {Object.keys(contents).map((key) => (
-        <dl className={styles.container} key={key}>
-          <dt className={styles.credentialTitle}>{key}</dt>
-          <dd className={styles.credentialDescription}>{contents[key]}</dd>
+      {Object.entries(contents).map(([name, value]) => (
+        <dl className={styles.container} key={name}>
+          <dt className={styles.credentialTitle}>{name}</dt>
+          <dd className={styles.credentialDescription}>{String(value)}</dd>
         </dl>
       ))}
       <dl className={styles.container}>
