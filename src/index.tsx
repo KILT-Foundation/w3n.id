@@ -1,20 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import './index.css';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { StrictMode } from 'react';
 import { init } from '@kiltprotocol/sdk-js';
 
-import { BrowserRouter } from 'react-router-dom';
+import './index.css';
 
 import { App } from './Components/App/App';
 
 init({ address: process.env.REACT_APP_CHAIN_ENDPOINT });
 
-ReactDOM.render(
-  <React.StrictMode>
+const container = document.getElementById('root') as HTMLElement;
+
+const root = createRoot(container);
+
+root.render(
+  <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root'),
+  </StrictMode>,
 );
