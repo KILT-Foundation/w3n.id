@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-svg-react": "^2.7.0",
-    "@types/react": "^17.0.50",
+    "@types/react": "^17.0.52",
     "@types/react-dom": "^17.0.17",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
