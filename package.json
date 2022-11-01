@@ -7,6 +7,7 @@
     "dev": "parcel --open",
     "build": "parcel build",
     "check": "tsc --noEmit",
+    "test-size": "bundlewatch --config bundlewatch.config.json",
     "lint": "yarn run lint-css && yarn run lint-js",
     "lint-js": "eslint --max-warnings 0 --config ./.eslintrc.json \"src/**/*.ts*\"",
     "lint-css": "stylelint --fix \"src/**/*.css\"",
@@ -18,6 +19,7 @@
     "@polkadot/api": "^9.6.2",
     "@polkadot/extension-dapp": "^0.44.6",
     "@polkadot/util-crypto": "^10.1.11",
+    "bundlewatch": "^0.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6"
