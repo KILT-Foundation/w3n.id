@@ -142,7 +142,7 @@ export const Search = () => {
       const api = await apiPromise;
 
       const { document, web3Name, accounts } = Did.linkedInfoFromChain(
-        await api.call.did.queryByAccount(Did.toChain(did)),
+        await api.call.did.query(Did.toChain(did)),
       );
 
       setLinkedAccounts(accounts);
