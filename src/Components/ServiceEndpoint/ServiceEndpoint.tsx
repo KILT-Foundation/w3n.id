@@ -1,23 +1,21 @@
 import { useCallback, useRef, useState } from 'react';
 import {
-  Credential,
-  RequestForAttestation,
-  Did,
-  IRequestForAttestation,
   Attestation,
-  IClaimContents,
-  DidUri,
+  Credential,
+  Did,
   DidServiceEndpoint,
+  DidUri,
+  IClaimContents,
+  ICredential,
 } from '@kiltprotocol/sdk-js';
 
 import * as styles from './ServiceEndpoint.module.css';
-
-import { validateCredential } from '../../Utils/w3n-helpers';
 
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { CredentialDetails } from '../CredentialDetails/CredentialDetails';
 import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
+import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 class ExplicitError extends Error {}
 
@@ -54,8 +52,8 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
           {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
             <ServiceEndpoint
               key={serviceEndpoint.id}
-              endpointType={serviceEndpoint.types[0]}
-              endpointURL={serviceEndpoint.urls[0]}
+              endpointType={serviceEndpoint.type[0]}
+              endpointURL={serviceEndpoint.serviceEndpoint[0]}
               did={did}
             />
           ))}
@@ -93,37 +91,44 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
     setFetching(true);
 
     try {
+      const api = await apiPromise;
       const response = await fetch(endpointURL);
       const json = await response.json();
 
-      let request: IRequestForAttestation | undefined;
-      let attestation: Attestation | undefined;
+      let credential: ICredential | undefined;
+
+      if (Credential.isICredential(json.request)) {
+        credential = json.request;
+      }
 
       if (Credential.isICredential(json)) {
-        request = json.request;
-        attestation = Attestation.fromAttestation(json.attestation);
+        credential = json;
       }
 
-      if (RequestForAttestation.isIRequestForAttestation(json)) {
-        const attestationForRequest = await Attestation.query(json.rootHash);
-        if (!attestationForRequest) {
-          throw new ExplicitError('No Attestation found for credential');
-        }
-        request = json;
-        attestation = attestationForRequest;
-      }
-
-      if (!request || !attestation) {
+      if (!credential) {
         throw new ExplicitError('Not valid Kilt Credential');
       }
 
-      if (!Did.Utils.isSameSubject(request.claim.owner, did)) {
+      const attestationChain = await api.query.attestation.attestations(
+        credential.rootHash,
+      );
+      if (attestationChain.isNone) {
+        throw new ExplicitError('No Attestation found for credential');
+      }
+      const attestation = Attestation.fromChain(
+        attestationChain,
+        credential.rootHash,
+      );
+
+      if (!Did.isSameSubject(credential.claim.owner, did)) {
         throw new ExplicitError(
           'Credential subject and signer DID are not the same',
         );
       }
 
-      if (!(await validateCredential({ attestation, request }))) {
+      try {
+        await Credential.verifyCredential(credential);
+      } catch {
         throw new ExplicitError('Invalid credential');
       }
 
@@ -131,12 +136,12 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
         throw new ExplicitError('Credential attestation revoked');
       }
 
-      const web3name = await Did.Web3Names.queryWeb3NameForDid(
-        attestation.owner,
-      );
-      const attester = web3name ? `w3n:${web3name}` : attestation.owner;
+      const result = await api.call.did.query(Did.toChain(attestation.owner));
+      const attester = result.isSome
+        ? `w3n:${Did.linkedInfoFromChain(result).web3Name}`
+        : attestation.owner;
 
-      setCredential({ contents: request.claim.contents, attester });
+      setCredential({ contents: credential.claim.contents, attester });
     } catch (exception) {
       setError(
         exception instanceof ExplicitError

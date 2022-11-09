@@ -1,20 +1,22 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 
-import { DidServiceEndpoint, DidUri, Did } from '@kiltprotocol/sdk-js';
+import {
+  Did,
+  DidServiceEndpoint,
+  DidUri,
+  KiltAddress,
+} from '@kiltprotocol/sdk-js';
 
 import { decodeAddress } from '@polkadot/util-crypto';
 
 import * as styles from './Search.module.css';
 
 import {
-  getDidDocFromW3Name,
-  validSearchedText,
-  stringStartsWithW3,
-  pushHistoryState,
-  getServiceEndpointsW3Name,
-  replaceHistoryState,
   isSearchedTextDid,
-  getLinkedAccounts,
+  pushHistoryState,
+  replaceHistoryState,
+  stringStartsWithW3,
+  validSearchedText,
 } from '../../Utils/w3n-helpers';
 
 import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
@@ -27,6 +29,7 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 import { ClaimW3Name } from '../ClaimW3Name/ClaimW3Name';
 import { ClaimingGuide } from '../ClaimingGuide/ClaimingGuide';
 import { LinkedAccounts } from '../LinkedAccounts/LinkedAccounts';
+import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 interface Props {
   did?: DidUri;
@@ -136,22 +139,22 @@ export const Search = () => {
     shouldChangeUrl: boolean,
   ) => {
     try {
-      const didDocument = await Did.DidResolver.resolveDoc(did);
-      if (didDocument?.metadata.deactivated) {
-        throw new Error('DID deactivated');
-      }
+      const api = await apiPromise;
 
-      const didDocInstance = await getServiceEndpointsW3Name(did);
+      const { document, web3Name, accounts } = Did.linkedInfoFromChain(
+        await api.call.did.query(Did.toChain(did)),
+      );
 
-      setLinkedAccounts(await getLinkedAccounts(did));
+      setLinkedAccounts(accounts);
       setDid(did);
 
-      if (didDocInstance) {
-        setServiceEndpoints(didDocInstance.endpoints);
+      if (document.service) {
+        setServiceEndpoints(document.service);
       }
-      if (didDocInstance.web3name) {
-        setW3Name(didDocInstance.web3name);
-        replaceHistoryState(shouldChangeUrl, didDocInstance.web3name);
+
+      if (web3Name) {
+        setW3Name(web3Name);
+        replaceHistoryState(shouldChangeUrl, web3Name);
       } else {
         setW3Name('no web3name yet');
       }
@@ -162,6 +165,8 @@ export const Search = () => {
 
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
+      const api = await apiPromise;
+
       pushHistoryState(shouldChangeUrl, textFromSearch);
       if (!textFromSearch.length) return;
       if (textFromSearch.length < 3) {
@@ -170,11 +175,11 @@ export const Search = () => {
       }
 
       try {
-        if (Did.Utils.validateKiltDidUri(textFromSearch)) {
-          await setDidDocumentFromDid(textFromSearch, shouldChangeUrl);
-          setIsClaimed(true);
-          return;
-        }
+        const did = textFromSearch as DidUri;
+        Did.validateUri(did);
+        await setDidDocumentFromDid(did, shouldChangeUrl);
+        setIsClaimed(true);
+        return;
         // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
       } catch {}
 
@@ -185,20 +190,19 @@ export const Search = () => {
       }
 
       try {
-        decodeAddress(textFromSearch);
+        const address = textFromSearch as KiltAddress;
+        decodeAddress(address);
 
-        const address = textFromSearch;
-
-        const identifier = await Did.AccountLinks.queryConnectedDidForAccount(
-          address,
+        const result = await api.call.did.queryByAccount(
+          Did.accountToChain(address),
         );
 
-        if (!identifier) {
+        if (result.isNone) {
           setError('no_linked_account');
           setW3Name('');
           return;
         }
-        const did = Did.Utils.getKiltDidFromIdentifier(identifier, 'full');
+        const did = Did.linkedInfoFromChain(result).document.uri;
 
         await setDidDocumentFromDid(did, shouldChangeUrl);
         setIsClaimed(true);
@@ -220,13 +224,14 @@ export const Search = () => {
       if (stringStartsWithW3(textFromSearch)) {
         const name = textFromSearch.split(':').pop();
         if (name) {
-          const didDocumentInstance = await getDidDocFromW3Name(name);
           setW3Name(name);
-          if (didDocumentInstance) {
-            setServiceEndpoints(didDocumentInstance.endpoints);
-            setDid(didDocumentInstance.did);
+          const result = await api.call.did.queryByWeb3Name(name);
+          if (result.isSome) {
+            const { document, accounts } = Did.linkedInfoFromChain(result);
+            setServiceEndpoints(document.service || []);
+            setDid(document.uri);
             setIsClaimed(true);
-            setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
+            setLinkedAccounts(accounts);
 
             replaceHistoryState(shouldChangeUrl, name);
           } else {
@@ -241,13 +246,14 @@ export const Search = () => {
         return;
       }
 
-      const didDocumentInstance = await getDidDocFromW3Name(textFromSearch);
+      const result = await api.call.did.queryByWeb3Name(textFromSearch);
       setW3Name(textFromSearch);
-      if (didDocumentInstance) {
-        setServiceEndpoints(didDocumentInstance.endpoints);
-        setDid(didDocumentInstance.did);
+      if (result.isSome) {
+        const { document, accounts } = Did.linkedInfoFromChain(result);
+        setServiceEndpoints(document.service || []);
+        setDid(document.uri);
         setIsClaimed(true);
-        setLinkedAccounts(await getLinkedAccounts(didDocumentInstance.did));
+        setLinkedAccounts(accounts);
       } else {
         replaceHistoryState(shouldChangeUrl, textFromSearch);
         setIsClaimed(false);

@@ -47,7 +47,7 @@ function ClaimingSection({ web3name }: ClaimingProps) {
         const { signer } = await web3FromAddress(address);
         const signed = await extrinsic.signAsync(address, { signer });
 
-        await ChainHelpers.BlockchainUtils.submitSignedTx(signed);
+        await ChainHelpers.Blockchain.submitSignedTx(signed);
 
         setClaimingStatus('success');
       } catch (error) {
