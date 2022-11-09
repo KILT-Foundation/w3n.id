@@ -1,13 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
-import { init } from '@kiltprotocol/sdk-js';
+import { connect } from '@kiltprotocol/sdk-js';
 
 import './index.css';
 
 import { App } from './Components/App/App';
 
-init({ address: process.env.REACT_APP_CHAIN_ENDPOINT });
+connect(process.env.REACT_APP_CHAIN_ENDPOINT as string);
 
 const container = document.getElementById('root') as HTMLElement;
 
