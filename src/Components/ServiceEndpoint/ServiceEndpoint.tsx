@@ -23,13 +23,16 @@ class ExplicitError extends Error {}
 
 function isPublishedCollection(
   json: unknown,
+  endpointType: string,
 ): json is KiltPublishedCredentialCollectionV1 {
-  const isArray = Array.isArray(json);
-  const isCredential = Credential.isICredential(
-    (json as KiltPublishedCredentialCollectionV1)[0].credential,
-  );
-
-  return isArray && isCredential;
+  if (endpointType !== KiltPublishedCredentialCollectionV1Type) {
+    return false;
+  }
+  if (!Array.isArray(json)) {
+    return false;
+  }
+  const [{ credential }] = json as KiltPublishedCredentialCollectionV1;
+  return Credential.isICredential(credential);
 }
 
 interface EndpointsProps {
@@ -118,10 +121,7 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
         credential = json;
       }
 
-      if (
-        endpointType === KiltPublishedCredentialCollectionV1Type &&
-        isPublishedCollection(json)
-      ) {
+      if (isPublishedCollection(json, endpointType)) {
         credential = json[0].credential;
       }
 
