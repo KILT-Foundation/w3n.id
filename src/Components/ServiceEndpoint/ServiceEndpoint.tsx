@@ -7,6 +7,8 @@ import {
   DidUri,
   IClaimContents,
   ICredential,
+  KiltPublishedCredentialCollectionV1,
+  KiltPublishedCredentialCollectionV1Type,
 } from '@kiltprotocol/sdk-js';
 
 import * as styles from './ServiceEndpoint.module.css';
@@ -18,6 +20,20 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 class ExplicitError extends Error {}
+
+function isPublishedCollection(
+  json: unknown,
+  endpointType: string,
+): json is KiltPublishedCredentialCollectionV1 {
+  if (endpointType !== KiltPublishedCredentialCollectionV1Type) {
+    return false;
+  }
+  if (!Array.isArray(json)) {
+    return false;
+  }
+  const [{ credential }] = json as KiltPublishedCredentialCollectionV1;
+  return Credential.isICredential(credential);
+}
 
 interface EndpointsProps {
   serviceEndpoints?: DidServiceEndpoint[];
@@ -105,6 +121,10 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
         credential = json;
       }
 
+      if (isPublishedCollection(json, endpointType)) {
+        credential = json[0].credential;
+      }
+
       if (!credential) {
         throw new ExplicitError('Not valid Kilt Credential');
       }
@@ -151,7 +171,7 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
     } finally {
       setFetching(false);
     }
-  }, [endpointURL, did]);
+  }, [endpointURL, endpointType, did]);
 
   const handleClose = useCallback(() => {
     setError(undefined);
