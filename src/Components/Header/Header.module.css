@@ -2,20 +2,17 @@
   background-color: var(--body);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: fit-content;
+  align-items: flex-start;
   width: 100vw;
   position: relative;
 }
 
 .logo {
-  display: flex;
-  max-width: 740px;
-  width: 90%;
-  justify-content: flex-start;
-  align-items: center;
-  height: 60px;
-  background: url('../../ImageAssets/w3n_logo_light.svg') no-repeat center left;
+  width: 70px;
+  height: 30px;
+  margin-block: 15px;
+  margin-inline-start: calc((100% - min(90%, 740px)) / 2);
+  background: url('../../ImageAssets/w3n_logo_light.svg') no-repeat;
 }
 
 :global(html.dark) .logo {

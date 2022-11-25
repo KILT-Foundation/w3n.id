@@ -1,13 +1,16 @@
+import { NavLink } from 'react-router-dom';
+
 import * as styles from './Header.module.css';
 
 import { ThemeSwitch } from '../ThemeSwitch/ThemeSwitch';
+import { paths } from '../../Utils/paths';
 
 export const Header = () => {
   return (
     <header className={styles.header}>
       <ThemeSwitch />
 
-      <div className={styles.logo} />
+      <NavLink to={paths.main} className={styles.logo} />
 
       <div className={styles.headingTextContainer}>
         <span className={styles.text}>
