@@ -19,8 +19,8 @@ export function Terms() {
               target="_blank"
               rel="noreferrer"
             >
-              https://www.w3n.id{' '}
-            </a>
+              https://w3n.id
+            </a>{' '}
             (the “Software”) and defined below these Terms and Conditions shall
             apply.
           </p>
@@ -83,7 +83,10 @@ export function Terms() {
             You can enter a web3name in the search field. If you click “Look
             up”, the Software of w3n.id will look up the corresponding DID. If
             no results are shown, the web3name is still available and if you
-            wish, you can claim it via your wallet.
+            wish, you can claim it via your wallet. You can claim a web3name
+            that you looked up and was not showing any results by choosing a
+            payment account, claiming the name via “CLAIM NOW”-button and pay
+            for claiming the web3name in your Sporran wallet.
           </p>
           <p>
             Or you can enter a DID in the search field. If you click “Look up”,
@@ -91,9 +94,22 @@ export function Terms() {
             no results are shown, the DID has no web3name attached to it.
           </p>
           <p>
-            You can also use w3n.id to share your web3name or your DID by simply
-            looking it up and copying the URL in the address bar to share it via
-            email, chat or other communication mode.
+            Furthermore, you can enter an account address from the
+            Polkadot/Kusama universe in the search field. If you click “Look
+            up”, the Software of w3n.id will look up the corresponding web3name
+            and DID for that account. If no results are shown, the account has
+            no web3name and DID attached to it.
+          </p>
+          <p>
+            If you looked up a DID or a web3name, under section “Linked
+            accounts” you can see all the account addresses that were linked to
+            the DID and web3name in the the Polkadot/Kusama universe.
+          </p>
+          <p>
+            You can also use w3n.id to share your web3name or your DID and the
+            accounts attached or linked to them by simply looking it up and
+            copying the URL in the address bar to share it via email, chat or
+            other communication mode.
           </p>
           <p>
             If a web3name has KILT credentials associated with it that are
@@ -218,8 +234,8 @@ export function Terms() {
             Conditions
           </h3>
           <p>
-            ConditionsBTE reserves the right to change the w3n.id, the w3n.id
-            Website and these Terms and Conditions as well as the commercial and
+            BTE reserves the right to change the w3n.id, the w3n.id Website and
+            these Terms and Conditions as well as the commercial and
             non-commercial conditions for its usage.
           </p>
           <p>
@@ -234,8 +250,8 @@ export function Terms() {
             License to the W3n.id Website
           </h3>
           <p>
-            WebsiteCopyright (c) 2021-2022, B.T.E. BOTLabs Trusted Entity GmbH.
-            All rights reserved.
+            Copyright (c) 2021-2022, B.T.E. BOTLabs Trusted Entity GmbH. All
+            rights reserved.
           </p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
