@@ -10,7 +10,7 @@ export const Header = () => {
     <header className={styles.header}>
       <ThemeSwitch />
 
-      <NavLink to={paths.main} className={styles.logo} />
+      <NavLink to={paths.main} className={styles.logo} aria-label="home" />
 
       <div className={styles.headingTextContainer}>
         <span className={styles.text}>
