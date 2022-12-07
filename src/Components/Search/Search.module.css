@@ -100,16 +100,9 @@
 .infoContainer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   max-width: 740px;
   width: 87%;
-}
-
-.infoBtn {
-  background: url('../../ImageAssets/tool_tip_light.svg') no-repeat right/100%;
-  position: relative;
-  width: 16px;
-  border: none;
-  cursor: pointer;
 }
 
 .modeContainer {
@@ -174,80 +167,4 @@
   color: var(--inactive-text);
   opacity: 0.5;
   z-index: 0;
-}
-
-.modal {
-  position: absolute;
-  top: 30px;
-  right: -15px;
-  display: flex;
-  width: 440px;
-  z-index: 20;
-}
-
-@media (max-width: 480px) {
-  .modal {
-    width: 200px;
-  }
-}
-
-.text {
-  position: relative;
-  padding: 15px;
-  margin: 1em 0 3em;
-  border: 2px solid var(--web3-name);
-  background-color: var(--modal-bg);
-  color: var(--text);
-  box-shadow: 0 6px 8px 0 rgba(var(--black-rgb) / 25%);
-  border-radius: 8px;
-  font-size: 16px;
-  letter-spacing: 0.11px;
-  line-height: 22px;
-  text-align: left;
-}
-
-.text::before {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 20px;
-  border-width: 20px 20px 0;
-  border-style: solid;
-  border-color: var(--web3-name) transparent;
-  display: block;
-  width: 0;
-}
-
-/* creates the smaller  triangle */
-.text::after {
-  content: '';
-  position: absolute;
-  bottom: -13px;
-  left: 17px;
-  border-width: 13px 13px 0;
-  border-style: solid;
-  border-color: var(--main-heading-background) transparent;
-  display: block;
-  width: 0;
-}
-
-/* Variant : top
-  ------------------------------------------ */
-
-/* creates the larger triangle */
-.text.top::before {
-  top: -12px;
-  bottom: auto;
-  left: auto;
-  right: 10px;
-  border-width: 0 13px 12px;
-}
-
-/* creates the smaller  triangle */
-.text.top::after {
-  top: -8px;
-  bottom: auto;
-  left: auto;
-  right: 11px;
-  border-width: 0 12px 10px;
 }

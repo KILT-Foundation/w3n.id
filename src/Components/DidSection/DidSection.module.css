@@ -24,23 +24,7 @@
   align-items: center;
 }
 
-.infoBtn {
-  composes: infoBtn from '../Results/Results.module.css';
-}
-
 .titleWrapper {
   composes: titleWrapper from '../Results/Results.module.css';
   align-items: center;
-}
-
-.modal {
-  composes: modal from '../Results/Results.module.css';
-}
-
-.modalText {
-  composes: modalText from '../Results/Results.module.css';
-}
-
-.top {
-  composes: top from '../Results/Results.module.css';
 }

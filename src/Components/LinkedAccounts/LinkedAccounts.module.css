@@ -23,23 +23,6 @@
   gap: 10px;
 }
 
-.infoBtn {
-  composes: infoBtn from '../Search/Search.module.css';
-  height: 20px;
-}
-
 .titleWrapper {
   composes: titleWrapper from '../Results/Results.module.css';
-}
-
-.modal {
-  composes: modal from '../Results/Results.module.css';
-}
-
-.modalText {
-  composes: modalText from '../Results/Results.module.css';
-}
-
-.top {
-  composes: top from '../Search/Search.module.css';
 }

@@ -34,7 +34,7 @@ export async function getW3NameExtrinsic(
   payerAddress: string,
 ) {
   const api = await apiPromise;
-  const extrinsic = await api.tx.web3Names.claim(web3name);
+  const extrinsic = api.tx.web3Names.claim(web3name);
 
   const signedOutputFromExtension =
     await window.kilt.sporran.signExtrinsicWithDid(

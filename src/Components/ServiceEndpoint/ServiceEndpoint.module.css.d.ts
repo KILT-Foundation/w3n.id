@@ -18,9 +18,5 @@ declare const styles: {
   readonly text: string;
   readonly title: string;
   readonly titleWrapper: string;
-  readonly infoBtn: string;
-  readonly modalText: string;
-  readonly top: string;
-  readonly modal: string;
 };
 export = styles;

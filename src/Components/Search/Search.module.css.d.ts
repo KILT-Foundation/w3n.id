@@ -11,14 +11,10 @@ declare const styles: {
   readonly noWeb3name: string;
   readonly title: string;
   readonly infoContainer: string;
-  readonly infoBtn: string;
   readonly modeContainer: string;
   readonly availableActiveMode: string;
   readonly availableInactiveMode: string;
   readonly takenActiveMode: string;
   readonly takenInactiveMode: string;
-  readonly modal: string;
-  readonly text: string;
-  readonly top: string;
 };
 export = styles;
