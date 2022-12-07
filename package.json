@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "parcel --open",
+    "dev": "parcel --open --port 1235",
     "build": "parcel build",
     "check": "tsc --noEmit",
     "test-size": "bundlewatch --config bundlewatch.config.json",

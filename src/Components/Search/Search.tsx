@@ -1,4 +1,10 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Fragment,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   Did,
@@ -25,11 +31,11 @@ import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
 import { ResultsErrors, SearchError } from '../ResultsErrors/ResultsErrors';
 import { LinkingInfo } from '../LinkingInfo/LinkingInfo';
-import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 import { ClaimW3Name } from '../ClaimW3Name/ClaimW3Name';
 import { ClaimingGuide } from '../ClaimingGuide/ClaimingGuide';
 import { LinkedAccounts } from '../LinkedAccounts/LinkedAccounts';
 import { apiPromise } from '../../Utils/claimWeb3name-helpers';
+import { InfoIcon } from '../InfoIcon/InfoIcon';
 
 interface Props {
   did?: DidUri;
@@ -104,7 +110,7 @@ function Unclaimed({ web3name }: UnclaimedProps) {
   );
 }
 
-export const Search = () => {
+export function Search() {
   const [searchedText, setSearchedText] = useState<string>('');
   const [isClaimed, setIsClaimed] = useState(true);
   const [serviceEndpoints, setServiceEndpoints] = useState<
@@ -113,12 +119,8 @@ export const Search = () => {
   const [did, setDid] = useState<DidUri>();
   const [w3Name, setW3Name] = useState<string>('');
   const [error, setError] = useState<SearchError>();
-  const [showModal, setShowModal] = useState(false);
   const [linkedAccounts, setLinkedAccounts] = useState<string[]>([]);
-  const modalRef = useRef(null);
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
-
-  useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
 
   window.onpopstate = function () {
     setError(undefined);
@@ -276,7 +278,7 @@ export const Search = () => {
     await resolveDidDocument(searchedText);
   };
 
-  const handleKeypress = (event: React.KeyboardEvent) => {
+  const handleKeypress = (event: KeyboardEvent) => {
     if (event.key === 'Enter') handleSearch();
   };
   useEffect(() => {
@@ -316,17 +318,11 @@ export const Search = () => {
           <p className={styles.infoTextAddress}>
             You can also look up DIDs or account addresses
           </p>
-          <button className={styles.infoBtn} onClick={() => setShowModal(true)}>
-            {showModal && (
-              <div className={styles.modal}>
-                <p className={`${styles.text} ${styles.top}`} ref={modalRef}>
-                  Searching by web3name, DID or account address will give all
-                  the information, including credentials, publicly linked to
-                  that digital identity.
-                </p>
-              </div>
-            )}
-          </button>
+          <InfoIcon>
+            Searching by web3name, DID or account address will give all the
+            information, including credentials, publicly linked to that digital
+            identity.
+          </InfoIcon>
         </div>
       </div>
 
@@ -347,4 +343,4 @@ export const Search = () => {
       </section>
     </main>
   );
-};
+}

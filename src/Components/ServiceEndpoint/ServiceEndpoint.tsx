@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   Attestation,
   Credential,
@@ -16,7 +16,7 @@ import * as styles from './ServiceEndpoint.module.css';
 import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { CredentialDetails } from '../CredentialDetails/CredentialDetails';
-import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
+import { InfoIcon } from '../InfoIcon/InfoIcon';
 import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 class ExplicitError extends Error {}
@@ -41,26 +41,14 @@ interface EndpointsProps {
 }
 
 export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
-  const [showModal, setShowModal] = useState(false);
-  const modalRef = useRef(null);
-
-  useHandleOutsideClick(modalRef, () => setShowModal(!showModal));
-
   return (
     <div className={styles.didDocument}>
       <div className={styles.titleWrapper}>
         <span className={styles.title}>Service Endpoints</span>
-        <button className={styles.infoBtn} onClick={() => setShowModal(true)}>
-          {showModal && (
-            <div className={styles.modal}>
-              <p className={`${styles.modalText} ${styles.top}`} ref={modalRef}>
-                Credentials may be linked with your on-chain DID & web3name and
-                displayed publicly on service endpoints such as GitHub public or
-                IPFS.
-              </p>
-            </div>
-          )}
-        </button>
+        <InfoIcon right>
+          Credentials may be linked with your on-chain DID & web3name and
+          displayed publicly on service endpoints such as GitHub public or IPFS.
+        </InfoIcon>
       </div>
 
       {serviceEndpoints && serviceEndpoints.length > 0 && did && (
