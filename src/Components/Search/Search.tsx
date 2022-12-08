@@ -292,7 +292,7 @@ export function Search() {
     <main className={styles.container}>
       <div className={styles.search}>
         <p className={styles.infoText}>
-          Find an available web3name to <b>claim</b>, or <b>look up</b> an
+          Find an available web3name to <em>claim</em>, or <em>look up</em> an
           existing one!
         </p>
         <div className={styles.searchBar}>
