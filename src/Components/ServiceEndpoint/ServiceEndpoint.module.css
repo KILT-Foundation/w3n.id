@@ -93,29 +93,12 @@
   color: rgba(var(--fetch-button-text-disabled-rgb) / 50%);
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
-  }
-}
-
 .loader {
+  composes: spinner from '../Spinner/Spinner.module.css';
   position: absolute;
   right: 2px;
   height: 18px;
   width: 18px;
-  animation: rotation 1.5s infinite linear;
-  background:
-    url('../../ImageAssets/spinner_light.svg') no-repeat
-    center/contain;
-}
-
-:global(html.dark) .loader {
-  background-image: url('../../ImageAssets/spinner_dark.svg');
 }
 
 .seperator {
