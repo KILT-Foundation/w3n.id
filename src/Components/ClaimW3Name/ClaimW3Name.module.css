@@ -91,12 +91,14 @@
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
+  position: relative;
 }
 
-.btn:disabled {
+.btn:disabled,
+.loaded {
   color: rgb(var(--modal-btn-disabled-rgb) / 50%);
   border: 3px solid rgb(var(--modal-btn-disabled-rgb) / 50%);
-  cursor: none;
+  cursor: auto;
 }
 
 @media (max-width: 420px) {
@@ -109,6 +111,22 @@
   }
 }
 
+.spinner {
+  composes: spinner from '../Spinner/Spinner.module.css';
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  right: 0.25rem;
+  top: 0.2rem;
+}
+
+.loaded {
+  composes: btn;
+  line-height: 1.5rem;
+  background: url('../../ImageAssets/ok.svg') 99% center/1rem no-repeat;
+}
+
 .select {
   position: absolute;
   min-height: 28px;
@@ -119,8 +137,7 @@
   flex-direction: column;
   cursor: pointer;
   background:
-    url('../../ImageAssets/open_triangle.svg') no-repeat top 11px
-    right 10px/9px 6px,
+    url('../../ImageAssets/open_triangle.svg') no-repeat top 11px right 10px/9px 6px,
     var(--select);
   color: var(--select-text);
 }
@@ -133,8 +150,7 @@
 .selectShow {
   composes: select;
   background:
-    url('../../ImageAssets/close_triangle.svg') no-repeat top 11px
-    right 10px/9px 6px,
+    url('../../ImageAssets/close_triangle.svg') no-repeat top 11px right 10px/9px 6px,
     var(--select);
 }
 

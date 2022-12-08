@@ -22,6 +22,7 @@ function ClaimingSection({ web3name }: ClaimingProps) {
     [],
   );
   const [selectedAccount, setSelectedAccount] = useState<InjectedAccount>();
+  const [connecting, setConnecting] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -30,8 +31,13 @@ function ClaimingSection({ web3name }: ClaimingProps) {
   >();
 
   const handleConnectWallets = useCallback(async () => {
-    const accounts = await getAccounts();
-    setFilteredAccounts(accounts);
+    try {
+      setConnecting(true);
+      const accounts = await getAccounts();
+      setFilteredAccounts(accounts);
+    } finally {
+      setConnecting(false);
+    }
   }, []);
 
   const handleSubmit = useCallback(
@@ -81,13 +87,19 @@ function ClaimingSection({ web3name }: ClaimingProps) {
             <ol type="1" className={styles.steps}>
               <li className={styles.step}>
                 <p>Click “Connect to wallet”</p>
-                <button
-                  type="button"
-                  className={styles.btn}
-                  onClick={handleConnectWallets}
-                >
-                  Connect to wallet
-                </button>
+                {filteredAccounts.length === 0 && (
+                  <button
+                    type="button"
+                    className={styles.btn}
+                    onClick={handleConnectWallets}
+                  >
+                    Connect to wallet
+                    {connecting && <span className={styles.spinner} />}
+                  </button>
+                )}
+                {filteredAccounts.length > 0 && (
+                  <p className={styles.loaded}>Accounts loaded</p>
+                )}
               </li>
               <li className={styles.step}>
                 <p>
@@ -169,6 +181,7 @@ function ClaimingSection({ web3name }: ClaimingProps) {
 interface Props {
   web3name: string;
 }
+
 export const ClaimW3Name = ({ web3name }: Props) => {
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 

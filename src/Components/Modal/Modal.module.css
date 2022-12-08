@@ -112,14 +112,7 @@
 }
 
 .spinner {
+  composes: spinner from '../Spinner/Spinner.module.css';
   width: 70px;
   height: 70px;
-  animation: rotation 1.5s infinite linear;
-  background:
-    url('../../ImageAssets/spinner_light.svg') no-repeat
-    center/contain;
-}
-
-:global(html.dark) .spinner {
-  background: url('../../ImageAssets/spinner_dark.svg') no-repeat center/contain;
 }

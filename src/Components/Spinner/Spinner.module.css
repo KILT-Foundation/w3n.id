@@ -1,0 +1,18 @@
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.spinner {
+  animation: rotation 1.5s infinite linear;
+  background: url('spinner_light.svg') no-repeat center/contain;
+}
+
+:global(html.dark) .spinner {
+  background-image: url('spinner_dark.svg');
+}

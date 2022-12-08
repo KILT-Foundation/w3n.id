@@ -13,6 +13,8 @@ declare const styles: {
   readonly selectAccount: string;
   readonly stepsHeading: string;
   readonly btn: string;
+  readonly spinner: string;
+  readonly loaded: string;
   readonly select: string;
   readonly selectShow: string;
   readonly options: string;
