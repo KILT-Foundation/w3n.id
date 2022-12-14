@@ -129,6 +129,7 @@
 
 .select {
   position: absolute;
+  z-index: 1;
   min-height: 28px;
   max-width: 320px;
   width: 80%;
