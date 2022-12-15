@@ -10,7 +10,7 @@ export const Imprint = () => {
         <div className={styles.imprint}>
           <section className={styles.imprintSection}>
             <p className={styles.imprintLine}>
-              B.T.E. BOTLabs Trusted Entity GmbH
+              BOTLabs GmbH
             </p>
             <p className={styles.imprintLine}>Keithstraße 2-4</p>
             <p className={styles.imprintLine}>10787 Berlin, Germany</p>
@@ -22,9 +22,8 @@ export const Imprint = () => {
               Amtsgericht Charlottenburg in Berlin
             </p>
             <p className={styles.imprintLine}>
-              Registration Number: HRB 231219B
-            </p>
-            <p className={styles.imprintLine}>VAT No: DE 346528612</p>
+              Registration Number: HRB 193450B</p>
+            <p className={styles.imprintLine}>VAT No: DE316284270</p>
             <p className={styles.imprintLine}>Managing Director: Ingo Rübe</p>
           </section>
 
