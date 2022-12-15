@@ -10,8 +10,7 @@ export function Terms() {
         <section className={styles.terms}>
           <h3>Application of These Terms and Conditions</h3>
           <p>
-            For the w3n.id (the “W3n.id Website”) by B.T.E. BOTLabs Trusted
-            Entity GmbH (hereinafter referred to as “BTE”, “us”, “we” or “our”)
+            For the w3n.id (the “W3n.id Website”) by BOTLabs GmbH (hereinafter referred to as “BOTLabs”, “us”, “we” or “our”)
             a website with software as provided under{' '}
             <a
               className={styles.anchor}
@@ -136,12 +135,12 @@ export function Terms() {
 
           <h3 className={styles.spacedHeading}>Liability</h3>
           <p>
-            BTE is liable for damages that are based on an intentional or
-            grossly negligent breach of duty by BTE, its legal representatives
+            BOTLabs is liable for damages that are based on an intentional or
+            grossly negligent breach of duty by BOTLabs, its legal representatives
             or various agents.
           </p>
           <p>
-            In the event of a breach of essential contractual duties, BTE shall
+            In the event of a breach of essential contractual duties, BOTLabs shall
             only be liable for the contractually typical, foreseeable damage if
             this was simply cause by negligence. Significant contractual
             obligations are those whose fulfillment enables the proper execution
@@ -150,9 +149,9 @@ export function Terms() {
           </p>
           <p>
             The limitation of the two preceding paragraphs also apply to the
-            legal representatives and various agents of BTE, if claims are
+            legal representatives and various agents of BOTLabs, if claims are
             asserted directly against them. The liability limitations resulting
-            from the two preceding paragraphs do not apply insofar as BTE
+            from the two preceding paragraphs do not apply insofar as BOTLabs
             fraudulently concealed the defect or assumed a guarantee for the
             quality of the W3n.id Website or the usage of the w3n.id in the
             wallet.
@@ -234,7 +233,7 @@ export function Terms() {
             Conditions
           </h3>
           <p>
-            BTE reserves the right to change the w3n.id, the w3n.id Website and
+            BOTLabs reserves the right to change the w3n.id, the w3n.id Website and
             these Terms and Conditions as well as the commercial and
             non-commercial conditions for its usage.
           </p>
@@ -250,7 +249,7 @@ export function Terms() {
             License to the W3n.id Website
           </h3>
           <p>
-            Copyright (c) 2021-2022, B.T.E. BOTLabs Trusted Entity GmbH. All
+            Copyright (c) 2021-2022, BOTLabs GmbH. All
             rights reserved.
           </p>
 
@@ -285,8 +284,8 @@ export function Terms() {
             </li>
           </ul>
           <p>
-            Disclaimer: The Liability of the B.T.E. BOTLabs Trusted Entity GmbH
-            (hereinafter referred to as “BTE”) is limited according to these
+            Disclaimer: The Liability of BOTLabs GmbH
+            (hereinafter referred to as “BOTLabs”) is limited according to these
             Terms and Conditions for w3n.id.
           </p>
 
@@ -307,7 +306,7 @@ export function Terms() {
           <p>
             The place of performance and exclusive place of jurisdiction for all
             disputes arising from these Terms and Conditions and the entire
-            legal relationship between the parties shall be BTE’s registered
+            legal relationship between the parties shall be BOTLabs’ registered
             office, unless choice of jurisdiction is legally prohibited.
           </p>
         </section>
