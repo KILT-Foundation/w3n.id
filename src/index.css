@@ -3,6 +3,13 @@
   src: url('./Fonts/Overpass-Regular.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: Overpass;
+  font-style: normal;
+  font-weight: 600;
+  src: url('./Fonts/Overpass-SemiBold.woff2') format('woff2');
+}
+
 :root {
   font-family: Overpass, sans-serif;
 }
