@@ -10,8 +10,9 @@ export function Terms() {
         <section className={styles.terms}>
           <h3>Application of These Terms and Conditions</h3>
           <p>
-            For the w3n.id (the “W3n.id Website”) by BOTLabs GmbH (hereinafter referred to as “BOTLabs”, “us”, “we” or “our”)
-            a website with software as provided under{' '}
+            For the w3n.id (the “W3n.id Website”) by BOTLabs GmbH (hereinafter
+            referred to as “BOTLabs”, “us”, “we” or “our”) a website with
+            software as provided under{' '}
             <a
               className={styles.anchor}
               href="https://w3n.id/"
@@ -136,16 +137,16 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>Liability</h3>
           <p>
             BOTLabs is liable for damages that are based on an intentional or
-            grossly negligent breach of duty by BOTLabs, its legal representatives
-            or various agents.
+            grossly negligent breach of duty by BOTLabs, its legal
+            representatives or various agents.
           </p>
           <p>
-            In the event of a breach of essential contractual duties, BOTLabs shall
-            only be liable for the contractually typical, foreseeable damage if
-            this was simply cause by negligence. Significant contractual
-            obligations are those whose fulfillment enables the proper execution
-            of the contract in the first place and whose compliance you can
-            regularly rely on.
+            In the event of a breach of essential contractual duties, BOTLabs
+            shall only be liable for the contractually typical, foreseeable
+            damage if this was simply cause by negligence. Significant
+            contractual obligations are those whose fulfillment enables the
+            proper execution of the contract in the first place and whose
+            compliance you can regularly rely on.
           </p>
           <p>
             The limitation of the two preceding paragraphs also apply to the
@@ -219,7 +220,7 @@ export function Terms() {
             and functionality of the Software. To ensure you are using the
             original, always access the download through us directly and if
             uncertain, compare the code with the code published on GitHub before
-            usage and only use if it matchesfully with the code there.
+            usage and only use if it matches fully with the code there.
           </p>
           <p>
             Communication via internet-based systems is fundamentally
@@ -233,8 +234,8 @@ export function Terms() {
             Conditions
           </h3>
           <p>
-            BOTLabs reserves the right to change the w3n.id, the w3n.id Website and
-            these Terms and Conditions as well as the commercial and
+            BOTLabs reserves the right to change the w3n.id, the w3n.id Website
+            and these Terms and Conditions as well as the commercial and
             non-commercial conditions for its usage.
           </p>
           <p>
@@ -248,10 +249,7 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>
             License to the W3n.id Website
           </h3>
-          <p>
-            Copyright (c) 2021-2022, BOTLabs GmbH. All
-            rights reserved.
-          </p>
+          <p>Copyright (c) 2021-2022, BOTLabs GmbH. All rights reserved.</p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
           <p>Copyright (c) 2022, built on KILT. All rights reserved.</p>
@@ -284,9 +282,9 @@ export function Terms() {
             </li>
           </ul>
           <p>
-            Disclaimer: The Liability of BOTLabs GmbH
-            (hereinafter referred to as “BOTLabs”) is limited according to these
-            Terms and Conditions for w3n.id.
+            Disclaimer: The Liability of BOTLabs GmbH (hereinafter referred to
+            as “BOTLabs”) is limited according to these Terms and Conditions for
+            w3n.id.
           </p>
 
           <p>(BSD 4-Clause)</p>
