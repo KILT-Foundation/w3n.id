@@ -1,8 +1,3 @@
-import type {
-  DidDidDetailsDidAuthorizedCallOperation,
-  DidDidDetailsDidSignature,
-} from '@kiltprotocol/augment-api';
-
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 import { connect } from '@kiltprotocol/sdk-js';
 
