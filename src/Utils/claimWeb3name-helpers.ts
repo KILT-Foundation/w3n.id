@@ -1,8 +1,3 @@
-import type {
-  DidDidDetailsDidAuthorizedCallOperation,
-  DidDidDetailsDidSignature,
-} from '@kiltprotocol/augment-api';
-
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 import { connect } from '@kiltprotocol/sdk-js';
 
@@ -36,19 +31,10 @@ export async function getW3NameExtrinsic(
   const api = await apiPromise;
   const extrinsic = api.tx.web3Names.claim(web3name);
 
-  const signedOutputFromExtension =
-    await window.kilt.sporran.signExtrinsicWithDid(
-      extrinsic.toHex(),
-      payerAddress,
-    );
-
-  const genericExtrinsic = api.createType(
-    'Extrinsic',
-    signedOutputFromExtension.signed,
+  const { signed } = await window.kilt.sporran.signExtrinsicWithDid(
+    extrinsic.toHex(),
+    payerAddress,
   );
 
-  return api.tx.did.submitDidCall(
-    genericExtrinsic.args[0] as DidDidDetailsDidAuthorizedCallOperation,
-    genericExtrinsic.args[1] as DidDidDetailsDidSignature,
-  );
+  return api.tx(signed);
 }
