@@ -31,13 +31,9 @@ export const PayPalSection = ({ web3name }: TabSection) => {
       }
       const checkoutUrl =
         process.env.REACT_CHECKOUT_SERVICE_URL || 'https://checkout.kilt.io';
-      window.open(`${checkoutUrl}?tx=${tx}&address=${did}`);
-      try {
-      } catch (error) {
-        return;
-      }
+      window.open(`${checkoutUrl}?tx=${tx}&address=${did}&w3n=${web3name}`);
     },
-    [tx, did],
+    [tx, did, web3name],
   );
 
   return (
