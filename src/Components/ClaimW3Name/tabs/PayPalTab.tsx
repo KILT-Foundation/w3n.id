@@ -28,8 +28,6 @@ export const PayPalSection = ({ web3name }: TabSection) => {
         return;
       }
       const checkoutUrl = process.env.REACT_CHECKOUT_SERVICE_URL || '';
-      console.log(process.env);
-      console.log(checkoutUrl);
       window.open(`${checkoutUrl}?tx=${tx}`);
       try {
       } catch (error) {
