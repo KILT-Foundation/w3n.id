@@ -11,14 +11,16 @@ interface TabSection {
 
 export const PayPalSection = ({ web3name }: TabSection) => {
   const [tx, setTx] = useState<string | undefined>();
-
+  const [did, setDid] = useState<string | undefined>();
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
-    const extrinsic = await getW3NameExtrinsic(
+
+    const { extrinsic, didKeyUri } = await getW3NameExtrinsic(
       web3name,
       process.env.REACT_CHECKOUT_ADDRESS || '',
     );
     setTx(extrinsic.toHex());
+    setDid(didKeyUri);
   }, [web3name]);
 
   const handleSubmit = useCallback(
@@ -27,14 +29,15 @@ export const PayPalSection = ({ web3name }: TabSection) => {
       if (!tx) {
         return;
       }
-      const checkoutUrl = process.env.REACT_CHECKOUT_SERVICE_URL || '';
-      window.open(`${checkoutUrl}?tx=${tx}`);
+      const checkoutUrl =
+        process.env.REACT_CHECKOUT_SERVICE_URL || 'https://checkout.kilt.io';
+      window.open(`${checkoutUrl}?tx=${tx}&address=${did}`);
       try {
       } catch (error) {
         return;
       }
     },
-    [tx],
+    [tx, did],
   );
 
   return (

@@ -4,7 +4,8 @@ import * as styles from './ClaimW3Name.module.css';
 
 import { Tabs } from '../Tab/Tab';
 
-import { KiltSection, PayPalSection } from './tabs';
+import { KiltSection } from './tabs/KiltTab';
+import { PayPalSection } from './tabs/PayPalTab';
 
 interface ClaimingProps {
   web3name: string;

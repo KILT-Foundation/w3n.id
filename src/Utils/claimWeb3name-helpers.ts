@@ -31,10 +31,10 @@ export async function getW3NameExtrinsic(
   const api = await apiPromise;
   const extrinsic = api.tx.web3Names.claim(web3name);
 
-  const { signed } = await window.kilt.sporran.signExtrinsicWithDid(
+  const { signed, didKeyUri } = await window.kilt.sporran.signExtrinsicWithDid(
     extrinsic.toHex(),
     payerAddress,
   );
 
-  return api.tx(signed);
+  return { extrinsic: api.tx(signed), didKeyUri };
 }

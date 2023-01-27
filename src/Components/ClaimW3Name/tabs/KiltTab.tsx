@@ -48,7 +48,7 @@ export const KiltSection = ({ web3name }: TabSection) => {
 
       try {
         const { address } = selectedAccount;
-        const extrinsic = await getW3NameExtrinsic(web3name, address);
+        const { extrinsic } = await getW3NameExtrinsic(web3name, address);
         const { signer } = await web3FromAddress(address);
         const signed = await extrinsic.signAsync(address, { signer });
 
