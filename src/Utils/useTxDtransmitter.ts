@@ -15,9 +15,9 @@ const TXDURLs: Record<string, string> = {
 const CHECKOUTURLs: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://checkout.kilt.io',
   'wss://spiritnet.kilt.io': 'https://checkout.kilt.io',
-  'wss://peregrine.kilt.io/parachain-public-ws': 'https://checkout.kilt.io', // change back to dev
+  'wss://peregrine.kilt.io/parachain-public-ws': 'https://checkout.kilt.io', // revert to dev, if the authorization is suppressed.
   'wss://peregrine-stg.kilt.io/para': 'https://stg-checkout.kilt.io',
-  'wss://sporran-testnet.kilt.io': 'https://checkout.kilt.io', // change back to dev
+  'wss://sporran-testnet.kilt.io': 'https://checkout.kilt.io', //revert to dev, if the authorization is suppressed.
 };
 
 function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
