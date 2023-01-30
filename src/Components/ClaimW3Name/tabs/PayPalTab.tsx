@@ -44,6 +44,7 @@ export const PayPalSection = ({
       url.searchParams.set('tx', tx);
       url.searchParams.set('didKeyUri', didKeyUri);
       url.searchParams.set('w3n', web3name);
+
       window.open(url.toString());
     },
     [tx, didKeyUri, web3name],
