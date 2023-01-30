@@ -35,13 +35,16 @@ export const PayPalSection = ({
     async (event: SyntheticEvent) => {
       event.preventDefault();
 
-      if (!tx) {
+      if (!tx || !did) {
         return;
       }
 
-      window.open(
-        `${getCheckoutURL()}?tx=${tx}&address=${did}&w3n=${web3name}`,
-      );
+      const url = new URL(getCheckoutURL());
+
+      url.searchParams.set('tx', tx);
+      url.searchParams.set('address', did);
+      url.searchParams.set('w3n', web3name);
+      window.open(url.toString());
     },
     [tx, did, web3name],
   );
