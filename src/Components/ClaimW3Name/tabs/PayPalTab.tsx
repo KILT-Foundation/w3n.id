@@ -18,7 +18,7 @@ export const PayPalSection = ({
   paymentAddress,
 }: TabSection) => {
   const [tx, setTx] = useState<string>();
-  const [did, setDid] = useState<string>();
+  const [didKeyUri, setDidKeyUri] = useState<string>();
 
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
@@ -28,25 +28,25 @@ export const PayPalSection = ({
       paymentAddress,
     );
     setTx(extrinsic.toHex());
-    setDid(didKeyUri);
+    setDidKeyUri(didKeyUri);
   }, [web3name, paymentAddress]);
 
   const handleSubmit = useCallback(
     async (event: SyntheticEvent) => {
       event.preventDefault();
 
-      if (!tx || !did) {
+      if (!tx || !didKeyUri) {
         return;
       }
 
       const url = new URL(getCheckoutURL());
 
       url.searchParams.set('tx', tx);
-      url.searchParams.set('address', did);
+      url.searchParams.set('didKeyUri', didKeyUri);
       url.searchParams.set('w3n', web3name);
       window.open(url.toString());
     },
-    [tx, did, web3name],
+    [tx, didKeyUri, web3name],
   );
 
   const formatedCosts = parseFloat(web3namePricing).toLocaleString(undefined, {
