@@ -1,6 +1,8 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
 import { web3Enable } from '@polkadot/extension-dapp';
 
+import { Did, DidUri } from '@kiltprotocol/sdk-js';
+
 import styles from '../ClaimW3Name.module.css';
 
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
@@ -18,7 +20,7 @@ export const PayPalSection = ({
   paymentAddress,
 }: TabSection) => {
   const [tx, setTx] = useState<string>();
-  const [didKeyUri, setDidKeyUri] = useState<string>();
+  const [did, setDid] = useState<string>();
 
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
@@ -27,27 +29,29 @@ export const PayPalSection = ({
       web3name,
       paymentAddress,
     );
+
     setTx(extrinsic.toHex());
-    setDidKeyUri(didKeyUri);
+
+    setDid(Did.parse(didKeyUri as DidUri).did);
   }, [web3name, paymentAddress]);
 
   const handleSubmit = useCallback(
     async (event: SyntheticEvent) => {
       event.preventDefault();
 
-      if (!tx || !didKeyUri) {
+      if (!tx || !did) {
         return;
       }
 
       const url = new URL(getCheckoutURL());
 
       url.searchParams.set('tx', tx);
-      url.searchParams.set('didKeyUri', didKeyUri);
-      url.searchParams.set('w3n', web3name);
+      url.searchParams.set('did', did);
+      url.searchParams.set('web3name', web3name);
 
       window.open(url.toString());
     },
-    [tx, didKeyUri, web3name],
+    [tx, did, web3name],
   );
 
   const formatedCosts = parseFloat(web3namePricing).toLocaleString(undefined, {
