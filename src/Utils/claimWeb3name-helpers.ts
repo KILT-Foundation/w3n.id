@@ -10,9 +10,15 @@ async function getWeb3Accounts() {
   return web3Accounts();
 }
 
-export const apiPromise = connect(
-  process.env.REACT_APP_CHAIN_ENDPOINT as string,
-);
+export function getEndpoint() {
+  const endpoint = process.env.REACT_APP_CHAIN_ENDPOINT as string;
+  if (!endpoint) {
+    throw new Error('No Chain endpoint provided.');
+  }
+  return endpoint;
+}
+
+export const apiPromise = connect(getEndpoint());
 
 export async function getAccounts() {
   const allAccounts = await getWeb3Accounts();

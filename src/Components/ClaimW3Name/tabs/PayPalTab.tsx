@@ -4,37 +4,53 @@ import { web3Enable } from '@polkadot/extension-dapp';
 import styles from '../ClaimW3Name.module.css';
 
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
+import { getCheckoutURL } from '../../../Utils/useTxDtransmitter';
 
 interface TabSection {
   web3name: string;
+  web3namePricing: string;
+  paymentAddress: string;
 }
 
-export const PayPalSection = ({ web3name }: TabSection) => {
-  const [tx, setTx] = useState<string | undefined>();
-  const [did, setDid] = useState<string | undefined>();
+export const PayPalSection = ({
+  web3name,
+  web3namePricing,
+  paymentAddress,
+}: TabSection) => {
+  const [tx, setTx] = useState<string>();
+  const [did, setDid] = useState<string>();
+
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
 
     const { extrinsic, didKeyUri } = await getW3NameExtrinsic(
       web3name,
-      process.env.REACT_CHECKOUT_ADDRESS || '',
+      paymentAddress,
     );
     setTx(extrinsic.toHex());
     setDid(didKeyUri);
-  }, [web3name]);
+  }, [web3name, paymentAddress]);
 
   const handleSubmit = useCallback(
     async (event: SyntheticEvent) => {
       event.preventDefault();
+
       if (!tx) {
         return;
       }
-      const checkoutUrl =
-        process.env.REACT_CHECKOUT_SERVICE_URL || 'https://checkout.kilt.io';
-      window.open(`${checkoutUrl}?tx=${tx}&address=${did}&w3n=${web3name}`);
+
+      window.open(
+        `${getCheckoutURL()}?tx=${tx}&address=${did}&w3n=${web3name}`,
+      );
     },
     [tx, did, web3name],
   );
+
+  const formatedCosts = parseFloat(web3namePricing).toLocaleString(undefined, {
+    style: 'currency',
+    currency: 'EUR',
+    currencyDisplay: 'code',
+  });
 
   return (
     <form className={styles.claimContents} onSubmit={handleSubmit}>
@@ -50,12 +66,13 @@ export const PayPalSection = ({ web3name }: TabSection) => {
             CHOOSE IDENTITY
           </button>
         </li>
+
         <li className={styles.step}>
           <p>Link to checkout page</p>
           <p>
             To continue the payment process with PayPal click the button. You
             will be redirected to our checkout service which will lead you
-            through the process (total cost: EUR 5.00).
+            through the process (total cost: {formatedCosts}).
           </p>
           <button type="submit" className={styles.btn} disabled={!tx}>
             CHECKOUT

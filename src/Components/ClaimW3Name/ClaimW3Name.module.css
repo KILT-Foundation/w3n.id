@@ -209,3 +209,9 @@
   letter-spacing: 0.11px;
   line-height: 17px;
 }
+
+.error {
+  composes: claimContents;
+  text-align: center;
+  color: red;
+}

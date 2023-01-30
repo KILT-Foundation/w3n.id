@@ -1,24 +1,29 @@
-.tabContainer{
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    margin-right: 4px; 
-    margin-left: 4px;
-    margin-bottom: -5px;
-    z-index: 10;
-    
+.tabContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: 4px;
+  margin-left: 4px;
+  margin-bottom: -5px;
+  z-index: 10;
 }
 
-.tabItem{
-    padding: 0.3em;
-    background-color: var(--contents);
-    border-radius: 20px 20px 0 0; 
-    width: 50%; 
-    cursor: pointer;
-    font-size: large;
-    border: none;
-    color: var(--web3-name);
+.tabItem {
+  padding: 0.3em;
+  background-color: var(--contents);
+  border-radius: 20px 20px 0 0;
+  width: 50%;
+  cursor: pointer;
+  font-size: large;
+  border: none;
+  color: var(--web3-name);
 }
+
+.activeTabItem {
+  composes: tabItem;
+  background-color: #a3c791;
+}
+
 .tabItem:hover {
-    filter: brightness(85%);
-  }
+  filter: brightness(85%);
+}

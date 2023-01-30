@@ -1,39 +1,41 @@
-import React from 'react';
+import { useState, Fragment, useCallback } from 'react';
 
 import style from './Tab.module.css';
 
-type typeOpenTab = 'kilt' | 'paypal';
+type TypeOpenTab = 'kilt' | 'paypal';
 
 type Props = {
   children: JSX.Element[];
 };
-export const Tabs = ({ children }: Props) => {
-  const [openTab, setOpenTab] = React.useState<typeOpenTab>('kilt');
+export function Tabs({ children }: Props) {
+  const [openTab, setOpenTab] = useState<TypeOpenTab>('kilt');
 
-  const handleTabChange = (tab: typeOpenTab) => {
-    setOpenTab(tab);
-  };
+  const setKiltTab = useCallback(() => {
+    setOpenTab('kilt');
+  }, []);
+
+  const setPayPalTab = useCallback(() => {
+    setOpenTab('paypal');
+  }, []);
 
   return (
-    <>
+    <Fragment>
       <div className={style.tabContainer}>
         <button
-          onClick={() => handleTabChange('kilt')}
-          style={openTab !== 'kilt' ? { backgroundColor: '#A4C992' } : {}}
-          className={style.tabItem}
+          onClick={setKiltTab}
+          className={openTab === 'kilt' ? style.tabItem : style.activeTabItem}
         >
           Pay with KILT
         </button>
         <button
-          onClick={() => handleTabChange('paypal')}
-          style={openTab !== 'paypal' ? { backgroundColor: '#A4C992' } : {}}
-          className={style.tabItem}
+          onClick={setPayPalTab}
+          className={openTab === 'paypal' ? style.tabItem : style.activeTabItem}
         >
           Pay with PayPal
         </button>
       </div>
       {openTab === 'kilt' && children[0]}
       {openTab === 'paypal' && children[1]}
-    </>
+    </Fragment>
   );
-};
+}

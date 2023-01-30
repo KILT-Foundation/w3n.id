@@ -4,6 +4,13 @@ import * as styles from './ClaimW3Name.module.css';
 
 import { Tabs } from '../Tab/Tab';
 
+import {
+  useApiTXDAddress,
+  useApiTXDCosts,
+} from '../../Utils/useTxDtransmitter';
+
+import { FormError } from '../FormError/FormError';
+
 import { KiltSection } from './tabs/KiltTab';
 import { PayPalSection } from './tabs/PayPalTab';
 
@@ -13,6 +20,20 @@ interface ClaimingProps {
 
 function ClaimingSection({ web3name }: ClaimingProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+
+  const { data: costData, error: costError } = useApiTXDCosts();
+
+  const { data: paymentAddressData, error: paymentAddressError } =
+    useApiTXDAddress();
+
+  if (costError || paymentAddressError) {
+    return (
+      <div className={styles.error}>
+        {costError && <FormError error={costError} />}
+        {paymentAddressError && <FormError error={costError} />}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -32,7 +53,11 @@ function ClaimingSection({ web3name }: ClaimingProps) {
         {isExpanded && (
           <Tabs>
             <KiltSection web3name={web3name} />
-            <PayPalSection web3name={web3name} />
+            <PayPalSection
+              web3name={web3name}
+              paymentAddress={paymentAddressData?.paymentAddress ?? ''}
+              web3namePricing={costData?.w3n ?? ''}
+            />
           </Tabs>
         )}
       </div>

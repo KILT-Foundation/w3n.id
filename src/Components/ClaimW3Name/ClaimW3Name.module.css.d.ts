@@ -21,5 +21,6 @@ declare const styles: {
   readonly selectText: string;
   readonly option: string;
   readonly optionText: string;
+  readonly error: string;
 };
 export = styles;
