@@ -4,7 +4,7 @@ import { web3Enable } from '@polkadot/extension-dapp';
 import styles from '../ClaimW3Name.module.css';
 
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
-import { getCheckoutURL } from '../../../Utils/useTxDtransmitter';
+import { getCheckoutURL } from '../../../Utils/useTXDTransmitter';
 
 interface TabSection {
   web3name: string;

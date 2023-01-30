@@ -7,7 +7,7 @@ import { Tabs } from '../Tab/Tab';
 import {
   useApiTXDAddress,
   useApiTXDCosts,
-} from '../../Utils/useTxDtransmitter';
+} from '../../Utils/useTXDTransmitter';
 
 import { FormError } from '../FormError/FormError';
 

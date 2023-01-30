@@ -5,20 +5,17 @@ export type InjectedAccount = Awaited<
   ReturnType<typeof getWeb3Accounts>
 >[number];
 
+export const endpoint = process.env.REACT_APP_CHAIN_ENDPOINT as string;
+if (!endpoint) {
+  throw new Error('No Chain endpoint provided.');
+}
+
 async function getWeb3Accounts() {
   await web3Enable('web3name Claiming');
   return web3Accounts();
 }
 
-export function getEndpoint() {
-  const endpoint = process.env.REACT_APP_CHAIN_ENDPOINT as string;
-  if (!endpoint) {
-    throw new Error('No Chain endpoint provided.');
-  }
-  return endpoint;
-}
-
-export const apiPromise = connect(getEndpoint());
+export const apiPromise = connect(endpoint);
 
 export async function getAccounts() {
   const allAccounts = await getWeb3Accounts();

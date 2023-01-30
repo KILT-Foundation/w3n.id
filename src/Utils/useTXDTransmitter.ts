@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import ky from 'ky';
 
-import { getEndpoint } from './claimWeb3name-helpers';
+import { endpoint } from './claimWeb3name-helpers';
 
 const TXDURLs: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://txd.trusted-entity.io',
@@ -12,12 +12,12 @@ const TXDURLs: Record<string, string> = {
   'wss://sporran-testnet.kilt.io': 'https://txd-dev.trusted-entity.io',
 };
 
-const CHECKOUTURLs: Record<string, string> = {
+const checkoutURLs: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://checkout.kilt.io',
   'wss://spiritnet.kilt.io': 'https://checkout.kilt.io',
-  'wss://peregrine.kilt.io/parachain-public-ws': 'https://checkout.kilt.io', // revert to dev, if the authorization is suppressed.
+  'wss://peregrine.kilt.io/parachain-public-ws': 'https://dev-checkout.kilt.io',
   'wss://peregrine-stg.kilt.io/para': 'https://stg-checkout.kilt.io',
-  'wss://sporran-testnet.kilt.io': 'https://checkout.kilt.io', //revert to dev, if the authorization is suppressed.
+  'wss://sporran-testnet.kilt.io': 'https://dev-checkout.kilt.io',
 };
 
 function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
@@ -25,17 +25,15 @@ function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
 }
 
 export function getCheckoutURL() {
-  const endpoint = getEndpoint();
   return TXDURLs[endpoint];
 }
 
 export function useApiTXDAddress() {
-  const TXD = getCheckoutURL();
-  return useApi<{ paymentAddress: string }>(`${TXD}/meta`);
+  const TXDURL = getCheckoutURL();
+  return useApi<{ paymentAddress: string }>(`${TXDURL}/meta`);
 }
 
 export function useApiTXDCosts() {
-  const endpoint = getEndpoint();
-  const CHECKOUT = CHECKOUTURLs[endpoint];
-  return useApi<{ did: string; w3n: string }>(`${CHECKOUT}/api/costs`);
+  const checkoutURL = checkoutURLs[endpoint];
+  return useApi<{ did: string; w3n: string }>(`${checkoutURL}/api/costs`);
 }
