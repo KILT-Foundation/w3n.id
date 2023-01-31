@@ -8,17 +8,13 @@ import styles from '../ClaimW3Name.module.css';
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
 import { getCheckoutURL } from '../../../Utils/useTXDTransmitter';
 
-interface TabSection {
+interface Props {
   web3name: string;
-  web3namePricing: string;
-  paymentAddress: string;
+  cost: string;
+  address: string;
 }
 
-export const PayPalSection = ({
-  web3name,
-  web3namePricing,
-  paymentAddress,
-}: TabSection) => {
+export function PayPalTab({ web3name, cost, address }: Props) {
   const [tx, setTx] = useState<string>();
   const [did, setDid] = useState<DidUri>();
 
@@ -27,13 +23,13 @@ export const PayPalSection = ({
 
     const { extrinsic, didKeyUri } = await getW3NameExtrinsic(
       web3name,
-      paymentAddress,
+      address,
     );
 
     setTx(extrinsic.toHex());
 
     setDid(Did.parse(didKeyUri).did);
-  }, [web3name, paymentAddress]);
+  }, [web3name, address]);
 
   const handleSubmit = useCallback(
     async (event: SyntheticEvent) => {
@@ -54,7 +50,7 @@ export const PayPalSection = ({
     [tx, did, web3name],
   );
 
-  const costs = parseFloat(web3namePricing).toLocaleString(undefined, {
+  const costs = parseFloat(cost).toLocaleString(undefined, {
     style: 'currency',
     currency: 'EUR',
     currencyDisplay: 'code',
@@ -91,4 +87,4 @@ export const PayPalSection = ({
       <p className={styles.bottomText}>That’s it!</p>
     </form>
   );
-};
+}

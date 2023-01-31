@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 
 import { ChainHelpers } from '@kiltprotocol/sdk-js';
 
@@ -13,11 +13,11 @@ import {
 } from '../../../Utils/claimWeb3name-helpers';
 import { ClaimingModal } from '../../Modal/Modal';
 
-interface TabSection {
+interface Props {
   web3name: string;
 }
 
-export const KiltSection = ({ web3name }: TabSection) => {
+export function KiltTab({ web3name }: Props) {
   const [filteredAccounts, setFilteredAccounts] = useState<InjectedAccount[]>(
     [],
   );
@@ -40,7 +40,7 @@ export const KiltSection = ({ web3name }: TabSection) => {
   }, []);
 
   const handleSubmit = useCallback(
-    async (event: SyntheticEvent) => {
+    async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       if (!selectedAccount) return;
@@ -152,4 +152,4 @@ export const KiltSection = ({ web3name }: TabSection) => {
       </div>
     </form>
   );
-};
+}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import * as styles from './ClaimW3Name.module.css';
 
-import { Tabs } from '../Tab/Tab';
+import { PaymentTab } from '../Tab/PaymentTab';
 
 import {
   useApiTXDAddress,
@@ -11,8 +11,8 @@ import {
 
 import { FormError } from '../FormError/FormError';
 
-import { KiltSection } from './tabs/KiltTab';
-import { PayPalSection } from './tabs/PayPalTab';
+import { KiltTab } from './tabs/KiltTab';
+import { PayPalTab } from './tabs/PayPalTab';
 
 interface ClaimingProps {
   web3name: string;
@@ -39,14 +39,10 @@ function ClaimingSection({ web3name, cost, address }: ClaimingProps) {
           Claim w3n:{web3name}
         </button>
         {isExpanded && (
-          <Tabs>
-            <KiltSection web3name={web3name} />
-            <PayPalSection
-              web3name={web3name}
-              paymentAddress={address}
-              web3namePricing={cost}
-            />
-          </Tabs>
+          <PaymentTab>
+            <KiltTab web3name={web3name} />
+            <PayPalTab web3name={web3name} address={address} cost={cost} />
+          </PaymentTab>
         )}
       </div>
     </div>

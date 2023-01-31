@@ -4,10 +4,11 @@ import style from './Tab.module.css';
 
 type TypeOpenTab = 'kilt' | 'paypal';
 
-type Props = {
-  children: JSX.Element[];
-};
-export function Tabs({ children }: Props) {
+interface Props {
+  children: [JSX.Element, JSX.Element];
+}
+
+export function PaymentTab({ children }: Props) {
   const [openTab, setOpenTab] = useState<TypeOpenTab>('kilt');
 
   const setKiltTab = useCallback(() => {
