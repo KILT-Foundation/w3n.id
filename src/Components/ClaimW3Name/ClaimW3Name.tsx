@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import * as styles from './ClaimW3Name.module.css';
 
-import { PaymentTab } from '../Tab/PaymentTab';
+import { PaymentTabs } from '../Tab/PaymentTab';
 
 import {
   useApiTXDAddress,
@@ -39,10 +39,10 @@ function ClaimingSection({ web3name, cost, address }: ClaimingProps) {
           Claim w3n:{web3name}
         </button>
         {isExpanded && (
-          <PaymentTab>
+          <PaymentTabs>
             <KiltTab web3name={web3name} />
             <PayPalTab web3name={web3name} address={address} cost={cost} />
-          </PaymentTab>
+          </PaymentTabs>
         )}
       </div>
     </div>

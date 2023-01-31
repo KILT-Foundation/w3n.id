@@ -8,7 +8,7 @@ interface Props {
   children: [JSX.Element, JSX.Element];
 }
 
-export function PaymentTab({ children }: Props) {
+export function PaymentTabs({ children }: Props) {
   const [openTab, setOpenTab] = useState<TypeOpenTab>('kilt');
 
   const setKiltTab = useCallback(() => {
