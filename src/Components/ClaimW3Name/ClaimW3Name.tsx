@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import * as styles from './ClaimW3Name.module.css';
 
-import { PaymentTabs } from '../Tab/PaymentTab';
+import { PaymentTabs } from '../PaymentTabs/PaymentTabs';
 
 import {
   useApiTXDAddress,

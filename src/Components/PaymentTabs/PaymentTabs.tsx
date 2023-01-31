@@ -1,6 +1,6 @@
 import { useState, Fragment, useCallback } from 'react';
 
-import style from './Tab.module.css';
+import style from './PaymentTabs.module.css';
 
 type TypeOpenTab = 'kilt' | 'paypal';
 
