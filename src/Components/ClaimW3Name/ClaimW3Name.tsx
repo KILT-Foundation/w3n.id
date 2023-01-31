@@ -16,24 +16,12 @@ import { PayPalSection } from './tabs/PayPalTab';
 
 interface ClaimingProps {
   web3name: string;
+  cost: string;
+  address: string;
 }
 
-function ClaimingSection({ web3name }: ClaimingProps) {
+function ClaimingSection({ web3name, cost, address }: ClaimingProps) {
   const [isExpanded, setIsExpanded] = useState(true);
-
-  const { data: costData, error: costError } = useApiTXDCosts();
-
-  const { data: paymentAddressData, error: paymentAddressError } =
-    useApiTXDAddress();
-
-  if (costError || paymentAddressError) {
-    return (
-      <div className={styles.error}>
-        {costError && <FormError error={costError} />}
-        {paymentAddressError && <FormError error={costError} />}
-      </div>
-    );
-  }
 
   return (
     <div className={styles.wrapper}>
@@ -55,8 +43,8 @@ function ClaimingSection({ web3name }: ClaimingProps) {
             <KiltSection web3name={web3name} />
             <PayPalSection
               web3name={web3name}
-              paymentAddress={paymentAddressData?.paymentAddress ?? ''}
-              web3namePricing={costData?.w3n ?? ''}
+              paymentAddress={address}
+              web3namePricing={cost}
             />
           </Tabs>
         )}
@@ -72,6 +60,23 @@ interface Props {
 export const ClaimW3Name = ({ web3name }: Props) => {
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 
+  const cost = useApiTXDCosts();
+
+  const txd = useApiTXDAddress();
+
+  if (cost.error || txd.error) {
+    return (
+      <div className={styles.error}>
+        {cost.error && <FormError error={cost.error} />}
+        {txd.error && <FormError error={txd.error} />}
+      </div>
+    );
+  }
+
+  if (!cost.data?.w3n || !txd.data?.paymentAddress) {
+    return null;
+  }
+
   return (
     <section className={styles.container}>
       <span className={styles.title}>Claim it</span>
@@ -79,7 +84,11 @@ export const ClaimW3Name = ({ web3name }: Props) => {
       {maintenanceMode ? (
         <span className={styles.text}>Coming Soon</span>
       ) : (
-        <ClaimingSection web3name={web3name} />
+        <ClaimingSection
+          web3name={web3name}
+          cost={cost.data.w3n}
+          address={txd.data.paymentAddress}
+        />
       )}
     </section>
   );

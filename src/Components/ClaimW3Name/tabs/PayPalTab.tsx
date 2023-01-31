@@ -20,7 +20,7 @@ export const PayPalSection = ({
   paymentAddress,
 }: TabSection) => {
   const [tx, setTx] = useState<string>();
-  const [did, setDid] = useState<string>();
+  const [did, setDid] = useState<DidUri>();
 
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
@@ -32,7 +32,7 @@ export const PayPalSection = ({
 
     setTx(extrinsic.toHex());
 
-    setDid(Did.parse(didKeyUri as DidUri).did);
+    setDid(Did.parse(didKeyUri).did);
   }, [web3name, paymentAddress]);
 
   const handleSubmit = useCallback(
@@ -54,7 +54,7 @@ export const PayPalSection = ({
     [tx, did, web3name],
   );
 
-  const formatedCosts = parseFloat(web3namePricing).toLocaleString(undefined, {
+  const costs = parseFloat(web3namePricing).toLocaleString(undefined, {
     style: 'currency',
     currency: 'EUR',
     currencyDisplay: 'code',
@@ -71,7 +71,7 @@ export const PayPalSection = ({
             web3name. Then enter your password and click “Sign”
           </p>
           <button onClick={connectWalletGetTx} className={styles.btn}>
-            CHOOSE IDENTITY
+            choose identity
           </button>
         </li>
 
@@ -80,7 +80,7 @@ export const PayPalSection = ({
           <p>
             To continue the payment process with PayPal click the button. You
             will be redirected to our checkout service which will lead you
-            through the process (total cost: {formatedCosts}).
+            through the process (total cost: {costs}).
           </p>
           <button type="submit" className={styles.btn} disabled={!tx}>
             CHECKOUT

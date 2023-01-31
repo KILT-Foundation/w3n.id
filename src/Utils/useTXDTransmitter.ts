@@ -1,9 +1,11 @@
 import useSWR from 'swr';
 import ky from 'ky';
 
+import { KiltAddress } from '@kiltprotocol/sdk-js';
+
 import { endpoint } from './claimWeb3name-helpers';
 
-const TXDURLs: Record<string, string> = {
+const txdUrls: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://txd.trusted-entity.io',
   'wss://spiritnet.kilt.io': 'https://txd.trusted-entity.io',
   'wss://peregrine.kilt.io/parachain-public-ws':
@@ -12,7 +14,7 @@ const TXDURLs: Record<string, string> = {
   'wss://sporran-testnet.kilt.io': 'https://txd-dev.trusted-entity.io',
 };
 
-const checkoutURLs: Record<string, string> = {
+const checkoutUrls: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://checkout.kilt.io',
   'wss://spiritnet.kilt.io': 'https://checkout.kilt.io',
   'wss://peregrine.kilt.io/parachain-public-ws': 'https://dev-checkout.kilt.io',
@@ -25,15 +27,15 @@ function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
 }
 
 export function getCheckoutURL() {
-  return TXDURLs[endpoint];
+  return txdUrls[endpoint];
 }
 
 export function useApiTXDAddress() {
   const TXDURL = getCheckoutURL();
-  return useApi<{ paymentAddress: string }>(`${TXDURL}/meta`);
+  return useApi<{ paymentAddress: KiltAddress }>(`${TXDURL}/meta`);
 }
 
 export function useApiTXDCosts() {
-  const checkoutURL = checkoutURLs[endpoint];
+  const checkoutURL = checkoutUrls[endpoint];
   return useApi<{ did: string; w3n: string }>(`${checkoutURL}/api/costs`);
 }

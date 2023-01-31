@@ -1,5 +1,5 @@
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
-import { connect } from '@kiltprotocol/sdk-js';
+import { connect, DidResourceUri } from '@kiltprotocol/sdk-js';
 
 export type InjectedAccount = Awaited<
   ReturnType<typeof getWeb3Accounts>
@@ -39,5 +39,5 @@ export async function getW3NameExtrinsic(
     payerAddress,
   );
 
-  return { extrinsic: api.tx(signed), didKeyUri };
+  return { extrinsic: api.tx(signed), didKeyUri: didKeyUri as DidResourceUri };
 }
