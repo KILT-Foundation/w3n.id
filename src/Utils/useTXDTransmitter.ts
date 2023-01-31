@@ -31,8 +31,8 @@ export function getCheckoutURL() {
 }
 
 export function useApiTXDAddress() {
-  const TXDURL = getCheckoutURL();
-  return useApi<{ paymentAddress: KiltAddress }>(`${TXDURL}/meta`);
+  const txdUrl = getCheckoutURL();
+  return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
 }
 
 export function useApiTXDCosts() {
