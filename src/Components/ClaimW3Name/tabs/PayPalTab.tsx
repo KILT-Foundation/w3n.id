@@ -67,7 +67,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             web3name. Then enter your password and click “Sign”
           </p>
           <button onClick={connectWalletGetTx} className={styles.btn}>
-            choose identity
+            Choose identity
           </button>
         </li>
 
@@ -79,7 +79,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             through the process (total cost: {costs}).
           </p>
           <button type="submit" className={styles.btn} disabled={!tx}>
-            checkout
+            Checkout
           </button>
         </li>
       </ol>
