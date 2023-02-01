@@ -1,7 +1,7 @@
-import { FormEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { web3Enable } from '@polkadot/extension-dapp';
 
-import { Did, DidUri } from '@kiltprotocol/sdk-js';
+import { Did } from '@kiltprotocol/sdk-js';
 
 import styles from '../ClaimW3Name.module.css';
 
@@ -15,9 +15,7 @@ interface Props {
 }
 
 export function PayPalTab({ web3name, cost, address }: Props) {
-  const [tx, setTx] = useState<string>();
-  const [did, setDid] = useState<DidUri>();
-
+  const [checkoutURL, setCheckoutURL] = useState<URL>();
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
 
@@ -26,29 +24,13 @@ export function PayPalTab({ web3name, cost, address }: Props) {
       address,
     );
 
-    setTx(extrinsic.toHex());
+    const url = new URL(getCheckoutURL());
 
-    setDid(Did.parse(didKeyUri).did);
+    url.searchParams.set('tx', extrinsic.toHex());
+    url.searchParams.set('did', Did.parse(didKeyUri).did);
+    url.searchParams.set('web3name', web3name);
+    setCheckoutURL(url);
   }, [web3name, address]);
-
-  const handleSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
-      if (!tx || !did) {
-        return;
-      }
-
-      const url = new URL(getCheckoutURL());
-
-      url.searchParams.set('tx', tx);
-      url.searchParams.set('did', did);
-      url.searchParams.set('web3name', web3name);
-
-      window.open(url.toString());
-    },
-    [tx, did, web3name],
-  );
 
   const costs = parseFloat(cost).toLocaleString(undefined, {
     style: 'currency',
@@ -57,7 +39,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
   });
 
   return (
-    <form className={styles.claimContents} onSubmit={handleSubmit}>
+    <div className={styles.claimContents}>
       <p className={styles.topText}>Follow these steps to claim your name:</p>
       <ol type="1" className={styles.steps}>
         <li className={styles.step}>
@@ -78,13 +60,20 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             will be redirected to our checkout service which will lead you
             through the process (total cost: {costs}).
           </p>
-          <button type="submit" className={styles.btn} disabled={!tx}>
-            Checkout
-          </button>
+
+          <a href={checkoutURL?.toString()} className={styles.link}>
+            <div
+              className={
+                checkoutURL ? styles.divButton : styles.divButtonDisabled
+              }
+            >
+              Checkout
+            </div>
+          </a>
         </li>
       </ol>
 
       <p className={styles.bottomText}>That’s it!</p>
-    </form>
+    </div>
   );
 }

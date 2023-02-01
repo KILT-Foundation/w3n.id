@@ -215,3 +215,22 @@
   text-align: center;
   color: red;
 }
+
+.divButton {
+  composes: btn;
+  padding: 5px;
+  color: #df8601;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.divButtonDisabled {
+  composes: divButton;
+  color: rgb(var(--modal-btn-disabled-rgb) / 50%);
+  border: 3px solid rgb(var(--modal-btn-disabled-rgb) / 50%);
+  cursor: auto;
+}
+
+.link {
+  text-decoration: none;
+}
