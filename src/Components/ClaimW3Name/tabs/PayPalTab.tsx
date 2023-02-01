@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 import { web3Enable } from '@polkadot/extension-dapp';
 
 import { Did, DidUri } from '@kiltprotocol/sdk-js';
@@ -32,7 +32,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
   }, [web3name, address]);
 
   const handleSubmit = useCallback(
-    async (event: SyntheticEvent) => {
+    async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       if (!tx || !did) {
@@ -79,7 +79,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             through the process (total cost: {costs}).
           </p>
           <button type="submit" className={styles.btn} disabled={!tx}>
-            CHECKOUT
+            checkout
           </button>
         </li>
       </ol>
