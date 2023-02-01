@@ -6,7 +6,7 @@ import { Did } from '@kiltprotocol/sdk-js';
 import styles from '../ClaimW3Name.module.css';
 
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
-import { getCheckoutURL } from '../../../Utils/useTXDTransmitter';
+import { getCheckoutURLService } from '../../../Utils/useTXDTransmitter';
 
 interface Props {
   web3name: string;
@@ -24,7 +24,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
       address,
     );
 
-    const url = new URL(getCheckoutURL());
+    const url = new URL(getCheckoutURLService());
 
     url.searchParams.set('tx', extrinsic.toHex());
     url.searchParams.set('did', Did.parse(didKeyUri).did);

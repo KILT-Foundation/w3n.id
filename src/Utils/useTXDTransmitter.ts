@@ -26,12 +26,12 @@ function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
   return useSWR<Output>(key, (input, options) => ky(input, options).json());
 }
 
-export function getCheckoutURL() {
+export function getCheckoutURLService() {
   return txdUrls[endpoint];
 }
 
 export function useApiTXDAddress() {
-  const txdUrl = getCheckoutURL();
+  const txdUrl = getCheckoutURLService();
   return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
 }
 
