@@ -6,7 +6,7 @@ import { Did } from '@kiltprotocol/sdk-js';
 import styles from '../ClaimW3Name.module.css';
 
 import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
-import { getCheckoutURLService } from '../../../Utils/useTXDTransmitter';
+import { checkoutServiceURL } from '../../../Utils/useTXDTransmitter';
 
 interface Props {
   web3name: string;
@@ -15,7 +15,8 @@ interface Props {
 }
 
 export function PayPalTab({ web3name, cost, address }: Props) {
-  const [checkoutURL, setCheckoutURL] = useState<URL>();
+  const [checkoutURL, setCheckoutURL] = useState<string>();
+
   const connectWalletGetTx = useCallback(async () => {
     await web3Enable('web3name Claiming');
 
@@ -24,12 +25,12 @@ export function PayPalTab({ web3name, cost, address }: Props) {
       address,
     );
 
-    const url = new URL(getCheckoutURLService());
+    const url = new URL(checkoutServiceURL);
 
     url.searchParams.set('tx', extrinsic.toHex());
     url.searchParams.set('did', Did.parse(didKeyUri).did);
     url.searchParams.set('web3name', web3name);
-    setCheckoutURL(url);
+    setCheckoutURL(url.toString());
   }, [web3name, address]);
 
   const costs = parseFloat(cost).toLocaleString(undefined, {
@@ -61,14 +62,12 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             through the process (total cost: {costs}).
           </p>
 
-          <a href={checkoutURL?.toString()} className={styles.link}>
-            <div
-              className={
-                checkoutURL ? styles.divButton : styles.divButtonDisabled
-              }
-            >
-              Checkout
-            </div>
+          <a
+            href={checkoutURL}
+            aria-disabled={!checkoutURL}
+            className={styles.btn}
+          >
+            Checkout
           </a>
         </li>
       </ol>

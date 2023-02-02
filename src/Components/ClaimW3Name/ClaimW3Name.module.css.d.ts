@@ -22,8 +22,5 @@ declare const styles: {
   readonly option: string;
   readonly optionText: string;
   readonly error: string;
-  readonly divButton: string;
-  readonly divButtonDisabled: string;
-  readonly link: string;
 };
 export = styles;
