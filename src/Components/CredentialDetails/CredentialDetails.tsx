@@ -12,7 +12,6 @@ import * as styles from '../CredentialDetails/CredentialDetails.module.css';
 
 import ValidIcon from '../../ImageAssets/ok.svg';
 
-import { stringStartsWithW3 } from '../../Utils/w3n-helpers';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
@@ -73,14 +72,12 @@ export const CredentialDetails = ({ credential, did }: Props) => {
         </dl>
       ))}
 
-      {attester && (
-        <dl className={styles.container}>
-          <dt className={styles.credentialTitle}>
-            {stringStartsWithW3(attester) ? 'Attester' : 'Attester DID'}
-          </dt>
-          <dd className={styles.credentialDescription}>{attester}</dd>
-        </dl>
-      )}
+      <dl className={styles.container}>
+        <dt className={styles.credentialTitle}>Attester</dt>
+        <dd className={styles.credentialDescription}>
+          {attester || <span className={styles.spinner} />}
+        </dd>
+      </dl>
 
       {!error && (
         <dl className={styles.container}>

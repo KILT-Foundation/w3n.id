@@ -3,5 +3,6 @@ declare const styles: {
   readonly credentialTitle: string;
   readonly credentialDescription: string;
   readonly valid: string;
+  readonly spinner: string;
 };
 export = styles;
