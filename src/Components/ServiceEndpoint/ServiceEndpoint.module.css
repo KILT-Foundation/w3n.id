@@ -135,3 +135,30 @@
   composes: titleWrapper from '../Results/Results.module.css';
   align-self: start;
 }
+
+.credentials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.credential {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.credential:not(:last-child) {
+  border-bottom: 1px solid rgba(var(--gradient-1-2-rgb) / 30%);
+}
+
+.error {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 20px;
+}

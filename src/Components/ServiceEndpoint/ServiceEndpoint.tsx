@@ -1,15 +1,14 @@
 import { useCallback, useState } from 'react';
 import {
-  Attestation,
   Credential,
-  Did,
   DidServiceEndpoint,
   DidUri,
-  IClaimContents,
   ICredential,
   KiltPublishedCredentialCollectionV1,
   KiltPublishedCredentialCollectionV1Type,
 } from '@kiltprotocol/sdk-js';
+
+import { every, map } from 'lodash-es';
 
 import * as styles from './ServiceEndpoint.module.css';
 
@@ -17,7 +16,6 @@ import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { CredentialDetails } from '../CredentialDetails/CredentialDetails';
 import { InfoIcon } from '../InfoIcon/InfoIcon';
-import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 class ExplicitError extends Error {}
 
@@ -31,8 +29,135 @@ function isPublishedCollection(
   if (!Array.isArray(json)) {
     return false;
   }
-  const [{ credential }] = json as KiltPublishedCredentialCollectionV1;
-  return Credential.isICredential(credential);
+  if (json.length === 0) {
+    return false;
+  }
+  const credentials = map(
+    json as KiltPublishedCredentialCollectionV1,
+    'credential',
+  );
+  return every(credentials, (credential) =>
+    Credential.isICredential(credential),
+  );
+}
+
+function isLegacyCredential(json: unknown): json is {
+  request: ICredential;
+} {
+  return typeof json === 'object' && json !== null && 'request' in json;
+}
+
+interface Props {
+  endpointType: string;
+  endpointURL: string;
+  did?: DidUri;
+}
+
+export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
+  const [fetching, setFetching] = useState(false);
+
+  const [credentials, setCredentials] = useState<ICredential[]>();
+  const [error, setError] = useState<string>();
+
+  const ready = Boolean(credentials || error);
+
+  const handleFetch = useCallback(async () => {
+    if (!did) throw new Error('No did');
+    setFetching(true);
+
+    try {
+      const response = await fetch(endpointURL);
+      const json = await response.json();
+
+      if (isPublishedCollection(json, endpointType)) {
+        setCredentials(map(json, 'credential'));
+        return;
+      }
+
+      if (Credential.isICredential(json)) {
+        setCredentials([json]);
+        return;
+      }
+
+      if (isLegacyCredential(json)) {
+        setCredentials([json.request]);
+        return;
+      }
+
+      throw new ExplicitError('No Kilt Credentials found');
+    } catch (exception) {
+      setError(
+        exception instanceof ExplicitError
+          ? exception.message
+          : 'Cannot fetch the credentials from the given endpoint',
+      );
+    } finally {
+      setFetching(false);
+    }
+  }, [endpointURL, endpointType, did]);
+
+  const handleClose = useCallback(() => {
+    setError(undefined);
+    setCredentials(undefined);
+  }, []);
+
+  return (
+    <div className={styles.endpointWrapper}>
+      <h1 className={styles.type}>{endpointType}</h1>
+
+      {!ready && (
+        <div className={styles.endpoint}>
+          <div className={styles.urlContainer}>
+            <span className={styles.url}>{endpointURL}</span>
+            <CopyToClipboard text={endpointURL} />
+          </div>
+
+          <button
+            className={styles.button}
+            onClick={handleFetch}
+            disabled={fetching}
+          >
+            Fetch
+            {fetching && (
+              <span
+                className={styles.loader}
+                aria-label="Fetching credential details..."
+              />
+            )}
+          </button>
+        </div>
+      )}
+
+      {ready && (
+        <div className={styles.fetched}>
+          <div className={styles.fetchedUrlContainer}>
+            <span className={styles.url}>{endpointURL}</span>
+            <CopyToClipboard text={endpointURL} />
+          </div>
+
+          {!error && credentials && did && (
+            <ul className={styles.credentials}>
+              {credentials.map((credential) => (
+                <li key={credential.rootHash} className={styles.credential}>
+                  <CredentialDetails credential={credential} did={did} />
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {error && (
+            <div className={styles.error}>
+              <CredentialErrors error={error} />
+            </div>
+          )}
+
+          <button className={styles.close} onClick={handleClose}>
+            Close
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 interface EndpointsProps {
@@ -72,144 +197,3 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
     </div>
   );
 }
-
-interface Props {
-  endpointType: string;
-  endpointURL: string;
-  did?: DidUri;
-}
-
-export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
-  const [fetching, setFetching] = useState(false);
-
-  const [credential, setCredential] = useState<{
-    contents: IClaimContents;
-    attester: string;
-  }>();
-  const [error, setError] = useState<string>();
-
-  const ready = Boolean(credential || error);
-
-  const handleFetch = useCallback(async () => {
-    if (!did) throw new Error('No did');
-    setFetching(true);
-
-    try {
-      const api = await apiPromise;
-      const response = await fetch(endpointURL);
-      const json = await response.json();
-
-      let credential: ICredential | undefined;
-
-      if (Credential.isICredential(json.request)) {
-        credential = json.request;
-      }
-
-      if (Credential.isICredential(json)) {
-        credential = json;
-      }
-
-      if (isPublishedCollection(json, endpointType)) {
-        credential = json[0].credential;
-      }
-
-      if (!credential) {
-        throw new ExplicitError('Not valid Kilt Credential');
-      }
-
-      const attestationChain = await api.query.attestation.attestations(
-        credential.rootHash,
-      );
-      if (attestationChain.isNone) {
-        throw new ExplicitError('No Attestation found for credential');
-      }
-      const attestation = Attestation.fromChain(
-        attestationChain,
-        credential.rootHash,
-      );
-
-      if (!Did.isSameSubject(credential.claim.owner, did)) {
-        throw new ExplicitError(
-          'Credential subject and signer DID are not the same',
-        );
-      }
-
-      try {
-        await Credential.verifyCredential(credential);
-      } catch {
-        throw new ExplicitError('Invalid credential');
-      }
-
-      if (attestation.revoked) {
-        throw new ExplicitError('Credential attestation revoked');
-      }
-
-      const result = await api.call.did.query(Did.toChain(attestation.owner));
-      const attester = result.isSome
-        ? `w3n:${Did.linkedInfoFromChain(result).web3Name}`
-        : attestation.owner;
-
-      setCredential({ contents: credential.claim.contents, attester });
-    } catch (exception) {
-      setError(
-        exception instanceof ExplicitError
-          ? exception.message
-          : 'Cannot fetch the credentials from the given endpoint',
-      );
-    } finally {
-      setFetching(false);
-    }
-  }, [endpointURL, endpointType, did]);
-
-  const handleClose = useCallback(() => {
-    setError(undefined);
-    setCredential(undefined);
-  }, []);
-
-  return (
-    <div className={styles.endpointWrapper}>
-      <h1 className={styles.type}>{endpointType}</h1>
-
-      {!ready && (
-        <div className={styles.endpoint}>
-          <div className={styles.urlContainer}>
-            <span className={styles.url}>{endpointURL}</span>
-            <CopyToClipboard text={endpointURL} />
-          </div>
-
-          <button
-            className={styles.button}
-            onClick={handleFetch}
-            disabled={fetching}
-          >
-            Fetch
-            {fetching && (
-              <span
-                className={styles.loader}
-                aria-label="Fetching credential details..."
-              />
-            )}
-          </button>
-        </div>
-      )}
-
-      {ready && (
-        <div className={styles.fetched}>
-          <div className={styles.fetchedUrlContainer}>
-            <span className={styles.url}>{endpointURL}</span>
-            <CopyToClipboard text={endpointURL} />
-          </div>
-
-          {credential && !error && (
-            <CredentialDetails credential={credential} />
-          )}
-          {error && <CredentialErrors error={error} />}
-
-          <button className={styles.close} onClick={handleClose}>
-            Close
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
