@@ -143,12 +143,16 @@
   width: 100%;
 }
 
-.credential {
+.result {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   justify-content: flex-start;
   width: 100%;
   margin-top: 20px;
+}
+
+.credential {
+  composes: result;
 }
 
 .credential:not(:last-child) {
@@ -156,9 +160,5 @@
 }
 
 .error {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: flex-start;
-  width: 100%;
-  margin-top: 20px;
+  composes: result;
 }

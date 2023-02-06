@@ -36,9 +36,7 @@ function isPublishedCollection(
     json as KiltPublishedCredentialCollectionV1,
     'credential',
   );
-  return every(credentials, (credential) =>
-    Credential.isICredential(credential),
-  );
+  return every(credentials, Credential.isICredential);
 }
 
 function isLegacyCredential(json: unknown): json is {
@@ -178,7 +176,7 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
 
       {serviceEndpoints && serviceEndpoints.length > 0 && did && (
         <div className={styles.endpoints}>
-          {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
+          {serviceEndpoints.map((serviceEndpoint) => (
             <ServiceEndpoint
               key={serviceEndpoint.id}
               endpointType={serviceEndpoint.type[0]}

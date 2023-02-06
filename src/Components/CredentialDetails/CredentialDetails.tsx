@@ -6,7 +6,7 @@ import {
   ICredential,
 } from '@kiltprotocol/sdk-js';
 
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as styles from '../CredentialDetails/CredentialDetails.module.css';
 
@@ -39,9 +39,11 @@ export const CredentialDetails = ({ credential, did }: Props) => {
         credential.rootHash,
       );
 
-      const { web3Name } = Did.linkedInfoFromChain(
-        await api.call.did.query(Did.toChain(attestation.owner)),
-      );
+      const didChain = await api.call.did.query(Did.toChain(attestation.owner));
+      if (didChain.isNone) {
+        setError('Unable to fetch attester details');
+      }
+      const { web3Name } = Did.linkedInfoFromChain(didChain);
       setAttester(web3Name ? `w3n:${web3Name}` : attestation.owner);
 
       if (attestation.revoked) {
@@ -50,7 +52,7 @@ export const CredentialDetails = ({ credential, did }: Props) => {
       }
 
       if (!Did.isSameSubject(credential.claim.owner, did)) {
-        setError('Credential subject and signer DID are not the same');
+        setError('This credential was issued for someone else');
         return;
       }
 
@@ -58,37 +60,36 @@ export const CredentialDetails = ({ credential, did }: Props) => {
         await Credential.verifyCredential(credential);
       } catch {
         setError('Invalid credential');
-        return;
       }
     })();
   }, [credential, did]);
 
   return (
-    <Fragment>
+    <dl className={styles.definitions}>
       {Object.entries(credential.claim.contents).map(([name, value]) => (
-        <dl className={styles.container} key={name}>
+        <div className={styles.container} key={name}>
           <dt className={styles.credentialTitle}>{name}</dt>
           <dd className={styles.credentialDescription}>{String(value)}</dd>
-        </dl>
+        </div>
       ))}
 
-      <dl className={styles.container}>
+      <div className={styles.container}>
         <dt className={styles.credentialTitle}>Attester</dt>
         <dd className={styles.credentialDescription}>
           {attester || <span className={styles.spinner} />}
         </dd>
-      </dl>
+      </div>
 
       {!error && (
-        <dl className={styles.container}>
+        <div className={styles.container}>
           <dt className={styles.credentialTitle}>Valid</dt>
           <dd className={styles.valid}>
             <img src={ValidIcon} alt="valid" />
           </dd>
-        </dl>
+        </div>
       )}
 
       {error && <CredentialErrors error={error} />}
-    </Fragment>
+    </dl>
   );
 };

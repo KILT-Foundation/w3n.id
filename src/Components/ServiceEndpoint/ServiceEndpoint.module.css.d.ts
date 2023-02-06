@@ -18,6 +18,7 @@ declare const styles: {
   readonly title: string;
   readonly titleWrapper: string;
   readonly credentials: string;
+  readonly result: string;
   readonly credential: string;
   readonly error: string;
 };
