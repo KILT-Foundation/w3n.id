@@ -21,7 +21,7 @@
 
 .activeTabItem {
   composes: tabItem;
-  background-color: #a3c791;
+  background-color: var(--inactive-payment-tab);
 }
 
 .tabItem:hover {
