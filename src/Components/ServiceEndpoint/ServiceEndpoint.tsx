@@ -1,15 +1,14 @@
 import { useCallback, useState } from 'react';
 import {
-  Attestation,
   Credential,
-  Did,
   DidServiceEndpoint,
   DidUri,
-  IClaimContents,
   ICredential,
   KiltPublishedCredentialCollectionV1,
   KiltPublishedCredentialCollectionV1Type,
 } from '@kiltprotocol/sdk-js';
+
+import { every, map } from 'lodash-es';
 
 import * as styles from './ServiceEndpoint.module.css';
 
@@ -17,7 +16,6 @@ import { CopyToClipboard } from '../CopyToClipboard/CopyToClipboard';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { CredentialDetails } from '../CredentialDetails/CredentialDetails';
 import { InfoIcon } from '../InfoIcon/InfoIcon';
-import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
 class ExplicitError extends Error {}
 
@@ -31,46 +29,20 @@ function isPublishedCollection(
   if (!Array.isArray(json)) {
     return false;
   }
-  const [{ credential }] = json as KiltPublishedCredentialCollectionV1;
-  return Credential.isICredential(credential);
-}
-
-interface EndpointsProps {
-  serviceEndpoints?: DidServiceEndpoint[];
-  did?: DidUri;
-}
-
-export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
-  return (
-    <div className={styles.didDocument}>
-      <div className={styles.titleWrapper}>
-        <span className={styles.title}>Service Endpoints</span>
-        <InfoIcon right>
-          Credentials may be linked with your on-chain DID & web3name and
-          displayed publicly on service endpoints such as GitHub public or IPFS.
-        </InfoIcon>
-      </div>
-
-      {serviceEndpoints && serviceEndpoints.length > 0 && did && (
-        <div className={styles.endpoints}>
-          {serviceEndpoints.map((serviceEndpoint: DidServiceEndpoint) => (
-            <ServiceEndpoint
-              key={serviceEndpoint.id}
-              endpointType={serviceEndpoint.type[0]}
-              endpointURL={serviceEndpoint.serviceEndpoint[0]}
-              did={did}
-            />
-          ))}
-        </div>
-      )}
-
-      {(!serviceEndpoints || serviceEndpoints.length === 0 || !did) && (
-        <div className={styles.wrapper}>
-          <span className={styles.text}>-</span>
-        </div>
-      )}
-    </div>
+  if (json.length === 0) {
+    return false;
+  }
+  const credentials = map(
+    json as KiltPublishedCredentialCollectionV1,
+    'credential',
   );
+  return every(credentials, Credential.isICredential);
+}
+
+function isLegacyCredential(json: unknown): json is {
+  request: ICredential;
+} {
+  return typeof json === 'object' && json !== null && 'request' in json;
 }
 
 interface Props {
@@ -79,77 +51,38 @@ interface Props {
   did?: DidUri;
 }
 
-export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
+export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
   const [fetching, setFetching] = useState(false);
 
-  const [credential, setCredential] = useState<{
-    contents: IClaimContents;
-    attester: string;
-  }>();
+  const [credentials, setCredentials] = useState<ICredential[]>();
   const [error, setError] = useState<string>();
 
-  const ready = Boolean(credential || error);
+  const ready = Boolean(credentials || error);
 
   const handleFetch = useCallback(async () => {
     if (!did) throw new Error('No did');
     setFetching(true);
 
     try {
-      const api = await apiPromise;
       const response = await fetch(endpointURL);
       const json = await response.json();
 
-      let credential: ICredential | undefined;
-
-      if (Credential.isICredential(json.request)) {
-        credential = json.request;
+      if (isPublishedCollection(json, endpointType)) {
+        setCredentials(map(json, 'credential'));
+        return;
       }
 
       if (Credential.isICredential(json)) {
-        credential = json;
+        setCredentials([json]);
+        return;
       }
 
-      if (isPublishedCollection(json, endpointType)) {
-        credential = json[0].credential;
+      if (isLegacyCredential(json)) {
+        setCredentials([json.request]);
+        return;
       }
 
-      if (!credential) {
-        throw new ExplicitError('Not valid Kilt Credential');
-      }
-
-      const attestationChain = await api.query.attestation.attestations(
-        credential.rootHash,
-      );
-      if (attestationChain.isNone) {
-        throw new ExplicitError('No Attestation found for credential');
-      }
-      const attestation = Attestation.fromChain(
-        attestationChain,
-        credential.rootHash,
-      );
-
-      if (!Did.isSameSubject(credential.claim.owner, did)) {
-        throw new ExplicitError(
-          'Credential subject and signer DID are not the same',
-        );
-      }
-
-      try {
-        await Credential.verifyCredential(credential);
-      } catch {
-        throw new ExplicitError('Invalid credential');
-      }
-
-      if (attestation.revoked) {
-        throw new ExplicitError('Credential attestation revoked');
-      }
-
-      const result = await api.call.did.query(Did.toChain(attestation.owner));
-      const attester = result.isSome
-        ? `w3n:${Did.linkedInfoFromChain(result).web3Name}`
-        : attestation.owner;
-
-      setCredential({ contents: credential.claim.contents, attester });
+      throw new ExplicitError('No Kilt Credentials found');
     } catch (exception) {
       setError(
         exception instanceof ExplicitError
@@ -163,7 +96,7 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
 
   const handleClose = useCallback(() => {
     setError(undefined);
-    setCredential(undefined);
+    setCredentials(undefined);
   }, []);
 
   return (
@@ -200,10 +133,21 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
             <CopyToClipboard text={endpointURL} />
           </div>
 
-          {credential && !error && (
-            <CredentialDetails credential={credential} />
+          {!error && credentials && did && (
+            <ul className={styles.credentials}>
+              {credentials.map((credential) => (
+                <li key={credential.rootHash} className={styles.credential}>
+                  <CredentialDetails credential={credential} did={did} />
+                </li>
+              ))}
+            </ul>
           )}
-          {error && <CredentialErrors error={error} />}
+
+          {error && (
+            <div className={styles.error}>
+              <CredentialErrors error={error} />
+            </div>
+          )}
 
           <button className={styles.close} onClick={handleClose}>
             Close
@@ -212,4 +156,42 @@ export const ServiceEndpoint = ({ did, endpointType, endpointURL }: Props) => {
       )}
     </div>
   );
-};
+}
+
+interface EndpointsProps {
+  serviceEndpoints?: DidServiceEndpoint[];
+  did?: DidUri;
+}
+
+export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
+  return (
+    <div className={styles.didDocument}>
+      <div className={styles.titleWrapper}>
+        <span className={styles.title}>Service Endpoints</span>
+        <InfoIcon right>
+          Credentials may be linked with your on-chain DID & web3name and
+          displayed publicly on service endpoints such as GitHub public or IPFS.
+        </InfoIcon>
+      </div>
+
+      {serviceEndpoints && serviceEndpoints.length > 0 && did && (
+        <div className={styles.endpoints}>
+          {serviceEndpoints.map((serviceEndpoint) => (
+            <ServiceEndpoint
+              key={serviceEndpoint.id}
+              endpointType={serviceEndpoint.type[0]}
+              endpointURL={serviceEndpoint.serviceEndpoint[0]}
+              did={did}
+            />
+          ))}
+        </div>
+      )}
+
+      {(!serviceEndpoints || serviceEndpoints.length === 0 || !did) && (
+        <div className={styles.wrapper}>
+          <span className={styles.text}>-</span>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,8 +1,9 @@
 declare const styles: {
+  readonly definitions: string;
   readonly container: string;
-  readonly credentialContainer: string;
   readonly credentialTitle: string;
   readonly credentialDescription: string;
   readonly valid: string;
+  readonly spinner: string;
 };
 export = styles;

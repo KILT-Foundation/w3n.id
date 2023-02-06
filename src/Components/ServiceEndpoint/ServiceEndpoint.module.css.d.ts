@@ -10,7 +10,6 @@ declare const styles: {
   readonly fetch: string;
   readonly close: string;
   readonly loader: string;
-  readonly rotation: string;
   readonly seperator: string;
   readonly didDocument: string;
   readonly wrapper: string;
@@ -18,5 +17,9 @@ declare const styles: {
   readonly text: string;
   readonly title: string;
   readonly titleWrapper: string;
+  readonly credentials: string;
+  readonly result: string;
+  readonly credential: string;
+  readonly error: string;
 };
 export = styles;
