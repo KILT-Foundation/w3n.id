@@ -42,6 +42,7 @@ export const CredentialDetails = ({ credential, did }: Props) => {
       const didChain = await api.call.did.query(Did.toChain(attestation.owner));
       if (didChain.isNone) {
         setError('Unable to fetch attester details');
+        return;
       }
       const { web3Name } = Did.linkedInfoFromChain(didChain);
       setAttester(web3Name ? `w3n:${web3Name}` : attestation.owner);
