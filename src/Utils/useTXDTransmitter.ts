@@ -26,13 +26,15 @@ function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
   return useSWR<Output>(key, (input, options) => ky(input, options).json());
 }
 
-export const checkoutServiceURL = txdUrls[endpoint];
+export const checkoutServiceURL = checkoutUrls[endpoint];
 
 export function useApiTXDAddress() {
-  return useApi<{ paymentAddress: KiltAddress }>(`${checkoutServiceURL}/meta`);
+  const txdUrl = txdUrls[endpoint];
+  return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
 }
 
 export function useApiTXDCosts() {
-  const checkoutURL = checkoutUrls[endpoint];
-  return useApi<{ did: string; w3n: string }>(`${checkoutURL}/api/costs`);
+  return useApi<{ did: string; w3n: string }>(
+    `${checkoutServiceURL}/api/costs`,
+  );
 }

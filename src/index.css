@@ -59,6 +59,7 @@ html {
   --options-background: #f3f3f3;
   --modal-background: #f3f3f3;
   --modal-border: #3dc000;
+  --inactive-payment-tab: #a3c791;
 }
 
 html.dark {
@@ -82,6 +83,7 @@ html.dark {
   --light-green: #3a5530;
   --inactive-tab: #6b6f69;
   --inactive-text: #f3f3f3;
+  --inactive-payment-tab: #6b6f69;
   --button-primary-background: #2d1f0b;
   --button-primary-text: #f3f3f3;
   --select-text: #f3f3f3;

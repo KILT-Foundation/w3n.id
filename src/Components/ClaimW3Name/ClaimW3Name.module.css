@@ -95,10 +95,11 @@
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
+  text-decoration: none;
 }
 
 .btn:disabled,
-.btn[aria-disabled],
+.btn[aria-disabled='true'],
 .loaded {
   color: rgb(var(--modal-btn-disabled-rgb) / 50%);
   border: 3px solid rgb(var(--modal-btn-disabled-rgb) / 50%);
