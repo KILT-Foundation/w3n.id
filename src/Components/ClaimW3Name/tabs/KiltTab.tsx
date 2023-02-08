@@ -2,7 +2,7 @@ import { FormEvent, useCallback, useState } from 'react';
 
 import { ChainHelpers } from '@kiltprotocol/sdk-js';
 
-import { web3FromAddress } from '@polkadot/extension-dapp';
+import { web3FromSource } from '@polkadot/extension-dapp';
 
 import styles from '../ClaimW3Name.module.css';
 
@@ -49,7 +49,7 @@ export function KiltTab({ web3name }: Props) {
       try {
         const { address } = selectedAccount;
         const { extrinsic } = await getW3NameExtrinsic(web3name, address);
-        const { signer } = await web3FromAddress(address);
+        const { signer } = await web3FromSource(selectedAccount.meta.source);
         const signed = await extrinsic.signAsync(address, { signer });
 
         await ChainHelpers.Blockchain.submitSignedTx(signed);
