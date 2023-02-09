@@ -206,6 +206,10 @@
   background-color: rgb(223 134 1 /50%);
 }
 
+.option[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
 .optionText {
   composes: ellipsis;
   width: 90%;
