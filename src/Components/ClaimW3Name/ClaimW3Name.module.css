@@ -208,6 +208,7 @@
 
 .option[aria-disabled='true'] {
   cursor: not-allowed;
+  font-style: italic;
 }
 
 .optionText {
