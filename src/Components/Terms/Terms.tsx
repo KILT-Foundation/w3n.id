@@ -249,10 +249,10 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>
             License to the W3n.id Website
           </h3>
-          <p>Copyright (c) 2021-2022, BOTLabs GmbH. All rights reserved.</p>
+          <p>Copyright (c) 2022-2023, BOTLabs GmbH. All rights reserved.</p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
-          <p>Copyright (c) 2022, built on KILT. All rights reserved.</p>
+          <p>Copyright (c) 2022-2023, built on KILT. All rights reserved.</p>
 
           <p>
             Redistribution and use in source and binary forms, with or without

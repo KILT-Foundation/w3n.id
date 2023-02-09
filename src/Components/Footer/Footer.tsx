@@ -58,7 +58,7 @@ export const Footer = () => {
         </nav>
 
         <p className={styles.copyright}>
-          © 2022 B.T.E. BOTLabs Trusted Entity GmbH
+          © 2023 B.T.E. BOTLabs Trusted Entity GmbH
         </p>
       </div>
     </footer>
