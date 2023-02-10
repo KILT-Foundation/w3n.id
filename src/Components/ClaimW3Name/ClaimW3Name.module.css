@@ -202,8 +202,13 @@
   border-radius: 0 0 15px 15px;
 }
 
-.option:hover {
+.option:not([aria-disabled='true']):hover {
   background-color: rgb(223 134 1 /50%);
+}
+
+.option[aria-disabled='true'] {
+  cursor: not-allowed;
+  font-style: italic;
 }
 
 .optionText {
