@@ -111,9 +111,9 @@ export function Privacy() {
                     data consisting of the use of personal data to evaluate
                     certain personal aspects relating to a natural person, in
                     particular to analyze or predict aspects concerning that
-                    natural person’s performance at work, economic
-                    situation, health, personal preferences, interests,
-                    reliability, behavior, location or movements.
+                    natural person’s performance at work, economic situation,
+                    health, personal preferences, interests, reliability,
+                    behavior, location or movements.
                   </p>
                 </li>
                 <li>
@@ -578,21 +578,19 @@ export function Privacy() {
                     performance of, a contract between the data subject and a
                     data controller, or (2) is not authorized by Union or Member
                     State law to which the controller is subject and which also
-                    lays down suitable measures to safeguard the data
-                    subject’s rights and freedoms and legitimate interests,
-                    or (3) is not based on the data subject’s explicit
-                    consent.
+                    lays down suitable measures to safeguard the data subject’s
+                    rights and freedoms and legitimate interests, or (3) is not
+                    based on the data subject’s explicit consent.
                   </p>
                   <p>
                     If the decision (1) is necessary for entering into, or the
                     performance of, a contract between the data subject and a
-                    data controller, or (2) it is based on the data
-                    subject’s explicit consent, the BOTLabs GmbH shall
-                    implement suitable measures to safeguard the data
-                    subject’s rights and freedoms and legitimate interests,
-                    at least the right to obtain human intervention on the part
-                    of the controller, to express his or her point of view and
-                    contest the decision.
+                    data controller, or (2) it is based on the data subject’s
+                    explicit consent, the BOTLabs GmbH shall implement suitable
+                    measures to safeguard the data subject’s rights and freedoms
+                    and legitimate interests, at least the right to obtain human
+                    intervention on the part of the controller, to express his
+                    or her point of view and contest the decision.
                   </p>
                   <p>
                     If the data subject wishes to exercise the rights concerning
