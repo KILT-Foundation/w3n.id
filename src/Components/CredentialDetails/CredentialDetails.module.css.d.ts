@@ -5,5 +5,6 @@ declare const styles: {
   readonly credentialDescription: string;
   readonly valid: string;
   readonly spinner: string;
+  readonly anchor: string;
 };
 export = styles;

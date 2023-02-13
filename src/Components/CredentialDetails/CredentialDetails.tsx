@@ -83,7 +83,12 @@ export const CredentialDetails = ({ credential, did }: Props) => {
           {attester && !attester.startsWith('w3n:') && attester}
 
           {attester && attester.startsWith('w3n:') && (
-            <a href={`/${attester.replace('w3n:', '')}`}>{attester}</a>
+            <a
+              className={styles.anchor}
+              href={`/${attester.replace('w3n:', '')}`}
+            >
+              {attester}
+            </a>
           )}
         </dd>
       </div>
