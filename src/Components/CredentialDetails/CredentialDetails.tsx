@@ -19,6 +19,7 @@ interface Props {
   credential: ICredential;
   did: DidUri;
 }
+
 export const CredentialDetails = ({ credential, did }: Props) => {
   const [attester, setAttester] = useState<string | DidUri>();
   const [error, setError] = useState<string>();
@@ -77,7 +78,13 @@ export const CredentialDetails = ({ credential, did }: Props) => {
       <div className={styles.container}>
         <dt className={styles.credentialTitle}>Attester</dt>
         <dd className={styles.credentialDescription}>
-          {attester || <span className={styles.spinner} />}
+          {!attester && <span className={styles.spinner} />}
+
+          {attester && !attester.startsWith('w3n:') && attester}
+
+          {attester && attester.startsWith('w3n:') && (
+            <a href={`/${attester.replace('w3n:', '')}`}>{attester}</a>
+          )}
         </dd>
       </div>
 
