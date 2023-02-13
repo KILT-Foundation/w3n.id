@@ -11,8 +11,8 @@ export function Privacy() {
           <p>
             We are very delighted that you have shown interest in our
             enterprise. Data protection is of a particularly high priority for
-            the management of the B.T.E. BOTLabs Trusted Entity GmbH. The use of
-            the Internet pages of the B.T.E. BOTLabs Trusted Entity GmbH is
+            the management of the BOTLabs GmbH. The use of
+            the Internet pages of the BOTLabs GmbH is
             possible without any indication of personal data; however, if a data
             subject wants to use special enterprise services via our website,
             processing of personal data could become necessary. If the
@@ -25,7 +25,7 @@ export function Privacy() {
             address, or telephone number of a data subject shall always be in
             line with the General Data Protection Regulation (GDPR), and in
             accordance with the country-specific data protection regulations
-            applicable to the B.T.E. BOTLabs Trusted Entity GmbH. By means of
+            applicable to the BOTLabs GmbH. By means of
             this data protection declaration, our enterprise would like to
             inform the general public of the nature, scope, and purpose of the
             personal data we collect, use and process. Furthermore, data
@@ -33,7 +33,7 @@ export function Privacy() {
             of the rights to which they are entitled.
           </p>
           <p>
-            As the controller, the B.T.E. BOTLabs Trusted Entity GmbH has
+            As the controller, the BOTLabs GmbH has
             implemented numerous technical and organizational measures to ensure
             the most complete protection of personal data processed through this
             website. However, Internet-based data transmissions may in principle
@@ -46,8 +46,7 @@ export function Privacy() {
             <li>
               <h3 className={styles.spacedHeading}>Definitions</h3>
               <p>
-                The data protection declaration of the B.T.E. BOTLabs Trusted
-                Entity GmbH is based on the terms used by the European
+                The data protection declaration of the BOTLabs GmbH is based on the terms used by the European
                 legislator for the adoption of the General Data Protection
                 Regulation (GDPR). Our data protection declaration should be
                 legible and understandable for the general public, as well as
@@ -200,7 +199,7 @@ export function Privacy() {
                 to data protection is:
               </p>
               <p>
-                B.T.E. BOTLabs Trusted Entity GmbH <br />
+                BOTLabs GmbH <br />
                 Keithstr. 2-4 <br />
                 10713 Berlin <br />
                 Germany <br />
@@ -231,7 +230,7 @@ export function Privacy() {
             <li>
               <h3 className={styles.spacedHeading}></h3>
               <p>
-                The website of the B.T.E. BOTLabs Trusted Entity GmbH collects a
+                The website of the BOTLabs GmbH collects a
                 series of general data and information when a data subject or
                 automated system calls up the website. This general data and
                 information are stored in the server log files. Collected may be
@@ -245,8 +244,8 @@ export function Privacy() {
                 the event of attacks on our information technology systems.
               </p>
               <p>
-                When using these general data and information, the B.T.E.
-                BOTLabs Trusted Entity GmbH does not draw any conclusions about
+                When using these general data and information, the 
+                BOTLabs GmbH does not draw any conclusions about
                 the data subject. Rather, this information is needed to (1)
                 deliver the content of our website correctly, (2) optimize the
                 content of our website as well as its advertisement, (3) ensure
@@ -533,7 +532,7 @@ export function Privacy() {
                     profiling based on these provisions.
                   </p>
                   <p>
-                    The B.T.E. BOTLabs Trusted Entity GmbH shall no longer
+                    The BOTLabs GmbH shall no longer
                     process the personal data in the event of the objection,
                     unless we can demonstrate compelling legitimate grounds for
                     the processing which override the interests, rights and
@@ -541,14 +540,14 @@ export function Privacy() {
                     exercise or defense of legal claims.
                   </p>
                   <p>
-                    If the B.T.E. BOTLabs Trusted Entity GmbH processes personal
+                    If the BOTLabs GmbH processes personal
                     data for direct marketing purposes, the data subject shall
                     have the right to object at any time to processing of
                     personal data concerning him or her for such marketing. This
                     applies to profiling to the extent that it is related to
                     such direct marketing. If the data subject objects to the
-                    B.T.E. BOTLabs Trusted Entity GmbH to the processing for
-                    direct marketing purposes, the B.T.E. BOTLabs Trusted Entity
+                    BOTLabs GmbH to the processing for
+                    direct marketing purposes, the BOTLabs 
                     GmbH will no longer process the personal data for these
                     purposes.
                   </p>
