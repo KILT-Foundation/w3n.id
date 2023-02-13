@@ -219,11 +219,11 @@ export function Privacy() {
                 and click on “Contact Us” <br /> Website:{' '}
                 <a
                   className={styles.anchor}
-                  href="http://www.botlabs.org/"
+                  href="https://www.botlabs.org/"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  http://www.botlabs.org/{' '}
+                  https://www.botlabs.org/{' '}
                 </a>{' '}
               </p>
             </li>
@@ -252,13 +252,12 @@ export function Privacy() {
                 our information technology systems and website technology, and
                 (4) provide law enforcement authorities with the information
                 necessary for criminal prosecution in case of a cyber-attack.
-                Therefore, the BOTLabs GmbH analyzes
-                anonymously collected data and information statistically, with
-                the aim of increasing the data protection and data security of
-                our enterprise, and to ensure an optimal level of protection for
-                the personal data we process. The anonymous data of the server
-                log files are stored separately from all personal data provided
-                by a data subject.
+                Therefore, the BOTLabs GmbH analyzes anonymously collected data
+                and information statistically, with the aim of increasing the
+                data protection and data security of our enterprise, and to
+                ensure an optimal level of protection for the personal data we
+                process. The anonymous data of the server log files are stored
+                separately from all personal data provided by a data subject.
               </p>
             </li>
             <li>
@@ -423,11 +422,10 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned reasons applies, and a data
                     subject wishes to request the erasure of personal data
-                    stored by the BOTLabs GmbH, he or she
-                    may, at any time, contact any employee of the controller. An
-                    employee of BOTLabs GmbH shall
-                    promptly ensure that the erasure request is complied with
-                    immediately.
+                    stored by the BOTLabs GmbH, he or she may, at any time,
+                    contact any employee of the controller. An employee of
+                    BOTLabs GmbH shall promptly ensure that the erasure request
+                    is complied with immediately.
                   </p>
                   <p>
                     Where the controller has made personal data public and is
@@ -438,8 +436,8 @@ export function Privacy() {
                     processing the personal data that the data subject has
                     requested erasure by such controllers of any links to, or
                     copy or replication of, those personal data, as far as
-                    processing is not required. An employee of the BOTLabs GmbH will arrange the necessary
-                    measures in individual cases.
+                    processing is not required. An employee of the BOTLabs GmbH
+                    will arrange the necessary measures in individual cases.
                   </p>
                 </li>
                 <li>
@@ -479,9 +477,10 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned conditions is met, and a data
                     subject wishes to request the restriction of the processing
-                    of personal data stored by the BOTLabs
-                    GmbH, he or she may at any time contact any employee of the
-                    controller. The employee of the BOTLabs GmbH will arrange the restriction of the processing.
+                    of personal data stored by the BOTLabs GmbH, he or she may
+                    at any time contact any employee of the controller. The
+                    employee of the BOTLabs GmbH will arrange the restriction of
+                    the processing.
                   </p>
                 </li>
                 <li>
@@ -515,7 +514,8 @@ export function Privacy() {
                   </p>
                   <p>
                     In order to assert the right to data portability, the data
-                    subject may at any time contact any employee of the BOTLabs GmbH.
+                    subject may at any time contact any employee of the BOTLabs
+                    GmbH.
                   </p>
                 </li>
                 <li>
@@ -550,19 +550,18 @@ export function Privacy() {
                     In addition, the data subject has the right, on grounds
                     relating to his or her particular situation, to object to
                     processing of personal data concerning him or her by the
-                    BOTLabs GmbH for scientific or
-                    historical research purposes, or for statistical purposes
-                    pursuant to Article 89(1) of the GDPR, unless the processing
-                    is necessary for the performance of a task carried out for
-                    reasons of public interest.
+                    BOTLabs GmbH for scientific or historical research purposes,
+                    or for statistical purposes pursuant to Article 89(1) of the
+                    GDPR, unless the processing is necessary for the performance
+                    of a task carried out for reasons of public interest.
                   </p>
                   <p>
                     In order to exercise the right to object, the data subject
-                    may contact any employee of the BOTLabs GmbH. In addition, the data subject is free in the
-                    context of the use of information society services, and
-                    notwithstanding Directive 2002/58/EC, to use his or her
-                    right to object by automated means using technical
-                    specifications.
+                    may contact any employee of the BOTLabs GmbH. In addition,
+                    the data subject is free in the context of the use of
+                    information society services, and notwithstanding Directive
+                    2002/58/EC, to use his or her right to object by automated
+                    means using technical specifications.
                   </p>
                 </li>
                 <li>
@@ -588,11 +587,12 @@ export function Privacy() {
                     If the decision (1) is necessary for entering into, or the
                     performance of, a contract between the data subject and a
                     data controller, or (2) it is based on the data
-                    subject&apos;s explicit consent, the BOTLabs GmbH shall implement suitable measures to safeguard
-                    the data subject&apos;s rights and freedoms and legitimate
-                    interests, at least the right to obtain human intervention
-                    on the part of the controller, to express his or her point
-                    of view and contest the decision.
+                    subject&apos;s explicit consent, the BOTLabs GmbH shall
+                    implement suitable measures to safeguard the data
+                    subject&apos;s rights and freedoms and legitimate interests,
+                    at least the right to obtain human intervention on the part
+                    of the controller, to express his or her point of view and
+                    contest the decision.
                   </p>
                   <p>
                     If the data subject wishes to exercise the rights concerning
