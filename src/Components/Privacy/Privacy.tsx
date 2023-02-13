@@ -11,47 +11,47 @@ export function Privacy() {
           <p>
             We are very delighted that you have shown interest in our
             enterprise. Data protection is of a particularly high priority for
-            the management of the BOTLabs GmbH. The use of
-            the Internet pages of the BOTLabs GmbH is
-            possible without any indication of personal data; however, if a data
-            subject wants to use special enterprise services via our website,
-            processing of personal data could become necessary. If the
-            processing of personal data is necessary and there is no statutory
-            basis for such processing, we generally obtain consent from the data
-            subject.
+            the management of the BOTLabs GmbH. The use of the Internet pages of
+            the BOTLabs GmbH is possible without any indication of personal
+            data; however, if a data subject wants to use special enterprise
+            services via our website, processing of personal data could become
+            necessary. If the processing of personal data is necessary and there
+            is no statutory basis for such processing, we generally obtain
+            consent from the data subject.
           </p>
           <p>
             The processing of personal data, such as the name, address, e-mail
             address, or telephone number of a data subject shall always be in
             line with the General Data Protection Regulation (GDPR), and in
             accordance with the country-specific data protection regulations
-            applicable to the BOTLabs GmbH. By means of
-            this data protection declaration, our enterprise would like to
-            inform the general public of the nature, scope, and purpose of the
-            personal data we collect, use and process. Furthermore, data
-            subjects are informed, by means of this data protection declaration,
-            of the rights to which they are entitled.
+            applicable to the BOTLabs GmbH. By means of this data protection
+            declaration, our enterprise would like to inform the general public
+            of the nature, scope, and purpose of the personal data we collect,
+            use and process. Furthermore, data subjects are informed, by means
+            of this data protection declaration, of the rights to which they are
+            entitled.
           </p>
           <p>
-            As the controller, the BOTLabs GmbH has
-            implemented numerous technical and organizational measures to ensure
-            the most complete protection of personal data processed through this
-            website. However, Internet-based data transmissions may in principle
-            have security gaps, so absolute protection may not be guaranteed.
-            For this reason, every data subject is free to transfer personal
-            data to us via alternative means, e.g. by telephone.
+            As the controller, the BOTLabs GmbH has implemented numerous
+            technical and organizational measures to ensure the most complete
+            protection of personal data processed through this website. However,
+            Internet-based data transmissions may in principle have security
+            gaps, so absolute protection may not be guaranteed. For this reason,
+            every data subject is free to transfer personal data to us via
+            alternative means, e.g. by telephone.
           </p>
 
           <ol type="1">
             <li>
               <h3 className={styles.spacedHeading}>Definitions</h3>
               <p>
-                The data protection declaration of the BOTLabs GmbH is based on the terms used by the European
-                legislator for the adoption of the General Data Protection
-                Regulation (GDPR). Our data protection declaration should be
-                legible and understandable for the general public, as well as
-                our customers and business partners. To ensure this, we would
-                like to first explain the terminology used.
+                The data protection declaration of the BOTLabs GmbH is based on
+                the terms used by the European legislator for the adoption of
+                the General Data Protection Regulation (GDPR). Our data
+                protection declaration should be legible and understandable for
+                the general public, as well as our customers and business
+                partners. To ensure this, we would like to first explain the
+                terminology used.
               </p>
 
               <p>
@@ -230,35 +230,35 @@ export function Privacy() {
             <li>
               <h3 className={styles.spacedHeading}></h3>
               <p>
-                The website of the BOTLabs GmbH collects a
-                series of general data and information when a data subject or
-                automated system calls up the website. This general data and
-                information are stored in the server log files. Collected may be
-                (1) the browser types and versions used, (2) the operating
-                system used by the accessing system, (3) the website from which
-                an accessing system reaches our website (so-called referrers),
-                (4) the sub-websites, (5) the date and time of access to the
-                Internet site, (6) an Internet protocol address (IP address),
-                (7) the Internet service provider of the accessing system, and
-                (8) any other similar data and information that may be used in
-                the event of attacks on our information technology systems.
+                The website of the BOTLabs GmbH collects a series of general
+                data and information when a data subject or automated system
+                calls up the website. This general data and information are
+                stored in the server log files. Collected may be (1) the browser
+                types and versions used, (2) the operating system used by the
+                accessing system, (3) the website from which an accessing system
+                reaches our website (so-called referrers), (4) the sub-websites,
+                (5) the date and time of access to the Internet site, (6) an
+                Internet protocol address (IP address), (7) the Internet service
+                provider of the accessing system, and (8) any other similar data
+                and information that may be used in the event of attacks on our
+                information technology systems.
               </p>
               <p>
-                When using these general data and information, the 
-                BOTLabs GmbH does not draw any conclusions about
-                the data subject. Rather, this information is needed to (1)
-                deliver the content of our website correctly, (2) optimize the
-                content of our website as well as its advertisement, (3) ensure
-                the long-term viability of our information technology systems
-                and website technology, and (4) provide law enforcement
-                authorities with the information necessary for criminal
-                prosecution in case of a cyber-attack. Therefore, the B.T.E.
-                BOTLabs Trusted Entity GmbH analyzes anonymously collected data
-                and information statistically, with the aim of increasing the
-                data protection and data security of our enterprise, and to
-                ensure an optimal level of protection for the personal data we
-                process. The anonymous data of the server log files are stored
-                separately from all personal data provided by a data subject.
+                When using these general data and information, the BOTLabs GmbH
+                does not draw any conclusions about the data subject. Rather,
+                this information is needed to (1) deliver the content of our
+                website correctly, (2) optimize the content of our website as
+                well as its advertisement, (3) ensure the long-term viability of
+                our information technology systems and website technology, and
+                (4) provide law enforcement authorities with the information
+                necessary for criminal prosecution in case of a cyber-attack.
+                Therefore, the B.T.E. BOTLabs Trusted Entity GmbH analyzes
+                anonymously collected data and information statistically, with
+                the aim of increasing the data protection and data security of
+                our enterprise, and to ensure an optimal level of protection for
+                the personal data we process. The anonymous data of the server
+                log files are stored separately from all personal data provided
+                by a data subject.
               </p>
             </li>
             <li>
@@ -532,24 +532,22 @@ export function Privacy() {
                     profiling based on these provisions.
                   </p>
                   <p>
-                    The BOTLabs GmbH shall no longer
-                    process the personal data in the event of the objection,
-                    unless we can demonstrate compelling legitimate grounds for
-                    the processing which override the interests, rights and
-                    freedoms of the data subject, or for the establishment,
-                    exercise or defense of legal claims.
+                    The BOTLabs GmbH shall no longer process the personal data
+                    in the event of the objection, unless we can demonstrate
+                    compelling legitimate grounds for the processing which
+                    override the interests, rights and freedoms of the data
+                    subject, or for the establishment, exercise or defense of
+                    legal claims.
                   </p>
                   <p>
-                    If the BOTLabs GmbH processes personal
-                    data for direct marketing purposes, the data subject shall
-                    have the right to object at any time to processing of
-                    personal data concerning him or her for such marketing. This
-                    applies to profiling to the extent that it is related to
-                    such direct marketing. If the data subject objects to the
-                    BOTLabs GmbH to the processing for
-                    direct marketing purposes, the BOTLabs 
-                    GmbH will no longer process the personal data for these
-                    purposes.
+                    If the BOTLabs GmbH processes personal data for direct
+                    marketing purposes, the data subject shall have the right to
+                    object at any time to processing of personal data concerning
+                    him or her for such marketing. This applies to profiling to
+                    the extent that it is related to such direct marketing. If
+                    the data subject objects to the BOTLabs GmbH to the
+                    processing for direct marketing purposes, the BOTLabs GmbH
+                    will no longer process the personal data for these purposes.
                   </p>
                   <p>
                     In addition, the data subject has the right, on grounds
