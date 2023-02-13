@@ -219,11 +219,11 @@ export function Privacy() {
                 and click on “Contact Us” <br /> Website:{' '}
                 <a
                   className={styles.anchor}
-                  href="http://www.trusted-entity.io/"
+                  href="http://www.botlabs.org/"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  http://www.trusted-entity.io/{' '}
+                  http://www.botlabs.org/{' '}
                 </a>{' '}
               </p>
             </li>
@@ -252,7 +252,7 @@ export function Privacy() {
                 our information technology systems and website technology, and
                 (4) provide law enforcement authorities with the information
                 necessary for criminal prosecution in case of a cyber-attack.
-                Therefore, the B.T.E. BOTLabs Trusted Entity GmbH analyzes
+                Therefore, the BOTLabs GmbH analyzes
                 anonymously collected data and information statistically, with
                 the aim of increasing the data protection and data security of
                 our enterprise, and to ensure an optimal level of protection for
@@ -423,9 +423,9 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned reasons applies, and a data
                     subject wishes to request the erasure of personal data
-                    stored by the B.T.E. BOTLabs Trusted Entity GmbH, he or she
+                    stored by the BOTLabs GmbH, he or she
                     may, at any time, contact any employee of the controller. An
-                    employee of B.T.E. BOTLabs Trusted Entity GmbH shall
+                    employee of BOTLabs GmbH shall
                     promptly ensure that the erasure request is complied with
                     immediately.
                   </p>
@@ -438,8 +438,7 @@ export function Privacy() {
                     processing the personal data that the data subject has
                     requested erasure by such controllers of any links to, or
                     copy or replication of, those personal data, as far as
-                    processing is not required. An employee of the B.T.E.
-                    BOTLabs Trusted Entity GmbH will arrange the necessary
+                    processing is not required. An employee of the BOTLabs GmbH will arrange the necessary
                     measures in individual cases.
                   </p>
                 </li>
@@ -480,10 +479,9 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned conditions is met, and a data
                     subject wishes to request the restriction of the processing
-                    of personal data stored by the B.T.E. BOTLabs Trusted Entity
+                    of personal data stored by the BOTLabs
                     GmbH, he or she may at any time contact any employee of the
-                    controller. The employee of the B.T.E. BOTLabs Trusted
-                    Entity GmbH will arrange the restriction of the processing.
+                    controller. The employee of the BOTLabs GmbH will arrange the restriction of the processing.
                   </p>
                 </li>
                 <li>
@@ -517,8 +515,7 @@ export function Privacy() {
                   </p>
                   <p>
                     In order to assert the right to data portability, the data
-                    subject may at any time contact any employee of the B.T.E.
-                    BOTLabs Trusted Entity GmbH.
+                    subject may at any time contact any employee of the BOTLabs GmbH.
                   </p>
                 </li>
                 <li>
@@ -553,7 +550,7 @@ export function Privacy() {
                     In addition, the data subject has the right, on grounds
                     relating to his or her particular situation, to object to
                     processing of personal data concerning him or her by the
-                    B.T.E. BOTLabs Trusted Entity GmbH for scientific or
+                    BOTLabs GmbH for scientific or
                     historical research purposes, or for statistical purposes
                     pursuant to Article 89(1) of the GDPR, unless the processing
                     is necessary for the performance of a task carried out for
@@ -561,8 +558,7 @@ export function Privacy() {
                   </p>
                   <p>
                     In order to exercise the right to object, the data subject
-                    may contact any employee of the B.T.E. BOTLabs Trusted
-                    Entity GmbH. In addition, the data subject is free in the
+                    may contact any employee of the BOTLabs GmbH. In addition, the data subject is free in the
                     context of the use of information society services, and
                     notwithstanding Directive 2002/58/EC, to use his or her
                     right to object by automated means using technical
@@ -592,8 +588,7 @@ export function Privacy() {
                     If the decision (1) is necessary for entering into, or the
                     performance of, a contract between the data subject and a
                     data controller, or (2) it is based on the data
-                    subject&apos;s explicit consent, the B.T.E. BOTLabs Trusted
-                    Entity GmbH shall implement suitable measures to safeguard
+                    subject&apos;s explicit consent, the BOTLabs GmbH shall implement suitable measures to safeguard
                     the data subject&apos;s rights and freedoms and legitimate
                     interests, at least the right to obtain human intervention
                     on the part of the controller, to express his or her point
@@ -602,8 +597,7 @@ export function Privacy() {
                   <p>
                     If the data subject wishes to exercise the rights concerning
                     automated individual decision-making, he or she may, at any
-                    time, contact any employee of the B.T.E. BOTLabs Trusted
-                    Entity GmbH.
+                    time, contact any employee of the BOTLabs GmbH.
                   </p>
                 </li>
                 <li>
@@ -618,7 +612,7 @@ export function Privacy() {
                   <p>
                     If the data subject wishes to exercise the right to withdraw
                     the consent, he or she may, at any time, contact any
-                    employee of the B.T.E. BOTLabs Trusted Entity GmbH.
+                    employee of the BOTLabs GmbH.
                   </p>
                 </li>
               </ol>
