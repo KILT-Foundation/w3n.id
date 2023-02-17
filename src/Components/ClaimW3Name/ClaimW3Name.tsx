@@ -26,7 +26,8 @@ function ClaimingSection({ web3name, cost, address }: ClaimingProps) {
   return (
     <div className={styles.wrapper}>
       <span className={styles.text}>
-        Follow the steps below and this name will be yours!
+        Follow the steps below and this name will be yours! If you don’t have
+        your Sporran wallet and DID, see the guides below.
       </span>
 
       <div className={styles.claimContainer}>

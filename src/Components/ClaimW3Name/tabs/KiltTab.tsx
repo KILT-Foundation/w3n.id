@@ -96,7 +96,9 @@ export function KiltTab({ web3name }: Props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.claimContents}>
-        <p className={styles.topText}>Follow these steps to claim your name:</p>
+        <p className={styles.topText}>
+          Follow these steps to claim your name and pay with KILT:
+        </p>
         <ol type="1" className={styles.steps}>
           <li className={styles.step}>
             <p>Click “Connect to wallet”</p>
@@ -117,15 +119,16 @@ export function KiltTab({ web3name }: Props) {
           <li className={styles.step}>
             <p>
               This triggers pop-ups to request access to your Polkadot-enabled
-              extensions, including Sporran.
+              browser extensions, including Sporran
             </p>
           </li>
           <li className={styles.selectAccount}>
-            <p>Click “Allow access” on each wallet</p>
+            <p>Click “Allow access” for your Sporran</p>
             <p>
-              Choose the account address you wish to pay the transaction fees
-              from (Please ensure you choose a wallet containing enough KILT to
-              cover the transaction fee – currently around 0.0045 KILT.)
+              Choose the account address you wish to pay from (Please ensure you
+              choose a wallet containing enough KILT to cover the transaction
+              fee – currently around 0.0003 KILT – and deposit – currently
+              around 0.1181 KILT)
             </p>
             <div
               role="listbox"
@@ -138,7 +141,7 @@ export function KiltTab({ web3name }: Props) {
                   {selectedAccount.meta.name} ({selectedAccount.meta.source})
                 </span>
               ) : (
-                <span className={styles.selectText}>Choose payer account</span>
+                <span className={styles.selectText}>Pay with KILT</span>
               )}
 
               {showOptions && (
@@ -211,7 +214,15 @@ export function KiltTab({ web3name }: Props) {
             web3name={web3name}
           />
         </ol>
-        <p className={styles.bottomText}>That’s it!</p>
+        <section className={styles.bottom}>
+          <p className={styles.bottomText}>That’s it!</p>
+          <a
+            className={styles.anchor}
+            href="https://kilt-protocol.org/files/How-to-Guide-Get-Your-web3name.pdf"
+          >
+            How-to Guide, web3name
+          </a>
+        </section>
       </div>
     </form>
   );
