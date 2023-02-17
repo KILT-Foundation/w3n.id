@@ -3,7 +3,9 @@ declare const styles: {
   readonly title: string;
   readonly text: string;
   readonly topText: string;
+  readonly bottom: string;
   readonly bottomText: string;
+  readonly anchor: string;
   readonly wrapper: string;
   readonly claimContainer: string;
   readonly controlBtn: string;

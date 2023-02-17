@@ -12,15 +12,14 @@ export const OnChainDidGuide = () => {
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
       >
-        2. Create your on-chain DID
+        2. Get your DID
       </button>
       {isExpanded && (
         <div className={styles.windowContents}>
           <p className={styles.onchainGuide}>
             Your decentralized Identifier (DID) is a unique set of numbers and
-            letters that represents your identity, like a digital fingerprint.
-            When you upgrade to an on-chain DID, you can link multiple things to
-            your DID including:
+            letters that represents the core of your identity, like a digital
+            fingerprint. You can link multiple things to your DID including:
           </p>
           <ul className={styles.list}>
             <li className={styles.listItem}>Your unique web3name</li>
@@ -37,27 +36,20 @@ export const OnChainDidGuide = () => {
             </li>
           </ul>
           <p className={styles.onchainGuide}>
-            Upgrading to an on-chain DID requires a deposit of 2 KILT and a
-            small transaction fee (around 0.0045 KILT).
+            You can pay for your DID with KILT or use Checkout Service / PayPal.
+          </p>
+          <p className={styles.onchainGuide}>
+            Follow the instructions in our How-to guide.
           </p>
 
-          <h1 className={styles.listHeading}>To upgrade to an on-chain DID:</h1>
-          <ol className={styles.numberedList}>
-            <li className={styles.numberedListItem}>
-              Open your Sporran extension
-            </li>
-            <li className={styles.numberedListItem}>
-              Click “Upgrade to on-chain DID”
-            </li>
-          </ol>
           <p className={styles.onchainGuide}>
             <a
               className={styles.linkToGuide}
-              href="https://www.trusted-entity.io/assets/pdf/Upgrading-to-on-chain-DID.pdf"
+              href="https://kilt-protocol.org/files/How-to-Guide-Get-Your-DID.pdf"
               target="_blank"
               rel="noreferrer"
             >
-              Guide to upgrading your DID (PDF)
+              How-to Guide, DID (PDF)
             </a>
           </p>
         </div>
@@ -123,11 +115,11 @@ export const ClaimingGuide = () => {
               <p className={styles.guide}>
                 <a
                   className={styles.linkToGuide}
-                  href="https://www.trusted-entity.io/assets/pdf/Create-KILT-Sporran-Identity.pdf"
+                  href="https://kilt-protocol.org/files/How-to-Guide-Create-Sporran-Wallet.pdf"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Guide to downloading Sporran (PDF)
+                  How-to Guide, Sporran (PDF)
                 </a>
                 <br />
                 <a

@@ -32,7 +32,7 @@ export function PaymentTabs({ children }: Props) {
           onClick={setPayPalTab}
           className={openTab === 'paypal' ? style.tabItem : style.activeTabItem}
         >
-          Pay with PayPal
+          Use Checkout Service / PayPal
         </button>
       </div>
       {openTab === 'kilt' && children[0]}

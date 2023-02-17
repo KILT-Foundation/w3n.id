@@ -44,10 +44,11 @@ export function PayPalTab({ web3name, cost, address }: Props) {
       <p className={styles.topText}>Follow these steps to claim your name:</p>
       <ol type="1" className={styles.steps}>
         <li className={styles.step}>
-          <p>Click “CHOOSE IDENTITY”</p>
+          <p>Click “Choose Identity”</p>
           <p>
-            This opens up Sporran. Select the DID you want to connect to this
-            web3name. Then enter your password and click “Sign”
+            This will open your Sporran. Select the DID you want to connect to
+            this web3name. Then enter your password to approve the transaction
+            and click “Sign”
           </p>
           <button onClick={connectWalletGetTx} className={styles.btn}>
             Choose identity
@@ -55,11 +56,10 @@ export function PayPalTab({ web3name, cost, address }: Props) {
         </li>
 
         <li className={styles.step}>
-          <p>Link to checkout page</p>
+          <p>Go to Checkout Service</p>
           <p>
-            To continue the payment process with PayPal click the button. You
-            will be redirected to our checkout service which will lead you
-            through the process (total cost: {costs}).
+            Click “Checkout” to be directed to the Checkout Service and pay with
+            PayPal (Total cost: {costs}).
           </p>
 
           <a
@@ -72,7 +72,15 @@ export function PayPalTab({ web3name, cost, address }: Props) {
         </li>
       </ol>
 
-      <p className={styles.bottomText}>That’s it!</p>
+      <section className={styles.bottom}>
+        <p className={styles.bottomText}>That’s it!</p>
+        <a
+          className={styles.anchor}
+          href="https://kilt-protocol.org/files/How-to-Guide-Get-Your-web3name.pdf"
+        >
+          How-to Guide, web3name
+        </a>
+      </section>
     </div>
   );
 }
