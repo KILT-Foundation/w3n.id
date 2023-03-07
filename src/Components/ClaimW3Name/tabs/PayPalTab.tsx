@@ -81,6 +81,24 @@ export function PayPalTab({ web3name, cost, address }: Props) {
           How-to Guide, web3name
         </a>
       </section>
+
+      <section className={styles.checkoutLegal}>
+        <a
+          className={styles.anchor}
+          href="https://checkout.kilt.io/imprint.html"
+        >
+          Imprint
+        </a>
+        <a className={styles.anchor} href="https://checkout.kilt.io/terms.html">
+          Terms and Conditions
+        </a>
+        <a
+          className={styles.anchor}
+          href="https://checkout.kilt.io/privacy.html"
+        >
+          Privacy Policy
+        </a>
+      </section>
     </div>
   );
 }
