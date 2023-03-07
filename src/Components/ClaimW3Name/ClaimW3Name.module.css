@@ -159,8 +159,8 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background: url('../../ImageAssets/open_triangle.svg') no-repeat top 11px
-      right 10px/9px 6px,
+  background:
+    url('../../ImageAssets/open_triangle.svg') no-repeat top 11px right 10px/9px 6px,
     var(--select);
   color: var(--select-text);
 }
@@ -172,8 +172,8 @@
 
 .selectShow {
   composes: select;
-  background: url('../../ImageAssets/close_triangle.svg') no-repeat top 11px
-      right 10px/9px 6px,
+  background:
+    url('../../ImageAssets/close_triangle.svg') no-repeat top 11px right 10px/9px 6px,
     var(--select);
 }
 
