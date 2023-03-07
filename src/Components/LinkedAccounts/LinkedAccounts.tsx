@@ -13,10 +13,9 @@ export function LinkedAccounts({ linkedAccounts }: Props) {
       <div className={styles.titleWrapper}>
         <span className={styles.title}>Linked Accounts</span>
         <InfoIcon right>
-          Linking your accounts with your on-chain DID & web3name is a personal
-          and recognizable way to represent yourself across the Polkadot and
-          (coming soon) Ethereum ecosystems. Any number of your accounts may be
-          linked.
+          Linking your accounts with your DID & web3name is a personal and
+          recognizable way to represent yourself across the Polkadot and (coming
+          soon) Ethereum ecosystems. Any number of your accounts may be linked.
         </InfoIcon>
       </div>
 

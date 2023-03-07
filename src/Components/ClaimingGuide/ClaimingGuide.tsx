@@ -66,8 +66,8 @@ export const ClaimingGuide = () => {
       <span className={styles.title}>Required</span>
       <div className={styles.wrapper}>
         <p className={styles.text}>
-          For claiming you need a Sporran wallet and an on-chain DID. If you
-          don’t already have them, follow the guides below to set them up.
+          For claiming you need a Sporran wallet and a DID. If you don’t already
+          have them, follow the guides below to set them up.
         </p>
 
         <div className={styles.window}>

@@ -38,6 +38,13 @@
   color: var(--web3-name);
 }
 
+.checkoutLegal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-block-start: 0.5rem;
+}
+
 .wrapper {
   composes: wrapper from '../Results/Results.module.css';
   width: 620px;
@@ -138,7 +145,7 @@
 
 .loaded {
   composes: btn;
-  line-height: 1.5rem;
+  margin: 0;
   background: url('../../ImageAssets/ok.svg') 99% center/1rem no-repeat;
 }
 
@@ -152,8 +159,8 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background:
-    url('../../ImageAssets/open_triangle.svg') no-repeat top 11px right 10px/9px 6px,
+  background: url('../../ImageAssets/open_triangle.svg') no-repeat top 11px
+      right 10px/9px 6px,
     var(--select);
   color: var(--select-text);
 }
@@ -165,8 +172,8 @@
 
 .selectShow {
   composes: select;
-  background:
-    url('../../ImageAssets/close_triangle.svg') no-repeat top 11px right 10px/9px 6px,
+  background: url('../../ImageAssets/close_triangle.svg') no-repeat top 11px
+      right 10px/9px 6px,
     var(--select);
 }
 

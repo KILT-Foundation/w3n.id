@@ -169,8 +169,8 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
       <div className={styles.titleWrapper}>
         <span className={styles.title}>Service Endpoints</span>
         <InfoIcon right>
-          Credentials may be linked with your on-chain DID & web3name and
-          displayed publicly on service endpoints such as GitHub public or IPFS.
+          Credentials may be linked with your DID & web3name and displayed
+          publicly on service endpoints such as GitHub public or IPFS.
         </InfoIcon>
       </div>
 
