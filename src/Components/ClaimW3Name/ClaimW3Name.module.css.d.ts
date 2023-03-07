@@ -6,6 +6,7 @@ declare const styles: {
   readonly bottom: string;
   readonly bottomText: string;
   readonly anchor: string;
+  readonly checkoutLegal: string;
   readonly wrapper: string;
   readonly claimContainer: string;
   readonly controlBtn: string;
@@ -15,11 +16,12 @@ declare const styles: {
   readonly selectAccount: string;
   readonly stepsHeading: string;
   readonly btn: string;
-  readonly spinner: string;
   readonly loaded: string;
+  readonly spinner: string;
   readonly select: string;
   readonly selectShow: string;
   readonly options: string;
+  readonly ellipsis: string;
   readonly selectText: string;
   readonly option: string;
   readonly optionText: string;

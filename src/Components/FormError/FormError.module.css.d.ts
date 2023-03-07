@@ -1,2 +1,4 @@
-export const __esModule: true;
-export const container: string;
+declare const styles: {
+  readonly container: string;
+};
+export = styles;
