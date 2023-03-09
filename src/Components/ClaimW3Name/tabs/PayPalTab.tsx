@@ -59,7 +59,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
           <p>Go to Checkout Service</p>
           <p>
             Click “Checkout” to be directed to the Checkout Service and pay with
-            PayPal (Total cost: {costs}).
+            PayPal (Total cost: {costs} including VAT).
           </p>
 
           <a
@@ -83,6 +83,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
       </section>
 
       <section className={styles.checkoutLegal}>
+        <p>Checkout Service:</p>
         <a
           className={styles.anchor}
           href="https://checkout.kilt.io/imprint.html"

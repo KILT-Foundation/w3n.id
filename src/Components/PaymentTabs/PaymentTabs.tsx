@@ -26,7 +26,7 @@ export function PaymentTabs({ children }: Props) {
           onClick={setKiltTab}
           className={openTab === 'kilt' ? style.tabItem : style.activeTabItem}
         >
-          Pay with KILT
+          Choose payer account
         </button>
         <button
           onClick={setPayPalTab}
