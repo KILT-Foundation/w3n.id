@@ -141,7 +141,7 @@ export function KiltTab({ web3name }: Props) {
                   {selectedAccount.meta.name} ({selectedAccount.meta.source})
                 </span>
               ) : (
-                <span className={styles.selectText}>Payer account</span>
+                <span className={styles.selectText}>Choose payer account</span>
               )}
 
               {showOptions && (
