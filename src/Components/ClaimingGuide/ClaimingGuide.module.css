@@ -13,6 +13,7 @@
 
 .text {
   composes: text from '../Results/Results.module.css';
+  word-break: normal;
 }
 
 .wrapper {
