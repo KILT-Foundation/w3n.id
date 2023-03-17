@@ -31,24 +31,22 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background:
-    linear-gradient(
-      180deg,
-      rgb(var(--gradient-1-1-rgb) / 30%) 0,
-      rgb(var(--gradient-1-2-rgb) / 10%) 60px,
-      rgb(var(--gradient-1-3-rgb) / 0%) 185px
-    );
+  background: linear-gradient(
+    180deg,
+    rgb(var(--gradient-1-1-rgb) / 30%) 0,
+    rgb(var(--gradient-1-2-rgb) / 10%) 60px,
+    rgb(var(--gradient-1-3-rgb) / 0%) 185px
+  );
   border-top: 10px rgb(var(--fetch-rgb) / 50%) solid;
 }
 
 :global(html.dark) .mainContainer {
-  background:
-    linear-gradient(
-      180deg,
-      rgb(var(--gradient-2-1-rgb) / 68%) 0,
-      rgb(var(--gradient-2-2-rgb) / 60%) 60px,
-      rgb(var(--gradient-2-3-rgb) / 0%) 185px
-    );
+  background: linear-gradient(
+    180deg,
+    rgb(var(--gradient-2-1-rgb) / 68%) 0,
+    rgb(var(--gradient-2-2-rgb) / 60%) 60px,
+    rgb(var(--gradient-2-3-rgb) / 0%) 185px
+  );
   border-top: 10px rgb(var(--gradient-2-1-rgb) / 50%) solid;
 }
 
