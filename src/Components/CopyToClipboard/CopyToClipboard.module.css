@@ -1,7 +1,6 @@
 .copy {
   cursor: pointer;
-  background:
-    url('../../ImageAssets/copy2clipboard_light.svg') no-repeat
+  background: url('../../ImageAssets/copy2clipboard_light.svg') no-repeat
     center/contain;
   width: 18px;
   height: 18px;
@@ -16,8 +15,7 @@
 }
 
 :global(html.dark) .copy {
-  background:
-    url('../../ImageAssets/copy2clipboard_dark.svg') no-repeat
+  background: url('../../ImageAssets/copy2clipboard_dark.svg') no-repeat
     center/contain;
 }
 

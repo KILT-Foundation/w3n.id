@@ -60,6 +60,7 @@ html {
   --modal-background: #f3f3f3;
   --modal-border: #3dc000;
   --inactive-payment-tab: #a3c791;
+  --color-shadow-rgb: 0 0 0;
 }
 
 html.dark {

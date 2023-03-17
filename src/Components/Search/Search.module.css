@@ -67,13 +67,12 @@
 }
 
 :global(html.dark) .main {
-  background:
-    linear-gradient(
-      180deg,
-      rgb(var(--gradient-2-1-rgb) / 68%) 0,
-      rgb(var(--gradient-2-2-rgb) / 60%) 60px,
-      rgb(var(--gradient-2-3-rgb) / 0%) 185px
-    );
+  background: linear-gradient(
+    180deg,
+    rgb(var(--gradient-2-1-rgb) / 68%) 0,
+    rgb(var(--gradient-2-2-rgb) / 60%) 60px,
+    rgb(var(--gradient-2-3-rgb) / 0%) 185px
+  );
   border-top: 10px rgb(var(--gradient-2-1-rgb) / 50%) solid;
 }
 
