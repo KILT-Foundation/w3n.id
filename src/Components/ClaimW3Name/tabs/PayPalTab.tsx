@@ -27,7 +27,7 @@ export function PayPalTab({ web3name, cost, address }: Props) {
 
     const url = new URL(checkoutServiceURL);
 
-    url.searchParams.set('tx', extrinsic.toHex());
+    url.searchParams.set('tx', extrinsic.method.toHex());
     url.searchParams.set('did', Did.parse(didKeyUri).did);
     url.searchParams.set('web3name', web3name);
     setCheckoutURL(url.toString());
