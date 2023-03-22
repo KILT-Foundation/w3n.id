@@ -20,17 +20,16 @@ import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 function useChainData(credentialV1: KiltPublishedCredentialV1) {
   const { credential, metadata } = credentialV1;
 
-  const [label, setLabel] = useState<string>();
+  const [label, setLabel] = useState(metadata?.label);
   const [attester, setAttester] = useState<string | DidUri>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    (async () => {
-      if (metadata?.label) {
-        setLabel(metadata.label);
-        return;
-      }
+    if (label) {
+      return;
+    }
 
+    (async () => {
       try {
         const { title } = await CType.fetchFromChain(
           CType.hashToId(credential.claim.cTypeHash),
@@ -40,7 +39,7 @@ function useChainData(credentialV1: KiltPublishedCredentialV1) {
         // no error, credential can still be verified
       }
     })();
-  }, [credential, metadata]);
+  }, [label, credential, metadata]);
 
   useEffect(() => {
     (async () => {
