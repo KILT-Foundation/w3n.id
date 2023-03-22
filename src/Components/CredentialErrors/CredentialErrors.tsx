@@ -9,14 +9,14 @@ interface ICredentialErrors {
 export const CredentialErrors = (props: ICredentialErrors) => {
   return (
     <dl className={styles.definitions}>
-      <div className={styles.container}>
-        <dt className={styles.credentialTitle}>Error</dt>
-        <dd className={styles.credentialDescription}>{props.error}</dd>
+      <div className={styles.definition}>
+        <dt className={styles.title}>Error</dt>
+        <dd className={styles.description}>{props.error}</dd>
       </div>
 
-      <div className={styles.container}>
-        <dt className={styles.credentialTitle}>Valid</dt>
-        <dd className={styles.credentialDescription}>
+      <div className={styles.definition}>
+        <dt className={styles.title}>Valid</dt>
+        <dd className={styles.description}>
           <img src={AlertIcon} alt="invalid" />
         </dd>
       </div>

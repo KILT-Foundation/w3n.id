@@ -1,9 +1,11 @@
 import {
   Attestation,
   Credential,
+  CType,
   Did,
   DidUri,
   ICredential,
+  KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 
 import { useEffect, useState } from 'react';
@@ -15,14 +17,30 @@ import ValidIcon from '../../ImageAssets/ok.svg';
 import { CredentialErrors } from '../CredentialErrors/CredentialErrors';
 import { apiPromise } from '../../Utils/claimWeb3name-helpers';
 
-interface Props {
-  credential: ICredential;
-  did: DidUri;
-}
+function useChainData(credentialV1: KiltPublishedCredentialV1) {
+  const { credential, metadata } = credentialV1;
 
-export const CredentialDetails = ({ credential, did }: Props) => {
+  const [label, setLabel] = useState<string>();
   const [attester, setAttester] = useState<string | DidUri>();
   const [error, setError] = useState<string>();
+
+  useEffect(() => {
+    (async () => {
+      if (metadata?.label) {
+        setLabel(metadata.label);
+        return;
+      }
+
+      try {
+        const { title } = await CType.fetchFromChain(
+          CType.hashToId(credential.claim.cTypeHash),
+        );
+        setLabel(title);
+      } catch {
+        // no error, credential can still be verified
+      }
+    })();
+  }, [credential, metadata]);
 
   useEffect(() => {
     (async () => {
@@ -52,7 +70,17 @@ export const CredentialDetails = ({ credential, did }: Props) => {
         setError('Credential attestation revoked');
         return;
       }
+    })();
+  }, [credential]);
 
+  return { label, attester, error };
+}
+
+function useVerify(credential: ICredential, did: DidUri) {
+  const [error, setError] = useState<string>();
+
+  useEffect(() => {
+    (async () => {
       if (!Did.isSameSubject(credential.claim.owner, did)) {
         setError('This credential was issued for someone else');
         return;
@@ -66,43 +94,65 @@ export const CredentialDetails = ({ credential, did }: Props) => {
     })();
   }, [credential, did]);
 
+  return { error };
+}
+
+interface Props {
+  credentialV1: KiltPublishedCredentialV1;
+  did: DidUri;
+}
+
+export const CredentialDetails = ({ credentialV1, did }: Props) => {
+  const { credential } = credentialV1;
+
+  const { attester, label, error: chainError } = useChainData(credentialV1);
+  const { error: verifyError } = useVerify(credential, did);
+
+  const error = [chainError, verifyError].filter(Boolean)[0];
+
   return (
-    <dl className={styles.definitions}>
-      {Object.entries(credential.claim.contents).map(([name, value]) => (
-        <div className={styles.container} key={name}>
-          <dt className={styles.credentialTitle}>{name}</dt>
-          <dd className={styles.credentialDescription}>{String(value)}</dd>
-        </div>
-      ))}
+    <section className={styles.container}>
+      <h2 className={styles.heading}>
+        {label || <span className={styles.spinner} />}
+      </h2>
 
-      <div className={styles.container}>
-        <dt className={styles.credentialTitle}>Attester</dt>
-        <dd className={styles.credentialDescription}>
-          {!attester && <span className={styles.spinner} />}
+      <dl className={styles.definitions}>
+        {Object.entries(credential.claim.contents).map(([name, value]) => (
+          <div className={styles.definition} key={name}>
+            <dt className={styles.title}>{name}</dt>
+            <dd className={styles.description}>{String(value)}</dd>
+          </div>
+        ))}
 
-          {attester && !attester.startsWith('w3n:') && attester}
+        <div className={styles.definition}>
+          <dt className={styles.title}>Attester</dt>
+          <dd className={styles.description}>
+            {!attester && <span className={styles.spinner} />}
 
-          {attester && attester.startsWith('w3n:') && (
-            <a
-              className={styles.anchor}
-              href={`/${attester.replace('w3n:', '')}`}
-            >
-              {attester}
-            </a>
-          )}
-        </dd>
-      </div>
+            {attester && !attester.startsWith('w3n:') && attester}
 
-      {!error && (
-        <div className={styles.container}>
-          <dt className={styles.credentialTitle}>Valid</dt>
-          <dd className={styles.valid}>
-            <img src={ValidIcon} alt="valid" />
+            {attester && attester.startsWith('w3n:') && (
+              <a
+                className={styles.anchor}
+                href={`/${attester.replace('w3n:', '')}`}
+              >
+                {attester}
+              </a>
+            )}
           </dd>
         </div>
-      )}
 
-      {error && <CredentialErrors error={error} />}
-    </dl>
+        {!error && (
+          <div className={styles.definition}>
+            <dt className={styles.title}>Valid</dt>
+            <dd className={styles.valid}>
+              <img src={ValidIcon} alt="valid" />
+            </dd>
+          </div>
+        )}
+
+        {error && <CredentialErrors error={error} />}
+      </dl>
+    </section>
   );
 };

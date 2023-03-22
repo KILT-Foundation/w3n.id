@@ -6,6 +6,7 @@ import {
   ICredential,
   KiltPublishedCredentialCollectionV1,
   KiltPublishedCredentialCollectionV1Type,
+  KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 
 import { every, map } from 'lodash-es';
@@ -54,7 +55,7 @@ interface Props {
 export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
   const [fetching, setFetching] = useState(false);
 
-  const [credentials, setCredentials] = useState<ICredential[]>();
+  const [credentials, setCredentials] = useState<KiltPublishedCredentialV1[]>();
   const [error, setError] = useState<string>();
 
   const ready = Boolean(credentials || error);
@@ -68,17 +69,17 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
       const json = await response.json();
 
       if (isPublishedCollection(json, endpointType)) {
-        setCredentials(map(json, 'credential'));
+        setCredentials(json);
         return;
       }
 
       if (Credential.isICredential(json)) {
-        setCredentials([json]);
+        setCredentials([{ credential: json }]);
         return;
       }
 
       if (isLegacyCredential(json)) {
-        setCredentials([json.request]);
+        setCredentials([{ credential: json.request }]);
         return;
       }
 
@@ -136,8 +137,11 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
           {!error && credentials && did && (
             <ul className={styles.credentials}>
               {credentials.map((credential) => (
-                <li key={credential.rootHash} className={styles.credential}>
-                  <CredentialDetails credential={credential} did={did} />
+                <li
+                  key={credential.credential.rootHash}
+                  className={styles.credential}
+                >
+                  <CredentialDetails credentialV1={credential} did={did} />
                 </li>
               ))}
             </ul>

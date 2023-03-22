@@ -1,8 +1,10 @@
 declare const styles: {
-  readonly definitions: string;
   readonly container: string;
-  readonly credentialTitle: string;
-  readonly credentialDescription: string;
+  readonly heading: string;
+  readonly definitions: string;
+  readonly definition: string;
+  readonly title: string;
+  readonly description: string;
   readonly valid: string;
   readonly spinner: string;
   readonly anchor: string;
