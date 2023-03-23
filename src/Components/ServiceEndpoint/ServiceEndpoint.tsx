@@ -5,7 +5,6 @@ import {
   DidUri,
   ICredential,
   KiltPublishedCredentialCollectionV1,
-  KiltPublishedCredentialCollectionV1Type,
   KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 
@@ -22,11 +21,7 @@ class ExplicitError extends Error {}
 
 function isPublishedCollection(
   json: unknown,
-  endpointType: string,
 ): json is KiltPublishedCredentialCollectionV1 {
-  if (endpointType !== KiltPublishedCredentialCollectionV1Type) {
-    return false;
-  }
   if (!Array.isArray(json)) {
     return false;
   }
@@ -68,7 +63,7 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
       const response = await fetch(endpointURL);
       const json = await response.json();
 
-      if (isPublishedCollection(json, endpointType)) {
+      if (isPublishedCollection(json)) {
         setCredentials(json);
         return;
       }
@@ -93,7 +88,7 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
     } finally {
       setFetching(false);
     }
-  }, [endpointURL, endpointType, did]);
+  }, [endpointURL, did]);
 
   const handleClose = useCallback(() => {
     setError(undefined);
