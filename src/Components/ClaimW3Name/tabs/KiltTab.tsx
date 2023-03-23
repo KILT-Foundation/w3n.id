@@ -218,7 +218,7 @@ export function KiltTab({ web3name }: Props) {
           <p className={styles.bottomText}>That’s it!</p>
           <a
             className={styles.anchor}
-            href="https://kilt-protocol.org/files/How-to-Guide-Get-Your-web3name.pdf"
+            href="https://kilt-protocol.org/files/How-to-Guide-Get-Your-web3name-via-w3n.pdf"
             target="_blank"
             rel="noreferrer"
           >
