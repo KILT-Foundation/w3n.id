@@ -29,7 +29,7 @@
   "devDependencies": {
     "@parcel/transformer-svg-react": "^2.7.0",
     "@types/lodash-es": "^4.17.7",
-    "@types/react": "^18.0.32",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
