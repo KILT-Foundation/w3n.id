@@ -5,7 +5,11 @@ import { Did } from '@kiltprotocol/sdk-js';
 
 import styles from '../ClaimW3Name.module.css';
 
-import { getW3NameExtrinsic } from '../../../Utils/claimWeb3name-helpers';
+import {
+  getSignButtonsData,
+  getW3NameExtrinsic,
+  SignExtrinsicWithDid,
+} from '../../../Utils/claimWeb3name-helpers';
 import { checkoutServiceURL } from '../../../Utils/useTXDTransmitter';
 
 interface Props {
@@ -17,21 +21,29 @@ interface Props {
 export function PayPalTab({ web3name, cost, address }: Props) {
   const [checkoutURL, setCheckoutURL] = useState<string>();
 
-  const connectWalletGetTx = useCallback(async () => {
-    await web3Enable('web3name Claiming');
+  const connectWalletGetTx = useCallback(
+    async (signExtrinsicWithDid: SignExtrinsicWithDid) => {
+      await web3Enable('web3name Claiming');
 
-    const { extrinsic, didKeyUri } = await getW3NameExtrinsic(
-      web3name,
-      address,
-    );
+      const { extrinsic, didKeyUri } = await getW3NameExtrinsic(
+        web3name,
+        address,
+        signExtrinsicWithDid,
+      );
 
-    const url = new URL(checkoutServiceURL);
+      const url = new URL(checkoutServiceURL);
 
-    url.searchParams.set('tx', extrinsic.method.toHex());
-    url.searchParams.set('did', Did.parse(didKeyUri).did);
-    url.searchParams.set('web3name', web3name);
-    setCheckoutURL(url.toString());
-  }, [web3name, address]);
+      url.searchParams.set('tx', extrinsic.method.toHex());
+      url.searchParams.set('did', Did.parse(didKeyUri).did);
+      url.searchParams.set('web3name', web3name);
+      setCheckoutURL(url.toString());
+    },
+    [web3name, address],
+  );
+
+  const buttons = getSignButtonsData(connectWalletGetTx, () => {
+    // do nothing
+  });
 
   const costs = parseFloat(cost).toLocaleString(undefined, {
     style: 'currency',
@@ -50,9 +62,18 @@ export function PayPalTab({ web3name, cost, address }: Props) {
             this web3name. Then enter your password to approve the transaction
             and click “Sign”
           </p>
-          <button onClick={connectWalletGetTx} className={styles.btn}>
-            Choose identity
-          </button>
+          {buttons.map(({ key, name, handleClick }) => (
+            <button
+              key={key}
+              onClick={handleClick}
+              className={styles.btn}
+              type="button"
+            >
+              {buttons.length === 1
+                ? 'Choose identity'
+                : `Choose identity in ${name}`}
+            </button>
+          ))}
         </li>
 
         <li className={styles.step}>
