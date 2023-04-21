@@ -166,7 +166,7 @@ export function EndpointSection({ serviceEndpoints, did }: EndpointsProps) {
   return (
     <div className={styles.didDocument}>
       <div className={styles.titleWrapper}>
-        <span className={styles.title}>Service Endpoints</span>
+        <span className={styles.title}>Services</span>
         <InfoIcon right>
           Credentials may be linked with your DID & web3name and displayed
           publicly on service endpoints such as GitHub public or IPFS.

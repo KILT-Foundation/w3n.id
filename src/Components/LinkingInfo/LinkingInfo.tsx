@@ -12,7 +12,8 @@ export const LinkingInfo = () => {
           target="_blank"
           rel="noreferrer"
         >
-          Link your web3name with your Polkadot ecosystem account here
+          Link your web3name with your Polkadot ecosystem and Ethereum accounts
+          here
         </a>
       </div>
     </section>

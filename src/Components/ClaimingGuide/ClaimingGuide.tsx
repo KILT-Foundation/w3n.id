@@ -24,16 +24,14 @@ export const OnChainDidGuide = () => {
           <ul className={styles.list}>
             <li className={styles.listItem}>Your unique web3name</li>
             <li className={styles.listItem}>
-              As many of your Polkadot ecosystem addresses (and soon, Ethereum)
-              that you wish
+              As many of your Polkadot ecosystem and Ethereum addresses that you
+              wish
             </li>
             <li className={styles.listItem}>
               Any credentials you want to make public, such as social media
               handles, GitHub and email addresses
             </li>
-            <li className={styles.listItem}>
-              Communication endpoints, e.g., your website
-            </li>
+            <li className={styles.listItem}>Services, e.g., your website</li>
           </ul>
           <p className={styles.onchainGuide}>
             You can pay for your DID with KILT or use Checkout Service / PayPal.
