@@ -1,5 +1,5 @@
-import { FormEvent, Fragment, useCallback, useRef, useState } from 'react';
-import { ChainHelpers, BalanceUtils } from '@kiltprotocol/sdk-js';
+import { Fragment, useCallback, useRef, useState } from 'react';
+import { BalanceUtils, ChainHelpers } from '@kiltprotocol/sdk-js';
 import { web3FromSource } from '@polkadot/extension-dapp';
 
 import styles from '../ClaimW3Name.module.css';
@@ -7,8 +7,10 @@ import styles from '../ClaimW3Name.module.css';
 import {
   apiPromise,
   getAccounts,
+  getSignButtonsData,
   getW3NameExtrinsic,
   InjectedAccount,
+  SignExtrinsicWithDid,
 } from '../../../Utils/claimWeb3name-helpers';
 import { ClaimingModal } from '../../Modal/Modal';
 
@@ -71,15 +73,17 @@ export function KiltTab({ web3name }: Props) {
   }, [balances]);
 
   const handleSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
+    async (signExtrinsicWithDid: SignExtrinsicWithDid) => {
       if (!selectedAccount) return;
       setClaimingStatus('claiming');
 
       try {
         const { address } = selectedAccount;
-        const { extrinsic } = await getW3NameExtrinsic(web3name, address);
+        const { extrinsic } = await getW3NameExtrinsic(
+          web3name,
+          address,
+          signExtrinsicWithDid,
+        );
         const { signer } = await web3FromSource(selectedAccount.meta.source);
         const signed = await extrinsic.signAsync(address, { signer });
 
@@ -93,8 +97,13 @@ export function KiltTab({ web3name }: Props) {
     },
     [selectedAccount, web3name],
   );
+
+  const buttons = getSignButtonsData(handleSubmit, () =>
+    setClaimingStatus('error'),
+  );
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className={styles.claimContents}>
         <p className={styles.topText}>
           Follow these steps to claim your name and pay with KILT:
@@ -199,13 +208,17 @@ export function KiltTab({ web3name }: Props) {
               This opens up Sporran. Select the DID you want to connect to this
               web3name. Then enter your password and click “Sign”
             </p>
-            <button
-              type="submit"
-              className={styles.btn}
-              disabled={!selectedAccount}
-            >
-              Claim now
-            </button>
+            {buttons.map(({ key, name, handleClick }) => (
+              <button
+                key={key}
+                type="button"
+                className={styles.btn}
+                disabled={!selectedAccount}
+                onClick={handleClick}
+              >
+                {buttons.length === 1 ? 'Claim now' : `Claim now in ${name}`}
+              </button>
+            ))}
           </li>
           <ClaimingModal
             claimingStatus={claimingStatus}

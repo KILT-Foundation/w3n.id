@@ -115,6 +115,10 @@
   text-decoration: none;
 }
 
+.btn + .btn {
+  margin-top: .5rem;
+}
+
 .btn:disabled,
 .btn[aria-disabled='true'],
 .loaded {
