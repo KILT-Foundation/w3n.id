@@ -58,11 +58,11 @@ export function KiltTab({ web3name }: Props) {
       const fee = BalanceUtils.toFemtoKilt('0.0045'); // TODO: update when it changes
       const total = deposit.add(fee);
 
-      const usable = accounts.filter(({ address }) =>
-        balances.get(address)?.gte(total),
+      const usable = accounts.filter(
+        ({ address }) => balances.get(address)?.gte(total),
       );
-      const unusable = accounts.filter(({ address }) =>
-        balances.get(address)?.lt(total),
+      const unusable = accounts.filter(
+        ({ address }) => balances.get(address)?.lt(total),
       );
 
       setFilteredAccounts(usable);
