@@ -6,9 +6,9 @@ import './index.css';
 
 import { App } from './Components/App/App';
 
-import { checkIntegration } from './checkIntegration';
+import { checkTestEnvironment } from './Utils/checkTestEnvironment';
 
-checkIntegration();
+checkTestEnvironment();
 
 const container = document.getElementById('root') as HTMLElement;
 
