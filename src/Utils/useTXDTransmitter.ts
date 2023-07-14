@@ -8,8 +8,7 @@ import { endpoint } from './claimWeb3name-helpers';
 const txdUrls: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://txd.trusted-entity.io',
   'wss://spiritnet.kilt.io': 'https://txd.trusted-entity.io',
-  'wss://peregrine.kilt.io/parachain-public-ws':
-    'https://txd-dev.trusted-entity.io',
+  'wss://peregrine.kilt.io': 'https://txd-dev.trusted-entity.io',
   'wss://peregrine-stg.kilt.io/para': 'https://txd-dev.trusted-entity.io',
   'wss://sporran-testnet.kilt.io': 'https://txd-dev.trusted-entity.io',
 };
@@ -17,7 +16,7 @@ const txdUrls: Record<string, string> = {
 const checkoutUrls: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://checkout.kilt.io',
   'wss://spiritnet.kilt.io': 'https://checkout.kilt.io',
-  'wss://peregrine.kilt.io/parachain-public-ws': 'https://dev-checkout.kilt.io',
+  'wss://peregrine.kilt.io': 'https://dev-checkout.kilt.io',
   'wss://peregrine-stg.kilt.io/para': 'https://stg-checkout.kilt.io',
   'wss://sporran-testnet.kilt.io': 'https://dev-checkout.kilt.io',
 };
