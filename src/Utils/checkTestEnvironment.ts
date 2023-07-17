@@ -1,4 +1,4 @@
-export function checkIntegration() {
+export function checkTestEnvironment() {
   if (process.env.REACT_APP_IS_TEST_ENV !== 'true') {
     return;
   }
