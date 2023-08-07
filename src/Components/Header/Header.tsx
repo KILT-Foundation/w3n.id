@@ -16,7 +16,6 @@ export const Header = () => {
         <span className={styles.text}>
           Your go to place for everything about web3name
         </span>
-        <div className={styles.bottomSeperator} />
       </div>
     </header>
   );
