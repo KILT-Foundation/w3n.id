@@ -1,6 +1,5 @@
 .container {
   composes: container from '../Results/Results.module.css';
-  height: 31px;
   margin: 0;
 }
 

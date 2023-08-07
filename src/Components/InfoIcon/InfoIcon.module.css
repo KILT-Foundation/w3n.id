@@ -1,5 +1,5 @@
 .button {
-  background: url('../../ImageAssets/tool_tip_light.svg') no-repeat right/100%;
+  background: url('../../ImageAssets/tool_tip_light.svg') no-repeat center/contain;
   position: relative;
   width: 16px;
   height: 16px;

@@ -19,7 +19,11 @@ export function InfoIcon({
   useHandleOutsideClick(ref, hide);
 
   return (
-    <button className={styles.button} onClick={show}>
+    <button
+      className={styles.button}
+      onClick={show}
+      aria-label="Show more info"
+    >
       {visible && (
         <span className={right ? styles.right : styles.wrapper}>
           <span className={styles.text} ref={ref}>
