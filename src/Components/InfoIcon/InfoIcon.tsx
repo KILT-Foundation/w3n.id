@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useRef, useState } from 'react';
+import { PropsWithChildren, useCallback, useRef, useState } from 'react';
 
 import * as styles from './InfoIcon.module.css';
 
@@ -7,10 +7,9 @@ import { useHandleOutsideClick } from '../../Hooks/useHandleOutsideClick';
 export function InfoIcon({
   children,
   right = false,
-}: {
-  children: ReactNode;
+}: PropsWithChildren<{
   right?: boolean;
-}): JSX.Element {
+}>) {
   const [visible, setVisible] = useState(false);
   const show = useCallback(() => setTimeout(() => setVisible(true), 10), []);
   const hide = useCallback(() => setVisible(false), []);
