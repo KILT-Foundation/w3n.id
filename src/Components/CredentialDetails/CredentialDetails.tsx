@@ -9,7 +9,7 @@ import {
   KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 import { find } from 'lodash-es';
-import { Fragment, JSX, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import * as styles from '../CredentialDetails/CredentialDetails.module.css';
 
@@ -110,7 +110,7 @@ function ClaimValue({
   claim: IClaim;
   name: string;
   value: string;
-}): JSX.Element {
+}) {
   const { cTypeHash, contents } = claim;
   const linkableFields = [
     {
