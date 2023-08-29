@@ -22,7 +22,7 @@
   top: 20px;
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .wrapper {
     width: 200px;
   }

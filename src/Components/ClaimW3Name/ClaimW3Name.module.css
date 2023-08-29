@@ -127,7 +127,7 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 420px) {
+@media (width <= 420px) {
   .btn {
     font-size: 12px;
   }

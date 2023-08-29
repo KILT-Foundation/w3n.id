@@ -92,7 +92,7 @@
   font-size: 16px;
 }
 
-@media (max-width: 580px) {
+@media (width <= 580px) {
   .linkTextSmall {
     margin-left: 40px;
   }
