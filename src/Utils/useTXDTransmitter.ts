@@ -8,8 +8,8 @@ import { endpoint } from './claimWeb3name-helpers';
 const txdUrls: Record<string, string> = {
   'wss://kilt-rpc.dwellir.com': 'https://txd.trusted-entity.io',
   'wss://spiritnet.kilt.io': 'https://txd.trusted-entity.io',
-  'wss://peregrine.kilt.io': 'https://txd-dev.trusted-entity.io',
-  'wss://peregrine-stg.kilt.io/para': 'https://txd-dev.trusted-entity.io',
+  'wss://peregrine.kilt.io': 'https://dev.txd.trusted-entity.io',
+  'wss://peregrine-stg.kilt.io/para': 'https://smoke.txd.trusted-entity.io',
 };
 
 const checkoutUrls: Record<string, string> = {
