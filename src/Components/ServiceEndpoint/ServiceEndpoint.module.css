@@ -20,7 +20,7 @@
   padding: 13px 18px;
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .endpoint {
     flex-direction: column;
     gap: 10px;
