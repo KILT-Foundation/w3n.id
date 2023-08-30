@@ -54,6 +54,7 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
   const [error, setError] = useState<string>();
 
   const ready = Boolean(credentials || error);
+  const isTransfer = endpointType === 'KiltTransferAssetRecipientV2';
 
   const handleFetch = useCallback(async () => {
     if (!did) throw new Error('No did');
@@ -107,9 +108,9 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
           </div>
 
           <button
-            className={styles.button}
+            className={isTransfer ? styles.transferButton : styles.button}
             onClick={handleFetch}
-            disabled={fetching}
+            disabled={fetching || isTransfer}
           >
             Fetch
             {fetching && (
@@ -119,6 +120,11 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
               />
             )}
           </button>
+          {isTransfer && (
+            <p className={styles.transfer}>
+              This is not a credential service endpoint
+            </p>
+          )}
         </div>
       )}
 

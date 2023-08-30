@@ -15,6 +15,7 @@
 .endpoint {
   composes: cardContents from '../Card/Card.module.css';
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 13px 18px;
@@ -79,6 +80,11 @@
   height: 28px;
 }
 
+.transferButton {
+  composes: button;
+  background: url('../../ImageAssets/not_ok.svg') no-repeat center left 0.25rem/1rem;
+}
+
 .fetch {
   composes: button;
 }
@@ -99,6 +105,13 @@
   right: 2px;
   height: 18px;
   width: 18px;
+}
+
+.transfer {
+  inline-size: 100%;
+  margin: 0.5rem;
+  padding-inline-start: 1.25rem;
+  background: url('../../ImageAssets/not_ok.svg') no-repeat top left/1rem;
 }
 
 .seperator {
