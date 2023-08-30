@@ -7,9 +7,11 @@ declare const styles: {
   readonly fetchedUrlContainer: string;
   readonly url: string;
   readonly button: string;
+  readonly transferButton: string;
   readonly fetch: string;
   readonly close: string;
   readonly loader: string;
+  readonly transfer: string;
   readonly seperator: string;
   readonly didDocument: string;
   readonly wrapper: string;
