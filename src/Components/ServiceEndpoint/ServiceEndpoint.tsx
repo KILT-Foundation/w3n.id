@@ -102,28 +102,40 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
 
       {!ready && (
         <div className={styles.endpoint}>
+          {isTransfer && (
+            <p className={styles.transfer}>
+              This Service type is currently not resolved by w3n.id – please
+              feel free to contribute a resolution method in{' '}
+              <a
+                className={styles.anchor}
+                href="https://github.com/BTE-Trusted-Entity/w3n.id"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </p>
+          )}
+
           <div className={styles.urlContainer}>
             <span className={styles.url}>{endpointURL}</span>
             <CopyToClipboard text={endpointURL} />
           </div>
 
-          <button
-            className={isTransfer ? styles.transferButton : styles.button}
-            onClick={handleFetch}
-            disabled={fetching || isTransfer}
-          >
-            Fetch
-            {fetching && (
-              <span
-                className={styles.loader}
-                aria-label="Fetching credential details..."
-              />
-            )}
-          </button>
-          {isTransfer && (
-            <p className={styles.transfer}>
-              This is not a credential service endpoint
-            </p>
+          {!isTransfer && (
+            <button
+              className={styles.button}
+              onClick={handleFetch}
+              disabled={fetching}
+            >
+              Fetch
+              {fetching && (
+                <span
+                  className={styles.loader}
+                  aria-label="Fetching credential details..."
+                />
+              )}
+            </button>
           )}
         </div>
       )}

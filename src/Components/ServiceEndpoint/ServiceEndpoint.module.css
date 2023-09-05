@@ -80,11 +80,6 @@
   height: 28px;
 }
 
-.transferButton {
-  composes: button;
-  background: url('../../ImageAssets/not_ok.svg') no-repeat center left 0.25rem/1rem;
-}
-
 .fetch {
   composes: button;
 }
