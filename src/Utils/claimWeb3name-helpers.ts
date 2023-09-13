@@ -1,7 +1,7 @@
 import type { HexString } from '@polkadot/util/types';
 
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
-import { connect, DidResourceUri } from '@kiltprotocol/sdk-js';
+import { connect, type DidResourceUri } from '@kiltprotocol/sdk-js';
 
 export type InjectedAccount = Awaited<
   ReturnType<typeof getWeb3Accounts>
@@ -14,7 +14,7 @@ if (!endpoint) {
 
 async function getWeb3Accounts() {
   await web3Enable('web3name Claiming');
-  return web3Accounts();
+  return await web3Accounts();
 }
 
 export const apiPromise = connect(endpoint);
@@ -39,7 +39,7 @@ export function getSignButtonsData(
   handleNoWallet: () => void,
 ): Array<{ key: string; name: string; handleClick: () => void }> {
   const capableWallets = [...Object.entries(window.kilt)]
-    .filter(([key]) => window.kilt[key].signExtrinsicWithDid)
+    .filter(([key]) => 'signExtrinsicWithDid' in window.kilt[key])
     .map(([key, { name = key, signExtrinsicWithDid }]) => ({
       key,
       name,

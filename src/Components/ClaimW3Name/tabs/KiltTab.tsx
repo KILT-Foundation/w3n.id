@@ -9,8 +9,8 @@ import {
   getAccounts,
   getSignButtonsData,
   getW3NameExtrinsic,
-  InjectedAccount,
-  SignExtrinsicWithDid,
+  type InjectedAccount,
+  type SignExtrinsicWithDid,
 } from '../../../Utils/claimWeb3name-helpers';
 import { ClaimingModal } from '../../Modal/Modal';
 
@@ -92,7 +92,6 @@ export function KiltTab({ web3name }: Props) {
         setClaimingStatus('success');
       } catch (error) {
         setClaimingStatus('error');
-        return;
       }
     },
     [selectedAccount, web3name],

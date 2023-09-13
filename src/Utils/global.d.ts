@@ -1,4 +1,4 @@
-import { SignExtrinsicWithDid } from './claimWeb3name-helpers';
+import { type SignExtrinsicWithDid } from './claimWeb3name-helpers';
 
 export {};
 declare global {

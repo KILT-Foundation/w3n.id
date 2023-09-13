@@ -3,10 +3,10 @@ import {
   Credential,
   CType,
   Did,
-  DidUri,
-  IClaim,
-  ICredential,
-  KiltPublishedCredentialV1,
+  type DidUri,
+  type IClaim,
+  type ICredential,
+  type KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 import { find } from 'lodash-es';
 import { Fragment, useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ function useChainData(credentialV1: KiltPublishedCredentialV1) {
   const { credential, metadata } = credentialV1;
 
   const [label, setLabel] = useState(metadata?.label);
-  const [attester, setAttester] = useState<string | DidUri>();
+  const [attester, setAttester] = useState<string>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
@@ -73,7 +73,6 @@ function useChainData(credentialV1: KiltPublishedCredentialV1) {
 
       if (attestation.revoked) {
         setError('Credential attestation revoked');
-        return;
       }
     })();
   }, [credential]);
@@ -134,7 +133,7 @@ function ClaimValue({
       cTypeHash:
         '0xd8c61a235204cb9e3c6acb1898d78880488846a7247d325b833243b46d923abe',
       name: 'Username',
-      href: `https://discordapp.com/users/${contents['User ID']}`,
+      href: `https://discordapp.com/users/${contents['User ID'] as string}`,
     },
     {
       cTypeHash:
@@ -158,7 +157,9 @@ function ClaimValue({
       cTypeHash:
         '0x329a2a5861ea63c250763e5e4c4d4a18fe4470a31e541365c7fb831e5432b940',
       name: 'Channel Name',
-      href: `https://www.youtube.com/channel/${contents['Channel ID']}`,
+      href: `https://www.youtube.com/channel/${
+        contents['Channel ID'] as string
+      }`,
     },
   ];
 
@@ -190,7 +191,7 @@ export function CredentialDetails({ credentialV1, did }: Props) {
   return (
     <section className={styles.container}>
       <h2 className={styles.heading}>
-        {label || <span className={styles.spinner} />}
+        {label ?? <span className={styles.spinner} />}
       </h2>
 
       <dl className={styles.definitions}>

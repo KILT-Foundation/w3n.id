@@ -61,11 +61,11 @@ export const ClaimW3Name = ({ web3name }: Props) => {
 
   const txd = useApiTXDAddress();
 
-  if (cost.error || txd.error) {
+  if (cost.error !== undefined || txd.error !== undefined) {
     return (
       <div className={styles.error}>
-        {cost.error && <FormError error={cost.error} />}
-        {txd.error && <FormError error={txd.error} />}
+        {cost.error !== undefined && <FormError error={cost.error} />}
+        {txd.error !== undefined && <FormError error={txd.error} />}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useRef, useState } from 'react';
+import { type PropsWithChildren, useCallback, useRef, useState } from 'react';
 
 import * as styles from './InfoIcon.module.css';
 

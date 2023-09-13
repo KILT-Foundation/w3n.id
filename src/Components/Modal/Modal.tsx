@@ -1,4 +1,4 @@
-import { Fragment, MouseEventHandler } from 'react';
+import { Fragment, type MouseEventHandler } from 'react';
 
 import * as styles from './Modal.module.css';
 

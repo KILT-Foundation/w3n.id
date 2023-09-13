@@ -8,7 +8,7 @@ import styles from '../ClaimW3Name.module.css';
 import {
   getSignButtonsData,
   getW3NameExtrinsic,
-  SignExtrinsicWithDid,
+  type SignExtrinsicWithDid,
 } from '../../../Utils/claimWeb3name-helpers';
 import { checkoutServiceURL } from '../../../Utils/useTXDTransmitter';
 
