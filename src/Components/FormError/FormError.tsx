@@ -10,19 +10,20 @@ export function FormError({ error }: { error?: string | Error }) {
   useEffect(() => {
     (async () => {
       if (error instanceof HTTPError) {
-        setMessage((await error.response.json()).message);
+        const json = (await error.response.json()) as { message: string };
+        setMessage(json.message);
       }
       if (error instanceof Error) {
         setMessage(error.message);
       }
-      if (error) {
-        setMessage(error?.toString());
+      if (error !== undefined) {
+        setMessage(error.toString());
       }
     })();
   }, [error]);
 
   return (
-    <output className={styles.container} hidden={!error}>
+    <output className={styles.container} hidden={error !== undefined}>
       {message}
     </output>
   );

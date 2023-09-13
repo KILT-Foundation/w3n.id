@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
 import {
   Credential,
-  DidServiceEndpoint,
-  DidUri,
-  ICredential,
-  KiltPublishedCredentialCollectionV1,
-  KiltPublishedCredentialV1,
+  type DidServiceEndpoint,
+  type DidUri,
+  type ICredential,
+  type KiltPublishedCredentialCollectionV1,
+  type KiltPublishedCredentialV1,
 } from '@kiltprotocol/sdk-js';
 
 import { every, map } from 'lodash-es';
@@ -53,7 +53,7 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
   const [credentials, setCredentials] = useState<KiltPublishedCredentialV1[]>();
   const [error, setError] = useState<string>();
 
-  const ready = Boolean(credentials || error);
+  const ready = Boolean(credentials ?? error);
   const isTransfer = endpointType === 'KiltTransferAssetRecipientV2';
 
   const handleFetch = useCallback(async () => {
@@ -62,7 +62,7 @@ export function ServiceEndpoint({ did, endpointType, endpointURL }: Props) {
 
     try {
       const response = await fetch(endpointURL);
-      const json = await response.json();
+      const json = (await response.json()) as unknown;
 
       if (isPublishedCollection(json)) {
         setCredentials(json);

@@ -1,7 +1,7 @@
-import useSWR from 'swr';
+import useSWR, { type Key } from 'swr';
 import ky from 'ky';
 
-import { KiltAddress } from '@kiltprotocol/sdk-js';
+import { type KiltAddress } from '@kiltprotocol/sdk-js';
 
 import { endpoint } from './claimWeb3name-helpers';
 
@@ -19,8 +19,11 @@ const checkoutUrls: Record<string, string> = {
   'wss://peregrine-stg.kilt.io/para': 'https://smoke.checkout.kilt.io',
 };
 
-function useApi<Output>(key: Parameters<typeof useSWR>[0]) {
-  return useSWR<Output>(key, (input, options) => ky(input, options).json());
+function useApi<Output>(key: Key) {
+  return useSWR<Output, string | Error>(
+    key,
+    async (...args: Parameters<typeof ky>) => await ky(...args).json(),
+  );
 }
 
 export const checkoutServiceURL = checkoutUrls[endpoint];

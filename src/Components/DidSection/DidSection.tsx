@@ -1,4 +1,4 @@
-import { DidUri } from '@kiltprotocol/sdk-js';
+import { type DidUri } from '@kiltprotocol/sdk-js';
 
 import * as styles from './DidSection.module.css';
 
@@ -25,7 +25,7 @@ export function DidSection({ did, error }: Props) {
       {did && (
         <div className={styles.wrapper}>
           <span className={styles.text}>{did}</span>
-          {did && <CopyToClipboard text={did} />}
+          <CopyToClipboard text={did} />
         </div>
       )}
 

@@ -1,6 +1,6 @@
 import {
   Fragment,
-  KeyboardEvent,
+  type KeyboardEvent,
   useCallback,
   useEffect,
   useState,
@@ -8,9 +8,9 @@ import {
 
 import {
   Did,
-  DidServiceEndpoint,
-  DidUri,
-  KiltAddress,
+  type DidServiceEndpoint,
+  type DidUri,
+  type KiltAddress,
 } from '@kiltprotocol/sdk-js';
 
 import { decodeAddress } from '@polkadot/util-crypto';
@@ -29,7 +29,10 @@ import { EndpointSection } from '../ServiceEndpoint/ServiceEndpoint';
 import { DidSection } from '../DidSection/DidSection';
 import { Web3Name } from '../Web3Name/Web3Name';
 import { VerificationMethod } from '../VerificationMethod/VerificationMethod';
-import { ResultsErrors, SearchError } from '../ResultsErrors/ResultsErrors';
+import {
+  ResultsErrors,
+  type SearchError,
+} from '../ResultsErrors/ResultsErrors';
 import { LinkingInfo } from '../LinkingInfo/LinkingInfo';
 import { ClaimW3Name } from '../ClaimW3Name/ClaimW3Name';
 import { ClaimingGuide } from '../ClaimingGuide/ClaimingGuide';
@@ -123,17 +126,19 @@ export function Search() {
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 
   window.onpopstate = function () {
-    setError(undefined);
-    const path = window.location.pathname.split('/')[1];
-    setSearchedText(path);
-    if (searchedText.length) {
-      if (serviceEndpoints.length) {
-        setServiceEndpoints([]);
-        setDid(undefined);
-        setW3Name('');
+    (async () => {
+      setError(undefined);
+      const path = window.location.pathname.split('/')[1];
+      setSearchedText(path);
+      if (searchedText.length > 0) {
+        if (serviceEndpoints.length > 0) {
+          setServiceEndpoints([]);
+          setDid(undefined);
+          setW3Name('');
+        }
+        await resolveDidDocument(path, false);
       }
-      resolveDidDocument(path, false);
-    }
+    })();
   };
 
   const setDidDocumentFromDid = async (
@@ -170,7 +175,7 @@ export function Search() {
       const api = await apiPromise;
 
       pushHistoryState(shouldChangeUrl, textFromSearch);
-      if (!textFromSearch.length) return;
+      if (textFromSearch.length === 0) return;
       if (textFromSearch.length < 3) {
         setError('min_limit');
         return;
@@ -230,7 +235,7 @@ export function Search() {
           const result = await api.call.did.queryByWeb3Name(name);
           if (result.isSome) {
             const { document, accounts } = Did.linkedInfoFromChain(result);
-            setServiceEndpoints(document.service || []);
+            setServiceEndpoints(document.service ?? []);
             setDid(document.uri);
             setIsClaimed(true);
             setLinkedAccounts(accounts);
@@ -252,7 +257,7 @@ export function Search() {
       setW3Name(textFromSearch);
       if (result.isSome) {
         const { document, accounts } = Did.linkedInfoFromChain(result);
-        setServiceEndpoints(document.service || []);
+        setServiceEndpoints(document.service ?? []);
         setDid(document.uri);
         setIsClaimed(true);
         setLinkedAccounts(accounts);
@@ -279,14 +284,20 @@ export function Search() {
   };
 
   const handleKeypress = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') handleSearch();
+    (async () => {
+      if (event.key === 'Enter') {
+        await handleSearch();
+      }
+    })();
   };
   useEffect(() => {
-    const path = window.location.pathname.split('/')[1];
-    if (path !== '') {
-      setSearchedText(path);
-      resolveDidDocument(path);
-    }
+    (async () => {
+      const path = window.location.pathname.split('/')[1];
+      if (path !== '') {
+        setSearchedText(path);
+        await resolveDidDocument(path);
+      }
+    })();
   }, [resolveDidDocument]);
   return (
     <main className={styles.container}>
@@ -309,7 +320,7 @@ export function Search() {
 
           <button
             className={styles.button}
-            onClick={() => handleSearch()}
+            onClick={handleSearch}
             type="submit"
             aria-label="search"
           />

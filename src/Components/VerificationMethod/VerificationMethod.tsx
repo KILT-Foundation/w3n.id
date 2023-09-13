@@ -1,4 +1,4 @@
-import { DidUri } from '@kiltprotocol/sdk-js';
+import { type DidUri } from '@kiltprotocol/sdk-js';
 
 import * as styles from './VerificationMethod.module.css';
 

@@ -10,8 +10,10 @@ export const CopyToClipboard = (props: CopyText) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = () => {
-    setCopied(true);
-    navigator.clipboard.writeText(props.text);
+    (async () => {
+      setCopied(true);
+      await navigator.clipboard.writeText(props.text);
+    })();
   };
   useEffect(() => {
     if (copied) {
