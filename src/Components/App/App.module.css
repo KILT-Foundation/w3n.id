@@ -4,8 +4,7 @@
   background-color: var(--body);
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden auto;
   align-items: center;
   justify-content: center;
   font-family: Overpass, sans-serif;
