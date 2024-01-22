@@ -57,7 +57,7 @@ export const Footer = () => {
           </a>
         </nav>
 
-        <p className={styles.copyright}>© 2023 BOTLabs GmbH</p>
+        <p className={styles.copyright}>© 2024 BOTLabs GmbH</p>
       </div>
     </footer>
   );

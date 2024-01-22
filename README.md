@@ -4,4 +4,4 @@ W3n.id acts like a phone book – for any given DID on the KILT blockchain, you 
 
 https://w3n.id/
 
-Copyright (c) 2022-2023, BOTLabs GmbH. All rights reserved.
+Copyright (c) 2022-2024, BOTLabs GmbH. All rights reserved.
