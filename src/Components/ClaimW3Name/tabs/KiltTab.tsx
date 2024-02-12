@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useRef, useState } from 'react';
 import { BalanceUtils, ChainHelpers } from '@kiltprotocol/sdk-js';
 import { web3FromSource } from '@polkadot/extension-dapp';
+import BN from 'bn.js';
 
 import styles from '../ClaimW3Name.module.css';
 
@@ -16,6 +17,35 @@ import { ClaimingModal } from '../../Modal/Modal';
 
 interface Props {
   web3name: string;
+}
+
+export interface BalancesV1 {
+  free: BN;
+  miscFrozen: BN;
+  feeFrozen: BN;
+  reserved: BN;
+}
+
+export interface BalancesV2 {
+  free: BN;
+  reserved: BN;
+  frozen: BN;
+  flags: BN;
+}
+
+function isBalancesV2(obj: unknown): obj is BalancesV2 {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'free' in obj &&
+    obj.free instanceof BN &&
+    'reserved' in obj &&
+    obj.reserved instanceof BN &&
+    'frozen' in obj &&
+    obj.frozen instanceof BN &&
+    'flags' in obj &&
+    obj.flags instanceof BN
+  );
 }
 
 export function KiltTab({ web3name }: Props) {
@@ -37,6 +67,13 @@ export function KiltTab({ web3name }: Props) {
     'claiming' | 'success' | 'error'
   >();
 
+  const getTransferableBalance = (balance: BalancesV1 | BalancesV2) => {
+    const { free, frozen } = isBalancesV2(balance)
+      ? balance
+      : { free: balance.free, frozen: balance.miscFrozen };
+    return free.sub(frozen);
+  };
+
   const handleConnectWallets = useCallback(async () => {
     try {
       setConnecting(true);
@@ -49,8 +86,7 @@ export function KiltTab({ web3name }: Props) {
           continue;
         }
         const result = await api.query.system.account(address);
-        const { free, miscFrozen } = result.data;
-        const transferable = free.sub(miscFrozen);
+        const transferable = getTransferableBalance(result.data);
         balances.set(address, transferable);
       }
 
