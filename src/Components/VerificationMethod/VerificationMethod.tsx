@@ -1,4 +1,4 @@
-import {type DidUri} from '@kiltprotocol/sdk-js';
+import { type DidUri } from '@kiltprotocol/sdk-js';
 
 import * as styles from './VerificationMethod.module.css';
 
@@ -9,7 +9,8 @@ interface Props {
 export const uniresolverEndpoint = process.env.UNIRESOLVER_ENDPOINT as string;
 
 export const VerificationMethod = (props: Props) => {
-  return (<div className={styles.container}>
+  return (
+    <div className={styles.container}>
       <span className={styles.title}>Verification methods</span>
 
       <div className={styles.wrapper}>
@@ -25,5 +26,6 @@ export const VerificationMethod = (props: Props) => {
           {`${uniresolverEndpoint}/#\n${props.did}`}
         </a>
       </div>
-    </div>);
+    </div>
+  );
 };
