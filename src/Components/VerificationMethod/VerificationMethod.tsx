@@ -6,6 +6,9 @@ interface Props {
   did?: DidUri;
 }
 
+export const uniresolverEndpoint = process.env
+  .REACT_APP_UNIRESOLVER_ENDPOINT as string;
+
 export const VerificationMethod = (props: Props) => {
   return (
     <div className={styles.container}>
@@ -17,11 +20,11 @@ export const VerificationMethod = (props: Props) => {
         </span>
         <a
           className={styles.anchor}
-          href={`https://dev.uniresolver.io/#${props.did}`}
+          href={`${uniresolverEndpoint}/#${props.did}`}
           target="_blank"
           rel="noreferrer"
         >
-          {`https://dev.uniresolver.io/#\n${props.did}`}
+          {`${uniresolverEndpoint}/#\n${props.did}`}
         </a>
       </div>
     </div>
