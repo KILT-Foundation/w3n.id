@@ -6,7 +6,7 @@ interface Props {
   did?: DidUri;
 }
 
-export const uniresolverEndpoint = process.env.UNIRESOLVER_ENDPOINT as string;
+export const uniresolverEndpoint = process.env.REACT_APP_UNIRESOLVER_ENDPOINT as string;
 
 export const VerificationMethod = (props: Props) => {
   return (
