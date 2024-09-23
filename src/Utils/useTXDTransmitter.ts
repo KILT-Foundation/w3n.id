@@ -5,22 +5,27 @@ import { type KiltAddress } from '@kiltprotocol/sdk-js';
 
 import { endpoint } from './claimWeb3name-helpers';
 
-const txdUrls: Record<string, string> = {
-  'wss://kilt-rpc.dwellir.com': 'https://txd.trusted-entity.io',
-  'wss://spiritnet.kilt.io': 'https://txd.trusted-entity.io',
-  'wss://spiritnet.api.onfinality.io/public-ws':
-    'https://txd.trusted-entity.io',
-  'wss://peregrine.kilt.io': 'https://dev.txd.trusted-entity.io',
-  'wss://peregrine-stg.kilt.io/para': 'https://smoke.txd.trusted-entity.io',
-};
+function deductTxdURL(blockchainEndpoint: string) {
+  const endpoint = blockchainEndpoint.toLowerCase();
+  if (endpoint.includes('peregrine-stg')) {
+    return 'https://smoke.txd.trusted-entity.io';
+  }
+  if (endpoint.includes('peregrine')) {
+    return 'https://dev.txd.trusted-entity.io';
+  }
+  return 'https://txd.trusted-entity.io';
+}
 
-const checkoutUrls: Record<string, string> = {
-  'wss://kilt-rpc.dwellir.com': 'https://checkout.kilt.io',
-  'wss://spiritnet.kilt.io': 'https://checkout.kilt.io',
-  'wss://spiritnet.api.onfinality.io/public-ws': 'https://checkout.kilt.io',
-  'wss://peregrine.kilt.io': 'https://dev.checkout.kilt.io',
-  'wss://peregrine-stg.kilt.io/para': 'https://smoke.checkout.kilt.io',
-};
+function deductCheckoutServiceURL(blockchainEndpoint: string) {
+  const endpoint = blockchainEndpoint.toLowerCase();
+  if (endpoint.includes('peregrine-stg')) {
+    return 'https://smoke.checkout.kilt.io';
+  }
+  if (endpoint.includes('peregrine')) {
+    return 'https://dev.checkout.kilt.io';
+  }
+  return 'https://checkout.kilt.io';
+}
 
 function useApi<Output>(key: Key) {
   return useSWR<Output, string | Error>(
@@ -29,10 +34,10 @@ function useApi<Output>(key: Key) {
   );
 }
 
-export const checkoutServiceURL = checkoutUrls[endpoint];
+export const checkoutServiceURL = deductCheckoutServiceURL(endpoint);
 
 export function useApiTXDAddress() {
-  const txdUrl = txdUrls[endpoint];
+  const txdUrl = deductTxdURL(endpoint);
   const txdResponseForAddress = useApi<{ paymentAddress: KiltAddress }>(
     `${txdUrl}/meta`,
   );
