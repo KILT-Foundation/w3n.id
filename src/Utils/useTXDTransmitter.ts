@@ -33,11 +33,17 @@ export const checkoutServiceURL = checkoutUrls[endpoint];
 
 export function useApiTXDAddress() {
   const txdUrl = txdUrls[endpoint];
-  return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
+  const txdResponseForAddress = useApi<{ paymentAddress: KiltAddress }>(
+    `${txdUrl}/meta`,
+  );
+  console.log('txdResponseForAddress: ', txdResponseForAddress);
+  return txdResponseForAddress;
 }
 
 export function useApiTXDCosts() {
-  return useApi<{ did: string; w3n: string }>(
+  const txdResponseForCosts = useApi<{ did: string; w3n: string }>(
     `${checkoutServiceURL}/api/costs`,
   );
+  console.log('txdResponseForCosts: ', txdResponseForCosts);
+  return txdResponseForCosts;
 }

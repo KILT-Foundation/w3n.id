@@ -104,6 +104,7 @@ interface UnclaimedProps {
 
 function Unclaimed({ web3name }: UnclaimedProps) {
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
+  console.log('unclaimed component being called');
   return (
     <Fragment>
       <ClaimW3Name web3name={web3name} />
@@ -145,6 +146,8 @@ export function Search() {
     did: DidUri,
     shouldChangeUrl: boolean,
   ) => {
+    console.log('alla_1');
+
     try {
       const api = await apiPromise;
 
@@ -173,6 +176,7 @@ export function Search() {
   const resolveDidDocument = useCallback(
     async (textFromSearch: string, shouldChangeUrl = true) => {
       const api = await apiPromise;
+      console.log('aqui_1');
 
       pushHistoryState(shouldChangeUrl, textFromSearch);
       if (textFromSearch.length === 0) return;
@@ -180,15 +184,20 @@ export function Search() {
         setError('min_limit');
         return;
       }
+      console.log('aqui_2');
 
       try {
         const did = textFromSearch as DidUri;
         Did.validateUri(did);
         await setDidDocumentFromDid(did, shouldChangeUrl);
         setIsClaimed(true);
+        console.log('aqui_3');
+
         return;
         // throws if not valid Kilt DID, but could still be valid Kilt address or web3name
-      } catch {}
+      } catch (e) {
+        console.log('catched error', e);
+      }
 
       if (isSearchedTextDid(textFromSearch)) {
         setError('invalid_kilt');
@@ -198,11 +207,16 @@ export function Search() {
 
       try {
         const address = textFromSearch as KiltAddress;
-        decodeAddress(address);
+        console.log('aqui_4');
+
+        decodeAddress(address); // fails here for unclaimed w3ns
+        console.log('aqui_5');
 
         const result = await api.call.did.queryByAccount(
           Did.accountToChain(address),
         );
+
+        console.log('result: ', JSON.stringify(result));
 
         if (result.isNone) {
           setError('no_linked_account');
@@ -210,8 +224,11 @@ export function Search() {
           return;
         }
         const did = Did.linkedInfoFromChain(result).document.uri;
+        console.log('aqui_6');
 
         await setDidDocumentFromDid(did, shouldChangeUrl);
+        console.log('aqui_7');
+
         setIsClaimed(true);
         return;
 
@@ -232,7 +249,11 @@ export function Search() {
         const name = textFromSearch.split(':').pop();
         if (name) {
           setW3Name(name);
+          console.log('another_1');
+
           const result = await api.call.did.queryByWeb3Name(name);
+          console.log('another_2');
+
           if (result.isSome) {
             const { document, accounts } = Did.linkedInfoFromChain(result);
             setServiceEndpoints(document.service ?? []);
@@ -252,18 +273,27 @@ export function Search() {
         setW3Name('');
         return;
       }
+      console.log('aqui_8');
 
       const result = await api.call.did.queryByWeb3Name(textFromSearch);
+      console.log('aqui_9');
+      console.log('result.isSome: ', result.isSome);
       setW3Name(textFromSearch);
       if (result.isSome) {
+        console.log('aqui_10');
+
         const { document, accounts } = Did.linkedInfoFromChain(result);
+
         setServiceEndpoints(document.service ?? []);
         setDid(document.uri);
         setIsClaimed(true);
         setLinkedAccounts(accounts);
       } else {
+        console.log('aqui_11');
+
         replaceHistoryState(shouldChangeUrl, textFromSearch);
         setIsClaimed(false);
+        console.log('aqui_12');
       }
     },
     [],
