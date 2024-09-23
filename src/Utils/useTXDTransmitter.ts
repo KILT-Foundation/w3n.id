@@ -35,14 +35,14 @@ function useApi<Output>(key: Key) {
 }
 
 export const checkoutServiceURL = deductCheckoutServiceURL(endpoint);
-
-export function useApiTXDAddress() {
-  const txdUrl = deductTxdURL(endpoint);
-  return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
-}
+const txdUrl = deductTxdURL(endpoint);
 
 export function useApiTXDCosts() {
   return useApi<{ did: string; w3n: string }>(
     `${checkoutServiceURL}/api/costs`,
   );
+}
+
+export function useApiTXDAddress() {
+  return useApi<{ paymentAddress: KiltAddress }>(`${txdUrl}/meta`);
 }
