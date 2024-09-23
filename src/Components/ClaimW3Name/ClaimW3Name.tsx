@@ -54,29 +54,12 @@ interface Props {
   web3name: string;
 }
 
-// function isEmptyObject(obj: unknown) {
-//   if (typeof obj === 'object' && obj != null) {
-//     return Object.entries(obj).length < 1;
-//   }
-//   return false;
-// }
-
 export const ClaimW3Name = ({ web3name }: Props) => {
   const maintenanceMode = process.env.REACT_APP_MAINTENANCE === 'true';
 
   const cost = useApiTXDCosts();
 
   const txd = useApiTXDAddress();
-
-  console.log('stringified cost: ', JSON.stringify(cost, null, 2));
-  console.log('cost: ', cost);
-  console.log('typeof cost.error: ', typeof cost.error);
-  console.log('cost: ', JSON.stringify(cost.error));
-
-  console.log('stringified txd: ', JSON.stringify(txd, null, 2));
-  console.log('txd: ', txd);
-  console.log('typeof txd.error: ', typeof txd.error);
-  console.log('txd: ', JSON.stringify(txd.error));
 
   if (cost.error !== undefined || txd.error !== undefined) {
     return (
