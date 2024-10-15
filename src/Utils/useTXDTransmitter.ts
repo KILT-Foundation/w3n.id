@@ -3,28 +3,14 @@ import ky from 'ky';
 
 import { type KiltAddress } from '@kiltprotocol/sdk-js';
 
-import { endpoint } from './claimWeb3name-helpers';
-
-function deductTxdURL(blockchainEndpoint: string) {
-  const endpoint = blockchainEndpoint.toLowerCase();
-  if (endpoint.includes('peregrine-stg')) {
-    return 'https://smoke.txd.trusted-entity.io';
-  }
-  if (endpoint.includes('peregrine')) {
-    return 'https://dev.txd.trusted-entity.io';
-  }
-  return 'https://txd.trusted-entity.io';
+export const checkoutServiceURL = process.env.REACT_APP_CHECKOUT_URL as string;
+if (!checkoutServiceURL) {
+  throw new Error('No URL for the Checkout Service provided.');
 }
 
-function deductCheckoutServiceURL(blockchainEndpoint: string) {
-  const endpoint = blockchainEndpoint.toLowerCase();
-  if (endpoint.includes('peregrine-stg')) {
-    return 'https://smoke.checkout.kilt.io';
-  }
-  if (endpoint.includes('peregrine')) {
-    return 'https://dev.checkout.kilt.io';
-  }
-  return 'https://checkout.kilt.io';
+const txdUrl = process.env.REACT_APP_TXD_URL as string;
+if (!txdUrl) {
+  throw new Error('No URL for the Transaction Daemon provided.');
 }
 
 function useApi<Output>(key: Key) {
@@ -33,9 +19,6 @@ function useApi<Output>(key: Key) {
     async (...args: Parameters<typeof ky>) => await ky(...args).json(),
   );
 }
-
-export const checkoutServiceURL = deductCheckoutServiceURL(endpoint);
-const txdUrl = deductTxdURL(endpoint);
 
 export function useApiTXDCosts() {
   return useApi<{ did: string; w3n: string }>(
