@@ -10,9 +10,8 @@ export function Terms() {
         <section className={styles.terms}>
           <h3>Application of These Terms and Conditions</h3>
           <p>
-            For the w3n.id (the “W3n.id Website”) by BOTLabs GmbH (hereinafter
-            referred to as “BOTLabs”, “us”, “we” or “our”) a website with
-            software as provided under{' '}
+            For the w3n.id (the “W3n.id Website”) by the KILT foundation a
+            website with software as provided under{' '}
             <a
               className={styles.anchor}
               href="https://w3n.id/"
@@ -136,26 +135,26 @@ export function Terms() {
 
           <h3 className={styles.spacedHeading}>Liability</h3>
           <p>
-            BOTLabs is liable for damages that are based on an intentional or
-            grossly negligent breach of duty by BOTLabs, its legal
-            representatives or various agents.
+            The KILT Foundation is liable for damages that are based on an
+            intentional or grossly negligent breach of duty by the KILT
+            Foundation, its legal representatives or various agents.
           </p>
           <p>
-            In the event of a breach of essential contractual duties, BOTLabs
-            shall only be liable for the contractually typical, foreseeable
-            damage if this was simply cause by negligence. Significant
-            contractual obligations are those whose fulfillment enables the
-            proper execution of the contract in the first place and whose
-            compliance you can regularly rely on.
+            In the event of a breach of essential contractual duties, the KILT
+            Foundation shall only be liable for the contractually typical,
+            foreseeable damage if this was simply cause by negligence.
+            Significant contractual obligations are those whose fulfillment
+            enables the proper execution of the contract in the first place and
+            whose compliance you can regularly rely on.
           </p>
           <p>
             The limitation of the two preceding paragraphs also apply to the
-            legal representatives and various agents of BOTLabs, if claims are
-            asserted directly against them. The liability limitations resulting
-            from the two preceding paragraphs do not apply insofar as BOTLabs
-            fraudulently concealed the defect or assumed a guarantee for the
-            quality of the W3n.id Website or the usage of the w3n.id in the
-            wallet.
+            legal representatives and various agents of the KILT Foundation, if
+            claims are asserted directly against them. The liability limitations
+            resulting from the two preceding paragraphs do not apply insofar as
+            the KILT Foundation fraudulently concealed the defect or assumed a
+            guarantee for the quality of the W3n.id Website or the usage of the
+            w3n.id in the wallet.
           </p>
           <p>
             Liability for culpable injury to life, limb and health and liability
@@ -234,9 +233,9 @@ export function Terms() {
             Conditions
           </h3>
           <p>
-            BOTLabs reserves the right to change the w3n.id, the w3n.id Website
-            and these Terms and Conditions as well as the commercial and
-            non-commercial conditions for its usage.
+            The KILT Foundation reserves the right to change the w3n.id, the
+            w3n.id Website and these Terms and Conditions as well as the
+            commercial and non-commercial conditions for its usage.
           </p>
           <p>
             Such changes will be made via uploading new Terms and Conditions,
@@ -249,7 +248,7 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>
             License to the W3n.id Website
           </h3>
-          <p>Copyright (c) 2022-2024, BOTLabs GmbH. All rights reserved.</p>
+          <p>Copyright (c) 2025, KILT Foundation. All rights reserved.</p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
           <p>Copyright (c) 2022-2024, built on KILT. All rights reserved.</p>
@@ -282,9 +281,8 @@ export function Terms() {
             </li>
           </ul>
           <p>
-            Disclaimer: The Liability of BOTLabs GmbH (hereinafter referred to
-            as “BOTLabs”) is limited according to these Terms and Conditions for
-            w3n.id.
+            Disclaimer: The Liability of the KILT Foundation is limited
+            according to these Terms and Conditions for w3n.id.
           </p>
 
           <p>(BSD 4-Clause)</p>
@@ -302,10 +300,11 @@ export function Terms() {
             remaining provisions will continue in full force and effect.
           </p>
           <p>
-            The place of performance and exclusive place of jurisdiction for all
-            disputes arising from these Terms and Conditions and the entire
-            legal relationship between the parties shall be BOTLabs’ registered
-            office, unless choice of jurisdiction is legally prohibited.
+            The place of performance and the exclusive jurisdiction for all
+            disputes arising from these Terms and Conditions, as well as the
+            entire legal relationship between the parties, shall be the
+            registered office of the KILT Foundation, unless a different
+            jurisdiction is legally mandated
           </p>
         </section>
       </div>
