@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "buffer": "^6.0.3",
-    "bundlewatch": "^0.3.3",
+    "bundlewatch": "^0.4.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard-with-typescript": "^40.0.0",
