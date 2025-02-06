@@ -58,12 +58,12 @@
   font-size: 10px;
   margin: 0;
   background: url('../../ImageAssets/built_on_kilt_light.svg') no-repeat center
-  right/25%;
+    right/25%;
 }
 
 :global(html.dark) .copyright {
-background: url('../../ImageAssets/built_on_KILT_dark.svg') no-repeat center
-  right/25%;
+  background: url('../../ImageAssets/built_on_KILT_dark.svg') no-repeat center
+    right/25%;
 }
 
 @media (width <= 700px) {
