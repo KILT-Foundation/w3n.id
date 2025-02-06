@@ -37,15 +37,6 @@ export const Footer = () => {
           >
             Privacy
           </NavLink>
-
-          <a
-            className={styles.navLink}
-            href="https://support.kilt.io/support/home"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Support
-          </a>
         </nav>
 
         <p className={styles.copyright}>© 2025 KILT Foundation</p>
