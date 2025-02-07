@@ -32,18 +32,6 @@ export const Imprint = () => {
                 hello@kilt.io
               </a>
             </p>
-            <p className={styles.imprintLine}>
-              Or go to{' '}
-              <a
-                className={styles.anchor}
-                href="https://support.kilt.io/support/home"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Tech support
-              </a>{' '}
-              {`and click on "Contact Us"`}
-            </p>
           </section>
         </div>
       </div>
