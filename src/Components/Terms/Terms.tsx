@@ -113,7 +113,7 @@ export function Terms() {
           <p>
             If a web3name has KILT credentials associated with it that are
             stored on service endpoints, you can fetch the credentials in order
-            to read these associated credential
+            to read these associated credentials.
           </p>
           <p>
             More instructions on how to use the web3name for generating a paid
