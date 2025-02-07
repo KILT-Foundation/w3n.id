@@ -224,11 +224,11 @@ export function Terms() {
             future) run in the background of the web browser or the wallet used.
           </p>
 
-          <h3 className={styles.spacedHeading}>
+          <p className={styles.spacedHeading}>
             The Foundation reserves the right to change the w3n.id, the w3n.id
             Website and these Terms and Conditions as well as the commercial and
             non-commercial conditions for its usage.
-          </h3>
+          </p>
           <p>
             Such changes will be made via uploading new Terms and Conditions,
             and/or other information to the w3n.id Website and any usage of the
