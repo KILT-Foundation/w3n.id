@@ -10,9 +10,8 @@ export function Terms() {
         <section className={styles.terms}>
           <h3>Application of These Terms and Conditions</h3>
           <p>
-            For the w3n.id (the “W3n.id Website”) by BOTLabs GmbH (hereinafter
-            referred to as “BOTLabs”, “us”, “we” or “our”) a website with
-            software as provided under{' '}
+            For the w3n.id (the “W3n.id Website”) by the KILT foundation a
+            website with software as provided under{' '}
             <a
               className={styles.anchor}
               href="https://w3n.id/"
@@ -101,9 +100,9 @@ export function Terms() {
             no web3name and DID attached to it.
           </p>
           <p>
-            If you looked up a DID or a web3name, under section “Linked
-            accounts” you can see all the account addresses that were linked to
-            the DID and web3name in the the Polkadot/Kusama universe.
+            If you look up a DID or a web3name, under section “Linked accounts”
+            you can see all the account addresses that were linked to the DID
+            and web3name in the the Polkadot/Kusama universe.
           </p>
           <p>
             You can also use w3n.id to share your web3name or your DID and the
@@ -136,30 +135,26 @@ export function Terms() {
 
           <h3 className={styles.spacedHeading}>Liability</h3>
           <p>
-            BOTLabs is liable for damages that are based on an intentional or
-            grossly negligent breach of duty by BOTLabs, its legal
-            representatives or various agents.
+            The Foundation is liable for damages that are based on an
+            intentional or grossly negligent breach of duty by the Foundation,
+            its legal representatives or various agents.
           </p>
           <p>
-            In the event of a breach of essential contractual duties, BOTLabs
-            shall only be liable for the contractually typical, foreseeable
-            damage if this was simply cause by negligence. Significant
-            contractual obligations are those whose fulfillment enables the
-            proper execution of the contract in the first place and whose
-            compliance you can regularly rely on.
+            In the event of a breach of essential contractual duties, the
+            Foundation shall only be liable for the contractually typical,
+            foreseeable damage if this was simply cause by negligence.
+            Significant contractual obligations are those whose fulfillment
+            enables the proper execution of the contract in the first place and
+            whose compliance you can regularly rely on.
           </p>
           <p>
             The limitation of the two preceding paragraphs also apply to the
-            legal representatives and various agents of BOTLabs, if claims are
-            asserted directly against them. The liability limitations resulting
-            from the two preceding paragraphs do not apply insofar as BOTLabs
-            fraudulently concealed the defect or assumed a guarantee for the
-            quality of the W3n.id Website or the usage of the w3n.id in the
-            wallet.
-          </p>
-          <p>
-            Liability for culpable injury to life, limb and health and liability
-            under Product Liability Act remain unaffected.
+            legal representatives and various agents of the Foundation, if
+            claims are asserted directly against them. The liability limitations
+            resulting from the two preceding paragraphs do not apply insofar as
+            the Foundation fraudulently concealed the defect or assumed a
+            guarantee for the quality of the W3n.id Website or the usage of the
+            w3n.id in the wallet.
           </p>
           <p>Any additional claims for damages are excluded.</p>
 
@@ -182,7 +177,7 @@ export function Terms() {
           </p>
           <p>
             On-chain DIDs and web3names are created and used via your wallet –
-            please check all the information, instruction and warnings given
+            please check all the information, instructions and warnings given
             about your wallet by its provider and closely follow the advice
             given. Always ensure that you do not lose your access data to your
             wallet and keep access to your wallet as well as the values,
@@ -229,13 +224,9 @@ export function Terms() {
             future) run in the background of the web browser or the wallet used.
           </p>
 
-          <h3 className={styles.spacedHeading}>
-            Right to Change w3n.id, the w3n.id Website and These Terms and
-            Conditions
-          </h3>
-          <p>
-            BOTLabs reserves the right to change the w3n.id, the w3n.id Website
-            and these Terms and Conditions as well as the commercial and
+          <p className={styles.spacedHeading}>
+            The Foundation reserves the right to change the w3n.id, the w3n.id
+            Website and these Terms and Conditions as well as the commercial and
             non-commercial conditions for its usage.
           </p>
           <p>
@@ -249,10 +240,10 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>
             License to the W3n.id Website
           </h3>
-          <p>Copyright (c) 2022-2024, BOTLabs GmbH. All rights reserved.</p>
+          <p>Copyright (c) 2025, Kilt Foundation. All rights reserved.</p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
-          <p>Copyright (c) 2022-2024, built on KILT. All rights reserved.</p>
+          <p>Copyright (c) 2025, built on KILT. All rights reserved. </p>
 
           <p>
             Redistribution and use in source and binary forms, with or without
@@ -282,9 +273,9 @@ export function Terms() {
             </li>
           </ul>
           <p>
-            Disclaimer: The Liability of BOTLabs GmbH (hereinafter referred to
-            as “BOTLabs”) is limited according to these Terms and Conditions for
-            w3n.id.
+            Disclaimer: The Liability of the KILT Foundation (hereinafter
+            referred to as “the Foundation”) is limited according to these Terms
+            and Conditions for w3n.id.
           </p>
 
           <p>(BSD 4-Clause)</p>
@@ -292,20 +283,19 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>Miscellaneous</h3>
           <p>
             These Terms and Conditions and the entire legal relationship between
-            the parties shall be governed by the laws of the Federal Republic of
-            Germany to the exclusion of the UN Convention on Contracts for the
-            International Sale of Goods (CISG) unless the choice of law is
-            legally prohibited.
+            the parties shall be governed by the laws of the Cayman Islands
+            unless the choice of law is legally prohibited.
           </p>
           <p>
-            If a term of this agreement to be invalid or unenforceable, the
+            If a term of this agreement is invalid or unenforceable, the
             remaining provisions will continue in full force and effect.
           </p>
           <p>
             The place of performance and exclusive place of jurisdiction for all
             disputes arising from these Terms and Conditions and the entire
-            legal relationship between the parties shall be BOTLabs’ registered
-            office, unless choice of jurisdiction is legally prohibited.
+            legal relationship between the parties shall be the Foundations’
+            registered office, unless choice of jurisdiction is legally
+            prohibited.
           </p>
         </section>
       </div>

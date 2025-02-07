@@ -11,20 +11,20 @@ export function Privacy() {
           <p>
             We are very delighted that you have shown interest in our
             enterprise. Data protection is of a particularly high priority for
-            the management of the BOTLabs GmbH. The use of the Internet pages of
-            the BOTLabs GmbH is possible without any indication of personal
-            data; however, if a data subject wants to use special enterprise
-            services via our website, processing of personal data could become
-            necessary. If the processing of personal data is necessary and there
-            is no statutory basis for such processing, we generally obtain
-            consent from the data subject.
+            the management of the KILT Foundation. The use of the Internet pages
+            of the KILT Foundation is possible without any indication of
+            personal data; however, if a data subject wants to use special
+            enterprise services via our website, processing of personal data
+            could become necessary. If the processing of personal data is
+            necessary and there is no statutory basis for such processing, we
+            generally obtain consent from the data subject.
           </p>
           <p>
             The processing of personal data, such as the name, address, e-mail
             address, or telephone number of a data subject shall always be in
             line with the General Data Protection Regulation (GDPR), and in
             accordance with the country-specific data protection regulations
-            applicable to the BOTLabs GmbH. By means of this data protection
+            applicable to the KILT Foundation. By means of this data protection
             declaration, our enterprise would like to inform the general public
             of the nature, scope, and purpose of the personal data we collect,
             use and process. Furthermore, data subjects are informed, by means
@@ -32,7 +32,7 @@ export function Privacy() {
             entitled.
           </p>
           <p>
-            As the controller, the BOTLabs GmbH has implemented numerous
+            As the controller, the KILT Foundation has implemented numerous
             technical and organizational measures to ensure the most complete
             protection of personal data processed through this website. However,
             Internet-based data transmissions may in principle have security
@@ -45,18 +45,18 @@ export function Privacy() {
             <li>
               <h3 className={styles.spacedHeading}>Definitions</h3>
               <p>
-                The data protection declaration of the BOTLabs GmbH is based on
-                the terms used by the European legislator for the adoption of
+                The data protection declaration of the KILT Foundation is based
+                on the terms used by the European legislator for the adoption of
                 the General Data Protection Regulation (GDPR). Our data
                 protection declaration should be legible and understandable for
                 the general public, as well as our customers and business
-                partners. To ensure this, we would like to first explain the
-                terminology used.
+                partners.
               </p>
 
               <p>
-                In this data protection declaration, we use, inter alia, the
-                following terms:
+                To ensure this, we would like to first explain the terminology
+                used. In this data protection declaration, we use, inter alia,
+                the following terms:
               </p>
               <ol type="a">
                 <li>
@@ -199,38 +199,23 @@ export function Privacy() {
                 to data protection is:
               </p>
               <p>
-                BOTLabs GmbH <br />
-                Keithstr. 2-4 <br />
-                10713 Berlin <br />
-                Germany <br />
-                Email: info@botlabs.org
+                KILT Foundation <br />
+                Genesis Building, 5th Floor, Genesis Close,
                 <br />
-              </p>
-              <p>
-                Or go to{' '}
-                <a
-                  className={styles.anchor}
-                  href="https://support.kilt.io/support/home"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://support.kilt.io/support/home{' '}
-                </a>{' '}
-                and click on “Contact Us” <br /> Website:{' '}
-                <a
-                  className={styles.anchor}
-                  href="https://www.botlabs.org/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  https://www.botlabs.org/{' '}
-                </a>{' '}
+                PO Box 446, Cayman Islands, KY1-1106
+                <br />
+                Certificate No. 418097 Directors: Rishant Kumar, Svetoslav
+                Boyadzhiev
+                <br />
+                <br />
+                Contact: hello@kilt.io
+                <br />
               </p>
             </li>
             <li>
               <h3 className={styles.spacedHeading}></h3>
               <p>
-                The website of the BOTLabs GmbH collects a series of general
+                The website of the KILT Foundation collects a series of general
                 data and information when a data subject or automated system
                 calls up the website. This general data and information are
                 stored in the server log files. Collected may be (1) the browser
@@ -244,17 +229,17 @@ export function Privacy() {
                 information technology systems.
               </p>
               <p>
-                When using these general data and information, the BOTLabs GmbH
-                does not draw any conclusions about the data subject. Rather,
-                this information is needed to (1) deliver the content of our
-                website correctly, (2) optimize the content of our website as
-                well as its advertisement, (3) ensure the long-term viability of
-                our information technology systems and website technology, and
-                (4) provide law enforcement authorities with the information
+                When using these general data and information, the KILT
+                Foundation does not draw any conclusions about the data subject.
+                Rather, this information is needed to (1) deliver the content of
+                our website correctly, (2) optimize the content of our website
+                as well as its advertisement, (3) ensure the long-term viability
+                of our information technology systems and website technology,
+                and (4) provide law enforcement authorities with the information
                 necessary for criminal prosecution in case of a cyber-attack.
-                Therefore, the BOTLabs GmbH analyzes anonymously collected data
-                and information statistically, with the aim of increasing the
-                data protection and data security of our enterprise, and to
+                Therefore, the KILT Foundation analyzes anonymously collected
+                data and information statistically, with the aim of increasing
+                the data protection and data security of our enterprise, and to
                 ensure an optimal level of protection for the personal data we
                 process. The anonymous data of the server log files are stored
                 separately from all personal data provided by a data subject.
@@ -267,15 +252,14 @@ export function Privacy() {
               <p>
                 The data controller shall process and store the personal data of
                 the data subject only for the period necessary to achieve the
-                purpose of storage, or as far as this is granted by the European
-                legislator or other legislators in laws or regulations to which
-                the controller is subject to.
+                purpose of storage, or as far as this is granted by laws or
+                regulations to which the controller is subject to.
               </p>
               <p>
                 If the storage purpose is not applicable, or if a storage period
-                prescribed by the European legislator or another competent
-                legislator expires, the personal data are routinely blocked or
-                erased in accordance with legal requirements.
+                prescribed by a competent legislator expires, the personal data
+                are routinely blocked or erased in accordance with legal
+                requirements.
               </p>
             </li>
             <li>
@@ -289,22 +273,22 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to obtain from the controller the
-                    confirmation as to whether or not personal data concerning
-                    him or her are being processed. If a data subject wishes to
-                    avail himself of this right of confirmation, he or she may,
-                    at any time, contact any employee of the controller.
+                    legislator to obtain from the controller the confirmation as
+                    to whether or not personal data concerning him or her are
+                    being processed. If a data subject wishes to avail himself
+                    of this right of confirmation, he or she may, at any time,
+                    contact any employee of the controller.
                   </p>
                 </li>
                 <li>
                   <h3 className={styles.spacedHeading}>Right of access</h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to obtain from the controller free
-                    information about his or her personal data stored at any
-                    time and a copy of this information. Furthermore, the
-                    European directives and regulations grant the data subject
-                    access to the following information:
+                    legislator to obtain from the controller free information
+                    about his or her personal data stored at any time and a copy
+                    of this information. Furthermore, the European directives
+                    and regulations grant the data subject access to the
+                    following information:
                   </p>
                   <ul className={styles.bulletList}>
                     <li>the purposes of the processing;</li>
@@ -335,7 +319,7 @@ export function Privacy() {
                       subject, any available information as to their source;
                     </li>
                     <li>
-                      the existence of automated decision-making, including
+                      he existence of automated decision-making, including
                       profiling, referred to in Article 22(1) and (4) of the
                       GDPR and, at least in those cases, meaningful information
                       about the logic involved, as well as the significance and
@@ -363,12 +347,12 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to obtain from the controller without
-                    undue delay the rectification of inaccurate personal data
-                    concerning him or her. Taking into account the purposes of
-                    the processing, the data subject shall have the right to
-                    have incomplete personal data completed, including by means
-                    of providing a supplementary statement.
+                    legislator to obtain from the controller without undue delay
+                    the rectification of inaccurate personal data concerning him
+                    or her. Taking into account the purposes of the processing,
+                    the data subject shall have the right to have incomplete
+                    personal data completed, including by means of providing a
+                    supplementary statement.
                   </p>
                   <p>
                     If a data subject wishes to exercise this right to
@@ -382,11 +366,11 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to obtain from the controller the
-                    erasure of personal data concerning him or her without undue
-                    delay, and the controller shall have the obligation to erase
-                    personal data without undue delay where one of the following
-                    grounds applies, as long as the processing is not necessary:
+                    legislator to obtain from the controller the erasure of
+                    personal data concerning him or her without undue delay, and
+                    the controller shall have the obligation to erase personal
+                    data without undue delay where one of the following grounds
+                    applies, as long as the processing is not necessary:
                   </p>
                   <ul className={styles.bulletList}>
                     <li>
@@ -422,10 +406,10 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned reasons applies, and a data
                     subject wishes to request the erasure of personal data
-                    stored by the BOTLabs GmbH, he or she may, at any time,
-                    contact any employee of the controller. An employee of
-                    BOTLabs GmbH shall promptly ensure that the erasure request
-                    is complied with immediately.
+                    stored by the KILT Foundation, he or she may, at any time,
+                    contact any employee of the controller. An employee of KILT
+                    Foundation shall promptly ensure that the erasure request is
+                    complied with immediately.
                   </p>
                   <p>
                     Where the controller has made personal data public and is
@@ -436,8 +420,9 @@ export function Privacy() {
                     processing the personal data that the data subject has
                     requested erasure by such controllers of any links to, or
                     copy or replication of, those personal data, as far as
-                    processing is not required. An employee of the BOTLabs GmbH
-                    will arrange the necessary measures in individual cases.
+                    processing is not required. An employee of the KILT
+                    Foundation will arrange the necessary measures in individual
+                    cases.
                   </p>
                 </li>
                 <li>
@@ -446,9 +431,8 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to obtain from the controller
-                    restriction of processing where one of the following
-                    applies:
+                    legislator to obtain from the controller restriction of
+                    processing where one of the following applies:
                   </p>
                   <ul className={styles.bulletList}>
                     <li>
@@ -458,7 +442,7 @@ export function Privacy() {
                     </li>
                     <li>
                       The processing is unlawful and the data subject opposes
-                      the erasure of the personal data and requests instead the
+                      the erasure of the personal data and requests the
                       restriction of their use instead.
                     </li>
                     <li>
@@ -477,10 +461,10 @@ export function Privacy() {
                   <p>
                     If one of the aforementioned conditions is met, and a data
                     subject wishes to request the restriction of the processing
-                    of personal data stored by the BOTLabs GmbH, he or she may
-                    at any time contact any employee of the controller. The
-                    employee of the BOTLabs GmbH will arrange the restriction of
-                    the processing.
+                    of personal data stored by the KILT Foundation, he or she
+                    may at any time contact any employee of the controller. The
+                    employee of the KILT Foundation will arrange the restriction
+                    of the processing.
                   </p>
                 </li>
                 <li>
@@ -489,20 +473,19 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator, to receive the personal data concerning
-                    him or her, which was provided to a controller, in a
-                    structured, commonly used and machine-readable format. He or
-                    she shall have the right to transmit those data to another
-                    controller without hindrance from the controller to which
-                    the personal data have been provided, as long as the
-                    processing is based on consent pursuant to point (a) of
-                    Article 6(1) of the GDPR or point (a) of Article 9(2) of the
-                    GDPR, or on a contract pursuant to point (b) of Article 6(1)
-                    of the GDPR, and the processing is carried out by automated
-                    means, as long as the processing is not necessary for the
-                    performance of a task carried out in the public interest or
-                    in the exercise of official authority vested in the
-                    controller.
+                    legislator, to receive the personal data concerning him or
+                    her, which was provided to a controller, in a structured,
+                    commonly used and machine-readable format. He or she shall
+                    have the right to transmit those data to another controller
+                    without hindrance from the controller to which the personal
+                    data have been provided, as long as the processing is based
+                    on consent pursuant to point (a) of Article 6(1) of the GDPR
+                    or point (a) of Article 9(2) of the GDPR, or on a contract
+                    pursuant to point (b) of Article 6(1) of the GDPR, and the
+                    processing is carried out by automated means, as long as the
+                    processing is not necessary for the performance of a task
+                    carried out in the public interest or in the exercise of
+                    official authority vested in the controller.
                   </p>
                   <p>
                     Furthermore, in exercising his or her right to data
@@ -514,54 +497,56 @@ export function Privacy() {
                   </p>
                   <p>
                     In order to assert the right to data portability, the data
-                    subject may at any time contact any employee of the BOTLabs
-                    GmbH.
+                    subject may at any time contact any employee of the KILT
+                    Foundation.
                   </p>
                 </li>
                 <li>
                   <h3 className={styles.spacedHeading}>Right to object</h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to object, on grounds relating to his or
-                    her particular situation, at any time, to processing of
-                    personal data concerning him or her, which is based on point
-                    (e) or (f) of Article 6(1) of the GDPR. This also applies to
+                    legislator to object, on grounds relating to his or her
+                    particular situation, at any time, to processing of personal
+                    data concerning him or her, which is based on point (e) or
+                    (f) of Article 6(1) of the GDPR. This also applies to
                     profiling based on these provisions.
                   </p>
                   <p>
-                    The BOTLabs GmbH shall no longer process the personal data
-                    in the event of the objection, unless we can demonstrate
-                    compelling legitimate grounds for the processing which
-                    override the interests, rights and freedoms of the data
-                    subject, or for the establishment, exercise or defense of
-                    legal claims.
+                    The KILT Foundation shall no longer process the personal
+                    data in the event of the objection, unless we can
+                    demonstrate compelling legitimate grounds for the processing
+                    which override the interests, rights and freedoms of the
+                    data subject, or for the establishment, exercise or defense
+                    of legal claims.
                   </p>
                   <p>
-                    If the BOTLabs GmbH processes personal data for direct
+                    If the KILT Foundation processes personal data for direct
                     marketing purposes, the data subject shall have the right to
                     object at any time to processing of personal data concerning
                     him or her for such marketing. This applies to profiling to
                     the extent that it is related to such direct marketing. If
-                    the data subject objects to the BOTLabs GmbH to the
-                    processing for direct marketing purposes, the BOTLabs GmbH
-                    will no longer process the personal data for these purposes.
+                    the data subject objects to the KILT Foundation to the
+                    processing for direct marketing purposes, the KILT
+                    Foundation will no longer process the personal data for
+                    these purposes.
                   </p>
                   <p>
                     In addition, the data subject has the right, on grounds
                     relating to his or her particular situation, to object to
                     processing of personal data concerning him or her by the
-                    BOTLabs GmbH for scientific or historical research purposes,
-                    or for statistical purposes pursuant to Article 89(1) of the
-                    GDPR, unless the processing is necessary for the performance
-                    of a task carried out for reasons of public interest.
+                    KILT Foundation for scientific or historical research
+                    purposes, or for statistical purposes pursuant to Article
+                    89(1) of the GDPR, unless the processing is necessary for
+                    the performance of a task carried out for reasons of public
+                    interest.
                   </p>
                   <p>
                     In order to exercise the right to object, the data subject
-                    may contact any employee of the BOTLabs GmbH. In addition,
-                    the data subject is free in the context of the use of
-                    information society services, and notwithstanding Directive
-                    2002/58/EC, to use his or her right to object by automated
-                    means using technical specifications.
+                    may contact any employee of the KILT Foundation. In
+                    addition, the data subject is free in the context of the use
+                    of information society services, and notwithstanding
+                    Directive 2002/58/EC, to use his or her right to object by
+                    automated means using technical specifications.
                   </p>
                 </li>
                 <li>
@@ -570,9 +555,9 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator not to be subject to a decision based
-                    solely on automated processing, including profiling, which
-                    produces legal effects concerning him or her, or similarly
+                    legislator not to be subject to a decision based solely on
+                    automated processing, including profiling, which produces
+                    legal effects concerning him or her, or similarly
                     significantly affects him or her, as long as the decision
                     (1) is not is necessary for entering into, or the
                     performance of, a contract between the data subject and a
@@ -586,16 +571,16 @@ export function Privacy() {
                     If the decision (1) is necessary for entering into, or the
                     performance of, a contract between the data subject and a
                     data controller, or (2) it is based on the data subject’s
-                    explicit consent, the BOTLabs GmbH shall implement suitable
-                    measures to safeguard the data subject’s rights and freedoms
-                    and legitimate interests, at least the right to obtain human
-                    intervention on the part of the controller, to express his
-                    or her point of view and contest the decision.
+                    explicit consent, the KILT Foundation shall implement
+                    suitable measures to safeguard the data subject’s rights and
+                    freedoms and legitimate interests, at least the right to
+                    obtain human intervention on the part of the controller, to
+                    express his or her point of view and contest the decision.
                   </p>
                   <p>
                     If the data subject wishes to exercise the rights concerning
                     automated individual decision-making, he or she may, at any
-                    time, contact any employee of the BOTLabs GmbH.
+                    time, contact any employee of the KILT Foundation.
                   </p>
                 </li>
                 <li>
@@ -604,13 +589,13 @@ export function Privacy() {
                   </h3>
                   <p>
                     Each data subject shall have the right granted by the
-                    European legislator to withdraw his or her consent to
-                    processing of his or her personal data at any time.
+                    legislator to withdraw his or her consent to processing of
+                    his or her personal data at any time.
                   </p>
                   <p>
                     If the data subject wishes to exercise the right to withdraw
                     the consent, he or she may, at any time, contact any
-                    employee of the BOTLabs GmbH.
+                    employee of the KILT Foundation.
                   </p>
                 </li>
               </ol>
@@ -649,9 +634,9 @@ export function Privacy() {
                 fundamental rights and freedoms of the data subject which
                 require protection of personal data. Such processing operations
                 are particularly permissible because they have been specifically
-                mentioned by the European legislator. He considered that a
-                legitimate interest could be assumed if the data subject is a
-                client of the controller (Recital 47 Sentence 2 GDPR).
+                mentioned by the legislator. He considered that a legitimate
+                interest could be assumed if the data subject is a client of the
+                controller (Recital 47 Sentence 2 GDPR).
               </p>
             </li>
             <li>
@@ -694,14 +679,17 @@ export function Privacy() {
                 subsequently be processed by us. The data subject is, for
                 example, obliged to provide us with personal data when our
                 company signs a contract with him or her. The non-provision of
-                the personal data would have the consequence that the contract
-                with the data subject could not be concluded. Before personal
-                data is provided by the data subject, the data subject must
-                contact any employee. The employee clarifies to the data subject
-                whether the provision of the personal data is required by law or
-                contract or is necessary for the conclusion of the contract,
-                whether there is an obligation to provide the personal data and
-                the consequences of non-provision of the personal data.
+                the personal data
+              </p>
+              <p>
+                would have the consequence that the contract with the data
+                subject could not be concluded. Before personal data is provided
+                by the data subject, the data subject must contact any employee.
+                The employee clarifies to the data subject whether the provision
+                of the personal data is required by law or contract or is
+                necessary for the conclusion of the contract, whether there is
+                an obligation to provide the personal data and the consequences
+                of non-provision of the personal data.
               </p>
             </li>
             <li>

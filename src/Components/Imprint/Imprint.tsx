@@ -9,28 +9,27 @@ export const Imprint = () => {
       <div className={styles.imprintContainer}>
         <div className={styles.imprint}>
           <section className={styles.imprintSection}>
-            <p className={styles.imprintLine}>BOTLabs GmbH</p>
-            <p className={styles.imprintLine}>Keithstraße 2-4</p>
-            <p className={styles.imprintLine}>10787 Berlin, Germany</p>
+            <p className={styles.imprintLine}>KILT Foundation</p>
+            <p className={styles.imprintLine}>
+              Genesis Close 5th Floor, Genesis Building
+            </p>
+            <p className={styles.imprintLine}>
+              PO Box 446, Cayman Islands, KY1-1106
+            </p>
           </section>
 
           <section className={styles.imprintSection}>
-            <p className={styles.imprintLine}>German Commercial Court:</p>
+            <p className={styles.imprintLine}>Certificate No. 418097</p>
             <p className={styles.imprintLine}>
-              Amtsgericht Charlottenburg in Berlin
+              Managing Directors: Rishant Kumar, Svetoslav Boyadzhiev
             </p>
-            <p className={styles.imprintLine}>
-              Registration Number: HRB 193450B
-            </p>
-            <p className={styles.imprintLine}>VAT No: DE316284270</p>
-            <p className={styles.imprintLine}>Managing Director: Ingo Rübe</p>
           </section>
 
           <section className={styles.imprintSection}>
             <p className={styles.imprintLine}>
               Contact:{' '}
-              <a className={styles.anchor} href="mailto:info@botlabs.org">
-                info@botlabs.org
+              <a className={styles.anchor} href="mailto:hello@kilt.org">
+                hello@kilt.org
               </a>
             </p>
             <p className={styles.imprintLine}>
@@ -46,10 +45,6 @@ export const Imprint = () => {
               {`and click on "Contact Us"`}
             </p>
           </section>
-
-          <p className={styles.imprintSection}>
-            Requirements according to § 5 TMG (Germany)
-          </p>
         </div>
       </div>
     </main>
