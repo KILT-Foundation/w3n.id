@@ -240,7 +240,7 @@ export function Terms() {
           <h3 className={styles.spacedHeading}>
             License to the W3n.id Website
           </h3>
-          <p>Copyright (c) 2025, Kilt Foundation. All rights reserved.</p>
+          <p>Copyright (c) 2025, KILT Foundation. All rights reserved.</p>
 
           <h3 className={styles.spacedHeading}>License to the Software</h3>
           <p>Copyright (c) 2025, built on KILT. All rights reserved. </p>
