@@ -28,21 +28,9 @@ export const Imprint = () => {
           <section className={styles.imprintSection}>
             <p className={styles.imprintLine}>
               Contact:{' '}
-              <a className={styles.anchor} href="mailto:hello@kilt.org">
-                hello@kilt.org
+              <a className={styles.anchor} href="mailto:hello@kilt.io">
+                hello@kilt.io
               </a>
-            </p>
-            <p className={styles.imprintLine}>
-              Or go to{' '}
-              <a
-                className={styles.anchor}
-                href="https://support.kilt.io/support/home"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Tech support
-              </a>{' '}
-              {`and click on "Contact Us"`}
             </p>
           </section>
         </div>
