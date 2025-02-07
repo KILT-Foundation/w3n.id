@@ -21,7 +21,7 @@ export const Imprint = () => {
           <section className={styles.imprintSection}>
             <p className={styles.imprintLine}>Certificate No. 418097</p>
             <p className={styles.imprintLine}>
-              Managing Director: Rishant Kumar, Svetoslav Boyadzhiev
+              Managing Directors: Rishant Kumar, Svetoslav Boyadzhiev
             </p>
           </section>
 
