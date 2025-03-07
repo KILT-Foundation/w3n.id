@@ -4150,10 +4150,10 @@ known-css-properties@^0.35.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.35.0.tgz#f6f8e40ab4e5700fa32f5b2ef5218a56bc853bd6"
   integrity sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==
 
-ky@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/ky/-/ky-1.2.4.tgz#d095aa848c686116f3326bfce53d9c2ffdb692c1"
-  integrity sha512-CfSrf4a0yj1n6WgPT6kQNQOopIGLkQzqSAXo05oKByaH7G3SiqW4a8jGox0p9whMXqO49H7ljgigivrMyycAVA==
+ky@^1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-1.7.5.tgz#69c9b70ff818fd6108fc04a89c1454412c11dfce"
+  integrity sha512-HzhziW6sc5m0pwi5M196+7cEBtbt0lCYi67wNsiwMUmz833wloE0gbzJPWKs1gliFKQb34huItDQX97LyOdPdA==
 
 less@^4.2.0:
   version "4.2.0"
