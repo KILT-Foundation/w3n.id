@@ -6,7 +6,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: dev
+    strategy:
+      matrix:
+        environment: [ dev, smoke, test, stg, prod ]
+    environment:  ${{ matrix.environment }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -50,7 +53,7 @@ jobs:
           ECR_REPOSITORY: w3n
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:dev
+          docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.environment }}
           docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:dev
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.environment }}
