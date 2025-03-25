@@ -6,10 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [ dev, smoke, test, stg, prod ]
-    environment:  ${{ matrix.environment }}
+    environment:  dev
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -44,14 +41,6 @@ jobs:
         with:
           mask-password: 'true'
       - name: Build image
-        env:
-          REACT_APP_CHAIN_ENDPOINT: ${{ vars.REACT_APP_CHAIN_ENDPOINT }}
-          REACT_APP_CHECKOUT_URL: ${{ vars.REACT_APP_CHECKOUT_URL }}
-          REACT_APP_IS_TEST_ENV: ${{ vars.REACT_APP_IS_TEST_ENV }}
-          REACT_APP_MAINTENANCE: ${{ vars.REACT_APP_MAINTENANCE }}
-          REACT_APP_TXD_URL: ${{ vars.REACT_APP_TXD_URL }}
-          REACT_APP_UNIRESOLVER_ENDPOINT: ${{ vars.REACT_APP_UNIRESOLVER_ENDPOINT }}
-          run: env | grep REACT_APP_ || true
         run: |
           docker build -t w3n:latest .
 
@@ -61,7 +50,7 @@ jobs:
           ECR_REPOSITORY: w3n
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.environment }}
+          docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:dev
           docker tag w3n $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.environment }}
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:dev
