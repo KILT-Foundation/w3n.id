@@ -43,16 +43,20 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
         with:
           mask-password: 'true'
+      - name: Create .env file
+        run: |
+          echo "REACT_APP_CHAIN_ENDPOINT=${{ vars.REACT_APP_CHAIN_ENDPOINT }}" >> .env
+          echo "REACT_APP_CHECKOUT_URL=${{ vars.REACT_APP_CHECKOUT_URL }}" >> .env
+          echo "REACT_APP_IS_TEST_ENV=${{ vars.REACT_APP_IS_TEST_ENV }}" >> .env
+          echo "REACT_APP_MAINTENANCE=${{ vars.REACT_APP_MAINTENANCE }}" >> .env
+          echo "REACT_APP_TXD_URL=${{ vars.REACT_APP_TXD_URL }}" >> .env
+          echo "REACT_APP_UNIRESOLVER_ENDPOINT=${{ vars.REACT_APP_UNIRESOLVER_ENDPOINT }}" >> .env
+        shell: bash
+
       - name: Build image
         run: |
-          docker build \
-            --build-arg REACT_APP_CHAIN_ENDPOINT=${{ vars.REACT_APP_CHAIN_ENDPOINT }} \
-            --build-arg REACT_APP_CHECKOUT_URL=${{ vars.REACT_APP_CHECKOUT_URL }} \
-            --build-arg REACT_APP_IS_TEST_ENV=${{ vars.REACT_APP_IS_TEST_ENV }} \
-            --build-arg REACT_APP_MAINTENANCE=${{ vars.REACT_APP_MAINTENANCE }} \
-            --build-arg REACT_APP_TXD_URL=${{ vars.REACT_APP_TXD_URL }} \
-            --build-arg REACT_APP_UNIRESOLVER_ENDPOINT=${{ vars.REACT_APP_UNIRESOLVER_ENDPOINT }} \
-            -t w3n:latest .
+          docker build -t w3n:latest .
+
       - name: Tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
