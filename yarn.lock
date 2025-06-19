@@ -3111,10 +3111,10 @@ eslint-config-prettier@^10.1.5:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.1.5.tgz#00c18d7225043b6fbce6a665697377998d453782"
   integrity sha512-zc1UmCpNltmVY34vuLRV61r1K27sWuX39E+uyUnY8xS2Bex88VV9cugG+UZbRSRGtGyFboj+D8JODyme1plMpw==
 
-eslint-config-standard-with-typescript@^40.0.0:
-  version "40.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-40.0.0.tgz#6501601dc35e378e6b16e22257e80b7bd276119d"
-  integrity sha512-GXUJcwIXiTQaS3H4etv8a1lejVVdZYaxZNz3g7vt6GoJosQqMTurbmSC4FVGyHiGT/d1TjFr3+47A3xsHhsG+Q==
+eslint-config-standard-with-typescript@^43.0.1:
+  version "43.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-43.0.1.tgz#977862d7d41b0e1f27f399137bbf7b2e017037ff"
+  integrity sha512-WfZ986+qzIzX6dcr4yGUyVb/l9N3Z8wPXCc5z/70fljs3UbWhhV+WxrfgsqMToRzuuyX9MqZ974pq2UPhDTOcA==
   dependencies:
     "@typescript-eslint/parser" "^6.4.0"
     eslint-config-standard "17.1.0"
