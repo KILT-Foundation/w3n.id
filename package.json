@@ -19,7 +19,7 @@
     "@polkadot/api": "^16.2.2",
     "@polkadot/extension-dapp": "^0.59.2",
     "@polkadot/util-crypto": "^13.5.2",
-    "ky": "^1.2.4",
+    "ky": "^1.14.0",
     "lodash-es": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
